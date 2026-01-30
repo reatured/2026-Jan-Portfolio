@@ -1,0 +1,5 @@
+{
+  "name": "Portfolio - Config Driven",
+  "description": "A responsive, config-driven portfolio website using React, Tailwind, and TypeScript.",
+  "requestFramePermissions": []
+}
