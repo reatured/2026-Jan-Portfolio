@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { Sidebar } from './components/layout/Sidebar';
 import { Home } from './pages/Home';
 import { ProjectDetail } from './pages/ProjectDetail';
@@ -37,15 +38,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <>
+      <Router>
+        <ScrollToTop />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
+          </Routes>
+        </Layout>
+      </Router>
+      <Analytics />
+    </>
   );
 };
 
