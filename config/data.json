@@ -1,0 +1,886 @@
+{
+  "site": {
+    "siteName": "Lingyi Zhou",
+    "siteUrl": "https://lingyi.dev",
+    "defaultTitle": "Lingyi Zhou - XR & Game Developer",
+    "titleTemplate": "%s | Lingyi Zhou",
+    "defaultDescription": "Portfolio of Lingyi Zhou, an XR Developer and Game Designer specializing in Unity, AR/VR, and 3D Design.",
+    "defaultOgImage": "https://picsum.photos/1200/630",
+    "twitterHandle": "@reatured",
+    "email": "zeroonelatte@gmail.com",
+    "jobTitle": "XR Developer @ Artly.ai",
+    "location": "New York, NY",
+    "bio": "Ex. AR Engineer @ Snap Inc.\nEx. Unity Engineer @ Unity\nMFA Design and Technology @ Parsons\nMA Game Design & Development @ Columbia",
+    "avatar": "https://picsum.photos/400/400?grayscale",
+    "keywords": [
+      "XR",
+      "Unity",
+      "AR",
+      "VR",
+      "Game Design",
+      "3D Modeling",
+      "React",
+      "Full Stack"
+    ],
+    "navLinks": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Projects",
+        "href": "/#projects"
+      },
+      {
+        "label": "About",
+        "href": "/#about"
+      }
+    ],
+    "socialLinks": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/reatured",
+        "icon": "Github"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/lingyi-zhou",
+        "icon": "Linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/reatured",
+        "icon": "Instagram"
+      },
+      {
+        "platform": "Mail",
+        "url": "mailto:zeroonelatte@gmail.com",
+        "icon": "Mail"
+      }
+    ],
+    "roles": [
+      {
+        "title": "XR Developer",
+        "details": [
+          "AR Development in Lens Studio & Effect House.",
+          "VR Development in Unity for Oculus Quest and Apple Vision Pro"
+        ]
+      },
+      {
+        "title": "Game Developer",
+        "details": [
+          "Unity Development for desktop and mobile games",
+          "Shader knowledge and development experience"
+        ]
+      },
+      {
+        "title": "3D Designer",
+        "details": [
+          "Blender and Maya for stylized and realistic modeling and rendering",
+          "Cinema4D for animation and procedural modelling"
+        ]
+      },
+      {
+        "title": "Full Stack Engineer",
+        "details": [
+          "React front end + FastAPI Backend + Postgre database"
+        ]
+      },
+      {
+        "title": "Graphic Designer",
+        "details": [
+          "Adobe Indesign, Adobe Illustrator"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "28",
+      "slug": "real-time-3d-robot-hand-control",
+      "title": "Robot Hand Real-Time Teleoperation Interface",
+      "year": "2025",
+      "status": "Live",
+      "shortSubtitle": "Browser-based Hand Tracking for Robotic Hand Control",
+      "summary": "A real-time 3D visualization platform that uses webcam-based hand tracking to control robotic hand models entirely in the browser. Built with MediaPipe and Three.js, it tracks 21 hand keypoints via AI and maps them to 31 different robotic hand models with zero installation required.",
+      "content": "",
+      "categories": [
+        "Full Stack Engineer",
+        "XR Developer"
+      ],
+      "rolesOrSkills": [
+        "Frontend",
+        "Computer Vision",
+        "3D Graphics"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React 18",
+            "Zustand"
+          ]
+        },
+        {
+          "category": "3D Graphics",
+          "skills": [
+            "Three.js",
+            "React Three Fiber",
+            "React Three Drei",
+            "URDF"
+          ]
+        },
+        {
+          "category": "Computer Vision",
+          "skills": [
+            "MediaPipe Hands"
+          ]
+        },
+        {
+          "category": "UI & Build",
+          "skills": [
+            "Radix UI",
+            "Tailwind CSS",
+            "GitHub Actions"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "iframe",
+        "src": "https://robot-hand-simulation-broswer-sim-git-e8dec0-reatureds-projects.vercel.app/",
+        "alt": "Interactive Robot Hand Simulation",
+        "height": 800,
+        "allow": "camera"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Live Simulation",
+          "url": "https://robot-hand-simulation-broswer-sim-git-e8dec0-reatureds-projects.vercel.app/"
+        }
+      ],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "thumbnail": "https://www.youtube.com/watch?v=xwrGzC8Z14s&list=PL3Ti9KI0FwZqcLlSqzlSsY9pnyz72vfGk"
+    },
+    {
+      "id": "26",
+      "slug": "snapchat-turn-based-endless-runner",
+      "title": "Snapchat Glass Bridge Challenge",
+      "year": "2025",
+      "status": "Published",
+      "shortSubtitle": "Turn-Based Multiplayer Glass Bridge Game",
+      "summary": "A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.",
+      "content": "",
+      "categories": [
+        "XR Developer",
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Lens Studio Developer",
+        "System Design"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "TypeScript (ES2019)"
+          ]
+        },
+        {
+          "category": "System",
+          "skills": [
+            "Handler Pattern",
+            "Event-Driven"
+          ]
+        },
+        {
+          "category": "Features",
+          "skills": [
+            "Bitmoji SDK",
+            "Async Multiplayer"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/snapchat26/800/600",
+        "alt": "Snapchat Glass Bridge Challenge"
+      },
+      "mediaGallery": [],
+      "links": [],
+      "isFeatured": true,
+      "section": "Current Projects"
+    },
+    {
+      "id": "29",
+      "slug": "gogreennext-modular-map-tiles",
+      "title": "GoGreenNext - Modular Map Tiles",
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "3D Modeling for NYU Game Project",
+      "summary": "Created modular 3D map tiles for GoGreenNext, an NYU game project. Designed reusable tile assets in Blender to enable flexible level design and efficient world building. The modular system allows for quick assembly of diverse game environments while maintaining visual consistency.",
+      "content": "",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Artist",
+        "Environment Design"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/green29/800/600",
+        "alt": "Modular Map Tiles"
+      },
+      "mediaGallery": [],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "27",
+      "slug": "curaloop-ai-companion",
+      "title": "CuraLoop: AI Companion for Alzheimer's Care",
+      "year": "2025",
+      "status": "Hackathon",
+      "shortSubtitle": "1-day Humans & AI Hackathon project in Seattle",
+      "summary": "Through AI Chat + Game, the app monitors cognitive and game behavior to analyze and monitor the level of Alzheimer's care needed for anyone.",
+      "content": "",
+      "categories": [
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Full Stack",
+        "AI Integration",
+        "React Native"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React Native",
+            "TypeScript",
+            "Expo"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "FastAPI",
+            "Python"
+          ]
+        },
+        {
+          "category": "AI/ML",
+          "skills": [
+            "Claude Sonnet",
+            "Trend Analysis"
+          ]
+        },
+        {
+          "category": "Deployment",
+          "skills": [
+            "Vercel"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/curaloop27/800/600",
+        "alt": "CuraLoop App Interface"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://chatbot-app-three-beta.vercel.app/"
+        },
+        {
+          "label": "GitHub Repo",
+          "url": "https://github.com/reatured/Oct-4-Hackathon-2025-"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "23",
+      "slug": "b612-soccer",
+      "title": "B612 Soccer",
+      "year": "2025",
+      "status": "Top 2% GMTK",
+      "shortSubtitle": "Ranked in the Top 2% out of 3,300+ entries in GMTK Game Jam 2025",
+      "summary": "A super fun local 2-player soccer game set on a tiny looping planet. Compete against a friend where shots can loop the entire world and lead to unexpected goals! Created as a solo developer for the GMTK Game Jam 2025 ('Loop' theme). Minimalist pencil-sketched art, unique circular physics, and quick chaotic rounds.",
+      "content": "",
+      "categories": [
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Solo Developer",
+        "Game Design"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "category": "Art",
+          "skills": [
+            "Pencil sketch",
+            "Photoshop"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/b612/800/600",
+        "alt": "B612 Soccer Gameplay"
+      },
+      "mediaGallery": [],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "01",
+      "slug": "hardware-store-smart-search",
+      "title": "Hardware Store Smart Search",
+      "shortSubtitle": "Lead generation tool for hardware manufacturers",
+      "summary": "When I worked for a hardware manufacturer, we were looking for a better way to find targeted customers (hardware stores) to purchase our stock. We built a smart search tool to crawl Google Maps business data and help identify store leads around the world.",
+      "content": "",
+      "categories": [
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Full Stack Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React",
+            "JavaScript"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "FastAPI",
+            "Python"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/hardware01/800/600",
+        "alt": "Smart Search Dashboard"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "02",
+      "slug": "ar-drawing-tool",
+      "title": "AR Drawing Tool",
+      "year": "2022",
+      "status": "Internship",
+      "shortSubtitle": "Procedural mesh generation with hand tracking",
+      "summary": "During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space.",
+      "content": "",
+      "categories": [
+        "XR Developer"
+      ],
+      "rolesOrSkills": [
+        "AR Engineer"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/ar02/800/600",
+        "alt": "AR Drawing in action"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "16",
+      "slug": "ping-pong-game",
+      "title": "Ping Pong Game",
+      "shortSubtitle": "2D game with 3D illusion built from scratch",
+      "summary": "A complete 2D game that gives 3D illusion. An interactive automate enemy that you play against. Game Engine built from scratch using p5js to manage game asset, sound, levels and game controls.",
+      "content": "",
+      "categories": [
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Game Engine Dev"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "P5JS"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/pingpong16/800/600",
+        "alt": "Ping Pong Game"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "17",
+      "slug": "no-job-too-small",
+      "title": "No Job Too Small",
+      "year": "2024",
+      "status": "Top 1% GMTK",
+      "shortSubtitle": "Ranked in the Top 1% out of 3,300+ entries in GMTK Game Jam 2024",
+      "summary": "Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.",
+      "content": "",
+      "categories": [
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Unity Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "C#",
+            "HLSL"
+          ]
+        },
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/nojob17/800/600",
+        "alt": "No Job Too Small Gameplay"
+      },
+      "mediaGallery": [],
+      "links": [],
+      "isFeatured": true,
+      "section": "Most Recent"
+    },
+    {
+      "id": "03",
+      "slug": "personal-schedule-assistant",
+      "title": "Personal Schedule Assistant",
+      "shortSubtitle": "Drag-and-drop schedule builder",
+      "summary": "A drag-and-drop schedule builder that supports offline editing and syncs automatically across devices. Designed for productivity addicts who want control over time and print-ready exports.",
+      "content": "",
+      "categories": [
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Full Stack Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React",
+            "@dnd-kit",
+            "Tailwind"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "FastAPI",
+            "Supabase"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/schedule03/800/600",
+        "alt": "Schedule Assistant"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "25",
+      "slug": "marvels-flerken-ar-filter",
+      "title": "Marvel's Flerken AR Filter",
+      "year": "2023",
+      "status": "Official Campaign",
+      "shortSubtitle": "Official AR Marketing Campaign for The Marvels Movie",
+      "summary": "An interactive AR filter that transforms cats into Flerkens for The Marvels movie campaign. Features real-time object detection and cross-platform deployment on TikTok and Regal Cinema app, achieving viral distribution and significant user engagement.",
+      "content": "",
+      "categories": [
+        "XR Developer"
+      ],
+      "rolesOrSkills": [
+        "AR Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio",
+            "Effect House"
+          ]
+        },
+        {
+          "category": "Tech",
+          "skills": [
+            "JavaScript",
+            "HLSL",
+            "Object Detection"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/marvel25/800/600",
+        "alt": "Flerken AR Filter"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "04",
+      "slug": "3d-printed-hook",
+      "title": "3D Printed Hook",
+      "shortSubtitle": "Customized hooks for home hardware",
+      "summary": "A 3D modeling and printing project to create customized hooks for home hardware. Iterated through several prototypes using Fusion 360 and tested for real-world use.",
+      "content": "",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "Product Design"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Fusion 360"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/hook04/800/600",
+        "alt": "3D Printed Hook"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "05",
+      "slug": "just-another-day",
+      "title": "Just Another Day",
+      "shortSubtitle": "Narrative-driven game with emotional arc",
+      "summary": "A Unity narrative-driven game project composed of five mini-games tied together through an emotional storyline. Designed to create an emotional arc that ends in catharsis.",
+      "content": "",
+      "categories": [
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "Game Developer",
+        "Storytelling"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/day05/800/600",
+        "alt": "Just Another Day Game Art"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "08",
+      "slug": "vr-experience-oculus-quest",
+      "title": "VR Experience on Oculus Quest",
+      "shortSubtitle": "Immersive object interaction game",
+      "summary": "An immersive game for Oculus Quest focusing on object interaction and spatial memory. Built using Unity's XR framework and tested across headset configurations.",
+      "content": "",
+      "categories": [
+        "XR Developer",
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "VR Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "XR Framework"
+          ]
+        },
+        {
+          "category": "Platform",
+          "skills": [
+            "Oculus Quest"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "C#"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/vr08/800/600",
+        "alt": "VR Gameplay"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "10",
+      "slug": "creative-coding-experiments",
+      "title": "Creative Coding Experiments",
+      "shortSubtitle": "Generative art sketches using p5.js",
+      "summary": "This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.",
+      "content": "",
+      "categories": [
+        "Game Developer",
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Creative Coder"
+      ],
+      "techStack": [
+        {
+          "category": "Library",
+          "skills": [
+            "p5.js"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/code10/800/600",
+        "alt": "Generative Art"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "More sketches",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "09",
+      "slug": "3d-poster-design-landmarks",
+      "title": "3D Poster Design with Landmarks",
+      "shortSubtitle": "Visualizing cities with 3D landmarks",
+      "summary": "This poster series visualizes cities from around the world using 3D landmarks generated in Blender. Real-world data from Google Maps was imported in both realistic and stylized formats, each lit based on the local time of day using HDRIs and custom lighting.",
+      "content": "",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Artist"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        },
+        {
+          "category": "Data",
+          "skills": [
+            "Google Maps API"
+          ]
+        },
+        {
+          "category": "Rendering",
+          "skills": [
+            "HDRI",
+            "Custom Lighting"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/poster09/800/600",
+        "alt": "3D Landmark Poster"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    },
+    {
+      "id": "10b",
+      "slug": "3d-modeled-teddy-bear",
+      "title": "3D Modeled Teddy Bear",
+      "shortSubtitle": "Beginner sculpting exercise in Blender",
+      "summary": "A soft toy modeled entirely in Blender as a beginner's sculpting exercise. This teddy bear project explored mesh shaping, subdivision modifiers, and basic material texturing in a fun and personal 3D workflow.",
+      "content": "",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Sculpting"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "https://picsum.photos/seed/teddy10/800/600",
+        "alt": "3D Teddy Bear"
+      },
+      "mediaGallery": [],
+      "links": [
+        {
+          "label": "Read more",
+          "url": "#"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent"
+    }
+  ]
+}

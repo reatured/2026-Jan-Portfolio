@@ -4,15 +4,34 @@ import { Project } from '../../types';
 import { Media } from './Media';
 import { siteConfig } from '../../config/site';
 
-export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const cardMedia = project.featuredMedia.type === 'image'
-    ? project.featuredMedia
-    : { type: 'image', src: siteConfig.defaultOgImage, alt: `${project.title} preview` };
+function isVideoUrl(src: string) {
+  return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src);
+}
 
+function getYouTubeId(url: string): string | null {
+  const m = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+  );
+  return m ? m[1] : null;
+}
+
+export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const techLines = project.techStack.map(group => `${group.category}: ${group.skills.join(', ')}`);
 
+  // Determine what to show in the card thumbnail area
+  const thumbnailSrc = project.thumbnail;
+  const ytId = thumbnailSrc ? getYouTubeId(thumbnailSrc) : null;
+  const thumbnailIsVideo = thumbnailSrc && !ytId && isVideoUrl(thumbnailSrc);
+
+  const cardMedia: import('../../types').MediaItem =
+    !thumbnailSrc || ytId
+      ? project.featuredMedia.type === 'image'
+        ? project.featuredMedia
+        : { type: 'image', src: siteConfig.defaultOgImage, alt: `${project.title} preview` }
+      : { type: 'image', src: thumbnailSrc, alt: `${project.title} thumbnail` };
+
   return (
-    <Link 
+    <Link
       to={`/projects/${project.slug}`}
       className="group block h-full focus:outline-none focus:ring-2 focus:ring-slate-400 rounded-xl"
     >
@@ -24,7 +43,33 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       ">
         {/* Media Section */}
         <div className="aspect-video w-full md:w-2/5 border-b md:border-b-0 md:border-r border-slate-100 relative overflow-hidden">
-          <Media item={cardMedia} className="h-full w-full" />
+          {ytId ? (
+            <>
+              <img
+                src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`}
+                alt={`${project.title} thumbnail`}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center shadow-lg opacity-75 group-hover:opacity-100 transition-opacity">
+                  <svg className="w-4 h-4 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </>
+          ) : thumbnailIsVideo ? (
+            <video
+              src={thumbnailSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <Media item={cardMedia} className="h-full w-full" />
+          )}
           <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-md text-[10px] uppercase tracking-wider font-bold text-slate-700 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
             View
           </div>
@@ -39,7 +84,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           <p className="text-slate-700 text-sm font-semibold mb-2">
             {project.shortSubtitle}
           </p>
-          
+
           <p className="text-slate-600 text-xs line-clamp-3 mb-4 leading-relaxed">
             {project.summary}
           </p>

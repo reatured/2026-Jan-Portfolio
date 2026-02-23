@@ -74,6 +74,7 @@ export interface Project {
   rolesOrSkills: string[];
   techStack: TechStackGroup[];
   featuredMedia: MediaItem;
+  thumbnail?: string; // Image URL shown on project cards when featuredMedia is video/iframe
   mediaGallery: MediaItem[];
   links: ProjectLink[];
   isFeatured: boolean;
