@@ -1,6 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { portfolioTheme, adminTheme } from './theme';
 import { Sidebar } from './components/layout/Sidebar';
 import { Home } from './pages/Home';
 import { ProjectDetail } from './pages/ProjectDetail';
@@ -16,24 +21,45 @@ const ScrollToTop = () => {
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 items-start">
-          {/* Left Column: Sidebar (Sticky) */}
+    <Box
+      sx={{
+        minHeight: '100vh',
+        bgcolor: 'background.default',
+        color: 'text.primary',
+      }}
+    >
+      <Box sx={{ width: '100%', px: { xs: 2, sm: 3, lg: 4 }, py: { xs: 3, lg: 4 } }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', lg: '340px 1fr' },
+            gap: 4,
+            alignItems: 'start',
+          }}
+        >
           <Sidebar />
 
-          {/* Right Column: Main Content (Scrollable) */}
-          <main className="min-h-[80vh] w-full">
+          <Box component="main" sx={{ minHeight: '80vh', width: '100%' }}>
             {children}
 
-            {/* Simple Footer */}
-            <footer className="mt-12 pt-6 border-t border-slate-200 text-center lg:text-left text-slate-400 text-sm">
-              <p>© {new Date().getFullYear()} Built with React, Tailwind & TypeScript.</p>
-            </footer>
-          </main>
-        </div>
-      </div>
-    </div>
+            <Box
+              component="footer"
+              sx={{
+                mt: 6,
+                pt: 3,
+                borderTop: '1px solid',
+                borderColor: 'divider',
+                textAlign: { xs: 'center', lg: 'left' },
+              }}
+            >
+              <Typography variant="caption" color="text.secondary">
+                © {new Date().getFullYear()} Built with React, MUI &amp; TypeScript.
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
@@ -43,12 +69,36 @@ const App: React.FC = () => {
       <Router>
         <ScrollToTop />
         <Routes>
-          {/* Admin — no sidebar layout */}
-          <Route path="/admin" element={<Admin />} />
+          {/* Admin — dark theme, no sidebar */}
+          <Route
+            path="/admin"
+            element={
+              <ThemeProvider theme={adminTheme}>
+                <CssBaseline />
+                <Admin />
+              </ThemeProvider>
+            }
+          />
 
-          {/* Public portfolio */}
-          <Route path="/" element={<Layout><Home /></Layout>} />
-          <Route path="/projects/:slug" element={<Layout><ProjectDetail /></Layout>} />
+          {/* Public portfolio — light theme */}
+          <Route
+            path="/"
+            element={
+              <ThemeProvider theme={portfolioTheme}>
+                <CssBaseline />
+                <Layout><Home /></Layout>
+              </ThemeProvider>
+            }
+          />
+          <Route
+            path="/projects/:slug"
+            element={
+              <ThemeProvider theme={portfolioTheme}>
+                <CssBaseline />
+                <Layout><ProjectDetail /></Layout>
+              </ThemeProvider>
+            }
+          />
         </Routes>
       </Router>
       <Analytics />

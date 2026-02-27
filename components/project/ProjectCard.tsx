@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { Project } from '../../types';
 import { Media } from './Media';
 import { siteConfig } from '../../config/site';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 function isVideoUrl(src: string) {
   return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src);
@@ -18,7 +22,6 @@ function getYouTubeId(url: string): string | null {
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const techLines = project.techStack.map(group => `${group.category}: ${group.skills.join(', ')}`);
 
-  // Determine what to show in the card thumbnail area
   const thumbnailSrc = project.thumbnail;
   const ytId = thumbnailSrc ? getYouTubeId(thumbnailSrc) : null;
   const thumbnailIsVideo = thumbnailSrc && !ytId && isVideoUrl(thumbnailSrc);
@@ -31,76 +34,158 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       : { type: 'image', src: thumbnailSrc, alt: `${project.title} thumbnail` };
 
   return (
-    <Link
+    <Card
+      component={Link}
       to={`/projects/${project.slug}`}
-      className="group block h-full focus:outline-none focus:ring-2 focus:ring-slate-400 rounded-xl"
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        textDecoration: 'none',
+        color: 'inherit',
+        borderRadius: 3,
+        transition: 'box-shadow 0.2s, transform 0.2s',
+        '&:hover': {
+          boxShadow: 4,
+          transform: 'translateY(-2px)',
+        },
+        '&:focus-visible': {
+          outline: '2px solid',
+          outlineColor: 'text.secondary',
+          outlineOffset: 2,
+        },
+      }}
     >
-      <article className="
-        h-full bg-white border border-slate-200 rounded-xl overflow-hidden
-        transition-all duration-200 ease-out
-        hover:shadow-md hover:border-slate-300 hover:-translate-y-0.5
-        flex flex-col md:flex-row
-      ">
+      <CardActionArea
+        component="div"
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: 'stretch',
+          flexGrow: 1,
+        }}
+      >
         {/* Media Section */}
-        <div className="aspect-video w-full md:w-2/5 border-b md:border-b-0 md:border-r border-slate-100 relative overflow-hidden">
+        <Box
+          sx={{
+            position: 'relative',
+            width: { xs: '100%', md: '40%' },
+            aspectRatio: '16/9',
+            flexShrink: 0,
+            overflow: 'hidden',
+            borderRadius: 0,
+          }}
+        >
           {ytId ? (
             <>
-              <img
+              <Box
+                component="img"
                 src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`}
                 alt={`${project.title} thumbnail`}
-                className="h-full w-full object-cover"
+                sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center shadow-lg opacity-75 group-hover:opacity-100 transition-opacity">
-                  <svg className="w-4 h-4 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+              <Box
+                sx={{
+                  position: 'absolute', inset: 0, display: 'flex',
+                  alignItems: 'center', justifyContent: 'center', pointerEvents: 'none',
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 40, height: 40, bgcolor: '#dc2626', borderRadius: '50%',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: 3, opacity: 0.8,
+                    '.MuiCardActionArea-root:hover &': { opacity: 1 },
+                    transition: 'opacity 0.2s',
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
                     <path d="M8 5v14l11-7z" />
                   </svg>
-                </div>
-              </div>
+                </Box>
+              </Box>
             </>
           ) : thumbnailIsVideo ? (
-            <video
+            <Box
+              component="video"
               src={thumbnailSrc}
               autoPlay
               muted
               loop
               playsInline
-              className="h-full w-full object-cover"
+              sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           ) : (
             <Media item={cardMedia} className="h-full w-full" />
           )}
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-md text-[10px] uppercase tracking-wider font-bold text-slate-700 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+
+          <Box
+            sx={{
+              position: 'absolute', top: 12, right: 12,
+              bgcolor: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(4px)',
+              px: 1, py: 0.25, borderRadius: 1,
+              fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em',
+              fontWeight: 700, color: 'text.primary',
+              opacity: 0,
+              '.MuiCardActionArea-root:hover &': { opacity: 1 },
+              transition: 'opacity 0.2s',
+            }}
+          >
             View
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* Content Section */}
-        <div className="p-4 flex flex-col flex-grow md:w-3/5">
-          <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
+        <Box
+          sx={{
+            p: 2, display: 'flex', flexDirection: 'column', flexGrow: 1,
+            width: { md: '60%' },
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            fontWeight={700}
+            sx={{
+              mb: 0.5,
+              transition: 'color 0.2s',
+              '.MuiCardActionArea-root:hover &': { color: 'primary.main' },
+            }}
+          >
             {project.title}
-          </h3>
+          </Typography>
 
-          <p className="text-slate-700 text-sm font-semibold mb-2">
+          <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ mb: 1 }}>
             {project.shortSubtitle}
-          </p>
+          </Typography>
 
-          <p className="text-slate-600 text-xs line-clamp-3 mb-4 leading-relaxed">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              lineHeight: 1.6,
+              mb: 2,
+            }}
+          >
             {project.summary}
-          </p>
+          </Typography>
 
-          <div className="mt-auto">
-            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+          <Box sx={{ mt: 'auto' }}>
+            <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary' }}>
               Tech Stack:
-            </h4>
-            <ul className="mt-2 space-y-1 text-xs text-slate-600">
+            </Typography>
+            <Box component="ul" sx={{ mt: 1, p: 0, m: 0, pl: 0, listStyle: 'none' }}>
               {techLines.slice(0, 4).map((line) => (
-                <li key={line}>{line}</li>
+                <Box component="li" key={line}>
+                  <Typography variant="caption" color="text.secondary">{line}</Typography>
+                </Box>
               ))}
-            </ul>
-          </div>
-        </div>
-      </article>
-    </Link>
+            </Box>
+          </Box>
+        </Box>
+      </CardActionArea>
+    </Card>
   );
 };

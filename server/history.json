@@ -1,1 +1,290 @@
-{}
+{
+  "26": [
+    {
+      "savedAt": "2026-02-27T13:07:12.981Z",
+      "snapshot": {
+        "id": "26",
+        "slug": "snapchat-turn-based-endless-runner",
+        "title": "Snapchat Glass Bridge Challenge",
+        "year": "2025",
+        "status": "Published",
+        "shortSubtitle": "Turn-Based Multiplayer Glass Bridge Game",
+        "summary": "A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.",
+        "content": "",
+        "categories": [
+          "XR Developer",
+          "Game Developer"
+        ],
+        "rolesOrSkills": [
+          "Lens Studio Developer",
+          "System Design"
+        ],
+        "techStack": [
+          {
+            "category": "Platform",
+            "skills": [
+              "Lens Studio"
+            ]
+          },
+          {
+            "category": "Language",
+            "skills": [
+              "TypeScript (ES2019)"
+            ]
+          },
+          {
+            "category": "System",
+            "skills": [
+              "Handler Pattern",
+              "Event-Driven"
+            ]
+          },
+          {
+            "category": "Features",
+            "skills": [
+              "Bitmoji SDK",
+              "Async Multiplayer"
+            ]
+          }
+        ],
+        "featuredMedia": {
+          "type": "image",
+          "src": "/assets/copy-of-snapchat-project-1-1771938702266.jpg",
+          "alt": "Snapchat Glass Bridge Challenge"
+        },
+        "mediaGallery": [],
+        "links": [],
+        "isFeatured": true,
+        "section": "Current Projects"
+      }
+    },
+    {
+      "savedAt": "2026-02-24T13:11:44.694Z",
+      "snapshot": {
+        "id": "26",
+        "slug": "snapchat-turn-based-endless-runner",
+        "title": "Snapchat Glass Bridge Challenge",
+        "year": "2025",
+        "status": "Published",
+        "shortSubtitle": "Turn-Based Multiplayer Glass Bridge Game",
+        "summary": "A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.",
+        "content": "",
+        "categories": [
+          "XR Developer",
+          "Game Developer"
+        ],
+        "rolesOrSkills": [
+          "Lens Studio Developer",
+          "System Design"
+        ],
+        "techStack": [
+          {
+            "category": "Platform",
+            "skills": [
+              "Lens Studio"
+            ]
+          },
+          {
+            "category": "Language",
+            "skills": [
+              "TypeScript (ES2019)"
+            ]
+          },
+          {
+            "category": "System",
+            "skills": [
+              "Handler Pattern",
+              "Event-Driven"
+            ]
+          },
+          {
+            "category": "Features",
+            "skills": [
+              "Bitmoji SDK",
+              "Async Multiplayer"
+            ]
+          }
+        ],
+        "featuredMedia": {
+          "type": "image",
+          "src": "/assets/3d-modeling-a1-size-poster-1771938595410.png",
+          "alt": "Snapchat Glass Bridge Challenge"
+        },
+        "mediaGallery": [],
+        "links": [],
+        "isFeatured": true,
+        "section": "Current Projects"
+      }
+    },
+    {
+      "savedAt": "2026-02-24T13:09:59.135Z",
+      "snapshot": {
+        "id": "26",
+        "slug": "snapchat-turn-based-endless-runner",
+        "title": "Snapchat Glass Bridge Challenge",
+        "year": "2025",
+        "status": "Published",
+        "shortSubtitle": "Turn-Based Multiplayer Glass Bridge Game",
+        "summary": "A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.",
+        "content": "",
+        "categories": [
+          "XR Developer",
+          "Game Developer"
+        ],
+        "rolesOrSkills": [
+          "Lens Studio Developer",
+          "System Design"
+        ],
+        "techStack": [
+          {
+            "category": "Platform",
+            "skills": [
+              "Lens Studio"
+            ]
+          },
+          {
+            "category": "Language",
+            "skills": [
+              "TypeScript (ES2019)"
+            ]
+          },
+          {
+            "category": "System",
+            "skills": [
+              "Handler Pattern",
+              "Event-Driven"
+            ]
+          },
+          {
+            "category": "Features",
+            "skills": [
+              "Bitmoji SDK",
+              "Async Multiplayer"
+            ]
+          }
+        ],
+        "featuredMedia": {
+          "type": "image",
+          "src": "https://picsum.photos/seed/snapchat26/800/600",
+          "alt": "Snapchat Glass Bridge Challenge"
+        },
+        "mediaGallery": [],
+        "links": [],
+        "isFeatured": true,
+        "section": "Current Projects"
+      }
+    }
+  ],
+  "28": [
+    {
+      "savedAt": "2026-02-24T04:32:43.102Z",
+      "snapshot": {
+        "id": "28",
+        "slug": "real-time-3d-robot-hand-control",
+        "title": "Robot Hand Real-Time Teleoperation Interface",
+        "year": "2025",
+        "status": "Live",
+        "shortSubtitle": "Browser-based Hand Tracking for Robotic Hand Control",
+        "summary": "A real-time 3D visualization platform that uses webcam-based hand tracking to control robotic hand models entirely in the browser. Built with MediaPipe and Three.js, it tracks 21 hand keypoints via AI and maps them to 31 different robotic hand models with zero installation required.",
+        "content": "",
+        "categories": [
+          "Full Stack Engineer",
+          "XR Developer"
+        ],
+        "rolesOrSkills": [
+          "Frontend",
+          "Computer Vision",
+          "3D Graphics"
+        ],
+        "techStack": [
+          {
+            "category": "Frontend",
+            "skills": [
+              "React 18",
+              "Zustand"
+            ]
+          },
+          {
+            "category": "3D Graphics",
+            "skills": [
+              "Three.js",
+              "React Three Fiber",
+              "React Three Drei",
+              "URDF"
+            ]
+          },
+          {
+            "category": "Computer Vision",
+            "skills": [
+              "MediaPipe Hands"
+            ]
+          },
+          {
+            "category": "UI & Build",
+            "skills": [
+              "Radix UI",
+              "Tailwind CSS",
+              "GitHub Actions"
+            ]
+          }
+        ],
+        "featuredMedia": {
+          "type": "iframe",
+          "src": "https://robot-hand-simulation-broswer-sim-git-e8dec0-reatureds-projects.vercel.app/",
+          "alt": "Interactive Robot Hand Simulation",
+          "height": 800,
+          "allow": "camera"
+        },
+        "mediaGallery": [],
+        "links": [
+          {
+            "label": "Live Simulation",
+            "url": "https://robot-hand-simulation-broswer-sim-git-e8dec0-reatureds-projects.vercel.app/"
+          }
+        ],
+        "isFeatured": true,
+        "section": "Current Projects",
+        "thumbnail": "https://www.youtube.com/watch?v=xwrGzC8Z14s&list=PL3Ti9KI0FwZqcLlSqzlSsY9pnyz72vfGk"
+      }
+    }
+  ],
+  "29": [
+    {
+      "savedAt": "2026-02-25T06:01:45.783Z",
+      "snapshot": {
+        "id": "29",
+        "slug": "gogreennext-modular-map-tiles",
+        "title": "GoGreenNext - Modular Map Tiles",
+        "year": "2025",
+        "status": "Completed",
+        "shortSubtitle": "3D Modeling for NYU Game Project",
+        "summary": "Created modular 3D map tiles for GoGreenNext, an NYU game project. Designed reusable tile assets in Blender to enable flexible level design and efficient world building. The modular system allows for quick assembly of diverse game environments while maintaining visual consistency.",
+        "content": "",
+        "categories": [
+          "3D Designer"
+        ],
+        "rolesOrSkills": [
+          "3D Artist",
+          "Environment Design"
+        ],
+        "techStack": [
+          {
+            "category": "Modeling",
+            "skills": [
+              "Blender"
+            ]
+          }
+        ],
+        "featuredMedia": {
+          "type": "image",
+          "src": "https://picsum.photos/seed/green29/800/600",
+          "alt": "Modular Map Tiles"
+        },
+        "mediaGallery": [],
+        "links": [],
+        "isFeatured": false,
+        "section": "Most Recent"
+      }
+    }
+  ]
+}

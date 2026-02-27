@@ -1,13 +1,19 @@
 import React, { useMemo } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { useParams, Navigate } from 'react-router-dom';
 import { projects } from '../config/projects';
 import { Head, generateJsonLd } from '../lib/seo';
 import { Media } from '../components/project/Media';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  
+
   const project = useMemo(() => {
     return projects.find(p => p.slug === slug);
   }, [slug]);
@@ -24,142 +30,235 @@ export const ProjectDetail: React.FC = () => {
   });
 
   return (
-    <article className="animate-in fade-in slide-in-from-bottom-8 duration-500">
-      <Head 
-        title={project.title} 
+    <Box
+      component="article"
+      sx={{
+        '@keyframes fadeSlideIn': {
+          from: { opacity: 0, transform: 'translateY(32px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        animation: 'fadeSlideIn 0.5s ease both',
+      }}
+    >
+      <Head
+        title={project.title}
         description={project.shortSubtitle}
         image={project.featuredMedia.src}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLd}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd} />
 
-      {/* Navigation Back */}
-      <Link 
-        to="/" 
-        className="inline-flex items-center text-xs font-medium text-slate-500 hover:text-blue-600 mb-6 transition-colors group"
+      {/* Two-column page layout */}
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', lg: '1fr 380px' },
+          gap: { xs: 4, lg: 5 },
+          alignItems: 'start',
+        }}
       >
-        <ArrowLeft className="w-3.5 h-3.5 mr-1.5 transition-transform group-hover:-translate-x-1" />
-        Back to Projects
-      </Link>
+        {/* ── Left: main content ── */}
+        <Box>
+          {/* Back button */}
+          <Button
+            href="/"
+            component="a"
+            startIcon={<ArrowBackIcon sx={{ fontSize: '0.875rem !important' }} />}
+            size="small"
+            sx={{
+              mb: 3, color: 'text.secondary', fontWeight: 500, fontSize: '0.75rem',
+              '&:hover': { color: 'primary.main', bgcolor: 'transparent' },
+              pl: 0,
+            }}
+          >
+            Back to Projects
+          </Button>
 
-      {/* Header */}
-      <header className="mb-6">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          {project.year && (
-            <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600">
-              {project.year}
-            </span>
-          )}
-          {project.rolesOrSkills.map(role => (
-             <span key={role} className="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
-               {role}
-             </span>
-          ))}
-        </div>
-        <h1 className="text-2xl md:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
-          {project.title}
-        </h1>
-        <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
-          {project.shortSubtitle}
-        </p>
-      </header>
+          {/* Header */}
+          <Box component="header" sx={{ mb: 3 }}>
+            <Typography
+              variant="h3"
+              fontWeight={700}
+              sx={{ mb: 1, letterSpacing: '-0.02em', fontSize: { xs: '1.75rem', md: '2.25rem' } }}
+            >
+              {project.title}
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+              {project.shortSubtitle}
+            </Typography>
+          </Box>
 
-      {/* Featured Media */}
-      <div className="mb-8 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-        <Media 
-            item={project.featuredMedia} 
-            className={`w-full ${project.featuredMedia.type !== 'iframe' ? 'aspect-video' : ''}`} 
-        />
-      </div>
+          {/* Featured Media */}
+          <Box
+            sx={{
+              mb: 4, borderRadius: 3, overflow: 'hidden',
+              border: '1px solid', borderColor: 'divider', boxShadow: 1,
+            }}
+          >
+            <Media
+              item={project.featuredMedia}
+              className={`w-full ${project.featuredMedia.type !== 'iframe' ? 'aspect-video' : ''}`}
+            />
+          </Box>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Main Content */}
-        <div className="lg:col-span-8 space-y-8">
-          
+          {/* Body content */}
           {project.content ? (
-            <div 
-              className="prose prose-slate max-w-none prose-headings:font-bold prose-h2:text-xl prose-h3:text-lg prose-a:text-blue-600 hover:prose-a:text-blue-500"
+            <Box
+              className="prose"
+              sx={{ color: 'text.secondary', '& a': { color: 'primary.main' } }}
               dangerouslySetInnerHTML={{ __html: project.content }}
             />
+          ) : project.mediaGallery.length > 0 ? (
+            <Box component="section">
+              <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 2 }}>Gallery</Typography>
+              <Stack spacing={2}>
+                {project.mediaGallery.map((media, idx) => (
+                  <Box key={idx} sx={{ borderRadius: 2, overflow: 'hidden', border: '1px solid', borderColor: 'divider' }}>
+                    <Media item={media} className="w-full" />
+                    {media.alt && (
+                      <Box sx={{ p: 1, bgcolor: 'grey.50', borderTop: '1px solid', borderColor: 'divider', textAlign: 'center' }}>
+                        <Typography variant="caption" color="text.disabled">{media.alt}</Typography>
+                      </Box>
+                    )}
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
           ) : (
-            <>
-              <section>
-                <h3 className="text-base font-bold text-slate-900 mb-2">Overview</h3>
-                <p className="text-slate-600 leading-relaxed text-sm">
-                  {project.summary}
-                </p>
-              </section>
+            <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+              {project.summary}
+            </Typography>
+          )}
+        </Box>
 
-              {/* Default Media Gallery */}
-              {project.mediaGallery.length > 0 && (
-                <section>
-                  <h3 className="text-base font-bold text-slate-900 mb-4">Gallery</h3>
-                  <div className="grid grid-cols-1 gap-4">
-                    {project.mediaGallery.map((media, idx) => (
-                      <div key={idx} className="rounded-lg overflow-hidden border border-slate-200">
-                        <Media item={media} className="w-full" />
-                        {media.alt && (
-                          <div className="p-2 bg-slate-50 text-[10px] text-slate-500 text-center border-t border-slate-200">
-                            {media.alt}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </section>
+        {/* ── Right: sticky keyword panel ── */}
+        <Box
+          sx={{
+            position: { lg: 'sticky' },
+            top: { lg: 24 },
+            display: { xs: 'none', lg: 'flex' },
+            flexDirection: 'column',
+            gap: 2,
+          }}
+        >
+          {/* Year + Status */}
+          {(project.year || project.status) && (
+            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+              {project.year && (
+                <Chip label={project.year} size="small" sx={{ bgcolor: 'grey.100', color: 'text.secondary', fontSize: '1rem' }} />
               )}
-            </>
+              {project.status && (
+                <Chip label={project.status} size="small" variant="outlined" sx={{ fontSize: '1rem' }} />
+              )}
+            </Stack>
           )}
 
-        </div>
+          {/* Roles */}
+          {project.rolesOrSkills.length > 0 && (
+            <Box
+              sx={{
+                p: 2, borderRadius: 1,
+                border: '1px solid', borderColor: '#dde5f0',
+                bgcolor: '#f4f6fb',
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                <Box sx={{ width: 3, height: 14, borderRadius: 1, bgcolor: '#8fa8cc', flexShrink: 0 }} />
+                <Typography fontWeight={700} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'text.disabled' }}>
+                  Role
+                </Typography>
+              </Box>
+              <Stack direction="row" spacing={0.75} flexWrap="wrap" useFlexGap>
+                {project.rolesOrSkills.map(role => (
+                  <Chip
+                    key={role}
+                    label={role}
+                    size="small"
+                    sx={{ fontSize: '0.95rem', height: 28, bgcolor: '#dce6f5', color: '#4a6080', border: '1px solid', borderColor: '#c5d4e8' }}
+                  />
+                ))}
+              </Stack>
+            </Box>
+          )}
 
-        {/* Sidebar Info */}
-        <div className="lg:col-span-4 space-y-6">
-          
           {/* Tech Stack */}
-          <div className="bg-white rounded-lg border border-slate-200 p-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Tech Stack</h3>
-            <div className="space-y-3">
-              {project.techStack.map((group) => (
-                <div key={group.category}>
-                  <p className="text-[10px] font-semibold text-slate-400 mb-1.5">{group.category}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.skills.map(skill => (
-                      <span key={skill} className="px-1.5 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-medium rounded">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {project.techStack.length > 0 && (
+            <Box
+              sx={{
+                p: 2, borderRadius: 1,
+                border: '1px solid', borderColor: '#e4e7ed',
+                bgcolor: '#f7f8fa',
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                <Box sx={{ width: 3, height: 14, borderRadius: 1, bgcolor: '#aab4c2', flexShrink: 0 }} />
+                <Typography fontWeight={700} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'text.disabled' }}>
+                  Tech Stack
+                </Typography>
+              </Box>
+              <Stack spacing={1.75}>
+                {project.techStack.map((group) => (
+                  <Box key={group.category}>
+                    <Typography sx={{ color: '#7a8898', fontWeight: 600, display: 'block', mb: 0.75, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                      {group.category}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {group.skills.map(skill => (
+                        <Chip
+                          key={skill}
+                          label={skill}
+                          size="small"
+                          sx={{ fontSize: '0.85rem', height: 26, bgcolor: '#eaecf0', color: '#5a6473' }}
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+          )}
 
           {/* Links */}
           {project.links && project.links.length > 0 && (
-            <div className="bg-slate-900 rounded-lg p-4 text-white">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Project Links</h3>
-              <div className="space-y-2">
+            <Box
+              sx={{
+                p: 2, borderRadius: 1,
+                border: '1px solid', borderColor: '#d8e4f0',
+                bgcolor: '#eef3fa',
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                <Box sx={{ width: 3, height: 14, borderRadius: 1, bgcolor: '#8fa8cc', flexShrink: 0 }} />
+                <Typography fontWeight={700} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6a88aa' }}>
+                  Links
+                </Typography>
+              </Box>
+              <Stack spacing={0.75}>
                 {project.links.map((link) => (
-                  <a 
+                  <Box
                     key={link.url}
+                    component="a"
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded bg-slate-800 hover:bg-slate-700 transition-colors group"
+                    sx={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      py: 1, px: 1.25, borderRadius: 1,
+                      border: '1px solid', borderColor: '#cfdcea',
+                      bgcolor: '#ffffff',
+                      textDecoration: 'none', color: 'text.primary',
+                      transition: 'background 0.15s, border-color 0.15s',
+                      '&:hover': { bgcolor: '#e4eef8', borderColor: '#8fa8cc' },
+                    }}
                   >
-                    <span className="font-medium text-xs">{link.label}</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
-                  </a>
+                    <Typography fontWeight={500} sx={{ fontSize: '0.95rem' }}>{link.label}</Typography>
+                    <OpenInNewIcon sx={{ fontSize: '0.9rem', color: '#8fa8cc' }} />
+                  </Box>
                 ))}
-              </div>
-            </div>
+              </Stack>
+            </Box>
           )}
-
-        </div>
-      </div>
-    </article>
+        </Box>
+      </Box>
+    </Box>
   );
 };

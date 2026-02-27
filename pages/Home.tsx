@@ -3,56 +3,81 @@ import { useSearchParams } from 'react-router-dom';
 import { Head } from '../lib/seo';
 import { projects } from '../config/projects';
 import { ProjectCard } from '../components/project/ProjectCard';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 
 export const Home: React.FC = () => {
   const [searchParams] = useSearchParams();
   const currentCategory = searchParams.get('category');
 
-  // Filter projects based on the category param
   const filteredProjects = React.useMemo(() => {
     if (!currentCategory) return projects;
     return projects.filter(p => p.categories.includes(currentCategory));
   }, [currentCategory]);
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <Box
+      sx={{
+        '@keyframes fadeSlideIn': {
+          from: { opacity: 0, transform: 'translateY(16px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        animation: 'fadeSlideIn 0.5s ease both',
+      }}
+    >
       <Head title={currentCategory ? `${currentCategory} Projects` : "Home"} />
-      
-      {/* Intro for Mobile (hidden on LG as it's in sidebar) */}
-      <section className="lg:hidden mb-6">
-        <h2 className="text-2xl font-bold text-slate-900 mb-1">Welcome</h2>
-        <p className="text-sm text-slate-600">Select a role below or explore my work.</p>
-      </section>
 
-      {/* Filter Status Indicator */}
+      {/* Intro for mobile */}
+      <Box sx={{ display: { xs: 'block', lg: 'none' }, mb: 3 }}>
+        <Typography variant="h5" fontWeight={700} sx={{ mb: 0.5 }}>Welcome</Typography>
+        <Typography variant="body2" color="text.secondary">Select a role below or explore my work.</Typography>
+      </Box>
+
+      {/* Filter Status */}
       {currentCategory && (
-        <div className="flex items-center gap-2 p-3 bg-slate-100 rounded-lg border border-slate-200">
-            <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Filtered by:</span>
-            <span className="text-sm font-bold text-slate-900">{currentCategory}</span>
-        </div>
+        <Paper
+          sx={{
+            display: 'flex', alignItems: 'center', gap: 1,
+            px: 2, py: 1.25, mb: 3, borderRadius: 2,
+          }}
+        >
+          <Typography variant="caption" fontWeight={500} sx={{ textTransform: 'uppercase', letterSpacing: '0.06em', color: 'text.secondary' }}>
+            Filtered by:
+          </Typography>
+          <Typography variant="body2" fontWeight={700}>
+            {currentCategory}
+          </Typography>
+        </Paper>
       )}
 
       {/* Projects List */}
-      <section id="projects">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
+      <Box component="section" id="projects">
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', whiteSpace: 'nowrap' }}>
             {currentCategory ? `${filteredProjects.length} Projects Found` : 'All Projects'}
-          </h2>
-          <div className="h-px bg-slate-200 flex-grow ml-4"></div>
-        </div>
-        
+          </Typography>
+          <Box sx={{ height: '1px', bgcolor: 'divider', flexGrow: 1, ml: 2 }} />
+        </Box>
+
         {filteredProjects.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4">
+          <Stack spacing={2}>
             {filteredProjects.map(project => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </div>
+          </Stack>
         ) : (
-          <div className="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
-            <p className="text-slate-500">No projects found for this category yet.</p>
-          </div>
+          <Paper
+            sx={{
+              textAlign: 'center', py: 10, borderStyle: 'dashed',
+              borderRadius: 3,
+            }}
+          >
+            <Typography color="text.secondary">No projects found for this category yet.</Typography>
+          </Paper>
         )}
-      </section>
-    </div>
+      </Box>
+    </Box>
   );
 };

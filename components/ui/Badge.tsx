@@ -1,15 +1,16 @@
 import React from 'react';
+import Chip from '@mui/material/Chip';
 
-export const Badge: React.FC<{ children: React.ReactNode, variant?: 'default' | 'outline' }> = ({ children, variant = 'default' }) => {
-  const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
-  const variants = {
-    default: "bg-slate-100 text-slate-800",
-    outline: "border border-slate-200 text-slate-600"
-  };
-
+export const Badge: React.FC<{ children: React.ReactNode; variant?: 'default' | 'outline' }> = ({
+  children,
+  variant = 'default',
+}) => {
   return (
-    <span className={`${baseClasses} ${variants[variant]}`}>
-      {children}
-    </span>
+    <Chip
+      label={children}
+      size="small"
+      variant={variant === 'outline' ? 'outlined' : 'filled'}
+      sx={{ fontSize: '0.7rem', height: 22 }}
+    />
   );
 };

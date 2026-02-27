@@ -1,12 +1,30 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { siteConfig } from '../../config/site';
-import * as Icons from 'lucide-react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import ButtonBase from '@mui/material/ButtonBase';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailIcon from '@mui/icons-material/Email';
+import LinkIcon from '@mui/icons-material/Link';
 
-const IconRenderer = ({ name, className }: { name: string; className?: string }) => {
-  const Icon = (Icons as any)[name];
-  return Icon ? <Icon className={className} /> : null;
+const iconMap: Record<string, React.ElementType> = {
+  Github: GitHubIcon,
+  GitHub: GitHubIcon,
+  Linkedin: LinkedInIcon,
+  LinkedIn: LinkedInIcon,
+  Instagram: InstagramIcon,
+  Mail: EmailIcon,
+  Email: EmailIcon,
 };
+
+const accentColors = ['#60a5fa', '#34d399', '#c084fc', '#fb923c', '#f472b6'];
 
 export const Sidebar: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,112 +32,196 @@ export const Sidebar: React.FC = () => {
 
   const handleFilter = (category: string) => {
     if (currentCategory === category) {
-      setSearchParams({}); // Clear filter if clicking same category
+      setSearchParams({});
     } else {
       setSearchParams({ category });
     }
   };
 
-  const accentColors = [
-    'bg-blue-400', 
-    'bg-emerald-400', 
-    'bg-purple-400', 
-    'bg-orange-400', 
-    'bg-pink-400'
-  ];
-
   return (
-    <aside className="lg:sticky lg:top-6 h-fit space-y-4">
+    <Box
+      component="aside"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        position: { lg: 'sticky' },
+        top: { lg: 24 },
+        height: 'fit-content',
+      }}
+    >
       {/* Profile Card */}
-      <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <Link to="/" className="group relative w-20 h-20 mb-4 overflow-hidden rounded-full ring-2 ring-slate-100">
-             <img 
-               src={siteConfig.avatar} 
-               alt={siteConfig.siteName} 
-               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-             />
-          </Link>
-          
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight mb-1">
-            {siteConfig.siteName}
-          </h1>
-          <p className="text-slate-500 font-medium text-sm mb-3">{siteConfig.jobTitle}</p>
-          
-          <p className="text-slate-600 leading-relaxed text-sm mb-4 whitespace-pre-line">
-            {siteConfig.bio}
-          </p>
-          
-          {/* Social Links */}
-          <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-            {siteConfig.socialLinks.map((link) => (
-              <a 
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors"
-                aria-label={link.platform}
-              >
-                <IconRenderer name={link.icon} className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Paper sx={{ p: 2.5, borderRadius: 3 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            textAlign: 'left',
+          }}
+        >
+          <Box
+            component={Link}
+            to="/"
+            sx={{
+              display: 'block',
+              mb: 2,
+              borderRadius: '50%',
+              overflow: 'hidden',
+              width: 80,
+              height: 80,
+              flexShrink: 0,
+              '&:hover img': { transform: 'scale(1.05)' },
+            }}
+          >
+            <Avatar
+              src={siteConfig.avatar}
+              alt={siteConfig.siteName}
+              sx={{
+                width: 80,
+                height: 80,
+                transition: 'transform 0.5s ease',
+              }}
+            />
+          </Box>
 
-      {/* Role Cards - Filterable List */}
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between px-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Filter by Role</span>
-            {currentCategory && (
-                <button 
-                    onClick={() => setSearchParams({})}
-                    className="text-[10px] text-blue-500 hover:underline"
-                >
-                    Clear Filter
-                </button>
-            )}
-        </div>
+          <Typography variant="h6" fontWeight={700} sx={{ mb: 0.25, letterSpacing: '-0.02em' }}>
+            {siteConfig.siteName}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 1.5 }}>
+            {siteConfig.jobTitle}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mb: 2, lineHeight: 1.6, whiteSpace: 'pre-line' }}
+          >
+            {siteConfig.bio}
+          </Typography>
+
+          {/* Social Links */}
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, justifyContent: 'flex-start' }}>
+            {siteConfig.socialLinks.map((link) => {
+              const Icon = iconMap[link.icon] ?? LinkIcon;
+              return (
+                <Tooltip key={link.platform} title={link.platform} placement="top">
+                  <IconButton
+                    component="a"
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    size="small"
+                    aria-label={link.platform}
+                    sx={{ color: 'text.secondary', '&:hover': { color: 'text.primary' } }}
+                  >
+                    <Icon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              );
+            })}
+          </Box>
+        </Box>
+      </Paper>
+
+      {/* Role Filter */}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 0.5 }}>
+          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary' }}>
+            Filter by Role
+          </Typography>
+          {currentCategory && (
+            <Typography
+              component="button"
+              variant="caption"
+              onClick={() => setSearchParams({})}
+              sx={{
+                color: 'primary.main',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                p: 0,
+                '&:hover': { textDecoration: 'underline' },
+              }}
+            >
+              Clear Filter
+            </Typography>
+          )}
+        </Box>
+
         {siteConfig.roles.map((role, idx) => {
           const isActive = currentCategory === role.title;
           return (
-            <button
+            <ButtonBase
               key={idx}
               onClick={() => handleFilter(role.title)}
-              className={`
-                text-left w-full p-3 rounded-lg border transition-all duration-200
-                flex flex-col group outline-none focus:ring-2 focus:ring-blue-200
-                ${isActive 
-                  ? 'bg-slate-900 border-slate-900 shadow-md transform -translate-y-0.5' 
-                  : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm'
-                }
-              `}
+              sx={{
+                width: '100%',
+                textAlign: 'left',
+                borderRadius: 2,
+                border: '1px solid',
+                borderColor: isActive ? 'transparent' : 'divider',
+                bgcolor: isActive ? 'text.primary' : 'background.paper',
+                p: 1.5,
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  borderColor: isActive ? 'transparent' : 'text.disabled',
+                  boxShadow: isActive ? 2 : 1,
+                },
+                '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: 2 },
+              }}
             >
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className={`w-1.5 h-1.5 rounded-full ${accentColors[idx % accentColors.length]} ${isActive ? 'ring-2 ring-white/20' : ''}`} />
-                <span className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-slate-900'}`}>
-                    {role.title}
-                </span>
-              </div>
-              
-              <ul className="space-y-1 pl-4">
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.75 }}>
+                <Box
+                  sx={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    bgcolor: accentColors[idx % accentColors.length],
+                    flexShrink: 0,
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  fontWeight={600}
+                  sx={{ color: isActive ? 'common.white' : 'text.primary' }}
+                >
+                  {role.title}
+                </Typography>
+              </Box>
+
+              <Box component="ul" sx={{ m: 0, pl: 2.5, listStyle: 'none' }}>
                 {role.details.map((detail, i) => (
-                  <li 
-                    key={i} 
-                    className={`
-                        text-xs leading-tight relative before:content-['•'] before:absolute before:-left-3
-                        ${isActive ? 'text-slate-300 before:text-slate-500' : 'text-slate-600 before:text-slate-300'}
-                    `}
+                  <Box
+                    component="li"
+                    key={i}
+                    sx={{
+                      position: 'relative',
+                      '&::before': {
+                        content: '"•"',
+                        position: 'absolute',
+                        left: '-12px',
+                        color: isActive ? 'rgba(255,255,255,0.4)' : 'text.disabled',
+                      },
+                    }}
                   >
-                    {detail}
-                  </li>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: isActive ? 'rgba(255,255,255,0.75)' : 'text.secondary',
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {detail}
+                    </Typography>
+                  </Box>
                 ))}
-              </ul>
-            </button>
+              </Box>
+            </ButtonBase>
           );
         })}
-      </div>
-    </aside>
+      </Box>
+    </Box>
   );
 };

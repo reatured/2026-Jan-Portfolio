@@ -1,1 +1,19 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Prose styles for rich HTML content */
+.prose h2 { font-size: 1.25rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+.prose h3 { font-size: 1.1rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
+.prose p { margin: 0.75rem 0; line-height: 1.7; }
+.prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+.prose li { margin: 0.25rem 0; }
+.prose a { color: #2563eb; text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+.prose strong { font-weight: 600; }

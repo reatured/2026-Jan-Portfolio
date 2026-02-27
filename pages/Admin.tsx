@@ -1,6 +1,46 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import type { Project, SiteConfig, MediaItem, ProjectLink, TechStackGroup } from '../types';
+
+// MUI
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Chip from '@mui/material/Chip';
+import CircularProgress from '@mui/material/CircularProgress';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
+import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import HistoryIcon from '@mui/icons-material/History';
 
 const API = 'http://localhost:3001';
 
@@ -67,31 +107,22 @@ async function uploadImage(file: File): Promise<string> {
 // ── Toast ─────────────────────────────────────────────────────────────────────
 
 function Toast({ msg, onDone }: { msg: string; onDone: () => void }) {
-  useEffect(() => {
-    const t = setTimeout(onDone, 3000);
-    return () => clearTimeout(t);
-  }, [onDone]);
-  if (!msg) return null;
   const isErr = msg.startsWith('Error');
   return (
-    <div className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-lg shadow-lg text-sm font-medium ${isErr ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'}`}>
-      {msg}
-    </div>
+    <Snackbar
+      open={!!msg}
+      onClose={onDone}
+      autoHideDuration={3000}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+    >
+      <Alert severity={isErr ? 'error' : 'success'} onClose={onDone} variant="filled" sx={{ fontWeight: 500 }}>
+        {msg}
+      </Alert>
+    </Snackbar>
   );
 }
 
-// ── Image Upload Button ───────────────────────────────────────────────────────
-
-function isVideoUrl(src: string) {
-  return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src);
-}
-
-function getYouTubeId(url: string): string | null {
-  const m = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-  );
-  return m ? m[1] : null;
-}
+// ── Upload Button ─────────────────────────────────────────────────────────────
 
 function UploadBtn({ onUrl, accept = 'image/*', label = 'Upload' }: { onUrl: (url: string) => void; accept?: string; label?: string }) {
   const ref = React.useRef<HTMLInputElement>(null);
@@ -114,20 +145,20 @@ function UploadBtn({ onUrl, accept = 'image/*', label = 'Upload' }: { onUrl: (ur
 
   return (
     <>
-      <input ref={ref} type="file" accept={accept} className="hidden" onChange={handle} />
-      <button
-        type="button"
+      <input ref={ref} type="file" accept={accept} style={{ display: 'none' }} onChange={handle} />
+      <Button
+        variant="outlined"
+        size="small"
         onClick={() => ref.current?.click()}
         disabled={uploading}
-        className="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs rounded border border-slate-600 whitespace-nowrap disabled:opacity-50"
+        sx={{ whiteSpace: 'nowrap', flexShrink: 0 }}
       >
         {uploading ? 'Uploading…' : label}
-      </button>
+      </Button>
     </>
   );
 }
 
-// Keep alias for image-only upload buttons elsewhere
 function ImageUploadBtn({ onUrl }: { onUrl: (url: string) => void }) {
   return <UploadBtn onUrl={onUrl} accept="image/*" />;
 }
@@ -144,27 +175,32 @@ function TagInput({ label, values, onChange }: { label: string; values: string[]
   }
 
   return (
-    <div>
-      <label className="block text-xs text-slate-400 mb-1">{label}</label>
-      <div className="flex flex-wrap gap-1 mb-2">
+    <Box>
+      <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.75 }}>
+        {label}
+      </Typography>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 1, minHeight: 24 }}>
         {values.map((v) => (
-          <span key={v} className="flex items-center gap-1 bg-slate-700 text-slate-200 text-xs px-2 py-0.5 rounded">
-            {v}
-            <button type="button" onClick={() => onChange(values.filter((x) => x !== v))} className="text-slate-400 hover:text-white">×</button>
-          </span>
+          <Chip
+            key={v}
+            label={v}
+            size="small"
+            onDelete={() => onChange(values.filter((x) => x !== v))}
+          />
         ))}
-      </div>
-      <div className="flex gap-2">
-        <input
+      </Box>
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <TextField
+          size="small"
+          fullWidth
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } }}
           placeholder="Type and press Enter"
-          className="flex-1 bg-slate-800 border border-slate-600 rounded px-2 py-1 text-sm text-slate-100 placeholder-slate-500"
         />
-        <button type="button" onClick={add} className="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs rounded border border-slate-600">Add</button>
-      </div>
-    </div>
+        <Button variant="outlined" size="small" onClick={add} sx={{ flexShrink: 0 }}>Add</Button>
+      </Box>
+    </Box>
   );
 }
 
@@ -202,7 +238,6 @@ function HistoryModal({
     }
   }
 
-  // Fields to show in the diff summary
   function diffSummary(snap: Project): string[] {
     const lines: string[] = [];
     if (snap.title) lines.push(`Title: ${snap.title}`);
@@ -214,78 +249,114 @@ function HistoryModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 py-8 px-4">
-      <div className="w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-xl shadow-2xl">
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700">
-          <div>
-            <h2 className="text-lg font-semibold text-white">Version History</h2>
-            <p className="text-sm text-slate-400 mt-0.5">{project.title}</p>
-          </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white text-2xl leading-none">×</button>
-        </div>
+    <Dialog open fullWidth maxWidth="md" onClose={onClose} PaperProps={{ sx: { bgcolor: 'background.paper' } }}>
+      <DialogTitle sx={{ pr: 6 }}>
+        Version History
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.25 }}>{project.title}</Typography>
+        <IconButton onClick={onClose} size="small" sx={{ position: 'absolute', right: 12, top: 12 }}>
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </DialogTitle>
 
-        <div className="px-6 py-4">
-          {loading && <p className="text-slate-400 text-sm py-4 text-center">Loading history…</p>}
+      <DialogContent dividers>
+        {loading && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+            <CircularProgress size={24} />
+          </Box>
+        )}
 
-          {!loading && entries.length === 0 && (
-            <div className="text-center py-8">
-              <p className="text-slate-400 text-sm">No version history yet.</p>
-              <p className="text-slate-500 text-xs mt-1">History is saved automatically each time you save a project.</p>
-            </div>
-          )}
+        {!loading && entries.length === 0 && (
+          <Box sx={{ textAlign: 'center', py: 6 }}>
+            <Typography color="text.secondary" sx={{ mb: 0.5 }}>No version history yet.</Typography>
+            <Typography variant="caption" color="text.disabled">
+              History is saved automatically each time you save a project.
+            </Typography>
+          </Box>
+        )}
 
-          {!loading && entries.length > 0 && (
-            <div className="space-y-2">
-              <p className="text-xs text-slate-500 mb-4">{entries.length} saved version{entries.length !== 1 ? 's' : ''} (newest first)</p>
+        {!loading && entries.length > 0 && (
+          <Box>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 2 }}>
+              {entries.length} saved version{entries.length !== 1 ? 's' : ''} (newest first)
+            </Typography>
+            <Stack spacing={1}>
               {entries.map((entry, i) => (
-                <div key={entry.savedAt} className="border border-slate-700 rounded-lg overflow-hidden">
-                  {/* Version header row */}
-                  <div className="flex items-center justify-between px-4 py-3 bg-slate-800 hover:bg-slate-750 cursor-pointer" onClick={() => setExpanded(expanded === entry.savedAt ? null : entry.savedAt)}>
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-slate-500 w-5 text-right">{i + 1}</span>
-                      <div>
-                        <span className="text-sm text-slate-200 font-medium">{formatDate(entry.savedAt)}</span>
-                        {i === 0 && <span className="ml-2 text-[10px] bg-blue-900/60 text-blue-300 px-1.5 py-0.5 rounded">latest backup</span>}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
+                <Box
+                  key={entry.savedAt}
+                  sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, overflow: 'hidden' }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                      px: 2, py: 1.5, bgcolor: 'action.hover', cursor: 'pointer',
+                      '&:hover': { bgcolor: 'action.selected' },
+                    }}
+                    onClick={() => setExpanded(expanded === entry.savedAt ? null : entry.savedAt)}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                      <Typography variant="caption" color="text.disabled" sx={{ fontFamily: 'monospace', width: 20, textAlign: 'right' }}>
+                        {i + 1}
+                      </Typography>
+                      <Box>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <Typography variant="body2" fontWeight={500}>{formatDate(entry.savedAt)}</Typography>
+                          {i === 0 && (
+                            <Chip label="latest backup" size="small" color="primary" variant="outlined" sx={{ height: 18, fontSize: '0.65rem' }} />
+                          )}
+                        </Box>
+                      </Box>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        color="warning"
                         onClick={(e) => { e.stopPropagation(); handleRestore(entry.savedAt); }}
                         disabled={restoring === entry.savedAt}
-                        className="text-xs px-3 py-1 bg-amber-700/60 hover:bg-amber-700 text-amber-200 rounded disabled:opacity-50"
                       >
                         {restoring === entry.savedAt ? 'Restoring…' : 'Restore'}
-                      </button>
-                      <span className="text-slate-500 text-sm">{expanded === entry.savedAt ? '▲' : '▼'}</span>
-                    </div>
-                  </div>
+                      </Button>
+                      <Typography variant="caption" color="text.disabled">
+                        {expanded === entry.savedAt ? '▲' : '▼'}
+                      </Typography>
+                    </Box>
+                  </Box>
 
-                  {/* Expanded snapshot details */}
                   {expanded === entry.savedAt && (
-                    <div className="px-4 py-3 border-t border-slate-700 bg-slate-950/50">
-                      <ul className="space-y-1">
-                        {diffSummary(entry.snapshot).map((line) => (
-                          <li key={line} className="text-xs text-slate-400 font-mono">{line}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    <Box sx={{ px: 2, py: 1.5, borderTop: '1px solid', borderColor: 'divider', bgcolor: 'background.default' }}>
+                      {diffSummary(entry.snapshot).map((line) => (
+                        <Typography key={line} variant="caption" sx={{ display: 'block', fontFamily: 'monospace', color: 'text.secondary' }}>
+                          {line}
+                        </Typography>
+                      ))}
+                    </Box>
                   )}
-                </div>
+                </Box>
               ))}
-            </div>
-          )}
-        </div>
+            </Stack>
+          </Box>
+        )}
+      </DialogContent>
 
-        <div className="px-6 py-4 border-t border-slate-700">
-          <button onClick={onClose} className="text-sm text-slate-400 hover:text-white">Close</button>
-        </div>
-      </div>
-    </div>
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">Close</Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 
 // ── Project Form ──────────────────────────────────────────────────────────────
+
+function isVideoUrl(src: string) {
+  return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src);
+}
+
+function getYouTubeId(url: string): string | null {
+  const m = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+  );
+  return m ? m[1] : null;
+}
 
 function ProjectForm({
   initial,
@@ -298,6 +369,8 @@ function ProjectForm({
 }) {
   const [p, setP] = useState<Project>({ ...initial });
   const [saving, setSaving] = useState(false);
+  const [contentEditorMode, setContentEditorMode] = useState<'html' | 'rich'>('html');
+  const richEditorRef = useRef<HTMLDivElement | null>(null);
 
   function set<K extends keyof Project>(key: K, val: Project[K]) {
     setP((prev) => ({ ...prev, [key]: val }));
@@ -333,262 +406,443 @@ function ProjectForm({
 
   const needsThumbnail = p.featuredMedia.type === 'video' || p.featuredMedia.type === 'iframe';
 
-  const inputCls = 'w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500';
-  const labelCls = 'block text-xs text-slate-400 mb-1';
+  useEffect(() => {
+    if (contentEditorMode !== 'rich' || !richEditorRef.current) return;
+    const next = p.content ?? '';
+    if (richEditorRef.current.innerHTML !== next) {
+      richEditorRef.current.innerHTML = next;
+    }
+  }, [contentEditorMode, p.content]);
 
   return (
-    <div className="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto bg-black/70 py-8 px-4">
-      <form onSubmit={handleSubmit} className="w-full max-w-3xl bg-slate-900 border border-slate-700 rounded-xl shadow-2xl">
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700">
-          <h2 className="text-lg font-semibold text-white">{initial.slug ? 'Edit Project' : 'New Project'}</h2>
-          <button type="button" onClick={onCancel} className="text-slate-400 hover:text-white text-2xl leading-none">×</button>
-        </div>
+    <Dialog
+      open
+      fullWidth
+      maxWidth={false}
+      onClose={onCancel}
+      PaperProps={{
+        sx: {
+          bgcolor: 'background.paper',
+          width: 'min(98vw, 1880px)',
+          maxWidth: 'none',
+        },
+      }}
+    >
+      <DialogTitle sx={{ pr: 6 }}>
+        {initial.slug ? 'Edit Project' : 'New Project'}
+        <IconButton onClick={onCancel} size="small" sx={{ position: 'absolute', right: 12, top: 12 }}>
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </DialogTitle>
 
-        <div className="px-6 py-6 space-y-6">
-          {/* Basic Info */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Basic Info</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="col-span-2">
-                <label className={labelCls}>Title *</label>
-                <input
+      <DialogContent dividers sx={{ overflow: 'hidden' }}>
+        <Box
+          component="form"
+          id="project-form"
+          onSubmit={handleSubmit}
+          sx={{ height: { xs: 'auto', lg: 'calc(100vh - 200px)' } }}
+        >
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', lg: '1.65fr 1fr' },
+              gap: 3,
+              pt: 1,
+              height: '100%',
+              minHeight: 0,
+            }}
+          >
+            <Box
+              sx={{
+                minHeight: 0,
+                overflowY: { xs: 'visible', lg: 'auto' },
+                pr: { lg: 0.5 },
+              }}
+            >
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 1 }}>
+                Detail Page Content Editor
+              </Typography>
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 2 }}>
+                Optional. Overrides the built-in rich content for this project's detail page.
+              </Typography>
+
+              <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
+                  <Typography variant="subtitle2" fontWeight={600}>Editor</Typography>
+                  <ToggleButtonGroup
+                    exclusive
+                    size="small"
+                    value={contentEditorMode}
+                    onChange={(_e, mode) => mode && setContentEditorMode(mode)}
+                  >
+                    <ToggleButton value="html">HTML</ToggleButton>
+                    <ToggleButton value="rich">Rich Text</ToggleButton>
+                  </ToggleButtonGroup>
+                </Box>
+
+                {contentEditorMode === 'html' ? (
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={34}
+                    value={p.content ?? ''}
+                    onChange={(e) => set('content', e.target.value)}
+                    placeholder="<div>...</div>"
+                    inputProps={{ style: { fontFamily: 'monospace', fontSize: '0.75rem' } }}
+                  />
+                ) : (
+                  <Box
+                    ref={richEditorRef}
+                    contentEditable
+                    suppressContentEditableWarning
+                    onInput={(e) => set('content', e.currentTarget.innerHTML)}
+                    className="prose"
+                    sx={{
+                      minHeight: 760,
+                      maxHeight: { xs: 560, lg: 'calc(100vh - 240px)' },
+                      overflowY: 'auto',
+                      border: '1px solid',
+                      borderColor: 'divider',
+                      borderRadius: 1,
+                      p: 1.5,
+                      fontSize: '0.95rem',
+                      lineHeight: 1.6,
+                      '&:focus': {
+                        outline: '2px solid',
+                        outlineColor: 'primary.main',
+                        outlineOffset: 1,
+                      },
+                    }}
+                  />
+                )}
+              </Paper>
+            </Box>
+
+            <Stack
+              spacing={4}
+              sx={{
+                minHeight: 0,
+                overflowY: { xs: 'visible', lg: 'auto' },
+                pr: { lg: 0.5 },
+              }}
+            >
+
+            {/* Basic Info */}
+            <Box>
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+                Basic Info
+              </Typography>
+              <Stack spacing={2}>
+                <TextField
+                  label="Title *"
                   required
+                  fullWidth
                   value={p.title}
                   onChange={(e) => { set('title', e.target.value); if (!initial.slug) set('slug', slugify(e.target.value)); }}
-                  className={inputCls}
                   placeholder="Project title"
                 />
-              </div>
-              <div>
-                <label className={labelCls}>ID</label>
-                <input value={p.id} onChange={(e) => set('id', e.target.value)} className={inputCls} placeholder="e.g. 42" />
-              </div>
-              <div>
-                <label className={labelCls}>Slug</label>
-                <input value={p.slug} onChange={(e) => set('slug', e.target.value)} className={inputCls} placeholder="url-friendly-slug" />
-              </div>
-              <div>
-                <label className={labelCls}>Year</label>
-                <input value={p.year ?? ''} onChange={(e) => set('year', e.target.value)} className={inputCls} placeholder="2025" />
-              </div>
-              <div>
-                <label className={labelCls}>Status</label>
-                <input value={p.status ?? ''} onChange={(e) => set('status', e.target.value)} className={inputCls} placeholder="Live / Completed / etc." />
-              </div>
-              <div className="col-span-2">
-                <label className={labelCls}>Short Subtitle *</label>
-                <input required value={p.shortSubtitle} onChange={(e) => set('shortSubtitle', e.target.value)} className={inputCls} placeholder="One-line descriptor" />
-              </div>
-              <div className="col-span-2">
-                <label className={labelCls}>Summary *</label>
-                <textarea required rows={3} value={p.summary} onChange={(e) => set('summary', e.target.value)} className={inputCls} placeholder="2–4 sentence summary" />
-              </div>
-            </div>
-          </section>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+                  <TextField label="ID" value={p.id} onChange={(e) => set('id', e.target.value)} placeholder="e.g. 42" />
+                  <TextField label="Slug" value={p.slug} onChange={(e) => set('slug', e.target.value)} placeholder="url-friendly-slug" />
+                  <TextField label="Year" value={p.year ?? ''} onChange={(e) => set('year', e.target.value)} placeholder="2025" />
+                  <TextField label="Status" value={p.status ?? ''} onChange={(e) => set('status', e.target.value)} placeholder="Live / Completed / etc." />
+                </Box>
+                <TextField
+                  label="Short Subtitle *"
+                  required
+                  fullWidth
+                  value={p.shortSubtitle}
+                  onChange={(e) => set('shortSubtitle', e.target.value)}
+                  placeholder="One-line descriptor"
+                />
+                <TextField
+                  label="Summary *"
+                  required
+                  fullWidth
+                  multiline
+                  rows={3}
+                  value={p.summary}
+                  onChange={(e) => set('summary', e.target.value)}
+                  placeholder="2–4 sentence summary"
+                />
+              </Stack>
+            </Box>
 
-          {/* Settings */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Settings</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className={labelCls}>Section</label>
-                <select value={p.section ?? 'Most Recent'} onChange={(e) => set('section', e.target.value as Project['section'])} className={inputCls}>
-                  <option value="Current Projects">Current Projects</option>
-                  <option value="Most Recent">Most Recent</option>
-                  <option value="Archive">Archive</option>
-                </select>
-              </div>
-              <div className="flex items-center gap-3 pt-5">
-                <input type="checkbox" id="featured" checked={p.isFeatured} onChange={(e) => set('isFeatured', e.target.checked)} className="w-4 h-4 accent-blue-500" />
-                <label htmlFor="featured" className="text-sm text-slate-300">Featured project</label>
-              </div>
-            </div>
-          </section>
+            <Divider />
 
-          {/* Categories & Skills */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Categories & Skills</h3>
-            <div className="grid grid-cols-1 gap-4">
-              <TagInput label="Categories" values={p.categories} onChange={(v) => set('categories', v)} />
-              <TagInput label="Roles / Skills" values={p.rolesOrSkills} onChange={(v) => set('rolesOrSkills', v)} />
-            </div>
-          </section>
+            {/* Settings */}
+            <Box>
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+                Settings
+              </Typography>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, alignItems: 'center' }}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Section</InputLabel>
+                  <Select
+                    label="Section"
+                    value={p.section ?? 'Most Recent'}
+                    onChange={(e) => set('section', e.target.value as Project['section'])}
+                  >
+                    <MenuItem value="Current Projects">Current Projects</MenuItem>
+                    <MenuItem value="Most Recent">Most Recent</MenuItem>
+                    <MenuItem value="Archive">Archive</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={p.isFeatured}
+                      onChange={(e) => set('isFeatured', e.target.checked)}
+                      color="primary"
+                    />
+                  }
+                  label="Featured project"
+                />
+              </Box>
+            </Box>
 
-          {/* Featured Media */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Featured Media</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className={labelCls}>Type</label>
-                <select value={p.featuredMedia.type} onChange={(e) => setMedia('type', e.target.value as MediaItem['type'])} className={inputCls}>
-                  <option value="image">Image</option>
-                  <option value="video">Video</option>
-                  <option value="iframe">iFrame / Embed</option>
-                </select>
-              </div>
-              <div>
-                <label className={labelCls}>Alt Text</label>
-                <input value={p.featuredMedia.alt ?? ''} onChange={(e) => setMedia('alt', e.target.value)} className={inputCls} placeholder="Describe the media" />
-              </div>
-              <div className="col-span-2">
-                <label className={labelCls}>Source URL</label>
-                <div className="flex gap-2">
-                  <input
-                    value={p.featuredMedia.src}
-                    onChange={(e) => setMedia('src', e.target.value)}
-                    className={inputCls}
-                    placeholder="https://... or /assets/filename.jpg"
+            <Divider />
+
+            {/* Categories & Skills */}
+            <Box>
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+                Categories &amp; Skills
+              </Typography>
+              <Stack spacing={2}>
+                <TagInput label="Categories" values={p.categories} onChange={(v) => set('categories', v)} />
+                <TagInput label="Roles / Skills" values={p.rolesOrSkills} onChange={(v) => set('rolesOrSkills', v)} />
+              </Stack>
+            </Box>
+
+            <Divider />
+
+            {/* Featured Media */}
+            <Box>
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+                Featured Media
+              </Typography>
+              <Stack spacing={2}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+                  <FormControl fullWidth size="small">
+                    <InputLabel>Type</InputLabel>
+                    <Select
+                      label="Type"
+                      value={p.featuredMedia.type}
+                      onChange={(e) => setMedia('type', e.target.value as MediaItem['type'])}
+                    >
+                      <MenuItem value="image">Image</MenuItem>
+                      <MenuItem value="video">Video</MenuItem>
+                      <MenuItem value="iframe">iFrame / Embed</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <TextField
+                    label="Alt Text"
+                    value={p.featuredMedia.alt ?? ''}
+                    onChange={(e) => setMedia('alt', e.target.value)}
+                    placeholder="Describe the media"
                   />
-                  {p.featuredMedia.type === 'image' && (
-                    <ImageUploadBtn onUrl={(url) => setMedia('src', url)} />
+                </Box>
+
+                <Box>
+                  <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.75 }}>Source URL</Typography>
+                  <Box sx={{ display: 'flex', gap: 1 }}>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      value={p.featuredMedia.src}
+                      onChange={(e) => setMedia('src', e.target.value)}
+                      placeholder="https://... or /assets/filename.jpg"
+                    />
+                    {p.featuredMedia.type === 'image' && (
+                      <ImageUploadBtn onUrl={(url) => setMedia('src', url)} />
+                    )}
+                  </Box>
+                  {p.featuredMedia.src && p.featuredMedia.type === 'image' && (
+                    <Box
+                      component="img"
+                      src={p.featuredMedia.src}
+                      alt=""
+                      sx={{ mt: 1, height: 96, width: 'auto', borderRadius: 1, objectFit: 'cover', border: '1px solid', borderColor: 'divider' }}
+                    />
                   )}
-                </div>
-                {p.featuredMedia.src && p.featuredMedia.type === 'image' && (
-                  <img src={p.featuredMedia.src} alt="" className="mt-2 h-24 w-auto rounded object-cover border border-slate-700" />
+                </Box>
+
+                {p.featuredMedia.type === 'iframe' && (
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+                    <TextField
+                      label="Height (px)"
+                      type="number"
+                      value={p.featuredMedia.height ?? ''}
+                      onChange={(e) => setMedia('height', Number(e.target.value))}
+                      placeholder="600"
+                    />
+                    <TextField
+                      label="Allow (permissions)"
+                      value={p.featuredMedia.allow ?? ''}
+                      onChange={(e) => setMedia('allow', e.target.value)}
+                      placeholder="camera; microphone"
+                    />
+                  </Box>
                 )}
-              </div>
-              {p.featuredMedia.type === 'iframe' && (
-                <>
-                  <div>
-                    <label className={labelCls}>Height (px)</label>
-                    <input type="number" value={p.featuredMedia.height ?? ''} onChange={(e) => setMedia('height', Number(e.target.value))} className={inputCls} placeholder="600" />
-                  </div>
-                  <div>
-                    <label className={labelCls}>Allow (permissions)</label>
-                    <input value={p.featuredMedia.allow ?? ''} onChange={(e) => setMedia('allow', e.target.value)} className={inputCls} placeholder="camera; microphone" />
-                  </div>
-                </>
-              )}
-            </div>
 
-            {/* Card Thumbnail — shown when media is video or iframe */}
-            {needsThumbnail && (
-              <div className="mt-4 p-4 bg-slate-800/60 border border-slate-700 rounded-lg">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Card Thumbnail</span>
-                  <span className="text-[10px] bg-amber-900/60 text-amber-300 px-2 py-0.5 rounded">
-                    Required for {p.featuredMedia.type}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-500 mb-3">
-                  Project cards can't display a {p.featuredMedia.type} inline. Upload a still image <em>or a short video clip</em> to show on the card.
-                </p>
-                <div className="flex-1">
-                  <div className="flex gap-2">
-                    <input
-                      value={p.thumbnail ?? ''}
-                      onChange={(e) => set('thumbnail', e.target.value)}
-                      className={inputCls}
-                      placeholder="https://... or /assets/thumbnail.mp4"
+                {/* Card Thumbnail */}
+                {needsThumbnail && (
+                  <Paper variant="outlined" sx={{ p: 2, borderRadius: 1.5 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+                      <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                        Card Thumbnail
+                      </Typography>
+                      <Chip
+                        label={`Required for ${p.featuredMedia.type}`}
+                        size="small"
+                        color="warning"
+                        variant="outlined"
+                        sx={{ height: 18, fontSize: '0.65rem' }}
+                      />
+                    </Box>
+                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1.5 }}>
+                      Project cards can't display a {p.featuredMedia.type} inline. Upload a still image <em>or a short video clip</em> to show on the card.
+                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 1 }}>
+                      <TextField
+                        fullWidth
+                        size="small"
+                        value={p.thumbnail ?? ''}
+                        onChange={(e) => set('thumbnail', e.target.value)}
+                        placeholder="https://... or /assets/thumbnail.mp4"
+                      />
+                      <UploadBtn
+                        accept="image/*,video/mp4,video/webm,video/ogg,video/quicktime"
+                        label="Upload"
+                        onUrl={(url) => set('thumbnail', url)}
+                      />
+                    </Box>
+                    {p.thumbnail && (() => {
+                      const ytId = getYouTubeId(p.thumbnail);
+                      const isVid = isVideoUrl(p.thumbnail);
+                      return (
+                        <Box sx={{ mt: 1.5 }}>
+                          {ytId ? (
+                            <Box sx={{ position: 'relative', height: 80, width: 128, borderRadius: 1, overflow: 'hidden', border: '1px solid', borderColor: 'divider' }}>
+                              <Box component="img" src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`} alt="YouTube thumbnail" sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                              <Box sx={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Box sx={{ width: 28, height: 28, bgcolor: '#dc2626', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.8 }}>
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z" /></svg>
+                                </Box>
+                              </Box>
+                            </Box>
+                          ) : isVid ? (
+                            <Box component="video" src={p.thumbnail} autoPlay muted loop playsInline sx={{ height: 80, width: 'auto', borderRadius: 1, border: '1px solid', borderColor: 'divider', objectFit: 'cover' }} />
+                          ) : (
+                            <Box component="img" src={p.thumbnail} alt="thumbnail preview" sx={{ height: 80, width: 'auto', borderRadius: 1, objectFit: 'cover', border: '1px solid', borderColor: 'divider' }} />
+                          )}
+                          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+                            {ytId ? 'YouTube thumbnail — shows poster + play badge on card' : isVid ? 'Video thumbnail — will autoplay muted on card' : 'Image thumbnail'}
+                          </Typography>
+                        </Box>
+                      );
+                    })()}
+                    {!p.thumbnail && (
+                      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1, fontStyle: 'italic' }}>
+                        No thumbnail set — the site default image will be used on cards.
+                      </Typography>
+                    )}
+                  </Paper>
+                )}
+              </Stack>
+            </Box>
+
+            <Divider />
+
+            {/* Links */}
+            <Box>
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+                Links
+              </Typography>
+              <Stack spacing={1.5}>
+                {p.links.map((lnk, i) => (
+                  <Box key={i} sx={{ display: 'flex', gap: 1 }}>
+                    <TextField size="small" value={lnk.label} onChange={(e) => setLink(i, 'label', e.target.value)} placeholder="Label (e.g. Live Demo)" sx={{ width: '35%' }} />
+                    <TextField size="small" fullWidth value={lnk.url} onChange={(e) => setLink(i, 'url', e.target.value)} placeholder="https://..." />
+                    <IconButton size="small" onClick={() => removeLink(i)} color="error">
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
+                ))}
+                <Button
+                  startIcon={<AddIcon />}
+                  size="small"
+                  onClick={addLink}
+                  sx={{ alignSelf: 'flex-start', color: 'primary.main' }}
+                >
+                  Add Link
+                </Button>
+              </Stack>
+            </Box>
+
+            <Divider />
+
+            {/* Tech Stack */}
+            <Box>
+              <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+                Tech Stack
+              </Typography>
+              <Stack spacing={1.5}>
+                {p.techStack.map((grp, i) => (
+                  <Box key={i} sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                    <TextField size="small" value={grp.category} onChange={(e) => setTechGroup(i, 'category', e.target.value)} placeholder="Category" sx={{ width: '35%' }} />
+                    <TextField
+                      size="small"
+                      fullWidth
+                      value={grp.skills.join(', ')}
+                      onChange={(e) => setTechGroup(i, 'skills', e.target.value.split(',').map((s) => s.trim()).filter(Boolean))}
+                      placeholder="Skill1, Skill2, Skill3"
                     />
-                    <UploadBtn
-                      accept="image/*,video/mp4,video/webm,video/ogg,video/quicktime"
-                      label="Upload"
-                      onUrl={(url) => set('thumbnail', url)}
-                    />
-                  </div>
-                  {p.thumbnail && (() => {
-                    const ytId = getYouTubeId(p.thumbnail);
-                    const isVid = isVideoUrl(p.thumbnail);
-                    return (
-                      <div className="mt-2">
-                        {ytId ? (
-                          <div className="relative h-20 w-32 rounded border border-slate-700 overflow-hidden">
-                            <img
-                              src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`}
-                              alt="YouTube thumbnail"
-                              className="h-full w-full object-cover"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-7 h-7 bg-red-600 rounded-full flex items-center justify-center opacity-80">
-                                <svg className="w-3 h-3 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M8 5v14l11-7z" />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        ) : isVid ? (
-                          <video src={p.thumbnail} autoPlay muted loop playsInline className="h-20 w-auto rounded border border-slate-700 object-cover" />
-                        ) : (
-                          <img src={p.thumbnail} alt="thumbnail preview" className="h-20 w-auto rounded object-cover border border-slate-700" />
-                        )}
-                        <p className="text-[10px] text-slate-500 mt-1">
-                          {ytId ? 'YouTube thumbnail — shows poster image + play badge on card' : isVid ? 'Video thumbnail — will autoplay muted on card' : 'Image thumbnail'}
-                        </p>
-                      </div>
-                    );
-                  })()}
-                  {!p.thumbnail && (
-                    <p className="text-xs text-slate-500 mt-2 italic">No thumbnail set — the site default image will be used on cards.</p>
-                  )}
-                </div>
-              </div>
-            )}
-          </section>
+                    <IconButton size="small" onClick={() => removeTechGroup(i)} color="error">
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
+                ))}
+                <Button
+                  startIcon={<AddIcon />}
+                  size="small"
+                  onClick={addTechGroup}
+                  sx={{ alignSelf: 'flex-start', color: 'primary.main' }}
+                >
+                  Add Group
+                </Button>
+              </Stack>
+            </Box>
 
-          {/* Links */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Links</h3>
-            <div className="space-y-2">
-              {p.links.map((lnk, i) => (
-                <div key={i} className="flex gap-2">
-                  <input value={lnk.label} onChange={(e) => setLink(i, 'label', e.target.value)} className={inputCls} placeholder="Label (e.g. Live Demo)" />
-                  <input value={lnk.url} onChange={(e) => setLink(i, 'url', e.target.value)} className={`${inputCls} flex-1`} placeholder="https://..." />
-                  <button type="button" onClick={() => removeLink(i)} className="px-3 py-2 text-slate-400 hover:text-red-400 text-lg leading-none">×</button>
-                </div>
-              ))}
-              <button type="button" onClick={addLink} className="text-xs text-blue-400 hover:text-blue-300">+ Add Link</button>
-            </div>
-          </section>
+            </Stack>
+          </Box>
+        </Box>
+      </DialogContent>
 
-          {/* Tech Stack */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Tech Stack</h3>
-            <div className="space-y-3">
-              {p.techStack.map((grp, i) => (
-                <div key={i} className="flex gap-2 items-start">
-                  <input value={grp.category} onChange={(e) => setTechGroup(i, 'category', e.target.value)} className={`${inputCls} w-36`} placeholder="Category" />
-                  <input
-                    value={grp.skills.join(', ')}
-                    onChange={(e) => setTechGroup(i, 'skills', e.target.value.split(',').map((s) => s.trim()).filter(Boolean))}
-                    className={`${inputCls} flex-1`}
-                    placeholder="Skill1, Skill2, Skill3"
-                  />
-                  <button type="button" onClick={() => removeTechGroup(i)} className="px-3 py-2 text-slate-400 hover:text-red-400 text-lg leading-none">×</button>
-                </div>
-              ))}
-              <button type="button" onClick={addTechGroup} className="text-xs text-blue-400 hover:text-blue-300">+ Add Group</button>
-            </div>
-          </section>
-
-          {/* HTML Content */}
-          <section>
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Detail Page Content (HTML)</h3>
-            <p className="text-xs text-slate-500 mb-3">Optional. Overrides the built-in rich content for this project's detail page.</p>
-            <textarea
-              rows={8}
-              value={p.content ?? ''}
-              onChange={(e) => set('content', e.target.value)}
-              className={`${inputCls} font-mono text-xs`}
-              placeholder="<div>...</div>"
-            />
-          </section>
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-700">
-          <button type="button" onClick={onCancel} className="px-4 py-2 text-sm text-slate-400 hover:text-white">Cancel</button>
-          <button type="submit" disabled={saving} className="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded disabled:opacity-50">
-            {saving ? 'Saving…' : 'Save Project'}
-          </button>
-        </div>
-      </form>
-    </div>
+      <DialogActions sx={{ px: 3, py: 2 }}>
+        <Button onClick={onCancel} color="inherit">Cancel</Button>
+        <Button
+          type="submit"
+          form="project-form"
+          variant="contained"
+          disabled={saving}
+        >
+          {saving ? 'Saving…' : 'Save Project'}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 
 // ── Site Config Form ──────────────────────────────────────────────────────────
+
+const SOCIAL_ICON_OPTIONS = [
+  { label: 'GitHub', value: 'GitHub' },
+  { label: 'LinkedIn', value: 'LinkedIn' },
+  { label: 'Instagram', value: 'Instagram' },
+  { label: 'Email / Mail', value: 'Email' },
+  { label: 'Link (generic)', value: 'Link' },
+];
 
 function SiteConfigForm({ initial, onSave }: { initial: SiteConfig; onSave: (s: SiteConfig) => Promise<void> }) {
   const [s, setS] = useState<SiteConfig>({ ...initial });
@@ -598,96 +852,158 @@ function SiteConfigForm({ initial, onSave }: { initial: SiteConfig; onSave: (s: 
     setS((prev) => ({ ...prev, [key]: val }));
   }
 
+  function setSocialLink(i: number, key: keyof typeof s.socialLinks[0], val: string) {
+    const links = [...s.socialLinks];
+    links[i] = { ...links[i], [key]: val };
+    set('socialLinks', links);
+  }
+
+  function addSocialLink() {
+    set('socialLinks', [...s.socialLinks, { platform: '', url: '', icon: 'Link' }]);
+  }
+
+  function removeSocialLink(i: number) {
+    set('socialLinks', s.socialLinks.filter((_, idx) => idx !== i));
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
     try { await onSave(s); } finally { setSaving(false); }
   }
 
-  const inputCls = 'w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500';
-  const labelCls = 'block text-xs text-slate-400 mb-1';
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <section>
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Identity</h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className={labelCls}>Site Name</label>
-            <input value={s.siteName} onChange={(e) => set('siteName', e.target.value)} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Job Title</label>
-            <input value={s.jobTitle} onChange={(e) => set('jobTitle', e.target.value)} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Email</label>
-            <input type="email" value={s.email} onChange={(e) => set('email', e.target.value)} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Location</label>
-            <input value={s.location} onChange={(e) => set('location', e.target.value)} className={inputCls} />
-          </div>
-          <div className="col-span-2">
-            <label className={labelCls}>Bio (line breaks supported)</label>
-            <textarea rows={4} value={s.bio} onChange={(e) => set('bio', e.target.value)} className={inputCls} />
-          </div>
-        </div>
-      </section>
+    <Box component="form" onSubmit={handleSubmit}>
+      <Stack spacing={4}>
 
-      <section>
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Images</h3>
-        <div className="space-y-4">
-          <div>
-            <label className={labelCls}>Avatar URL</label>
-            <div className="flex gap-2 items-center">
-              <input value={s.avatar} onChange={(e) => set('avatar', e.target.value)} className={inputCls} />
-              <ImageUploadBtn onUrl={(url) => set('avatar', url)} />
-              {s.avatar && <img src={s.avatar} alt="" className="h-10 w-10 rounded-full object-cover border border-slate-700" />}
-            </div>
-          </div>
-          <div>
-            <label className={labelCls}>Default OG Image URL</label>
-            <div className="flex gap-2 items-center">
-              <input value={s.defaultOgImage} onChange={(e) => set('defaultOgImage', e.target.value)} className={inputCls} />
-              <ImageUploadBtn onUrl={(url) => set('defaultOgImage', url)} />
-            </div>
-          </div>
-        </div>
-      </section>
+        {/* Identity */}
+        <Box>
+          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+            Identity
+          </Typography>
+          <Stack spacing={2}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+              <TextField label="Site Name" fullWidth value={s.siteName} onChange={(e) => set('siteName', e.target.value)} />
+              <TextField label="Job Title" fullWidth value={s.jobTitle} onChange={(e) => set('jobTitle', e.target.value)} />
+              <TextField label="Email" type="email" fullWidth value={s.email} onChange={(e) => set('email', e.target.value)} />
+              <TextField label="Location" fullWidth value={s.location} onChange={(e) => set('location', e.target.value)} />
+            </Box>
+            <TextField label="Bio (line breaks supported)" fullWidth multiline rows={4} value={s.bio} onChange={(e) => set('bio', e.target.value)} />
+          </Stack>
+        </Box>
 
-      <section>
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">SEO</h3>
-        <div className="grid grid-cols-1 gap-4">
-          <div>
-            <label className={labelCls}>Default Title</label>
-            <input value={s.defaultTitle} onChange={(e) => set('defaultTitle', e.target.value)} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Default Description</label>
-            <textarea rows={2} value={s.defaultDescription} onChange={(e) => set('defaultDescription', e.target.value)} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Keywords (comma-separated)</label>
-            <input value={s.keywords.join(', ')} onChange={(e) => set('keywords', e.target.value.split(',').map((k) => k.trim()).filter(Boolean))} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Twitter Handle</label>
-            <input value={s.twitterHandle} onChange={(e) => set('twitterHandle', e.target.value)} className={inputCls} />
-          </div>
-          <div>
-            <label className={labelCls}>Site URL</label>
-            <input type="url" value={s.siteUrl} onChange={(e) => set('siteUrl', e.target.value)} className={inputCls} />
-          </div>
-        </div>
-      </section>
+        <Divider />
 
-      <div className="pt-2">
-        <button type="submit" disabled={saving} className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded disabled:opacity-50">
-          {saving ? 'Saving…' : 'Save Site Config'}
-        </button>
-      </div>
-    </form>
+        {/* Social Links */}
+        <Box>
+          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+            Social Links
+          </Typography>
+          <Stack spacing={1.5}>
+            {s.socialLinks.map((link, i) => (
+              <Box key={i} sx={{ display: 'grid', gridTemplateColumns: '140px 1fr 1fr auto', gap: 1, alignItems: 'center' }}>
+                <FormControl size="small" fullWidth>
+                  <InputLabel>Icon</InputLabel>
+                  <Select
+                    label="Icon"
+                    value={link.icon}
+                    onChange={(e) => setSocialLink(i, 'icon', e.target.value)}
+                  >
+                    {SOCIAL_ICON_OPTIONS.map((opt) => (
+                      <MenuItem key={opt.value} value={opt.value}>{opt.label}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <TextField
+                  size="small"
+                  fullWidth
+                  label="Platform name"
+                  value={link.platform}
+                  onChange={(e) => setSocialLink(i, 'platform', e.target.value)}
+                  placeholder="e.g. GitHub"
+                />
+                <TextField
+                  size="small"
+                  fullWidth
+                  label="URL"
+                  value={link.url}
+                  onChange={(e) => setSocialLink(i, 'url', e.target.value)}
+                  placeholder="https://..."
+                />
+                <IconButton size="small" color="error" onClick={() => removeSocialLink(i)}>
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            ))}
+            <Button
+              startIcon={<AddIcon />}
+              size="small"
+              onClick={addSocialLink}
+              sx={{ alignSelf: 'flex-start', color: 'primary.main' }}
+            >
+              Add Social Link
+            </Button>
+          </Stack>
+        </Box>
+
+        <Divider />
+
+        {/* Images */}
+        <Box>
+          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+            Images
+          </Typography>
+          <Stack spacing={2}>
+            <Box>
+              <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.75 }}>Avatar URL</Typography>
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                <TextField size="small" fullWidth value={s.avatar} onChange={(e) => set('avatar', e.target.value)} />
+                <ImageUploadBtn onUrl={(url) => set('avatar', url)} />
+                {s.avatar && (
+                  <Box component="img" src={s.avatar} alt="" sx={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', border: '1px solid', borderColor: 'divider', flexShrink: 0 }} />
+                )}
+              </Box>
+            </Box>
+            <Box>
+              <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.75 }}>Default OG Image URL</Typography>
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                <TextField size="small" fullWidth value={s.defaultOgImage} onChange={(e) => set('defaultOgImage', e.target.value)} />
+                <ImageUploadBtn onUrl={(url) => set('defaultOgImage', url)} />
+              </Box>
+            </Box>
+          </Stack>
+        </Box>
+
+        <Divider />
+
+        {/* SEO */}
+        <Box>
+          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', color: 'text.secondary', display: 'block', mb: 2 }}>
+            SEO
+          </Typography>
+          <Stack spacing={2}>
+            <TextField label="Default Title" fullWidth value={s.defaultTitle} onChange={(e) => set('defaultTitle', e.target.value)} />
+            <TextField label="Default Description" fullWidth multiline rows={2} value={s.defaultDescription} onChange={(e) => set('defaultDescription', e.target.value)} />
+            <TextField
+              label="Keywords (comma-separated)"
+              fullWidth
+              value={s.keywords.join(', ')}
+              onChange={(e) => set('keywords', e.target.value.split(',').map((k) => k.trim()).filter(Boolean))}
+            />
+            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+              <TextField label="Twitter Handle" fullWidth value={s.twitterHandle} onChange={(e) => set('twitterHandle', e.target.value)} />
+              <TextField label="Site URL" type="url" fullWidth value={s.siteUrl} onChange={(e) => set('siteUrl', e.target.value)} />
+            </Box>
+          </Stack>
+        </Box>
+
+        <Box sx={{ pt: 1 }}>
+          <Button type="submit" variant="contained" disabled={saving}>
+            {saving ? 'Saving…' : 'Save Site Config'}
+          </Button>
+        </Box>
+      </Stack>
+    </Box>
   );
 }
 
@@ -712,63 +1028,78 @@ function ProjectsTable({
   });
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-slate-700 text-left text-xs text-slate-400 uppercase tracking-wider">
-            <th className="pb-3 pr-4">ID</th>
-            <th className="pb-3 pr-4">Title</th>
-            <th className="pb-3 pr-4">Section</th>
-            <th className="pb-3 pr-4">Status</th>
-            <th className="pb-3 pr-4 text-center">★</th>
-            <th className="pb-3 text-right">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
+    <TableContainer>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>ID</TableCell>
+            <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Title</TableCell>
+            <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Section</TableCell>
+            <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Status</TableCell>
+            <TableCell align="center" sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>★</TableCell>
+            <TableCell align="right" sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {sorted.map((p) => (
-            <tr key={p.id} className="border-b border-slate-800 hover:bg-slate-800/50 transition-colors">
-              <td className="py-3 pr-4 font-mono text-slate-500 text-xs">{p.id}</td>
-              <td className="py-3 pr-4">
-                <div className="font-medium text-slate-100">{p.title}</div>
-                <div className="text-xs text-slate-500 mt-0.5 flex items-center gap-2">
-                  {p.shortSubtitle}
+            <TableRow key={p.id} hover>
+              <TableCell>
+                <Typography variant="caption" sx={{ fontFamily: 'monospace', color: 'text.secondary' }}>{p.id}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="body2" fontWeight={500}>{p.title}</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.25 }}>
+                  <Typography variant="caption" color="text.secondary">{p.shortSubtitle}</Typography>
                   {(p.featuredMedia.type === 'video' || p.featuredMedia.type === 'iframe') && (
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded ${p.thumbnail ? 'bg-emerald-900/50 text-emerald-400' : 'bg-amber-900/50 text-amber-400'}`}>
-                      {p.thumbnail ? '✓ thumbnail' : '! no thumbnail'}
-                    </span>
+                    <Chip
+                      label={p.thumbnail ? '✓ thumbnail' : '! no thumbnail'}
+                      size="small"
+                      color={p.thumbnail ? 'success' : 'warning'}
+                      variant="outlined"
+                      sx={{ height: 16, fontSize: '0.6rem' }}
+                    />
                   )}
-                </div>
-              </td>
-              <td className="py-3 pr-4">
-                <span className={`text-xs px-2 py-0.5 rounded-full ${
-                  p.section === 'Current Projects' ? 'bg-blue-900/50 text-blue-300' :
-                  p.section === 'Archive' ? 'bg-slate-700 text-slate-400' :
-                  'bg-slate-700/50 text-slate-300'
-                }`}>
-                  {p.section ?? 'Most Recent'}
-                </span>
-              </td>
-              <td className="py-3 pr-4 text-slate-400 text-xs">{p.status ?? '—'}</td>
-              <td className="py-3 pr-4 text-center">{p.isFeatured && <span className="text-yellow-400">★</span>}</td>
-              <td className="py-3 text-right whitespace-nowrap">
-                <button onClick={() => onHistory(p)} className="text-xs px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 rounded mr-1" title="Version history">
-                  ⏱
-                </button>
-                <button onClick={() => onEdit(p)} className="text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded mr-2">
-                  Edit
-                </button>
-                <button
-                  onClick={() => { if (window.confirm(`Delete "${p.title}"?`)) onDelete(p.id); }}
-                  className="text-xs px-3 py-1 bg-red-900/60 hover:bg-red-800 text-red-300 rounded"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
+                </Box>
+              </TableCell>
+              <TableCell>
+                <Chip
+                  label={p.section ?? 'Most Recent'}
+                  size="small"
+                  color={p.section === 'Current Projects' ? 'primary' : 'default'}
+                  variant={p.section === 'Archive' ? 'outlined' : 'filled'}
+                  sx={{ fontSize: '0.7rem', height: 20 }}
+                />
+              </TableCell>
+              <TableCell>
+                <Typography variant="caption" color="text.secondary">{p.status ?? '—'}</Typography>
+              </TableCell>
+              <TableCell align="center">
+                {p.isFeatured && <Typography sx={{ color: 'warning.main' }}>★</Typography>}
+              </TableCell>
+              <TableCell align="right">
+                <Box sx={{ display: 'flex', gap: 0.75, justifyContent: 'flex-end' }}>
+                  <IconButton size="small" onClick={() => onHistory(p)} title="Version history" sx={{ color: 'text.secondary' }}>
+                    <HistoryIcon fontSize="small" />
+                  </IconButton>
+                  <Button size="small" variant="outlined" onClick={() => onEdit(p)}>
+                    Edit
+                  </Button>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color="error"
+                    startIcon={<DeleteIcon fontSize="small" />}
+                    onClick={() => { if (window.confirm(`Delete "${p.title}"?`)) onDelete(p.id); }}
+                  >
+                    Delete
+                  </Button>
+                </Box>
+              </TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 
@@ -777,7 +1108,7 @@ function ProjectsTable({
 export function Admin() {
   const [connected, setConnected] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<'projects' | 'site'>('projects');
+  const [tab, setTab] = useState(0);
   const [projects, setProjects] = useState<Project[]>([]);
   const [site, setSite] = useState<SiteConfig | null>(null);
   const [editProject, setEditProject] = useState<Project | null>(null);
@@ -845,90 +1176,115 @@ export function Admin() {
   function openEdit(p: Project) { setEditProject(p); setShowForm(true); }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
       {/* Header */}
-      <header className="border-b border-slate-800 bg-slate-900">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-lg font-semibold tracking-tight">Admin Panel</span>
-            <span className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full ${connected ? 'bg-emerald-900/60 text-emerald-300' : 'bg-red-900/60 text-red-300'}`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${connected ? 'bg-emerald-400' : 'bg-red-400'}`} />
-              {connected ? 'Server connected' : 'Server offline'}
-            </span>
-          </div>
-          <Link to="/" className="text-sm text-slate-400 hover:text-white transition-colors">← Back to site</Link>
-        </div>
-      </header>
+      <AppBar
+        position="static"
+        elevation={0}
+        sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', color: 'text.primary' }}
+      >
+        <Toolbar sx={{ maxWidth: '1200px', width: '100%', mx: 'auto', px: { xs: 2, sm: 3 } }}>
+          <Typography variant="h6" fontWeight={600} sx={{ letterSpacing: '-0.01em', flexGrow: 1 }}>
+            Admin Panel
+          </Typography>
+          <Chip
+            label={connected ? 'Server connected' : 'Server offline'}
+            size="small"
+            color={connected ? 'success' : 'error'}
+            variant="outlined"
+            sx={{ mr: 2 }}
+          />
+          <Button component={Link} to="/" color="inherit" size="small" sx={{ color: 'text.secondary' }}>
+            ← Back to site
+          </Button>
+        </Toolbar>
+      </AppBar>
 
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Not connected */}
-        {!loading && !connected && (
-          <div className="bg-slate-900 border border-slate-700 rounded-xl p-8 text-center max-w-xl mx-auto">
-            <div className="text-4xl mb-4">🔌</div>
-            <h2 className="text-xl font-semibold mb-2">Admin server not running</h2>
-            <p className="text-slate-400 text-sm mb-6">The admin panel requires the local server to make changes. Start it in your terminal:</p>
-            <div className="bg-slate-800 rounded-lg px-4 py-3 font-mono text-sm text-emerald-400 text-left mb-2">npm run admin</div>
-            <p className="text-slate-500 text-xs mt-3">or run both Vite + admin together:</p>
-            <div className="bg-slate-800 rounded-lg px-4 py-3 font-mono text-sm text-emerald-400 text-left mt-2">npm run dev:all</div>
-            <button onClick={fetchData} className="mt-6 px-5 py-2 bg-slate-700 hover:bg-slate-600 rounded text-sm text-slate-200">Retry connection</button>
-          </div>
+      <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 3 }, py: 4 }}>
+
+        {/* Loading */}
+        {loading && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 20, gap: 2 }}>
+            <CircularProgress size={24} />
+            <Typography color="text.secondary">Connecting to admin server…</Typography>
+          </Box>
         )}
 
-        {loading && <div className="text-center py-20 text-slate-500">Connecting to admin server…</div>}
+        {/* Not connected */}
+        {!loading && !connected && (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Paper
+              sx={{
+                p: 5, textAlign: 'center', maxWidth: 480, borderRadius: 3,
+              }}
+            >
+              <Typography variant="h3" sx={{ mb: 2 }}>🔌</Typography>
+              <Typography variant="h6" fontWeight={600} sx={{ mb: 1 }}>Admin server not running</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                The admin panel requires the local server to make changes. Start it in your terminal:
+              </Typography>
+              <Paper variant="outlined" sx={{ px: 2, py: 1.5, mb: 1, textAlign: 'left', fontFamily: 'monospace', bgcolor: 'background.default' }}>
+                <Typography variant="body2" sx={{ fontFamily: 'monospace', color: 'success.main' }}>npm run admin</Typography>
+              </Paper>
+              <Typography variant="caption" color="text.secondary">or run both Vite + admin together:</Typography>
+              <Paper variant="outlined" sx={{ px: 2, py: 1.5, mt: 1, mb: 3, textAlign: 'left', bgcolor: 'background.default' }}>
+                <Typography variant="body2" sx={{ fontFamily: 'monospace', color: 'success.main' }}>npm run dev:all</Typography>
+              </Paper>
+              <Button variant="outlined" onClick={fetchData}>Retry connection</Button>
+            </Paper>
+          </Box>
+        )}
 
         {/* Connected UI */}
         {!loading && connected && (
           <>
             {/* Tabs */}
-            <div className="flex gap-1 mb-8 border-b border-slate-800">
-              {(['projects', 'site'] as const).map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  className={`px-5 py-3 text-sm font-medium transition-colors border-b-2 -mb-px ${tab === t ? 'border-blue-500 text-white' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
-                >
-                  {t === 'projects' ? `Projects (${projects.length})` : 'Site Config'}
-                </button>
-              ))}
-            </div>
+            <Tabs
+              value={tab}
+              onChange={(_, v) => setTab(v)}
+              sx={{ mb: 4, borderBottom: '1px solid', borderColor: 'divider' }}
+            >
+              <Tab label={`Projects (${projects.length})`} />
+              <Tab label="Site Config" />
+            </Tabs>
 
-            {/* Projects tab */}
-            {tab === 'projects' && (
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h2 className="text-xl font-semibold">Projects</h2>
-                    <p className="text-slate-400 text-sm mt-0.5">
+            {/* Projects Tab */}
+            {tab === 0 && (
+              <Box>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 3 }}>
+                  <Box>
+                    <Typography variant="h5" fontWeight={600}>Projects</Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
                       {projects.filter((p) => p.isFeatured).length} featured ·{' '}
                       {projects.filter((p) => p.section === 'Current Projects').length} current ·{' '}
                       {projects.filter((p) => p.section === 'Archive').length} archived
-                    </p>
-                  </div>
-                  <button onClick={openNew} className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded">
-                    + New Project
-                  </button>
-                </div>
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                    </Typography>
+                  </Box>
+                  <Button variant="contained" startIcon={<AddIcon />} onClick={openNew}>
+                    New Project
+                  </Button>
+                </Box>
+                <Paper sx={{ borderRadius: 2 }}>
                   <ProjectsTable projects={projects} onEdit={openEdit} onDelete={handleDeleteProject} onHistory={setHistoryProject} />
-                </div>
-              </div>
+                </Paper>
+              </Box>
             )}
 
-            {/* Site Config tab */}
-            {tab === 'site' && site && (
-              <div>
-                <div className="mb-6">
-                  <h2 className="text-xl font-semibold">Site Config</h2>
-                  <p className="text-slate-400 text-sm mt-0.5">Basic info, avatar, SEO settings.</p>
-                </div>
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            {/* Site Config Tab */}
+            {tab === 1 && site && (
+              <Box>
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h5" fontWeight={600}>Site Config</Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>Basic info, avatar, SEO settings.</Typography>
+                </Box>
+                <Paper sx={{ p: 3, borderRadius: 2 }}>
                   <SiteConfigForm initial={site} onSave={handleSaveSite} />
-                </div>
-              </div>
+                </Paper>
+              </Box>
             )}
           </>
         )}
-      </div>
+      </Box>
 
       {/* Project Form Modal */}
       {showForm && editProject && (
@@ -950,6 +1306,6 @@ export function Admin() {
 
       {/* Toast */}
       <Toast msg={toast} onDone={() => setToast('')} />
-    </div>
+    </Box>
   );
 }

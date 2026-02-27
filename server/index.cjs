@@ -9,6 +9,7 @@ const PORT = 3001;
 const MAX_HISTORY = 20;
 
 const DATA_FILE = path.join(__dirname, '../config/data.json');
+const RICH_CONTENT_FILE = path.join(__dirname, '../config/richContent.json');
 const HISTORY_FILE = path.join(__dirname, './history.json');
 const ASSETS_DIR = path.join(__dirname, '../public/assets');
 
@@ -45,6 +46,25 @@ const upload = multer({
 
 function readData() {
   return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+}
+
+function readRichContent() {
+  try {
+    return JSON.parse(fs.readFileSync(RICH_CONTENT_FILE, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function withEffectiveProjectContent(data) {
+  const richContent = readRichContent();
+  return {
+    ...data,
+    projects: (data.projects || []).map((project) => ({
+      ...project,
+      content: project.content || richContent[project.id] || '',
+    })),
+  };
 }
 
 function writeData(data) {
@@ -85,7 +105,8 @@ function snapshotProject(projectId, projectData) {
 
 app.get('/api/data', (req, res) => {
   try {
-    res.json(readData());
+    const data = readData();
+    res.json(withEffectiveProjectContent(data));
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
