@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { portfolioTheme, adminTheme } from './theme';
 import { Sidebar } from './components/layout/Sidebar';
+import { MobileAppBar } from './components/layout/MobileAppBar';
+import { MobileDrawer } from './components/layout/MobileDrawer';
 import { Home } from './pages/Home';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { Admin } from './pages/Admin';
@@ -20,6 +23,10 @@ const ScrollToTop = () => {
 };
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <Box
       sx={{
@@ -28,16 +35,39 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         color: 'text.primary',
       }}
     >
-      <Box sx={{ width: '100%', px: { xs: 2, sm: 3, lg: 4 }, py: { xs: 3, lg: 4 } }}>
+      {/* Mobile app bar */}
+      {!isDesktop && (
+        <MobileAppBar onMenuClick={() => setDrawerOpen(true)} />
+      )}
+
+      {/* Mobile drawer */}
+      {!isDesktop && (
+        <MobileDrawer
+          open={drawerOpen}
+          onOpen={() => setDrawerOpen(true)}
+          onClose={() => setDrawerOpen(false)}
+        />
+      )}
+
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: 1600,
+          mx: 'auto',
+          px: { xs: 2, sm: 3, lg: 5 },
+          py: { xs: 2, lg: 4 },
+        }}
+      >
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', lg: '340px 1fr' },
-            gap: 4,
+            gridTemplateColumns: { xs: '1fr', lg: '300px 1fr' },
+            gap: { xs: 4, lg: 5 },
             alignItems: 'start',
           }}
         >
-          <Sidebar />
+          {/* Desktop sidebar */}
+          {isDesktop && <Sidebar />}
 
           <Box component="main" sx={{ minHeight: '80vh', width: '100%' }}>
             {children}
@@ -45,15 +75,20 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Box
               component="footer"
               sx={{
-                mt: 6,
+                mt: 8,
                 pt: 3,
                 borderTop: '1px solid',
                 borderColor: 'divider',
-                textAlign: { xs: 'center', lg: 'left' },
               }}
             >
-              <Typography variant="caption" color="text.secondary">
-                © {new Date().getFullYear()} Built with React, MUI &amp; TypeScript.
+              <Typography
+                sx={{
+                  fontSize: '0.65rem',
+                  color: 'text.secondary',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                © {new Date().getFullYear()}
               </Typography>
             </Box>
           </Box>

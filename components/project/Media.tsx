@@ -16,9 +16,10 @@ export const Media: React.FC<MediaProps> = ({ item, className = "" }) => {
         sx={{
           position: 'relative',
           overflow: 'hidden',
-          bgcolor: 'grey.100',
-          borderRadius: 3,
+          bgcolor: 'secondaryContainer',
+          borderRadius: '16px',
           height: item.height ? `${item.height}px` : undefined,
+          aspectRatio: item.height ? undefined : '16/9',
         }}
       >
         <iframe
@@ -36,7 +37,7 @@ export const Media: React.FC<MediaProps> = ({ item, className = "" }) => {
     return (
       <Box
         className={className}
-        sx={{ position: 'relative', overflow: 'hidden', bgcolor: 'grey.100', borderRadius: 3 }}
+        sx={{ position: 'relative', overflow: 'hidden', bgcolor: 'secondaryContainer', borderRadius: '16px' }}
       >
         <video
           src={item.src}
@@ -51,7 +52,7 @@ export const Media: React.FC<MediaProps> = ({ item, className = "" }) => {
   return (
     <Box
       className={className}
-      sx={{ position: 'relative', overflow: 'hidden', bgcolor: 'grey.100', borderRadius: 3 }}
+      sx={{ position: 'relative', overflow: 'hidden', bgcolor: 'secondaryContainer', borderRadius: '16px' }}
     >
       <Box
         component="img"
@@ -62,8 +63,7 @@ export const Media: React.FC<MediaProps> = ({ item, className = "" }) => {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          transition: 'transform 0.7s ease',
-          '&:hover': { transform: 'scale(1.05)' },
+          transition: 'opacity 0.3s ease',
         }}
       />
     </Box>

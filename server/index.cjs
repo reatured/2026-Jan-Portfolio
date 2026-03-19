@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 
 const app = express();
@@ -44,6 +45,14 @@ const upload = multer({
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
+/** Atomic write: write to temp file in same directory, then rename. */
+function atomicWriteSync(filePath, data) {
+  const dir = path.dirname(filePath);
+  const tmp = path.join(dir, `.tmp-${path.basename(filePath)}-${process.pid}-${Date.now()}`);
+  fs.writeFileSync(tmp, data);
+  fs.renameSync(tmp, filePath);
+}
+
 function readData() {
   return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 }
@@ -68,7 +77,7 @@ function withEffectiveProjectContent(data) {
 }
 
 function writeData(data) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+  atomicWriteSync(DATA_FILE, JSON.stringify(data, null, 2));
 }
 
 function readHistory() {
@@ -80,7 +89,7 @@ function readHistory() {
 }
 
 function writeHistory(history) {
-  fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+  atomicWriteSync(HISTORY_FILE, JSON.stringify(history, null, 2));
 }
 
 /** Save a snapshot of a project before it's overwritten. */
@@ -101,6 +110,28 @@ function snapshotProject(projectId, projectData) {
   writeHistory(history);
 }
 
+/** Validate required project fields. Returns an error string or null. */
+function validateProject(body) {
+  if (!body || typeof body !== 'object') return 'Request body must be a JSON object';
+  const required = ['id', 'slug', 'title', 'shortSubtitle', 'summary'];
+  for (const field of required) {
+    if (!body[field] || typeof body[field] !== 'string' || !body[field].trim()) {
+      return `Missing required field: ${field}`;
+    }
+  }
+  if (!Array.isArray(body.categories)) return 'categories must be an array';
+  if (!Array.isArray(body.rolesOrSkills)) return 'rolesOrSkills must be an array';
+  if (!Array.isArray(body.techStack)) return 'techStack must be an array';
+  if (!body.featuredMedia || typeof body.featuredMedia !== 'object') return 'featuredMedia is required';
+  if (!['image', 'video', 'iframe'].includes(body.featuredMedia.type)) {
+    return 'featuredMedia.type must be image, video, or iframe';
+  }
+  if (!Array.isArray(body.mediaGallery)) return 'mediaGallery must be an array';
+  if (!Array.isArray(body.links)) return 'links must be an array';
+  if (typeof body.isFeatured !== 'boolean') return 'isFeatured must be a boolean';
+  return null;
+}
+
 // ── Projects ──────────────────────────────────────────────────────────────────
 
 app.get('/api/data', (req, res) => {
@@ -114,7 +145,14 @@ app.get('/api/data', (req, res) => {
 
 app.post('/api/projects', (req, res) => {
   try {
+    const err = validateProject(req.body);
+    if (err) return res.status(400).json({ error: err });
+
     const data = readData();
+    // Ensure no duplicate ID
+    if (data.projects.some((p) => p.id === req.body.id)) {
+      return res.status(409).json({ error: `Project with id "${req.body.id}" already exists` });
+    }
     data.projects.unshift(req.body);
     writeData(data);
     res.json({ ok: true });
@@ -125,6 +163,9 @@ app.post('/api/projects', (req, res) => {
 
 app.put('/api/projects/:id', (req, res) => {
   try {
+    const err = validateProject(req.body);
+    if (err) return res.status(400).json({ error: err });
+
     const data = readData();
     const idx = data.projects.findIndex((p) => p.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Project not found' });
@@ -147,6 +188,37 @@ app.delete('/api/projects/:id', (req, res) => {
     if (project) snapshotProject(req.params.id, project);
 
     data.projects = data.projects.filter((p) => p.id !== req.params.id);
+    writeData(data);
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+/** PUT /api/projects/reorder — body: { ids: string[] } — reorder projects */
+app.put('/api/projects/reorder', (req, res) => {
+  try {
+    const { ids } = req.body;
+    if (!Array.isArray(ids)) return res.status(400).json({ error: 'ids must be an array' });
+
+    const data = readData();
+    const byId = new Map(data.projects.map((p) => [p.id, p]));
+
+    // Reorder: place projects in the order of ids, append any not listed
+    const reordered = [];
+    for (const id of ids) {
+      const p = byId.get(id);
+      if (p) {
+        reordered.push(p);
+        byId.delete(id);
+      }
+    }
+    // Append remaining projects not in the ids array
+    for (const p of byId.values()) {
+      reordered.push(p);
+    }
+
+    data.projects = reordered;
     writeData(data);
     res.json({ ok: true });
   } catch (e) {

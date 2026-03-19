@@ -1,8 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tree:*)",
-      "Bash(find:*)"
+      "Bash(*)",
+      "WebFetch",
+      "WebSearch",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Agent",
+      "WebFetch(*)",
+      "WebSearch(*)"
     ]
   }
 }

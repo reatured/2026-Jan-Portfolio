@@ -3,13 +3,198 @@ import { useParams, Navigate } from 'react-router-dom';
 import { projects } from '../config/projects';
 import { Head, generateJsonLd } from '../lib/seo';
 import { Media } from '../components/project/Media';
+import { M3 } from '../theme';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+
+const MetaCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Box
+    sx={{
+      bgcolor: M3.surfaceContainerLow,
+      borderRadius: '16px',
+      p: 2,
+      border: `1px solid ${M3.outlineVariant}30`,
+    }}
+  >
+    {children}
+  </Box>
+);
+
+const MetaLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Typography
+    sx={{
+      fontSize: '0.6rem',
+      fontWeight: 700,
+      textTransform: 'uppercase',
+      letterSpacing: '0.14em',
+      color: M3.onSurfaceVariant,
+      mb: 1,
+      fontFamily: '"Space Grotesk", sans-serif',
+    }}
+  >
+    {children}
+  </Typography>
+);
+
+const InfoPanel: React.FC<{ project: (typeof projects)[number] }> = ({ project }) => {
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      {/* Year + Status */}
+      {(project.year || project.status) && (
+        <MetaCard>
+          <MetaLabel>Timeline</MetaLabel>
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'baseline' }}>
+            {project.year && (
+              <Typography
+                sx={{
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  color: M3.onSurface,
+                  fontFamily: '"Space Grotesk", sans-serif',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                {project.year}
+              </Typography>
+            )}
+            {project.status && (
+              <Typography
+                sx={{
+                  fontSize: '0.7rem',
+                  fontWeight: 600,
+                  color: M3.primary,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                {project.status}
+              </Typography>
+            )}
+          </Box>
+        </MetaCard>
+      )}
+
+      {/* Roles */}
+      {project.rolesOrSkills.length > 0 && (
+        <MetaCard>
+          <MetaLabel>Role</MetaLabel>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
+            {project.rolesOrSkills.map(role => (
+              <Typography
+                key={role}
+                component="span"
+                sx={{
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  color: M3.onPrimaryContainer,
+                  bgcolor: M3.primaryContainer,
+                  px: 1.25,
+                  py: 0.5,
+                  borderRadius: '9999px',
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                {role}
+              </Typography>
+            ))}
+          </Box>
+        </MetaCard>
+      )}
+
+      {/* Tech Stack */}
+      {project.techStack.length > 0 && (
+        <MetaCard>
+          <MetaLabel>Stack</MetaLabel>
+          <Stack spacing={1.5}>
+            {project.techStack.map((group) => (
+              <Box key={group.category}>
+                <Typography
+                  sx={{
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    color: M3.onSurfaceVariant,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    mb: 0.75,
+                    fontFamily: '"Space Grotesk", sans-serif',
+                  }}
+                >
+                  {group.category}
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  {group.skills.map(skill => (
+                    <Typography
+                      key={skill}
+                      component="span"
+                      sx={{
+                        fontSize: '0.75rem',
+                        fontWeight: 500,
+                        color: M3.onSecondaryContainer,
+                        bgcolor: M3.secondaryContainer,
+                        px: 1,
+                        py: 0.375,
+                        borderRadius: '9999px',
+                        fontFamily: '"Space Grotesk", sans-serif',
+                      }}
+                    >
+                      {skill}
+                    </Typography>
+                  ))}
+                </Box>
+              </Box>
+            ))}
+          </Stack>
+        </MetaCard>
+      )}
+
+      {/* Links */}
+      {project.links && project.links.length > 0 && (
+        <MetaCard>
+          <MetaLabel>Links</MetaLabel>
+          <Stack spacing={0.5}>
+            {project.links.map((link) => (
+              <Box
+                key={link.url}
+                component="a"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  py: 0.75,
+                  px: 1,
+                  textDecoration: 'none',
+                  color: M3.onSurface,
+                  borderRadius: '10px',
+                  transition: 'all 0.2s var(--easing-emphasized)',
+                  '&:hover': { color: M3.primary, bgcolor: M3.surfaceContainerHigh },
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                    fontFamily: '"Space Grotesk", sans-serif',
+                  }}
+                >
+                  {link.label}
+                </Typography>
+                <OpenInNewIcon sx={{ fontSize: '0.8rem', color: 'inherit' }} />
+              </Box>
+            ))}
+          </Stack>
+        </MetaCard>
+      )}
+    </Box>
+  );
+};
 
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -33,90 +218,166 @@ export const ProjectDetail: React.FC = () => {
     <Box
       component="article"
       sx={{
-        '@keyframes fadeSlideIn': {
-          from: { opacity: 0, transform: 'translateY(32px)' },
+        '@keyframes fadeUp': {
+          from: { opacity: 0, transform: 'translateY(16px)' },
           to: { opacity: 1, transform: 'translateY(0)' },
         },
-        animation: 'fadeSlideIn 0.5s ease both',
+        animation: 'fadeUp 0.4s var(--easing-emphasized-decelerate) both',
       }}
     >
       <Head
         title={project.title}
         description={project.shortSubtitle}
-        image={project.featuredMedia.src}
+        image={project.featuredMedia.type === 'image' ? project.featuredMedia.src : undefined}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd} />
 
-      {/* Two-column page layout */}
+      {/* Back */}
+      <Button
+        href="/"
+        component="a"
+        startIcon={<ArrowBackIcon sx={{ fontSize: '0.8rem !important' }} />}
+        size="small"
+        sx={{
+          mb: 4,
+          color: M3.onSurfaceVariant,
+          fontWeight: 600,
+          fontSize: '0.8rem',
+          borderRadius: '10px',
+          px: 1.5,
+          bgcolor: M3.surfaceContainerLow,
+          fontFamily: '"Space Grotesk", sans-serif',
+          border: `1px solid ${M3.outlineVariant}30`,
+          transition: 'all 0.2s var(--easing-emphasized)',
+          '&:hover': {
+            color: M3.primary,
+            bgcolor: M3.surfaceContainerHigh,
+          },
+        }}
+      >
+        Back
+      </Button>
+
+      {/* Header */}
+      <Box component="header" sx={{ mb: 5, position: 'relative' }}>
+        {/* Eyebrow gradient bar */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5 }}>
+          <Box sx={{
+            width: 24, height: 2,
+            background: `linear-gradient(90deg, ${M3.primary}, ${M3.tertiary})`,
+            borderRadius: 1,
+          }} />
+          <Typography sx={{
+            fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase',
+            letterSpacing: '0.16em', color: M3.primary, fontFamily: '"Space Grotesk", sans-serif',
+          }}>
+            Project
+          </Typography>
+        </Box>
+
+        <Typography
+          variant="h3"
+          sx={{
+            mb: 1.5,
+            fontSize: { xs: '2.25rem', md: '3.25rem' },
+            color: M3.onSurface,
+          }}
+        >
+          {project.title}
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: '1rem',
+            color: M3.onSurfaceVariant,
+            lineHeight: 1.6,
+            maxWidth: 600,
+            fontFamily: '"Space Grotesk", sans-serif',
+          }}
+        >
+          {project.shortSubtitle}
+        </Typography>
+
+        {/* Decorative corner SVG */}
+        <Box aria-hidden sx={{ position: 'absolute', top: 0, right: 0, pointerEvents: 'none', display: { xs: 'none', md: 'block' } }}>
+          <svg width="100" height="70" viewBox="0 0 100 70" fill="none">
+            <circle cx="85" cy="15" r="14" fill={M3.primaryContainer} fillOpacity="0.35" />
+            <circle cx="65" cy="40" r="7" fill={M3.tertiaryContainer} fillOpacity="0.45" />
+            <circle cx="92" cy="50" r="4" fill={M3.primary} fillOpacity="0.2" />
+            <rect x="42" y="8" width="7" height="7" rx="1.5" fill={M3.primary} fillOpacity="0.18" transform="rotate(45 46 12)" />
+          </svg>
+        </Box>
+      </Box>
+
+      {/* Hero Media */}
+      <Box
+        sx={{
+          mb: 5,
+          borderRadius: '28px',
+          overflow: 'hidden',
+          bgcolor: M3.surfaceContainerHighest,
+          boxShadow: `0 2px 16px rgba(0,0,0,0.3)`,
+        }}
+      >
+        <Media
+          item={project.featuredMedia}
+          className={`w-full ${project.featuredMedia.type !== 'iframe' ? 'aspect-video' : ''}`}
+        />
+      </Box>
+
+      {/* Two-column: body + info */}
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: { xs: '1fr', lg: '1fr 380px' },
-          gap: { xs: 4, lg: 5 },
+          gridTemplateColumns: { xs: '1fr', lg: '1fr 280px' },
+          gap: { xs: 5, lg: 6 },
           alignItems: 'start',
         }}
       >
-        {/* ── Left: main content ── */}
+        {/* Body */}
         <Box>
-          {/* Back button */}
-          <Button
-            href="/"
-            component="a"
-            startIcon={<ArrowBackIcon sx={{ fontSize: '0.875rem !important' }} />}
-            size="small"
-            sx={{
-              mb: 3, color: 'text.secondary', fontWeight: 500, fontSize: '0.75rem',
-              '&:hover': { color: 'primary.main', bgcolor: 'transparent' },
-              pl: 0,
-            }}
-          >
-            Back to Projects
-          </Button>
-
-          {/* Header */}
-          <Box component="header" sx={{ mb: 3 }}>
-            <Typography
-              variant="h3"
-              fontWeight={700}
-              sx={{ mb: 1, letterSpacing: '-0.02em', fontSize: { xs: '1.75rem', md: '2.25rem' } }}
-            >
-              {project.title}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-              {project.shortSubtitle}
-            </Typography>
-          </Box>
-
-          {/* Featured Media */}
-          <Box
-            sx={{
-              mb: 4, borderRadius: 3, overflow: 'hidden',
-              border: '1px solid', borderColor: 'divider', boxShadow: 1,
-            }}
-          >
-            <Media
-              item={project.featuredMedia}
-              className={`w-full ${project.featuredMedia.type !== 'iframe' ? 'aspect-video' : ''}`}
-            />
-          </Box>
-
-          {/* Body content */}
           {project.content ? (
             <Box
               className="prose"
-              sx={{ color: 'text.secondary', '& a': { color: 'primary.main' } }}
+              sx={{ color: M3.onSurfaceVariant }}
               dangerouslySetInnerHTML={{ __html: project.content }}
             />
           ) : project.mediaGallery.length > 0 ? (
             <Box component="section">
-              <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 2 }}>Gallery</Typography>
+              <Typography
+                sx={{
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.14em',
+                  color: M3.onSurfaceVariant,
+                  mb: 2,
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                Gallery
+              </Typography>
               <Stack spacing={2}>
                 {project.mediaGallery.map((media, idx) => (
-                  <Box key={idx} sx={{ borderRadius: 2, overflow: 'hidden', border: '1px solid', borderColor: 'divider' }}>
+                  <Box
+                    key={idx}
+                    sx={{
+                      borderRadius: '20px',
+                      overflow: 'hidden',
+                      bgcolor: M3.surfaceContainerHighest,
+                    }}
+                  >
                     <Media item={media} className="w-full" />
                     {media.alt && (
-                      <Box sx={{ p: 1, bgcolor: 'grey.50', borderTop: '1px solid', borderColor: 'divider', textAlign: 'center' }}>
-                        <Typography variant="caption" color="text.disabled">{media.alt}</Typography>
+                      <Box sx={{ p: 1.5 }}>
+                        <Typography
+                          sx={{
+                            fontSize: '0.75rem',
+                            color: M3.onSurfaceVariant,
+                            fontFamily: '"Space Grotesk", sans-serif',
+                          }}
+                        >
+                          {media.alt}
+                        </Typography>
                       </Box>
                     )}
                   </Box>
@@ -124,139 +385,39 @@ export const ProjectDetail: React.FC = () => {
               </Stack>
             </Box>
           ) : (
-            <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+            <Typography
+              sx={{
+                lineHeight: 1.75,
+                color: M3.onSurfaceVariant,
+                fontFamily: '"Space Grotesk", sans-serif',
+              }}
+            >
               {project.summary}
             </Typography>
           )}
+
+          {/* Mobile info panel */}
+          <Box
+            sx={{
+              display: { xs: 'block', lg: 'none' },
+              mt: 5,
+              pt: 4,
+              borderTop: `1px solid ${M3.outlineVariant}`,
+            }}
+          >
+            <InfoPanel project={project} />
+          </Box>
         </Box>
 
-        {/* ── Right: sticky keyword panel ── */}
+        {/* Desktop sticky info panel */}
         <Box
           sx={{
             position: { lg: 'sticky' },
-            top: { lg: 24 },
-            display: { xs: 'none', lg: 'flex' },
-            flexDirection: 'column',
-            gap: 2,
+            top: { lg: 32 },
+            display: { xs: 'none', lg: 'block' },
           }}
         >
-          {/* Year + Status */}
-          {(project.year || project.status) && (
-            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-              {project.year && (
-                <Chip label={project.year} size="small" sx={{ bgcolor: 'grey.100', color: 'text.secondary', fontSize: '1rem' }} />
-              )}
-              {project.status && (
-                <Chip label={project.status} size="small" variant="outlined" sx={{ fontSize: '1rem' }} />
-              )}
-            </Stack>
-          )}
-
-          {/* Roles */}
-          {project.rolesOrSkills.length > 0 && (
-            <Box
-              sx={{
-                p: 2, borderRadius: 1,
-                border: '1px solid', borderColor: '#dde5f0',
-                bgcolor: '#f4f6fb',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-                <Box sx={{ width: 3, height: 14, borderRadius: 1, bgcolor: '#8fa8cc', flexShrink: 0 }} />
-                <Typography fontWeight={700} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'text.disabled' }}>
-                  Role
-                </Typography>
-              </Box>
-              <Stack direction="row" spacing={0.75} flexWrap="wrap" useFlexGap>
-                {project.rolesOrSkills.map(role => (
-                  <Chip
-                    key={role}
-                    label={role}
-                    size="small"
-                    sx={{ fontSize: '0.95rem', height: 28, bgcolor: '#dce6f5', color: '#4a6080', border: '1px solid', borderColor: '#c5d4e8' }}
-                  />
-                ))}
-              </Stack>
-            </Box>
-          )}
-
-          {/* Tech Stack */}
-          {project.techStack.length > 0 && (
-            <Box
-              sx={{
-                p: 2, borderRadius: 1,
-                border: '1px solid', borderColor: '#e4e7ed',
-                bgcolor: '#f7f8fa',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-                <Box sx={{ width: 3, height: 14, borderRadius: 1, bgcolor: '#aab4c2', flexShrink: 0 }} />
-                <Typography fontWeight={700} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'text.disabled' }}>
-                  Tech Stack
-                </Typography>
-              </Box>
-              <Stack spacing={1.75}>
-                {project.techStack.map((group) => (
-                  <Box key={group.category}>
-                    <Typography sx={{ color: '#7a8898', fontWeight: 600, display: 'block', mb: 0.75, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                      {group.category}
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {group.skills.map(skill => (
-                        <Chip
-                          key={skill}
-                          label={skill}
-                          size="small"
-                          sx={{ fontSize: '0.85rem', height: 26, bgcolor: '#eaecf0', color: '#5a6473' }}
-                        />
-                      ))}
-                    </Box>
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          )}
-
-          {/* Links */}
-          {project.links && project.links.length > 0 && (
-            <Box
-              sx={{
-                p: 2, borderRadius: 1,
-                border: '1px solid', borderColor: '#d8e4f0',
-                bgcolor: '#eef3fa',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-                <Box sx={{ width: 3, height: 14, borderRadius: 1, bgcolor: '#8fa8cc', flexShrink: 0 }} />
-                <Typography fontWeight={700} sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6a88aa' }}>
-                  Links
-                </Typography>
-              </Box>
-              <Stack spacing={0.75}>
-                {project.links.map((link) => (
-                  <Box
-                    key={link.url}
-                    component="a"
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                      py: 1, px: 1.25, borderRadius: 1,
-                      border: '1px solid', borderColor: '#cfdcea',
-                      bgcolor: '#ffffff',
-                      textDecoration: 'none', color: 'text.primary',
-                      transition: 'background 0.15s, border-color 0.15s',
-                      '&:hover': { bgcolor: '#e4eef8', borderColor: '#8fa8cc' },
-                    }}
-                  >
-                    <Typography fontWeight={500} sx={{ fontSize: '0.95rem' }}>{link.label}</Typography>
-                    <OpenInNewIcon sx={{ fontSize: '0.9rem', color: '#8fa8cc' }} />
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          )}
+          <InfoPanel project={project} />
         </Box>
       </Box>
     </Box>
