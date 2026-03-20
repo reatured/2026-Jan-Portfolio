@@ -23,8 +23,20 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const ytId = thumbnailSrc ? getYouTubeId(thumbnailSrc) : null;
   const thumbnailIsVideo = thumbnailSrc && !ytId && isVideoUrl(thumbnailSrc);
 
+  // Fall back to first YouTube embed in mediaGallery if thumbnail isn't a YouTube URL
+  const galleryYtId = !ytId
+    ? (() => {
+        const firstYt = project.mediaGallery?.find(
+          m => m.type === 'iframe' && m.src && getYouTubeId(m.src)
+        );
+        return firstYt ? getYouTubeId(firstYt.src) : null;
+      })()
+    : null;
+
+  const resolvedYtId = ytId ?? galleryYtId;
+
   const cardMedia: import('../../types').MediaItem =
-    !thumbnailSrc || ytId
+    !thumbnailSrc || resolvedYtId
       ? project.featuredMedia.type === 'image'
         ? project.featuredMedia
         : { type: 'image', src: siteConfig.defaultOgImage, alt: `${project.title} preview` }
@@ -47,25 +59,17 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         border: `1px solid ${M3.outlineVariant}`,
         position: 'relative',
         overflow: 'hidden',
-        transition: 'all 0.28s var(--easing-emphasized)',
-        // Gradient top accent on hover (always present, brightens on hover)
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0, left: 0, right: 0,
-          height: 2,
-          background: `linear-gradient(90deg, ${M3.primary}, ${M3.tertiary})`,
-          opacity: 0,
-          transition: 'opacity 0.25s var(--easing-emphasized)',
-        },
-        '&:hover::before': { opacity: 1 },
+        transition: 'all 0.25s cubic-bezier(0.05, 0.7, 0.1, 1)',
         '&:hover': {
           bgcolor: M3.surfaceContainerHigh,
-          transform: 'translateY(-3px)',
-          boxShadow: `0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px ${M3.primary}25`,
+          transform: 'translateY(-4px)',
+          boxShadow: `0 12px 40px rgba(0,0,0,0.3)`,
         },
         '&:hover .project-title': {
           color: M3.primary,
+        },
+        '&:hover .media-container': {
+          transform: 'scale(1.02)',
         },
         '&:focus-visible': {
           outline: `2px solid ${M3.primary}`,
@@ -75,6 +79,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     >
       {/* Media */}
       <Box
+        className="media-container"
         sx={{
           position: 'relative',
           width: { xs: '100%', md: '40%' },
@@ -84,39 +89,23 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           borderRadius: '14px',
           bgcolor: M3.surfaceContainerHighest,
           mb: { xs: 1.5, md: 0 },
+          transition: 'transform 0.25s cubic-bezier(0.05, 0.7, 0.1, 1)',
         }}
       >
-        {ytId ? (
-          <>
-            <Box
-              component="img"
-              src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`}
-              alt={`${project.title} thumbnail`}
-              loading="lazy"
-              sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <Box
-              sx={{
-                position: 'absolute', inset: 0, display: 'flex',
-                alignItems: 'center', justifyContent: 'center', pointerEvents: 'none',
-              }}
-            >
-              <Box
-                sx={{
-                  width: 44, height: 44,
-                  bgcolor: `${M3.primaryContainer}CC`,
-                  borderRadius: '50%',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  border: `1.5px solid ${M3.primary}60`,
-                  backdropFilter: 'blur(4px)',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill={M3.onPrimaryContainer}>
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </Box>
-            </Box>
-          </>
+        {resolvedYtId ? (
+          <Box
+            component="iframe"
+            src={`https://www.youtube.com/embed/${resolvedYtId}?autoplay=1&mute=1&loop=1&playlist=${resolvedYtId}&controls=0&playsinline=1&rel=0&modestbranding=1`}
+            title={`${project.title} video`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            sx={{
+              width: '100%',
+              height: '100%',
+              border: 'none',
+              display: 'block',
+              pointerEvents: 'none', // prevent clicking into YouTube on the card
+            }}
+          />
         ) : thumbnailIsVideo ? (
           <Box
             component="video"
@@ -131,7 +120,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           <Media item={cardMedia} className="h-full w-full" />
         )}
 
-        {/* Media shimmer overlay on hover */}
+        {/* Simple media overlay */}
         <Box sx={{
           position: 'absolute', inset: 0,
           background: `linear-gradient(135deg, ${M3.primary}08 0%, transparent 60%)`,
@@ -160,7 +149,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             mb: 0.5,
             color: M3.onSurface,
             fontFamily: '"Space Grotesk", sans-serif',
-            transition: 'color 0.2s var(--easing-emphasized)',
+            transition: 'color 0.2s ease-in-out',
             lineHeight: 1.25,
           }}
         >
@@ -198,8 +187,12 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         </Typography>
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-          {project.techStack.slice(0, 3).flatMap(group =>
-            group.skills.slice(0, 2).map(skill => (
+          {(() => {
+            // Handle both old format (array of objects with skills) and new format (simple array of strings)
+            const skills = project.techStack.flatMap(item => 
+              typeof item === 'string' ? item : (item.skills || [])
+            );
+            return skills.slice(0, 3).map((skill) => (
               <Typography
                 key={skill}
                 component="span"
@@ -213,12 +206,17 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
                   borderRadius: '9999px',
                   fontFamily: '"Space Grotesk", sans-serif',
                   letterSpacing: '0.02em',
+                  transition: 'all 0.2s ease-in-out',
+                  '&:hover': {
+                    bgcolor: M3.secondary,
+                    color: M3.onSecondary,
+                  },
                 }}
               >
                 {skill}
               </Typography>
-            ))
-          )}
+            ));
+          })()}
         </Box>
       </Box>
     </Box>

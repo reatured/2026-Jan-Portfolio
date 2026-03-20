@@ -1,0 +1,5 @@
+ProjectID,ProjectName,FoundOnCargo,FoundURL,MediaCount,HasDescription,TechStack,Year,ContentMatch,TechMatch,Updated,Issues,Recommendations,UserContentApplied,ThumbnailType
+"20","Dragon Roaster","true","https://lingyizhou.cargo.site/page-20","","true","React, Three.js, TypeScript, Python, Unity, JavaScript","2025","","true","true","No media found","Create themed thumbnail",true,Themed no media
+"24","My Shader Projects","true","https://lingyizhou.cargo.site/page-24","16","true","React, Three.js, TypeScript, Python, Unity, JavaScript","2025","","true","true","","",true,Themed with media
+"21","VR Chess","true","https://lingyizhou.cargo.site/page-21","","true","React, Three.js, TypeScript, Python, Unity, JavaScript","2025","","true","true","No media found","Create themed thumbnail",true,Themed no media
+"22","3D Snake Game","true","https://lingyizhou.cargo.site/page-22","2","true","React, Three.js, TypeScript, Python, Unity, JavaScript","2025","","true","true","","",true,Themed with media

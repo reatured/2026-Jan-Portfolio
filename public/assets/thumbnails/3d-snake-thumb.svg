@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43a047;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#2e7d32;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1b5e20;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  
+  <!-- Grid pattern for tech feel -->
+  <g opacity="0.1">
+    <line x1="0" y1="0" x2="0" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="100" y1="0" x2="100" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="700" y1="0" x2="700" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="1100" y1="0" x2="1100" y2="675" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="0" x2="1200" y2="0" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="600" x2="1200" y2="600" stroke="white" stroke-width="1"/>
+  </g>
+  
+  <!-- Main icon -->
+  <text x="600" y="200" font-family="system-ui, sans-serif" font-size="120" text-anchor="middle" fill="white" filter="url(#glow)" opacity="0.9">🐍</text>
+  
+  <!-- Title -->
+  <text x="600" y="320" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="white" text-anchor="middle">3D Snake Game (2019)</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="380" font-family="system-ui, sans-serif" font-size="24" fill="white" text-anchor="middle" opacity="0.8">3D Space Adventure</text>
+  
+  <!-- Tech stack hint -->
+  <text x="600" y="450" font-family="monospace" font-size="16" fill="white" text-anchor="middle" opacity="0.6">Unity • Three.js • JavaScript</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="150" r="30" fill="white" fill-opacity="0.1"/>
+  <circle cx="1050" cy="525" r="40" fill="white" fill-opacity="0.1"/>
+  <polygon points="100,550 120,590 80,590" fill="white" fill-opacity="0.15"/>
+  <polygon points="1100,100 1120,140 1080,140" fill="white" fill-opacity="0.15"/>
+</svg>

@@ -56,6 +56,48 @@ export const M3 = {
   shadow: '#000000',
 } as const;
 
+// Bold & Pop Design Tokens
+export const POP_TOKENS = {
+  // Gradient definitions
+  gradients: {
+    primary: `linear-gradient(135deg, ${M3.primary} 0%, ${M3.tertiary} 100%)`,
+    secondary: `linear-gradient(90deg, ${M3.secondary} 0%, ${M3.primary} 50%, ${M3.tertiary} 100%)`,
+    glow: `radial-gradient(circle at 50% 50%, ${M3.primary}40 0%, transparent 70%)`,
+    card: `linear-gradient(135deg, ${M3.surfaceContainerLow} 0%, ${M3.surfaceContainer} 100%)`,
+    text: `linear-gradient(135deg, ${M3.primary} 0%, ${M3.tertiary} 50%, ${M3.secondary} 100%)`,
+  },
+  // Glow effects
+  glows: {
+    primary: `0 0 20px ${M3.primary}60, 0 0 40px ${M3.primary}30`,
+    tertiary: `0 0 15px ${M3.tertiary}60, 0 0 30px ${M3.tertiary}30`,
+    card: `0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px ${M3.primary}25`,
+    intense: `0 0 30px ${M3.primary}80, 0 0 60px ${M3.primary}40, 0 0 90px ${M3.primary}20`,
+  },
+  // Animation easing functions
+  easing: {
+    emphasized: 'cubic-bezier(0.2, 0, 0, 1)',
+    emphasizedDecelerate: 'cubic-bezier(0.05, 0.7, 0.1, 1)',
+    emphasizedAccelerate: 'cubic-bezier(0.3, 0, 0.8, 0.15)',
+    smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+  },
+  // Animation durations
+  duration: {
+    fast: '0.15s',
+    normal: '0.25s',
+    slow: '0.4s',
+    slower: '0.6s',
+  },
+  // Transform values
+  transforms: {
+    cardHover: 'translateY(-8px) scale(1.02)',
+    buttonHover: 'scale(1.05)',
+    iconSpin: 'rotate(360deg)',
+    slideIn: 'translateY(0)',
+    slideOut: 'translateY(20px)',
+  },
+} as const;
+
 export const portfolioTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -169,13 +211,31 @@ export const portfolioTheme = createTheme({
           textTransform: 'none' as const,
           fontWeight: 600,
           fontFamily: '"Space Grotesk", sans-serif',
+          transition: `all ${POP_TOKENS.duration.normal} ${POP_TOKENS.easing.emphasized}`,
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            background: POP_TOKENS.gradients.primary,
+            opacity: 0,
+            transition: `opacity ${POP_TOKENS.duration.normal} ${POP_TOKENS.easing.emphasized}`,
+          },
         },
         containedPrimary: {
           backgroundColor: M3.primaryContainer,
           color: M3.onPrimaryContainer,
+          boxShadow: POP_TOKENS.glows.primary,
           '&:hover': {
             backgroundColor: M3.primary,
             color: M3.onPrimary,
+            transform: POP_TOKENS.transforms.buttonHover,
+            boxShadow: POP_TOKENS.glows.intense,
+            '&::before': { opacity: 0.1 },
+          },
+          '&:active': {
+            transform: 'scale(0.98)',
           },
         },
       },
@@ -188,6 +248,12 @@ export const portfolioTheme = createTheme({
           fontFamily: '"Space Grotesk", sans-serif',
           backgroundColor: M3.secondaryContainer,
           color: M3.onSecondaryContainer,
+          transition: `all ${POP_TOKENS.duration.fast} ${POP_TOKENS.easing.emphasized}`,
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: `0 4px 12px rgba(0,0,0,0.2)`,
+            backgroundColor: M3.secondary,
+          },
         },
       },
     },
@@ -265,6 +331,31 @@ _p['surfaceContainerHighest'] = M3.surfaceContainerHighest;
 _p['onSurfaceVariant'] = M3.onSurfaceVariant;
 _p['primaryContainer'] = M3.primaryContainer;
 _p['onPrimaryContainer'] = M3.onPrimaryContainer;
+
+// Add pop design tokens to theme
+_p['gradients'] = POP_TOKENS.gradients;
+_p['glows'] = POP_TOKENS.glows;
+_p['easing'] = POP_TOKENS.easing;
+_p['duration'] = POP_TOKENS.duration;
+_p['transforms'] = POP_TOKENS.transforms;
+
+// Extend theme type to include pop tokens
+declare module '@mui/material/styles' {
+  interface Palette {
+    gradients: typeof POP_TOKENS.gradients;
+    glows: typeof POP_TOKENS.glows;
+    easing: typeof POP_TOKENS.easing;
+    duration: typeof POP_TOKENS.duration;
+    transforms: typeof POP_TOKENS.transforms;
+  }
+  interface PaletteOptions {
+    gradients?: typeof POP_TOKENS.gradients;
+    glows?: typeof POP_TOKENS.glows;
+    easing?: typeof POP_TOKENS.easing;
+    duration?: typeof POP_TOKENS.duration;
+    transforms?: typeof POP_TOKENS.transforms;
+  }
+}
 
 export const adminTheme = createTheme({
   palette: {

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a237e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#283593;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <text x="600" y="320" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="white" text-anchor="middle" opacity="0.9">VR Chess (2021)</text>
+  <text x="600" y="380" font-family="system-ui, sans-serif" font-size="20" fill="white" text-anchor="middle" opacity="0.6">Project Preview</text>
+  <circle cx="600" cy="200" r="40" fill="white" fill-opacity="0.15"/>
+  <polygon points="588,182 588,218 618,200" fill="white" fill-opacity="0.8"/>
+</svg>

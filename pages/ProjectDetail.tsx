@@ -111,23 +111,29 @@ const InfoPanel: React.FC<{ project: (typeof projects)[number] }> = ({ project }
         <MetaCard>
           <MetaLabel>Stack</MetaLabel>
           <Stack spacing={1.5}>
-            {project.techStack.map((group) => (
-              <Box key={group.category}>
-                <Typography
-                  sx={{
-                    fontSize: '0.65rem',
-                    fontWeight: 700,
-                    color: M3.onSurfaceVariant,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    mb: 0.75,
-                    fontFamily: '"Space Grotesk", sans-serif',
-                  }}
-                >
-                  {group.category}
-                </Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {group.skills.map(skill => (
+            {(() => {
+              // Handle both old format (array of objects with skills) and new format (simple array of strings)
+              const hasOldFormat = project.techStack.some(item => typeof item === 'object' && item.skills);
+              
+              if (hasOldFormat) {
+                // Old format: array of objects with category and skills
+                return project.techStack.map((group) => (
+                  <Box key={group.category}>
+                    <Typography
+                      sx={{
+                        fontSize: '0.65rem',
+                        fontWeight: 700,
+                        color: M3.onSurfaceVariant,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        mb: 0.75,
+                        fontFamily: '"Space Grotesk", sans-serif',
+                      }}
+                    >
+                      {group.category}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {group.skills.map(skill => (
                     <Typography
                       key={skill}
                       component="span"
@@ -147,7 +153,33 @@ const InfoPanel: React.FC<{ project: (typeof projects)[number] }> = ({ project }
                   ))}
                 </Box>
               </Box>
-            ))}
+                ));
+              } else {
+                // New format: simple array of strings
+                return (
+                  <Box key="tech-stack-new-format" sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {project.techStack.map((skill) => (
+                      <Typography
+                        key={skill}
+                        component="span"
+                        sx={{
+                          fontSize: '0.75rem',
+                          fontWeight: 500,
+                          color: M3.onSecondaryContainer,
+                          bgcolor: M3.secondaryContainer,
+                          px: 1,
+                          py: 0.375,
+                          borderRadius: '9999px',
+                          fontFamily: '"Space Grotesk", sans-serif',
+                        }}
+                      >
+                        {skill}
+                      </Typography>
+                    ))}
+                  </Box>
+                );
+              }
+            })()}
           </Stack>
         </MetaCard>
       )}

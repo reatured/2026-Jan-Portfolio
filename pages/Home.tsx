@@ -7,7 +7,7 @@ import { M3 } from '../theme';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-// Decorative graphic header strip
+// Enhanced decorative graphic header strip
 const ProjectsHeader: React.FC = () => (
   <Box
     sx={{
@@ -19,11 +19,11 @@ const ProjectsHeader: React.FC = () => (
     }}
   >
     {/* Eyebrow label */}
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1, position: 'relative', zIndex: 1 }}>
       <Box sx={{
-        width: 20, height: 2,
+        width: 24, height: 3,
         background: `linear-gradient(90deg, ${M3.primary}, ${M3.tertiary})`,
-        borderRadius: 1,
+        borderRadius: 2,
       }} />
       <Typography
         sx={{
@@ -47,8 +47,10 @@ const ProjectsHeader: React.FC = () => (
         lineHeight: 1.05,
         letterSpacing: '-0.025em',
         color: M3.onSurface,
+        position: 'relative',
+        zIndex: 1,
         '& span': {
-          background: `linear-gradient(135deg, ${M3.primary} 0%, ${M3.tertiary} 100%)`,
+          background: `linear-gradient(135deg, ${M3.primary} 0%, ${M3.tertiary} 50%, ${M3.secondary} 100%)`,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
@@ -59,12 +61,12 @@ const ProjectsHeader: React.FC = () => (
       <span>reality and code</span>
     </Typography>
 
-    {/* Decorative floating shapes */}
+    {/* Simple decorative shapes */}
     <Box aria-hidden sx={{ position: 'absolute', top: 0, right: 0, pointerEvents: 'none' }}>
       <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
         <circle cx="100" cy="20" r="12" fill={M3.primaryContainer} fillOpacity="0.4" />
         <circle cx="80" cy="45" r="6" fill={M3.tertiaryContainer} fillOpacity="0.5" />
-        <circle cx="110" cy="55" r="4" fill={M3.primary} fillOpacity="0.25" />
+        <circle cx="110" cy="55" r="4" fill={M3.primary} fillOpacity="0.3" />
         <rect x="55" y="10" width="8" height="8" rx="2" fill={M3.primary} fillOpacity="0.2" transform="rotate(45 59 14)" />
       </svg>
     </Box>
@@ -87,13 +89,14 @@ export const Home: React.FC = () => {
           from: { opacity: 0, transform: 'translateY(12px)' },
           to: { opacity: 1, transform: 'translateY(0)' },
         },
-        animation: 'fadeUp 0.4s var(--easing-emphasized-decelerate) both',
+        animation: 'fadeUp 0.4s cubic-bezier(0.05, 0.7, 0.1, 1) both',
+        position: 'relative',
       }}
     >
       <Head title={currentCategory ? `${currentCategory} Projects` : "Home"} />
 
-      {/* Mobile header */}
-      <Box sx={{ display: { xs: 'block', lg: 'none' }, mb: 3 }}>
+      {/* Enhanced mobile header */}
+      <Box sx={{ display: { xs: 'block', lg: 'none' }, mb: 3, position: 'relative', zIndex: 1 }}>
         <Typography
           sx={{
             fontSize: '1.75rem',
@@ -109,13 +112,13 @@ export const Home: React.FC = () => {
       {/* Desktop header graphic */}
       {!currentCategory && <ProjectsHeader />}
 
-      {/* Filter Status */}
+      {/* Filter status */}
       {currentCategory && (
-        <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+        <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 1.5, position: 'relative', zIndex: 1 }}>
           <Box sx={{
-            width: 16, height: 2,
+            width: 20, height: 3,
             background: `linear-gradient(90deg, ${M3.primary}, ${M3.tertiary})`,
-            borderRadius: 1,
+            borderRadius: 2,
           }} />
           <Typography
             sx={{
@@ -164,7 +167,7 @@ export const Home: React.FC = () => {
         </Box>
 
         {filteredProjects.length > 0 ? (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, position: 'relative', zIndex: 1 }}>
             {filteredProjects.map((project, i) => (
               <Box
                 key={project.id}
@@ -173,7 +176,7 @@ export const Home: React.FC = () => {
                     from: { opacity: 0, transform: 'translateY(16px)' },
                     to: { opacity: 1, transform: 'translateY(0)' },
                   },
-                  animation: `cardFadeUp 0.32s var(--easing-emphasized-decelerate) ${i * 35}ms both`,
+                  animation: `cardFadeUp 0.3s cubic-bezier(0.05, 0.7, 0.1, 1) ${i * 50}ms both`,
                 }}
               >
                 <ProjectCard project={project} />
@@ -181,7 +184,7 @@ export const Home: React.FC = () => {
             ))}
           </Box>
         ) : (
-          <Box sx={{ textAlign: 'center', py: 12 }}>
+          <Box sx={{ textAlign: 'center', py: 12, position: 'relative', zIndex: 1 }}>
             <Typography sx={{ fontSize: '0.875rem', color: M3.onSurfaceVariant, fontFamily: '"Space Grotesk", sans-serif' }}>
               No projects found for this category.
             </Typography>

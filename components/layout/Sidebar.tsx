@@ -24,7 +24,7 @@ const iconMap: Record<string, React.ElementType> = {
   Email: EmailIcon,
 };
 
-// Decorative orb backdrop for the header
+// Enhanced decorative orb backdrop for the header
 const DecorativeOrbs: React.FC = () => (
   <Box
     aria-hidden
@@ -38,7 +38,7 @@ const DecorativeOrbs: React.FC = () => (
       zIndex: 0,
     }}
   >
-    {/* Large primary orb */}
+    {/* Simple primary orb */}
     <Box sx={{
       position: 'absolute',
       top: -60, right: -40,
@@ -47,7 +47,7 @@ const DecorativeOrbs: React.FC = () => (
       background: `radial-gradient(circle, ${M3.primaryContainer}70 0%, transparent 70%)`,
       filter: 'blur(20px)',
     }} />
-    {/* Tertiary accent orb */}
+    {/* Simple tertiary accent orb */}
     <Box sx={{
       position: 'absolute',
       top: 40, left: -30,
@@ -56,7 +56,7 @@ const DecorativeOrbs: React.FC = () => (
       background: `radial-gradient(circle, ${M3.tertiaryContainer}50 0%, transparent 70%)`,
       filter: 'blur(16px)',
     }} />
-    {/* Tiny bright dot */}
+    {/* Simple bright dots */}
     <Box sx={{
       position: 'absolute',
       top: 20, right: 28,
@@ -72,14 +72,6 @@ const DecorativeOrbs: React.FC = () => (
       borderRadius: '50%',
       bgcolor: M3.tertiary,
       opacity: 0.5,
-    }} />
-    <Box sx={{
-      position: 'absolute',
-      top: 45, right: 44,
-      width: 2, height: 2,
-      borderRadius: '50%',
-      bgcolor: M3.primary,
-      opacity: 0.4,
     }} />
   </Box>
 );
@@ -128,9 +120,13 @@ export const Sidebar: React.FC = () => {
         border: `1px solid ${M3.outlineVariant}`,
         overflow: 'hidden',
         position: 'sticky',
+        transition: 'transform 0.2s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-2px)',
+        },
       }}
     >
-      {/* Left gradient accent strip */}
+      {/* Simple left gradient accent strip */}
       <Box aria-hidden sx={{
         position: 'absolute',
         left: 0, top: 0, bottom: 0,
@@ -156,8 +152,10 @@ export const Sidebar: React.FC = () => {
               p: '2.5px',
               borderRadius: '50%',
               background: `linear-gradient(135deg, ${M3.primary} 0%, ${M3.tertiary} 100%)`,
-              transition: 'transform 0.3s var(--easing-emphasized)',
-              '&:hover': { transform: 'scale(1.05)' },
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': { 
+                transform: 'scale(1.05)',
+              },
             }}
           >
             <Avatar
@@ -186,7 +184,7 @@ export const Sidebar: React.FC = () => {
             {siteConfig.siteName}
           </Typography>
 
-          {/* Job title badge */}
+          {/* Simple job title badge */}
           <Box
             sx={{
               display: 'inline-flex',
@@ -255,7 +253,7 @@ export const Sidebar: React.FC = () => {
                       color: M3.onSurfaceVariant,
                       borderRadius: '8px',
                       width: 32, height: 32,
-                      transition: 'all 0.2s var(--easing-emphasized)',
+                      transition: 'all 0.2s ease-in-out',
                       '&:hover': {
                         color: M3.primary,
                         bgcolor: `${M3.primaryContainer}60`,
@@ -272,7 +270,7 @@ export const Sidebar: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Gradient divider */}
+      {/* Simple gradient divider */}
       <Box sx={{
         mx: 2.5,
         height: '1px',
@@ -348,9 +346,10 @@ export const Sidebar: React.FC = () => {
                   border: `1px solid ${isActive ? M3.primary + '50' : 'transparent'}`,
                   py: 0.75,
                   px: 1.25,
-                  transition: 'all 0.2s var(--easing-emphasized)',
+                  transition: 'all 0.2s ease-in-out',
                   '&:hover': {
                     bgcolor: isActive ? M3.primaryContainer : M3.surfaceContainerHigh,
+                    transform: 'translateX(2px)',
                   },
                   '&:focus-visible': {
                     outline: `2px solid ${M3.primary}`,
@@ -358,7 +357,7 @@ export const Sidebar: React.FC = () => {
                   },
                 }}
               >
-                {/* Active indicator dot */}
+                {/* Simple active indicator dot */}
                 <Box sx={{
                   width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
                   bgcolor: isActive ? M3.primary : `${M3.onSurfaceVariant}40`,

@@ -10,7 +10,7 @@
     "email": "zeroonelatte@gmail.com",
     "jobTitle": "Software Engineer @ Artly.ai",
     "location": "New York, NY",
-    "bio": "Ex. AR Engineer @ Snap Inc.\nEx. Unity Engineer @ Moviebill\nMFA Design and Technology @ Parsons\nMA Game Design & Development @ Columbia",
+    "bio": "Ex. AR Engineer @ Snap Inc.\nEx. Unity Engineer @ Unity\nMFA Design and Technology @ Parsons\nMA Game Design & Development @ Columbia",
     "avatar": "/assets/spectacles-1771906913985.gif",
     "keywords": [
       "XR",
@@ -44,7 +44,7 @@
       },
       {
         "platform": "LinkedIn",
-        "url": "https://linkedin.com/in/lingyi-zhou",
+        "url": "https://linkedin.com/in/lingyizhou",
         "icon": "LinkedIn"
       },
       {
@@ -174,8 +174,7 @@
         }
       ],
       "isFeatured": true,
-      "section": "Current Projects",
-      "thumbnail": "/assets/thumbnails/28-robot-hand-thumb.jpg"
+      "section": "Current Projects"
     },
     {
       "id": "26",
@@ -281,8 +280,7 @@
       ],
       "links": [],
       "isFeatured": true,
-      "section": "Current Projects",
-      "thumbnail": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Copy-of-Snapchat-Project-1.jpg"
+      "section": "Current Projects"
     },
     {
       "id": "29",
@@ -512,8 +510,7 @@
       ],
       "links": [],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-3.27.35PM.png"
+      "section": "Most Recent"
     },
     {
       "id": "27",
@@ -600,8 +597,7 @@
         }
       ],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/iPhone-14-Pro-Max.png"
+      "section": "Most Recent"
     },
     {
       "id": "23",
@@ -670,8 +666,7 @@
         }
       ],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.33AM.png"
+      "section": "Most Recent"
     },
     {
       "id": "01",
@@ -811,8 +806,7 @@
         }
       ],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png"
+      "section": "Most Recent"
     },
     {
       "id": "16",
@@ -990,8 +984,7 @@
         }
       ],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-3/04dbabc2-e4e6-4db2-86d4-c78e7ae77a78.png"
+      "section": "Most Recent"
     },
     {
       "id": "25",
@@ -1030,17 +1023,10 @@
         "src": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4",
         "alt": "Flerken AR Filter Demo"
       },
-      "mediaGallery": [
-        {
-          "type": "video",
-          "src": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4",
-          "alt": "Flerken AR Filter Demo"
-        }
-      ],
+      "mediaGallery": [],
       "links": [],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4"
+      "section": "Most Recent"
     },
     {
       "id": "04",
@@ -1107,8 +1093,7 @@
       ],
       "links": [],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-4/Instagram-post---3.PNG"
+      "section": "Most Recent"
     },
     {
       "id": "05",
@@ -1169,8 +1154,7 @@
         }
       ],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-5/Game-Design-2.png"
+      "section": "Most Recent"
     },
     {
       "id": "08",
@@ -1267,17 +1251,10 @@
         "src": "/assets/cargo-import/page-10/Frame-8.png",
         "alt": "Creative Coding Experiments"
       },
-      "mediaGallery": [
-        {
-          "type": "image",
-          "src": "/assets/cargo-import/page-10/Frame-8.png",
-          "alt": "Creative Coding Experiments"
-        }
-      ],
+      "mediaGallery": [],
       "links": [],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-10/Frame-8.png"
+      "section": "Most Recent"
     },
     {
       "id": "09",
@@ -1372,8 +1349,7 @@
       ],
       "links": [],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-9/Cologne58.jpg"
+      "section": "Most Recent"
     },
     {
       "id": "10b",
@@ -1420,8 +1396,7 @@
       ],
       "links": [],
       "isFeatured": false,
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-10/BearImage67.png"
+      "section": "Most Recent"
     },
     {
       "id": "06",
@@ -2306,7 +2281,7 @@
       "id": "20",
       "slug": "dragon-roaster-early-2021",
       "title": "Dragon Roaster (Early 2021)",
-      "year": "2021",
+      "year": "2025",
       "status": "Completed",
       "shortSubtitle": "Fantasy game featuring dragons and strategic gameplay",
       "summary": "A captivating fantasy game where players train and battle dragons in strategic combat. Features rich storytelling, beautiful 3D environments, and complex gameplay mechanics that challenge both tactical thinking and reflexes.",
@@ -2324,22 +2299,61 @@
         "C# Programming"
       ],
       "techStack": [
-        "Unity",
-        "Python",
-        "Javascript",
-        "Three.Js"
+        {
+          "category": "Game Engine",
+          "skills": [
+            "Unity"
+          ]
+        },
+        {
+          "category": "Programming",
+          "skills": [
+            "Python",
+            "Javascript",
+            "Java",
+            "C#"
+          ]
+        },
+        {
+          "category": "Graphics",
+          "skills": [
+            "Three.Js"
+          ]
+        },
+        {
+          "category": "VR/AR",
+          "skills": [
+            "Ar",
+            "Vr"
+          ]
+        },
+        {
+          "category": "Tools",
+          "skills": [
+            "React",
+            "Lens Studio",
+            "Typescript",
+            "Fastapi",
+            "Blender",
+            "Html",
+            "Css",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        }
       ],
       "featuredMedia": {
         "type": "image",
-        "src": "/assets/thumbnails/20-themed.svg",
+        "src": "/assets/thumbnails/20-placeholder.svg",
         "alt": "Dragon Roaster (Early 2021) preview"
       },
-      "thumbnail": "/assets/thumbnails/20-themed.svg",
+      "thumbnail": "/assets/thumbnails/20-placeholder.svg",
       "mediaGallery": [
         {
           "type": "image",
-          "src": "/assets/thumbnails/20-themed.svg",
-          "alt": "Dragon Roaster (Early 2021) thumbnail"
+          "src": "/assets/thumbnails/20-placeholder.svg",
+          "alt": "Dragon Roaster (Early 2021) preview"
         }
       ],
       "links": [
@@ -2487,14 +2501,13 @@
         "mediaCount": 4,
         "uiRecommendationCount": 4
       },
-      "mediaCount": 1,
-      "description": "A captivating fantasy game where players train and battle dragons in strategic combat. Features rich storytelling, beautiful 3D environments, and complex gameplay mechanics that challenge both tactical thinking and reflexes."
+      "mediaCount": 1
     },
     {
       "id": "21",
       "slug": "vr-chess-2021",
       "title": "VR Chess (2021)",
-      "year": "2021",
+      "year": "2025",
       "status": "Completed",
       "shortSubtitle": "Virtual reality chess with immersive 3D gameplay",
       "summary": "A revolutionary virtual reality chess experience that brings the classic game to life in immersive 3D space. Players can walk around the board, pick up pieces with their hands, and experience chess like never before with spatial audio and haptic feedback.",
@@ -2512,22 +2525,61 @@
         "C# Programming"
       ],
       "techStack": [
-        "Unity",
-        "Python",
-        "Javascript",
-        "Three.Js"
+        {
+          "category": "Game Engine",
+          "skills": [
+            "Unity"
+          ]
+        },
+        {
+          "category": "Programming",
+          "skills": [
+            "Python",
+            "Javascript",
+            "Java",
+            "C#"
+          ]
+        },
+        {
+          "category": "Graphics",
+          "skills": [
+            "Three.Js"
+          ]
+        },
+        {
+          "category": "VR/AR",
+          "skills": [
+            "Ar",
+            "Vr"
+          ]
+        },
+        {
+          "category": "Tools",
+          "skills": [
+            "React",
+            "Lens Studio",
+            "Typescript",
+            "Fastapi",
+            "Blender",
+            "Html",
+            "Css",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        }
       ],
       "featuredMedia": {
         "type": "image",
-        "src": "/assets/thumbnails/21-themed.svg",
+        "src": "/assets/thumbnails/21-placeholder.svg",
         "alt": "VR Chess (2021) preview"
       },
-      "thumbnail": "/assets/thumbnails/21-themed.svg",
+      "thumbnail": "/assets/thumbnails/21-placeholder.svg",
       "mediaGallery": [
         {
           "type": "image",
-          "src": "/assets/thumbnails/21-themed.svg",
-          "alt": "VR Chess (2021) thumbnail"
+          "src": "/assets/thumbnails/21-placeholder.svg",
+          "alt": "VR Chess (2021) preview"
         }
       ],
       "links": [],
@@ -2666,14 +2718,13 @@
         "mediaCount": 4,
         "uiRecommendationCount": 4
       },
-      "mediaCount": 1,
-      "description": "A revolutionary virtual reality chess experience that brings the classic game to life in immersive 3D space. Players can walk around the board, pick up pieces with their hands, and experience chess like never before with spatial audio and haptic feedback."
+      "mediaCount": 1
     },
     {
       "id": "22",
       "slug": "3d-snake-game-2019",
       "title": "3D Snake Game (2019)",
-      "year": "2019",
+      "year": "2025",
       "status": "Completed",
       "shortSubtitle": "Classic snake game reimagined in 3D space",
       "summary": "A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness.",
@@ -2690,29 +2741,61 @@
         "C# Programming"
       ],
       "techStack": [
-        "Unity",
-        "Python",
-        "Javascript",
-        "Three.Js"
+        {
+          "category": "Game Engine",
+          "skills": [
+            "Unity"
+          ]
+        },
+        {
+          "category": "Programming",
+          "skills": [
+            "Python",
+            "Javascript",
+            "Java",
+            "C#"
+          ]
+        },
+        {
+          "category": "Graphics",
+          "skills": [
+            "Three.Js"
+          ]
+        },
+        {
+          "category": "VR/AR",
+          "skills": [
+            "Ar",
+            "Vr"
+          ]
+        },
+        {
+          "category": "Tools",
+          "skills": [
+            "React",
+            "Lens Studio",
+            "Typescript",
+            "Fastapi",
+            "Blender",
+            "Html",
+            "Css",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        }
       ],
       "featuredMedia": {
         "type": "image",
-        "src": "/assets/thumbnails/22-featured.svg",
+        "src": "/assets/thumbnails/22-placeholder.svg",
         "alt": "3D Snake Game (2019) preview"
       },
-      "thumbnail": "/assets/thumbnails/22-featured.svg",
+      "thumbnail": "/assets/thumbnails/22-placeholder.svg",
       "mediaGallery": [
         {
           "type": "image",
-          "src": "/assets/thumbnails/22-featured.svg",
-          "alt": "3D Snake Game (2019) thumbnail"
-        },
-        {
-          "type": "iframe",
-          "src": "https://itch.io/embed/871359",
-          "provider": "itch.io",
-          "alt": "Play 3D Snake Game",
-          "height": 600
+          "src": "/assets/thumbnails/22-placeholder.svg",
+          "alt": "3D Snake Game (2019) preview"
         }
       ],
       "links": [
@@ -2856,8 +2939,7 @@
         "mediaCount": 5,
         "uiRecommendationCount": 4
       },
-      "mediaCount": 1,
-      "description": "A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness."
+      "mediaCount": 1
     },
     {
       "id": "24",
@@ -2880,43 +2962,61 @@
         "C# Programming"
       ],
       "techStack": [
-        "Unity",
-        "Python",
-        "Javascript",
-        "Three.Js"
+        {
+          "category": "Game Engine",
+          "skills": [
+            "Unity"
+          ]
+        },
+        {
+          "category": "Programming",
+          "skills": [
+            "Python",
+            "Javascript",
+            "Java",
+            "C#"
+          ]
+        },
+        {
+          "category": "Graphics",
+          "skills": [
+            "Three.Js"
+          ]
+        },
+        {
+          "category": "VR/AR",
+          "skills": [
+            "Ar",
+            "Vr"
+          ]
+        },
+        {
+          "category": "Tools",
+          "skills": [
+            "React",
+            "Lens Studio",
+            "Typescript",
+            "Fastapi",
+            "Blender",
+            "Html",
+            "Css",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        }
       ],
       "featuredMedia": {
         "type": "image",
-        "src": "/assets/thumbnails/24-featured.svg",
+        "src": "/assets/thumbnails/24-placeholder.svg",
         "alt": "My Shader Projects preview"
       },
-      "thumbnail": "/assets/thumbnails/24-featured.svg",
+      "thumbnail": "/assets/thumbnails/24-placeholder.svg",
       "mediaGallery": [
         {
           "type": "image",
-          "src": "/assets/thumbnails/24-featured.svg",
-          "alt": "My Shader Projects thumbnail"
-        },
-        {
-          "type": "iframe",
-          "src": "https://www.shadertoy.com/embed/Wtffzn?gui=true&t=10&paused=false&muted=false&wm=true",
-          "provider": "shadertoy",
-          "alt": "Shader Demo 1",
-          "height": 400
-        },
-        {
-          "type": "iframe",
-          "src": "https://www.shadertoy.com/embed/ttXfzj?gui=true&t=10&paused=false&muted=false&wm=true",
-          "provider": "shadertoy",
-          "alt": "Shader Demo 2",
-          "height": 400
-        },
-        {
-          "type": "iframe",
-          "src": "https://www.shadertoy.com/embed/wlfBRN?gui=true&t=10&paused=false&muted=false&wm=true",
-          "provider": "shadertoy",
-          "alt": "Shader Demo 3",
-          "height": 400
+          "src": "/assets/thumbnails/24-placeholder.svg",
+          "alt": "My Shader Projects preview"
         }
       ],
       "links": [
@@ -3086,8 +3186,7 @@
         "mediaCount": 12,
         "uiRecommendationCount": 4
       },
-      "mediaCount": 1,
-      "description": "A comprehensive collection of advanced shader programming experiments showcasing various rendering techniques, visual effects, and mathematical beauty. Demonstrates expertise in graphics programming and creative coding."
+      "mediaCount": 1
     }
   ]
 }
