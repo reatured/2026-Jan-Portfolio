@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import type { Project, SiteConfig } from '../types';
-import { API, Toast, genId, slugify } from './admin-components';
+import { API, Toast, genId, getAdminToken, setAdminToken, withAdminAuth } from './admin-components';
 import { ProjectForm } from './admin-components/ProjectForm';
 import { SiteConfigForm } from './admin-components/SiteConfigForm';
 import { ProjectsTable } from './admin-components/ProjectsTable';
@@ -19,6 +19,7 @@ import Tab from '@mui/material/Tab';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddIcon from '@mui/icons-material/Add';
+import TextField from '@mui/material/TextField';
 
 // ── Default blank project ─────────────────────────────────────────────────────
 
@@ -56,10 +57,11 @@ export function Admin() {
   const [showForm, setShowForm] = useState(false);
   const [historyProject, setHistoryProject] = useState<Project | null>(null);
   const [toast, setToast] = useState('');
+  const [tokenInput, setTokenInput] = useState(getAdminToken());
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch(`${API}/api/data`);
+      const res = await fetch(`${API}/api/data`, { headers: withAdminAuth() });
       if (!res.ok) throw new Error();
       const data = await res.json();
       setProjects(data.projects);
@@ -67,6 +69,7 @@ export function Admin() {
       setConnected(true);
     } catch {
       setConnected(false);
+      showToast('Error: Could not connect to admin API. Check token/server URL.');
     } finally {
       setLoading(false);
     }
@@ -80,8 +83,15 @@ export function Admin() {
     const isNew = !projects.find((x) => x.id === p.id);
     const method = isNew ? 'POST' : 'PUT';
     const url = isNew ? `${API}/api/projects` : `${API}/api/projects/${p.id}`;
-    const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) });
-    if (!res.ok) throw new Error('Save failed');
+    const res = await fetch(url, {
+      method,
+      headers: withAdminAuth({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(p),
+    });
+    if (!res.ok) {
+      const msg = await res.json().catch(() => ({ error: 'Save failed' }));
+      throw new Error(msg.error || 'Save failed');
+    }
     await fetchData();
     setShowForm(false);
     setEditProject(null);
@@ -89,14 +99,18 @@ export function Admin() {
   }
 
   async function handleDeleteProject(id: string) {
-    const res = await fetch(`${API}/api/projects/${id}`, { method: 'DELETE' });
+    const res = await fetch(`${API}/api/projects/${id}`, { method: 'DELETE', headers: withAdminAuth() });
     if (!res.ok) { showToast('Error: Delete failed'); return; }
     await fetchData();
     showToast('Project deleted.');
   }
 
   async function handleSaveSite(s: SiteConfig) {
-    const res = await fetch(`${API}/api/site`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(s) });
+    const res = await fetch(`${API}/api/site`, {
+      method: 'PUT',
+      headers: withAdminAuth({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(s),
+    });
     if (!res.ok) throw new Error('Save failed');
     await fetchData();
     showToast('Site config saved!');
@@ -105,7 +119,7 @@ export function Admin() {
   async function handleRestore(projectId: string, savedAt: string) {
     const res = await fetch(`${API}/api/history/${projectId}/restore`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: withAdminAuth({ 'Content-Type': 'application/json' }),
       body: JSON.stringify({ savedAt }),
     });
     if (!res.ok) throw new Error('Restore failed');
@@ -116,7 +130,7 @@ export function Admin() {
   async function handleReorder(ids: string[]) {
     const res = await fetch(`${API}/api/projects/reorder`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: withAdminAuth({ 'Content-Type': 'application/json' }),
       body: JSON.stringify({ ids }),
     });
     if (!res.ok) { showToast('Error: Reorder failed'); return; }
@@ -136,9 +150,18 @@ export function Admin() {
         sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', color: 'text.primary' }}
       >
         <Toolbar sx={{ maxWidth: '1200px', width: '100%', mx: 'auto', px: { xs: 2, sm: 3 } }}>
-          <Typography variant="h6" fontWeight={600} sx={{ letterSpacing: '-0.01em', flexGrow: 1 }}>
-            Admin Panel
-          </Typography>
+              <Typography variant="h6" fontWeight={600} sx={{ letterSpacing: '-0.01em', flexGrow: 1 }}>
+                Admin Panel
+              </Typography>
+              <TextField
+                size="small"
+                placeholder="Admin token"
+                type="password"
+                value={tokenInput}
+                onChange={(e) => setTokenInput(e.target.value)}
+                onBlur={() => setAdminToken(tokenInput.trim())}
+                sx={{ mr: 2, width: 200 }}
+              />
           <Chip
             label={connected ? 'Server connected' : 'Server offline'}
             size="small"

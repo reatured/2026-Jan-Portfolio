@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { projects } from '../config/projects';
 import { Head, generateJsonLd } from '../lib/seo';
+import { sanitizeHtml } from '../lib/sanitizeHtml';
 import { Media } from '../components/project/Media';
 import { M3 } from '../theme';
 import Box from '@mui/material/Box';
@@ -245,6 +246,7 @@ export const ProjectDetail: React.FC = () => {
     "name": project.title,
     "description": project.summary
   });
+  const safeContent = sanitizeHtml(project.content);
 
   return (
     <Box
@@ -367,11 +369,11 @@ export const ProjectDetail: React.FC = () => {
       >
         {/* Body */}
         <Box>
-          {project.content ? (
+          {safeContent ? (
             <Box
               className="prose"
               sx={{ color: M3.onSurfaceVariant }}
-              dangerouslySetInnerHTML={{ __html: project.content }}
+              dangerouslySetInnerHTML={{ __html: safeContent }}
             />
           ) : project.mediaGallery.length > 0 ? (
             <Box component="section">

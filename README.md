@@ -50,6 +50,17 @@ This contains everything you need to run your app locally.
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. (Optional but recommended) set admin environment variables in `.env.local`:
+   - `VITE_ADMIN_API_URL=http://localhost:3001`
+   - `ADMIN_API_TOKEN=<your-secret-token>`
+   - `ADMIN_CORS_ORIGINS=http://localhost:5173,http://localhost:3000`
 3. Run the app:
    `npm run dev`
+4. Run the admin API (or run both together with `npm run dev:all`):
+   `npm run admin`
+
+## Content Quality Check
+
+Run a content consistency audit before publishing:
+
+`npm run content:audit`
