@@ -7,7 +7,30 @@ import Chip from '@mui/material/Chip';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-export const API = 'http://localhost:3001';
+export const API = import.meta.env.VITE_ADMIN_API_URL || 'http://localhost:3001';
+
+const TOKEN_KEY = 'admin_api_token';
+
+export function getAdminToken() {
+  return localStorage.getItem(TOKEN_KEY) || '';
+}
+
+export function setAdminToken(token: string) {
+  if (!token) {
+    localStorage.removeItem(TOKEN_KEY);
+    return;
+  }
+  localStorage.setItem(TOKEN_KEY, token);
+}
+
+export function withAdminAuth(headers: Record<string, string> = {}) {
+  const token = getAdminToken();
+  if (!token) return headers;
+  return {
+    ...headers,
+    Authorization: `Bearer ${token}`,
+  };
+}
 
 // ── Utility ───────────────────────────────────────────────────────────────────
 
@@ -32,7 +55,11 @@ export function formatDate(iso: string) {
 export async function uploadImage(file: File): Promise<string> {
   const form = new FormData();
   form.append('image', file);
-  const res = await fetch(`${API}/api/upload`, { method: 'POST', body: form });
+  const res = await fetch(`${API}/api/upload`, {
+    method: 'POST',
+    body: form,
+    headers: withAdminAuth(),
+  });
   const json = await res.json();
   if (!res.ok) throw new Error(json.error || 'Upload failed');
   return json.path as string;

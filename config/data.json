@@ -290,7 +290,7 @@
       "title": "GoGreenNext - Modular Map Tiles",
       "year": "2025",
       "status": "Completed",
-      "shortSubtitle": "3D Modeling for NYU Game Project",
+      "shortSubtitle": "3D Modeling for NYU Game Project — project overview and outcomes",
       "summary": "Created modular 3D map tiles for GoGreenNext, an NYU game project. Designed reusable tile assets in Blender to enable flexible level design and efficient world building. The modular system allows for quick assembly of diverse game environments while maintaining visual consistency.",
       "content": "<div style=\"display:flex;flex-direction:column;gap:3rem;\">\n\n      <!-- Cover and Overview -->\n      <div style=\"display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start;\">\n        <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-3.27.35PM.png\" alt=\"GoGreenNext cover\" style=\"border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:100%;object-fit:cover;\" />\n        <div>\n          <h1>GoGreenNext - Modular Map Tiles (2024)</h1>\n          <br />\n          <p><b>GoGreenNext</b> is an NYU game project where I created a modular 3D tile system for efficient level design. Built reusable map assets in Blender that enable flexible world construction while maintaining visual consistency.</p>\n          <div style=\"background:#eff6ff;padding:1rem;border-radius:8px;border:1px solid #dbeafe;margin-top:1rem;\">\n            <b style=\"color:#1e40af;display:block;margin-bottom:0.5rem;\">Tech Stack:</b>\n            <ul>\n              <li>3D Software: <b>Blender</b></li>\n              <li>Project Type: <b>Game Asset Creation</b></li>\n              <li>Design System: <b>Modular Tile Architecture</b></li>\n              <li>Collaboration: <b>NYU Game Dev Team</b></li>\n              <li>Features: <b>Reusable tiles, Grid-based system</b></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n\n      <hr style=\"border:none;border-top:1px solid #e2e8f0;\" />\n\n      <!-- Design Goals & Tile System -->\n      <div style=\"display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start;\">\n        <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-2.59.35PM.png\" alt=\"Design goals\" style=\"border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:100%;object-fit:cover;\" />\n        <div>\n          <h2>Design Goals</h2>\n          <ul>\n            <li>Create modular tiles that seamlessly connect</li>\n            <li>Enable rapid level design iteration</li>\n            <li>Maintain visual consistency across maps</li>\n            <li>Optimize for game engine performance</li>\n          </ul>\n          <h2>Tile System Features</h2>\n          <ul>\n            <li><b>Grid-Based Design</b>: Standardized dimensions for easy assembly</li>\n            <li><b>Seamless Connections</b>: Edge-matched geometry for smooth transitions</li>\n            <li><b>Variety Pack</b>: Multiple tile types (straight, corner, junction, etc.)</li>\n            <li><b>Optimized Geometry</b>: Low-poly models for game performance</li>\n          </ul>\n          <h2>Workflow</h2>\n          <ol>\n            <li>Design tile template with standardized grid</li>\n            <li>Model base geometry in Blender</li>\n            <li>Create variations (terrain, paths, structures)</li>\n            <li>Test connections and edge matching</li>\n            <li>Export for game engine integration</li>\n          </ol>\n        </div>\n      </div>\n\n      <hr style=\"border:none;border-top:1px solid #e2e8f0;\" />\n\n      <!-- Tile Showcase -->\n      <div style=\"display:grid;grid-template-columns:2fr 1fr;gap:2rem;align-items:start;\">\n        <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-2.58.51PM.png\" alt=\"Modular tile system\" style=\"border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:100%;object-fit:cover;\" />\n        <div>\n          <h2>Modular Tile System</h2>\n          <h3>Tile Categories</h3>\n          <ul>\n            <li><b>Base Tiles</b>: Ground, grass, dirt paths</li>\n            <li><b>Corner Pieces</b>: 90 degrees turns and transitions</li>\n            <li><b>Junction Tiles</b>: T-intersections, crossroads</li>\n            <li><b>Edge Tiles</b>: Borders and boundaries</li>\n            <li><b>Feature Tiles</b>: Trees, rocks, structures</li>\n          </ul>\n          <h3>Design Principles</h3>\n          <ul>\n            <li>Consistent scale and proportions</li>\n            <li>Snappable grid alignment</li>\n            <li>UV mapping for texture flexibility</li>\n            <li>LOD-ready geometry</li>\n          </ul>\n        </div>\n      </div>\n\n      <hr style=\"border:none;border-top:1px solid #e2e8f0;\" />\n\n      <!-- Gallery -->\n      <div>\n        <h2>Gallery</h2>\n        <div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.75rem;\">\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image1.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 1\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image2.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 2\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image3.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 3\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image4.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 4\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image5.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 5\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image6.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 6\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image7.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 7\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image8.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 8\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image9.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 9\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image10.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 10\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image11.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 11\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image12.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 12\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image13.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 13\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image14.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 14\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image15.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 15\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image16.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 16\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image17.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 17\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image18.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 18\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image19.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 19\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image20.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 20\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image21.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 21\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image22.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 22\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image23.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 23\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image24.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 24\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image25.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 25\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image26.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 26\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image27.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 27\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image28.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 28\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image29.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 29\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image30.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 30\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image31.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 31\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image32.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 32\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image34.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 33\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image35.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 34\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image36.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 35\" />\n          <img src=\"/assets/cargo-import/gogreennext-modular-map-tiles-2024/image33.png\" style=\"width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;\" alt=\"Tile 36\" />\n        </div>\n      </div>\n\n    </div>",
       "categories": [
@@ -751,7 +751,9 @@
       ],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/thumbnails/hardware-store-yt-thumb.jpg"
+      "thumbnail": "/assets/thumbnails/hardware-store-yt-thumb.jpg",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "02",
@@ -865,7 +867,8 @@
       "isFeatured": false,
       "section": "Most Recent",
       "year": "2021",
-      "thumbnail": "/assets/thumbnails/ping-pong-thumb.gif"
+      "thumbnail": "/assets/thumbnails/ping-pong-thumb.gif",
+      "status": "Completed"
     },
     {
       "id": "17",
@@ -939,7 +942,7 @@
       "id": "03",
       "slug": "personal-schedule-assistant",
       "title": "Drag Task In - Personal Schedule Assistant",
-      "shortSubtitle": "Drag-and-drop schedule builder",
+      "shortSubtitle": "Drag-and-drop schedule builder — project overview and outcomes",
       "summary": "A drag-and-drop schedule builder that supports offline editing and syncs automatically across devices. Designed for productivity addicts who want control over time and print-ready exports.",
       "content": "<div>\n  <h2>Built in Under 4 Hours</h2>\n  <p>Drag Task In is a personal schedule assistant built with speed and practicality in mind. The entire first version was designed and developed in under 4 hours, proving that useful productivity tools don't need weeks of development.</p>\n\n  <h3>Core Features</h3>\n  <ul>\n    <li><b>Drag-and-drop scheduling</b> — intuitive task management with @dnd-kit</li>\n    <li><b>Real-time sync</b> — changes sync automatically across devices via Supabase</li>\n    <li><b>Offline support</b> — works without internet and syncs when back online</li>\n    <li><b>Print-ready exports</b> — generate clean layouts for physical planning</li>\n  </ul>\n\n  <h3>Design Philosophy</h3>\n  <p>The goal was to create a tool that feels as natural as moving sticky notes on a desk. No complex menus, no configuration screens — just drag tasks where they belong and get on with your day.</p>\n</div>",
       "categories": [
@@ -991,7 +994,9 @@
       ],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-3/04dbabc2-e4e6-4db2-86d4-c78e7ae77a78.png"
+      "thumbnail": "/assets/cargo-import/page-3/04dbabc2-e4e6-4db2-86d4-c78e7ae77a78.png",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "25",
@@ -1108,7 +1113,9 @@
       "links": [],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-4/Instagram-post---3.PNG"
+      "thumbnail": "/assets/cargo-import/page-4/Instagram-post---3.PNG",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "05",
@@ -1170,13 +1177,15 @@
       ],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-5/Game-Design-2.png"
+      "thumbnail": "/assets/cargo-import/page-5/Game-Design-2.png",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "08",
       "slug": "vr-experience-oculus-quest",
       "title": "VR Experience on Oculus Quest",
-      "shortSubtitle": "Immersive object interaction game",
+      "shortSubtitle": "Immersive object interaction game — project overview and outcomes",
       "summary": "An immersive game for Oculus Quest focusing on object interaction and spatial memory. Built using Unity's XR framework and tested across headset configurations.",
       "content": "<div>\n  <h2>Spatial Storytelling in VR</h2>\n  <p>An immersive VR experience built for the Oculus Quest that explores spatial storytelling through room-scale navigation and interactive objects. Players move through environments, discover narrative elements, and interact with the world using natural hand and controller inputs.</p>\n\n  <h3>Core Features</h3>\n  <ul>\n    <li><b>Room-scale navigation</b> — physical movement mapped to virtual space</li>\n    <li><b>Object interaction</b> — pick up, examine, and use objects to progress</li>\n    <li><b>Dual locomotion</b> — supports both teleportation and smooth locomotion for different comfort levels</li>\n    <li><b>Spatial storytelling</b> — narrative conveyed through environment design and object placement</li>\n  </ul>\n\n  <h3>Technical Details</h3>\n  <ul>\n    <li>Built with Unity's XR framework for Oculus Quest</li>\n    <li>Optimized for standalone VR performance</li>\n    <li>Custom interaction system for natural object handling</li>\n    <li>Tested across multiple headset configurations</li>\n  </ul>\n</div>",
       "categories": [
@@ -1232,13 +1241,15 @@
       ],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/thumbnails/vr-oculus-yt-thumb.jpg"
+      "thumbnail": "/assets/thumbnails/vr-oculus-yt-thumb.jpg",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "10",
       "slug": "creative-coding-experiments",
       "title": "Creative Coding Experiments",
-      "shortSubtitle": "Generative art sketches using p5.js",
+      "shortSubtitle": "Generative art sketches using p5.js — project overview and outcomes",
       "summary": "This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.",
       "content": "<div>\n  <h2>Generative Art with p5.js</h2>\n  <p>A collection of creative coding sketches exploring procedural generation, interactive visuals, and algorithmic art. Each piece is an experiment in turning code into visual expression.</p>\n\n  <h3>Sketch Categories</h3>\n  <ul>\n    <li><b>Procedural patterns</b> — algorithmically generated visual patterns with mathematical foundations</li>\n    <li><b>Randomized grid art</b> — grid-based compositions with controlled randomness for variety</li>\n    <li><b>Color palettes & rotation animations</b> — explorations of color theory and motion through code</li>\n  </ul>\n\n  <h3>Tools & Approach</h3>\n  <p>All sketches are built with p5.js in JavaScript. The focus is on rapid experimentation — each sketch is a self-contained exploration of a single visual idea, from concept to finished piece in a short session.</p>\n</div>",
       "categories": [
@@ -1277,13 +1288,15 @@
       "links": [],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-10/Frame-8.png"
+      "thumbnail": "/assets/cargo-import/page-10/Frame-8.png",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "09",
       "slug": "3d-poster-design-landmarks",
       "title": "3D Poster Design with Landmarks",
-      "shortSubtitle": "Visualizing cities with 3D landmarks",
+      "shortSubtitle": "Visualizing cities with 3D landmarks — project overview and outcomes",
       "summary": "This poster series visualizes cities from around the world using 3D landmarks generated in Blender. Real-world data from Google Maps was imported in both realistic and stylized formats, each lit based on the local time of day using HDRIs and custom lighting.",
       "content": "<div>\n  <h2>City Landmarks in 3D</h2>\n  <p>A poster series that visualizes cities from around the world using 3D-rendered landmarks. Real-world geographic data from Google Maps API was imported into Blender and rendered in two distinct styles.</p>\n\n  <h3>Design Approach</h3>\n  <ul>\n    <li><b>Google Maps API data import</b> — real building footprints and landmark positions brought into Blender</li>\n    <li><b>Dual rendering styles</b> — each city rendered in both realistic and stylized versions</li>\n    <li><b>HDRI lighting</b> — environment lighting matched to local time of day for each city</li>\n    <li><b>Custom lighting setups</b> — supplementary lights to highlight architectural details</li>\n  </ul>\n\n  <h3>Workflow</h3>\n  <ol>\n    <li>Extract city landmark data from Google Maps API</li>\n    <li>Import geographic data into Blender</li>\n    <li>Model and texture key landmarks</li>\n    <li>Set up HDRI lighting based on local time</li>\n    <li>Render in both realistic and stylized passes</li>\n    <li>Compose final poster layouts</li>\n  </ol>\n</div>",
       "categories": [
@@ -1373,13 +1386,15 @@
       "links": [],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-9/Cologne58.jpg"
+      "thumbnail": "/assets/cargo-import/page-9/Cologne58.jpg",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "10b",
       "slug": "3d-modeled-teddy-bear",
       "title": "3D Modeled Teddy Bear",
-      "shortSubtitle": "Beginner sculpting exercise in Blender",
+      "shortSubtitle": "Beginner sculpting exercise in Blender — project overview and outcomes",
       "summary": "A soft toy modeled entirely in Blender as a beginner's sculpting exercise. This teddy bear project explored mesh shaping, subdivision modifiers, and basic material texturing in a fun and personal 3D workflow.",
       "content": "<div>\n  <h2>Blender Sculpting Exercise</h2>\n  <p>A soft teddy bear modeled entirely in Blender as a sculpting exercise. This project focused on developing organic modeling skills through a fun, approachable subject.</p>\n\n  <h3>Techniques Used</h3>\n  <ul>\n    <li><b>Subdivision surfaces</b> — smooth mesh topology for soft, rounded forms</li>\n    <li><b>Basic fabric shader</b> — material setup to simulate plush textile appearance</li>\n    <li><b>Sculpting workflow</b> — shaping the base mesh with Blender's sculpt tools</li>\n    <li><b>Mesh optimization</b> — clean topology for smooth rendering</li>\n  </ul>\n</div>",
       "categories": [
@@ -1421,7 +1436,9 @@
       "links": [],
       "isFeatured": false,
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-10/BearImage67.png"
+      "thumbnail": "/assets/cargo-import/page-10/BearImage67.png",
+      "year": "TBD",
+      "status": "Completed"
     },
     {
       "id": "06",

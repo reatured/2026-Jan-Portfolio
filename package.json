@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "admin": "node server/index.cjs",
-    "dev:all": "concurrently \"npm run dev\" \"npm run admin\""
+    "dev:all": "concurrently \"npm run dev\" \"npm run admin\"",
+    "content:audit": "node scripts/content-audit.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

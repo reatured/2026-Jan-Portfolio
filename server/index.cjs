@@ -8,6 +8,11 @@ const path = require('path');
 const app = express();
 const PORT = 3001;
 const MAX_HISTORY = 20;
+const ADMIN_TOKEN = process.env.ADMIN_API_TOKEN || '';
+const ALLOWED_ORIGINS = (process.env.ADMIN_CORS_ORIGINS || 'http://localhost:3000,http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 const DATA_FILE = path.join(__dirname, '../config/data.json');
 const RICH_CONTENT_FILE = path.join(__dirname, '../config/richContent.json');
@@ -19,7 +24,7 @@ if (!fs.existsSync(ASSETS_DIR)) {
   fs.mkdirSync(ASSETS_DIR, { recursive: true });
 }
 
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:5173'] }));
+app.use(cors({ origin: ALLOWED_ORIGINS }));
 app.use(express.json({ limit: '10mb' }));
 app.use('/assets', express.static(ASSETS_DIR));
 
@@ -71,9 +76,27 @@ function withEffectiveProjectContent(data) {
     ...data,
     projects: (data.projects || []).map((project) => ({
       ...project,
-      content: project.content || richContent[project.id] || '',
+      content: sanitizeHtml(project.content || richContent[project.id] || ''),
     })),
   };
+}
+
+function sanitizeHtml(input) {
+  if (typeof input !== 'string') return '';
+  return input
+    .replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
+    .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/\s(href|src)\s*=\s*("|')\s*javascript:[\s\S]*?\2/gi, '');
+}
+
+function requireAdminAuth(req, res, next) {
+  if (!ADMIN_TOKEN) return next();
+  const header = req.headers.authorization || '';
+  const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
+  if (token !== ADMIN_TOKEN) {
+    return res.status(401).json({ error: 'Unauthorized. Missing or invalid admin token.' });
+  }
+  next();
 }
 
 function writeData(data) {
@@ -143,7 +166,7 @@ app.get('/api/data', (req, res) => {
   }
 });
 
-app.post('/api/projects', (req, res) => {
+app.post('/api/projects', requireAdminAuth, (req, res) => {
   try {
     const err = validateProject(req.body);
     if (err) return res.status(400).json({ error: err });
@@ -153,7 +176,7 @@ app.post('/api/projects', (req, res) => {
     if (data.projects.some((p) => p.id === req.body.id)) {
       return res.status(409).json({ error: `Project with id "${req.body.id}" already exists` });
     }
-    data.projects.unshift(req.body);
+    data.projects.unshift({ ...req.body, content: sanitizeHtml(req.body.content || '') });
     writeData(data);
     res.json({ ok: true });
   } catch (e) {
@@ -161,7 +184,7 @@ app.post('/api/projects', (req, res) => {
   }
 });
 
-app.put('/api/projects/:id', (req, res) => {
+app.put('/api/projects/:id', requireAdminAuth, (req, res) => {
   try {
     const err = validateProject(req.body);
     if (err) return res.status(400).json({ error: err });
@@ -173,7 +196,7 @@ app.put('/api/projects/:id', (req, res) => {
     // Snapshot old version before overwriting
     snapshotProject(req.params.id, data.projects[idx]);
 
-    data.projects[idx] = req.body;
+    data.projects[idx] = { ...req.body, content: sanitizeHtml(req.body.content || '') };
     writeData(data);
     res.json({ ok: true });
   } catch (e) {
@@ -181,7 +204,7 @@ app.put('/api/projects/:id', (req, res) => {
   }
 });
 
-app.delete('/api/projects/:id', (req, res) => {
+app.delete('/api/projects/:id', requireAdminAuth, (req, res) => {
   try {
     const data = readData();
     const project = data.projects.find((p) => p.id === req.params.id);
@@ -196,7 +219,7 @@ app.delete('/api/projects/:id', (req, res) => {
 });
 
 /** PUT /api/projects/reorder — body: { ids: string[] } — reorder projects */
-app.put('/api/projects/reorder', (req, res) => {
+app.put('/api/projects/reorder', requireAdminAuth, (req, res) => {
   try {
     const { ids } = req.body;
     if (!Array.isArray(ids)) return res.status(400).json({ error: 'ids must be an array' });
@@ -235,7 +258,7 @@ app.get('/api/history/:id', (req, res) => {
 });
 
 /** POST /api/history/:id/restore — body: { savedAt } — restore a snapshot */
-app.post('/api/history/:id/restore', (req, res) => {
+app.post('/api/history/:id/restore', requireAdminAuth, (req, res) => {
   try {
     const { savedAt } = req.body;
     const history = readHistory();
@@ -264,7 +287,7 @@ app.post('/api/history/:id/restore', (req, res) => {
 
 // ── Site Config ───────────────────────────────────────────────────────────────
 
-app.put('/api/site', (req, res) => {
+app.put('/api/site', requireAdminAuth, (req, res) => {
   try {
     const data = readData();
     data.site = req.body;
@@ -277,7 +300,7 @@ app.put('/api/site', (req, res) => {
 
 // ── Image Upload ──────────────────────────────────────────────────────────────
 
-app.post('/api/upload', upload.single('image'), (req, res) => {
+app.post('/api/upload', requireAdminAuth, upload.single('image'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
   res.json({ path: `/assets/${req.file.filename}` });
 });
