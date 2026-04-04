@@ -1,6 +1,116 @@
 {
   "26": [
     {
+      "savedAt": "2026-03-31T02:40:47.182Z",
+      "snapshot": {
+        "id": "26",
+        "slug": "snapchat-turn-based-endless-runner",
+        "title": "Snapchat Glass Bridge Challenge",
+        "year": "2025",
+        "status": "Published",
+        "shortSubtitle": "Turn-Based Multiplayer Glass Bridge Game",
+        "summary": "A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.",
+        "content": "\n    <div style=\"display:flex;flex-direction:column;gap:3rem;\">\n\n      <!-- Cover and Overview -->\n      <div style=\"display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start;\">\n        <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Copy-of-Snapchat-Project-1.jpg\" alt=\"Snapchat Glass Bridge\" style=\"border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:100%;object-fit:cover;\" />\n        <div>\n          <h1>Snapchat Glass Bridge Challenge (2025)</h1>\n          <p><b>Bridge Challenge</b> combines Squid Game's glass bridge with endless runner mechanics. Built as a full async multiplayer game in Lens Studio. My programming work set up game manager system based on the newly released Turn Based Game feature in Lens Studio.</p>\n          <div style=\"background:#eff6ff;padding:1rem;border-radius:8px;border:1px solid #dbeafe;margin-top:1rem;\">\n            <b style=\"color:#1e40af;display:block;margin-bottom:0.5rem;\">Tech Stack:</b>\n            <ul>\n              <li>Platform: <b>Lens Studio</b> (Snapchat AR)</li>\n              <li>Language: <b>TypeScript</b> (ES2019)</li>\n              <li>Architecture: Event-driven + Handler Pattern</li>\n              <li>Character: <b>Bitmoji SDK</b> Integration</li>\n              <li>Multiplayer: <b>Async</b> via Snapchat Messages</li>\n            </ul>\n          </div>\n        </div>\n      </div>\n\n      <hr style=\"border:none;border-top:1px solid #e2e8f0;\" />\n\n      <!-- Game Concept -->\n      <div style=\"display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start;\">\n        <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Endless-Runner-Concept.jpeg\" alt=\"Game Concept\" style=\"border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:100%;object-fit:cover;\" />\n        <div>\n          <h2>Core Challenges</h2>\n          <ul>\n            <li>Early async multiplayer games after Lens Studio released their Turn Based Game feature.</li>\n            <li>Async data handling through Snapchat message</li>\n          </ul>\n          <h2>Core Concepts</h2>\n          <ul>\n            <li>Inspired by Subway Surfer + Squid Game</li>\n            <li>Turn-based competition via messages</li>\n            <li>Cute 3D fantasy world with Bitmoji</li>\n            <li>2–3 minute gameplay sessions</li>\n            <li>Win by using fewer attempts</li>\n          </ul>\n          <h2>How the game works for 2 players</h2>\n          <ol>\n            <li>Player 1 attempts the bridge challenge</li>\n            <li>Game tracks attempts until success</li>\n            <li>Share via Snapchat message</li>\n            <li>Player 2 faces same challenge</li>\n            <li>Winner = fewer attempts</li>\n          </ol>\n        </div>\n      </div>\n\n      <hr style=\"border:none;border-top:1px solid #e2e8f0;\" />\n\n      <!-- Architecture Details -->\n      <div style=\"display:grid;grid-template-columns:2fr 1fr;gap:2rem;align-items:start;\">\n        <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Screenshot-2025-09-14-at-4.45.12AM.png\" alt=\"System Design\" style=\"border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:100%;object-fit:cover;\" />\n        <div>\n          <h2>System Design for Scalable Game Complexity and Use for Future Games</h2>\n          <pre style=\"background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:8px;font-size:0.8em;overflow-x:auto;line-height:1.6;\">TurnBasedGameManager/\n├── TurnBasedHandler.ts   # Turn logic\n├── LevelHandler.ts       # Platform gen\n├── UIHandler.ts          # UI states\n└── TurnBasedBlock.ts     # Collisions</pre>\n          <h3>The Handler Pattern</h3>\n          <p>The system employs a modular handler pattern where each handler owns a specific domain of game logic. This architecture separates concerns cleanly—<b>TurnBasedHandler</b> manages multiplayer turn logic without knowing how platforms generate, while <b>LevelHandler</b> creates levels without caring about UI states. Each handler communicates through GameManager main script and events, not direct references.</p>\n          <h3>Event-Driven Communication</h3>\n          <p>Besides tightly coupled components, the system also uses an event bus for all inter-handler communication and game stage transitions. Setting up registration on the start and end of each stage enables future creators to use this system for other games and enables scaling up more complex mechanics, such as transition animations.</p>\n        </div>\n      </div>\n\n      <hr style=\"border:none;border-top:1px solid #e2e8f0;\" />\n\n      <!-- Prototype Progress -->\n      <div>\n        <h2>Prototype Progress Recordings</h2>\n\n        <!-- Row 1 — 2025-08-29 -->\n        <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;\">\n          <div style=\"border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;\">\n            <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/BC54AFF4-0C04-480A-A021-F3FC0082DFAA.mov\" style=\"width:100%;height:100%;object-fit:cover;display:block;\" alt=\"Early Prototype\" />\n          </div>\n          <div style=\"border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;\">\n            <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/EFE6D552-A72D-49E9-B2E7-DA43E44BD565.mov\" style=\"width:100%;height:100%;object-fit:cover;display:block;\" alt=\"Prototype Gameplay\" />\n          </div>\n          <div style=\"padding:0.25rem;\">\n            <ul>\n              <li>Early prototype of the level in Lens Studio with generated endless platforms.</li>\n              <li>Each row has 2 blocks, with one that's holding you and one that's fake.</li>\n            </ul>\n            <p style=\"color:#94a3b8;font-size:0.75rem;font-family:monospace;margin-top:1rem;\">2025-08-29</p>\n            <div style=\"border-radius:8px;overflow:hidden;margin-top:0.75rem;\">\n              <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Endless-Runner-ScreenShot-1.png\" style=\"width:100%;object-fit:cover;display:block;\" alt=\"Detail\" />\n            </div>\n          </div>\n        </div>\n\n        <!-- Row 2 — 2025-09-03 -->\n        <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;\">\n          <div style=\"border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;\">\n            <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/F44306D6-F664-43DD-BB04-8745FDA010CB.mov\" style=\"width:100%;height:100%;object-fit:cover;display:block;\" alt=\"Models Added\" />\n          </div>\n          <div style=\"border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;\">\n            <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/IMG_0032.png\" style=\"width:100%;height:100%;object-fit:cover;display:block;\" alt=\"UI Added\" />\n          </div>\n          <div style=\"padding:0.25rem;\">\n            <ul>\n              <li>New game models added to the game</li>\n              <li>UI added to show more information about the game</li>\n              <li>Relay information through Snapchat works for 2 players with data transferring successfully, affecting game UI display</li>\n            </ul>\n            <p style=\"color:#94a3b8;font-size:0.75rem;font-family:monospace;margin-top:1rem;\">2025-09-03</p>\n          </div>\n        </div>\n\n        <!-- Row 3 — Endless Version -->\n        <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;\">\n          <div style=\"border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;\">\n            <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/A6FE8EE9-0740-413C-B9E2-51A18D93DA25.mov\" style=\"width:100%;height:100%;object-fit:cover;display:block;\" alt=\"Endless Version\" />\n          </div>\n          <div style=\"border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;\">\n            <img src=\"/assets/cargo-import/snapchat-glass-bridge-challenge-2025/F44306D6-F664-43DD-BB04-8745FDA010CB-1.mov\" style=\"width:100%;height:100%;object-fit:cover;display:block;\" alt=\"Multiplayer\" />\n          </div>\n          <div style=\"padding:0.25rem;\">\n            <p><b>An endless version</b>, where each player unlocks new levels with more rows when they reach the end.</p>\n            <p style=\"margin-top:0.75rem;\"><b>Cooperative idea:</b> the second player tries based on what the first player did, which makes it infinite levels.</p>\n            <p style=\"margin-top:0.75rem;\"><b>Competitive idea:</b> Compete with fewer tries for completing a level or the furthest level reached.</p>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ",
+        "categories": [
+          "XR Developer",
+          "Game Developer"
+        ],
+        "rolesOrSkills": [
+          "Lens Studio Developer",
+          "System Design"
+        ],
+        "techStack": [
+          {
+            "category": "Platform",
+            "skills": [
+              "Lens Studio"
+            ]
+          },
+          {
+            "category": "Language",
+            "skills": [
+              "TypeScript (ES2019)"
+            ]
+          },
+          {
+            "category": "System",
+            "skills": [
+              "Handler Pattern",
+              "Event-Driven"
+            ]
+          },
+          {
+            "category": "Features",
+            "skills": [
+              "Bitmoji SDK",
+              "Async Multiplayer"
+            ]
+          }
+        ],
+        "featuredMedia": {
+          "type": "image",
+          "src": "/assets/copy-of-snapchat-project-1-1771938702266.jpg",
+          "alt": "Snapchat Glass Bridge Challenge"
+        },
+        "mediaGallery": [
+          {
+            "type": "image",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Copy-of-Snapchat-Project-1.jpg",
+            "alt": "Snapchat Glass Bridge Challenge - Image 1"
+          },
+          {
+            "type": "image",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Endless-Runner-Concept.jpeg",
+            "alt": "Snapchat Glass Bridge Challenge - Image 2"
+          },
+          {
+            "type": "image",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Screenshot-2025-09-14-at-4.45.12AM.png",
+            "alt": "Snapchat Glass Bridge Challenge - Image 3"
+          },
+          {
+            "type": "image",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Endless-Runner-ScreenShot-1.png",
+            "alt": "Snapchat Glass Bridge Challenge - Image 4"
+          },
+          {
+            "type": "image",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/IMG_0032.png",
+            "alt": "Snapchat Glass Bridge Challenge - Image 5"
+          },
+          {
+            "type": "video",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/BC54AFF4-0C04-480A-A021-F3FC0082DFAA.mov",
+            "alt": "Snapchat Glass Bridge Challenge - Video"
+          },
+          {
+            "type": "video",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/EFE6D552-A72D-49E9-B2E7-DA43E44BD565.mov",
+            "alt": "Snapchat Glass Bridge Challenge - Video"
+          },
+          {
+            "type": "video",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/F44306D6-F664-43DD-BB04-8745FDA010CB.mov",
+            "alt": "Snapchat Glass Bridge Challenge - Video"
+          },
+          {
+            "type": "video",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/A6FE8EE9-0740-413C-B9E2-51A18D93DA25.mov",
+            "alt": "Snapchat Glass Bridge Challenge - Video"
+          },
+          {
+            "type": "video",
+            "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/F44306D6-F664-43DD-BB04-8745FDA010CB-1.mov",
+            "alt": "Snapchat Glass Bridge Challenge - Video"
+          }
+        ],
+        "links": [],
+        "isFeatured": true,
+        "section": "Current Projects",
+        "thumbnail": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Copy-of-Snapchat-Project-1.jpg"
+      }
+    },
+    {
       "savedAt": "2026-02-27T13:07:12.981Z",
       "snapshot": {
         "id": "26",

@@ -6,7 +6,7 @@ const os = require('os');
 const path = require('path');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.ADMIN_PORT || 3002;
 const MAX_HISTORY = 20;
 
 const DATA_FILE = path.join(__dirname, '../config/data.json');
@@ -19,9 +19,15 @@ if (!fs.existsSync(ASSETS_DIR)) {
   fs.mkdirSync(ASSETS_DIR, { recursive: true });
 }
 
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:5173'] }));
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'] }));
 app.use(express.json({ limit: '10mb' }));
 app.use('/assets', express.static(ASSETS_DIR));
+
+// Log port for debugging
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  next();
+});
 
 // Multer config for image uploads
 const storage = multer.diskStorage({

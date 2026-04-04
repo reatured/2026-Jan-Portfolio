@@ -21,6 +21,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@types": [
+        "./src/features/common/types/types"
       ]
     },
     "allowImportingTsExtensions": true,
