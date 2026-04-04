@@ -8,16 +8,17 @@ interface MediaProps {
   className?: string;
   priority?: boolean;
   frameSx?: SxProps<Theme>;
+  autoPlayVideo?: boolean;
 }
 
-export const Media: React.FC<MediaProps> = ({ item, className = "", frameSx }) => {
+export const Media: React.FC<MediaProps> = ({ item, className = "", frameSx, autoPlayVideo }) => {
   const frameClassName = `project-media-frame ${item.layout ? `project-media-${item.layout}` : ''} ${className}`.trim();
   const visualClassName = 'project-media-visual';
   const frameStyles = {
     position: 'relative',
     overflow: 'hidden',
     bgcolor: 'secondaryContainer',
-    borderRadius: '20px',
+    borderRadius: '6px',
     boxShadow: '0 18px 40px rgba(0, 0, 0, 0.22)',
     border: '1px solid rgba(255, 255, 255, 0.08)',
     transform: 'translateZ(0)',
@@ -61,7 +62,11 @@ export const Media: React.FC<MediaProps> = ({ item, className = "", frameSx }) =
           className={visualClassName}
           src={item.src}
           poster={item.poster}
-          controls
+          controls={!autoPlayVideo}
+          autoPlay={autoPlayVideo}
+          loop={autoPlayVideo}
+          muted={autoPlayVideo}
+          playsInline
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
       </Box>

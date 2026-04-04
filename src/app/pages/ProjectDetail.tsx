@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import type { Project } from '@types';
 import { Head, generateJsonLd } from '../../infrastructure/lib/seo';
 import { Media } from '../../features/projects/components/Media';
@@ -63,7 +63,7 @@ const MetaLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </Typography>
 );
 
-const InfoPanel: React.FC<{ project: Project }> = ({ project }) => {
+const InfoPanel: React.FC<{ project: Project; onOpenModal: (index: number) => void }> = ({ project, onOpenModal }) => {
   const stackItems = getStackItems(project);
 
   return (
@@ -163,38 +163,67 @@ const InfoPanel: React.FC<{ project: Project }> = ({ project }) => {
         <MetaCard>
           <MetaLabel>Links</MetaLabel>
           <Stack spacing={0.5}>
-            {project.links.map((link) => (
-              <Box
-                key={link.url}
-                component="a"
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  py: 0.75,
-                  px: 1,
-                  textDecoration: 'none',
-                  color: M3.onSurface,
-                  borderRadius: '10px',
-                  transition: 'all 0.2s var(--easing-emphasized)',
-                  '&:hover': { color: M3.primary, bgcolor: M3.surfaceContainerHigh },
-                }}
-              >
-                <Typography
+            {project.links.map((link, index) => {
+              const modalItems = project.mediaGallery.filter(item => item.presentation === 'modal');
+              const liveSimulationIndex = modalItems.findIndex(item => item.label === 'Live Interaction');
+              const youtubeDemoIndex = modalItems.findIndex(item => item.label === 'YouTube Demo');
+              
+              let isModalLink = false;
+              let modalIndex = 0;
+              
+              if (/live|simulation/i.test(link.label) && liveSimulationIndex !== -1) {
+                isModalLink = true;
+                modalIndex = liveSimulationIndex;
+              } else if (/youtube|demo/i.test(link.label) && youtubeDemoIndex !== -1) {
+                isModalLink = true;
+                modalIndex = youtubeDemoIndex;
+              }
+              
+              return (
+                <Box
+                  key={link.url}
+                  component={isModalLink ? "button" : "a"}
+                  {...(!isModalLink && {
+                    href: link.url,
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  })}
+                  onClick={isModalLink ? () => onOpenModal(modalIndex) : undefined}
                   sx={{
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    fontFamily: '"Space Grotesk", sans-serif',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    py: 0.75,
+                    px: 1,
+                    textDecoration: 'none',
+                    color: M3.onSurface,
+                    borderRadius: '10px',
+                    transition: 'all 0.2s var(--easing-emphasized)',
+                    cursor: 'pointer',
+                    background: 'none',
+                    border: 'none',
+                    width: '100%',
+                    textAlign: 'left',
+                    '&:hover': { color: M3.primary, bgcolor: M3.surfaceContainerHigh },
                   }}
                 >
-                  {link.label}
-                </Typography>
-                <OpenInNewIcon sx={{ fontSize: '0.8rem', color: 'inherit' }} />
-              </Box>
-            ))}
+                  <Typography
+                    sx={{
+                      fontSize: '0.875rem',
+                      fontWeight: 500,
+                      fontFamily: '"Space Grotesk", sans-serif',
+                    }}
+                  >
+                    {link.label}
+                  </Typography>
+                  {isModalLink ? (
+                    <PlayArrowRoundedIcon sx={{ fontSize: '0.8rem', color: 'inherit' }} />
+                  ) : (
+                    <OpenInNewIcon sx={{ fontSize: '0.8rem', color: 'inherit' }} />
+                  )}
+                </Box>
+              );
+            })}
           </Stack>
         </MetaCard>
       )}
@@ -203,35 +232,27 @@ const InfoPanel: React.FC<{ project: Project }> = ({ project }) => {
 };
 
 const FactChip: React.FC<{ label: string; value: string }> = ({ label, value }) => (
-  <Box
-    sx={{
-      minWidth: 0,
-      borderRadius: '18px',
-      border: `1px solid ${M3.outlineVariant}55`,
-      bgcolor: `${M3.surfaceContainerLow}CC`,
-      px: 1.5,
-      py: 1.25,
-      backdropFilter: 'blur(14px)',
-    }}
-  >
+  <Box component="span" sx={{ display: 'inline-flex', alignItems: 'baseline', gap: 0.5 }}>
     <Typography
+      component="span"
       sx={{
-        fontSize: '0.62rem',
+        fontSize: '0.6rem',
         fontWeight: 700,
         textTransform: 'uppercase',
-        letterSpacing: '0.14em',
+        letterSpacing: '0.12em',
         color: M3.onSurfaceVariant,
-        mb: 0.55,
         fontFamily: '"Space Grotesk", sans-serif',
+        opacity: 0.7,
       }}
     >
       {label}
     </Typography>
     <Typography
+      component="span"
       sx={{
-        fontSize: '0.95rem',
+        fontSize: '0.8rem',
+        fontWeight: 500,
         color: M3.onSurface,
-        lineHeight: 1.4,
         fontFamily: '"Space Grotesk", sans-serif',
       }}
     >
@@ -242,8 +263,10 @@ const FactChip: React.FC<{ label: string; value: string }> = ({ label, value }) 
 
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const { data: project, isLoading, error } = useProject(slug || '');
   const [activeModalMediaIndex, setActiveModalMediaIndex] = useState<number | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (isLoading) {
     return (
@@ -297,8 +320,10 @@ export const ProjectDetail: React.FC = () => {
 
       {/* Back */}
       <Button
-        href="/"
-        component="a"
+        onClick={() => {
+          const savedUrl = sessionStorage.getItem('homepageUrl') || '/';
+          navigate(savedUrl);
+        }}
         startIcon={<ArrowBackIcon sx={{ fontSize: '0.8rem !important' }} />}
         size="small"
         sx={{
@@ -386,29 +411,78 @@ export const ProjectDetail: React.FC = () => {
                 lineHeight: 1.75,
                 maxWidth: '60ch',
                 fontFamily: '"Space Grotesk", sans-serif',
-                mb: 3,
+                mb: 2.5,
               }}
             >
               {project.shortSubtitle || project.summary}
             </Typography>
 
+            {/* Interactive Demo Buttons */}
+            {modalGalleryItems.length > 0 && (
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.25} sx={{ mb: 3 }}>
+                <Button
+                  variant="contained"
+                  startIcon={<PlayArrowRoundedIcon />}
+                  onClick={() => setActiveModalMediaIndex(0)}
+                  sx={{ alignSelf: { xs: 'stretch', sm: 'flex-start' }, px: 2.5, py: 1.2 }}
+                >
+                  Launch Interaction
+                </Button>
+                {liveInteractionLink && (
+                  <Button
+                    component="a"
+                    href={liveInteractionLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    endIcon={<OpenInNewIcon />}
+                    sx={{
+                      alignSelf: { xs: 'stretch', sm: 'flex-start' },
+                      px: 2.25,
+                      py: 1.2,
+                      borderColor: `${M3.outlineVariant}CC`,
+                      color: M3.onSurface,
+                    }}
+                  >
+                    Open in New Tab
+                  </Button>
+                )}
+              </Stack>
+            )}
+
             <Box
               sx={{
-                display: 'grid',
-                gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(4, minmax(0, 1fr))' },
-                gap: 1.25,
-                maxWidth: 860,
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: 0,
+                rowGap: 0.5,
               }}
             >
-              {project.year && <FactChip label="Year" value={project.year} />}
-              {project.status && <FactChip label="Status" value={project.status} />}
-              {project.rolesOrSkills.length > 0 && (
-                <FactChip label="Role" value={project.rolesOrSkills.slice(0, 2).join(' / ')} />
-              )}
-              <FactChip
-                label="Stack"
-                value={stackItems.length > 0 ? stackItems.slice(0, 3).join(' / ') : 'Project build'}
-              />
+              {[
+                project.year ? { label: 'Year', value: project.year } : null,
+                project.status ? { label: 'Status', value: project.status } : null,
+                project.rolesOrSkills.length > 0 ? { label: 'Role', value: project.rolesOrSkills.slice(0, 2).join(' / ') } : null,
+                stackItems.length > 0 ? { label: 'Stack', value: stackItems.slice(0, 3).join(' / ') } : null,
+              ].filter(Boolean).map((item, idx, arr) => (
+                <React.Fragment key={item!.label}>
+                  <FactChip label={item!.label} value={item!.value} />
+                  {idx < arr.length - 1 && (
+                    <Typography
+                      component="span"
+                      sx={{
+                        mx: 1,
+                        color: M3.outlineVariant,
+                        fontSize: '0.65rem',
+                        lineHeight: 1,
+                        userSelect: 'none',
+                      }}
+                    >
+                      ·
+                    </Typography>
+                  )}
+                </React.Fragment>
+              ))}
             </Box>
           </Box>
 
@@ -447,298 +521,158 @@ export const ProjectDetail: React.FC = () => {
         />
       </Box>
 
-      {modalGalleryItems.length > 0 && (
-        <Box
-          component="section"
-          sx={{
-            position: 'relative',
-            mt: { xs: 4, lg: 5 },
-            mb: { xs: 5, lg: 6 },
-            px: { xs: 0, md: 0 },
-            py: 0,
-          }}
-        >
-          <Box
-            sx={{
-              position: 'relative',
-              overflow: 'hidden',
-              borderRadius: { xs: '26px', md: '32px' },
-              border: `1px solid ${M3.outlineVariant}50`,
-              background: `
-                radial-gradient(circle at top right, ${M3.primaryContainer}52 0%, transparent 30%),
-                radial-gradient(circle at bottom left, ${M3.tertiaryContainer}40 0%, transparent 28%),
-                linear-gradient(180deg, ${M3.surfaceContainerLow}F2 0%, ${M3.surfaceContainer}F4 100%)
-              `,
-              boxShadow: '0 28px 70px rgba(0, 0, 0, 0.22)',
-              p: { xs: 2.25, md: 3, lg: 3.5 },
-            }}
-          >
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { xs: '1fr', lg: 'minmax(0, 1.1fr) minmax(320px, 0.9fr)' },
-                gap: { xs: 2.5, lg: 3.5 },
-                alignItems: 'stretch',
-              }}
-            >
-              <Box>
-                <Typography
-                  sx={{
-                    fontSize: '0.65rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.14em',
-                    color: M3.primary,
-                    mb: 0.75,
-                    fontFamily: '"Space Grotesk", sans-serif',
-                  }}
-                >
-                  {modalGalleryItems[0]?.label || 'Interactive Demo'}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: '"Instrument Serif", Georgia, serif',
-                    fontSize: { xs: '2rem', md: '2.6rem' },
-                    lineHeight: 1.02,
-                    color: M3.onSurface,
-                    maxWidth: '14ch',
-                    mb: 1.25,
-                  }}
-                >
-                  Open the live simulation in a near-fullscreen workspace.
-                </Typography>
-                <Typography
-                  sx={{
-                    maxWidth: '58ch',
-                    fontSize: '0.98rem',
-                    lineHeight: 1.8,
-                    color: M3.onSurfaceVariant,
-                    fontFamily: '"Space Grotesk", sans-serif',
-                    mb: 2.5,
-                  }}
-                >
-                  Keep the case study clean in-page, then launch the interactive prototype when you
-                  actually want room to explore it. This avoids crushing the article layout while
-                  still giving the simulation the space it needs.
-                </Typography>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.25}>
-                  <Button
-                    variant="contained"
-                    startIcon={<PlayArrowRoundedIcon />}
-                    onClick={() => setActiveModalMediaIndex(0)}
-                    sx={{ alignSelf: { xs: 'stretch', sm: 'flex-start' }, px: 2.5, py: 1.2 }}
-                  >
-                    Launch Interaction
-                  </Button>
-                  {liveInteractionLink && (
-                    <Button
-                      component="a"
-                      href={liveInteractionLink.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      variant="outlined"
-                      endIcon={<OpenInNewIcon />}
-                      sx={{
-                        alignSelf: { xs: 'stretch', sm: 'flex-start' },
-                        px: 2.25,
-                        py: 1.2,
-                        borderColor: `${M3.outlineVariant}CC`,
-                        color: M3.onSurface,
-                      }}
-                    >
-                      Open in New Tab
-                    </Button>
-                  )}
-                </Stack>
-              </Box>
-
-              <Box
-                sx={{
-                  position: 'relative',
-                  minHeight: { xs: 240, md: 320 },
-                  borderRadius: { xs: '22px', md: '28px' },
-                  overflow: 'hidden',
-                  border: `1px solid ${M3.outlineVariant}45`,
-                  boxShadow: '0 24px 60px rgba(0, 0, 0, 0.24)',
-                  background: `
-                    linear-gradient(180deg, rgba(12, 10, 20, 0.2) 0%, rgba(12, 10, 20, 0.72) 100%),
-                    radial-gradient(circle at top right, ${M3.primaryContainer}80 0%, transparent 42%),
-                    linear-gradient(135deg, ${M3.surfaceContainerHighest} 0%, ${M3.surfaceContainerLow} 100%)
-                  `,
-                }}
-              >
-                <Box
-                  aria-hidden
-                  sx={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: `
-                      linear-gradient(0deg, rgba(12, 10, 20, 0.82), rgba(12, 10, 20, 0.18)),
-                      radial-gradient(circle at 20% 20%, rgba(208, 188, 255, 0.2), transparent 30%)
-                    `,
-                  }}
-                />
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    inset: { xs: 'auto 18px 18px 18px', md: 'auto 24px 24px 24px' },
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 1,
-                    zIndex: 1,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.14em',
-                      textTransform: 'uppercase',
-                      color: M3.primary,
-                      fontFamily: '"Space Grotesk", sans-serif',
-                    }}
-                  >
-                    Interactive Preview
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: { xs: '1.2rem', md: '1.45rem' },
-                      color: M3.onSurface,
-                      fontFamily: '"Space Grotesk", sans-serif',
-                      fontWeight: 600,
-                      maxWidth: '18ch',
-                    }}
-                  >
-                    Camera-enabled robotic hand teleoperation in the browser.
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: { xs: 18, md: 24 },
-                    right: { xs: 18, md: 24 },
-                    zIndex: 1,
-                    width: { xs: 58, md: 72 },
-                    height: { xs: 58, md: 72 },
-                    borderRadius: '999px',
-                    display: 'grid',
-                    placeItems: 'center',
-                    bgcolor: 'rgba(12, 10, 20, 0.65)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    boxShadow: '0 14px 28px rgba(0, 0, 0, 0.28)',
-                    backdropFilter: 'blur(18px)',
-                  }}
-                >
-                  <PlayArrowRoundedIcon sx={{ fontSize: { xs: 28, md: 34 }, color: M3.onSurface }} />
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      )}
-
       {highlightGalleryItems.length > 0 && (
         <Box
           component="section"
           sx={{
             mt: { xs: 4, lg: 5 },
             mb: { xs: 5, lg: 6 },
-            borderRadius: { xs: '24px', md: '30px' },
-            border: `1px solid ${M3.outlineVariant}45`,
-            bgcolor: `${M3.surfaceContainerLow}B8`,
-            p: { xs: 2.25, md: 3, lg: 3.5 },
-            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.18)',
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              justifyContent: 'space-between',
-              gap: 2,
-              mb: 2.5,
-            }}
-          >
-            <Box>
-              <Typography
-                sx={{
-                  fontSize: '0.65rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.14em',
-                  color: M3.primary,
-                  mb: 0.75,
-                  fontFamily: '"Space Grotesk", sans-serif',
-                }}
-              >
-                Visual Highlights
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: '"Instrument Serif", Georgia, serif',
-                  fontSize: { xs: '1.9rem', md: '2.5rem' },
-                  lineHeight: 1.04,
-                  color: M3.onSurface,
-                }}
-              >
-                A quicker visual read before the full case study.
-              </Typography>
-            </Box>
+          <Box sx={{ mb: 2.5, px: { xs: 0.5, md: 0 } }}>
             <Typography
               sx={{
-                maxWidth: 420,
-                fontSize: '0.95rem',
-                lineHeight: 1.75,
-                color: M3.onSurfaceVariant,
+                fontSize: '0.65rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.14em',
+                color: M3.primary,
+                mb: 0.75,
                 fontFamily: '"Space Grotesk", sans-serif',
               }}
             >
-              Gallery-heavy projects get a dedicated visual lead-in so the page does not bury the
-              strongest work under a long article.
+              Visual Highlights
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: '"Instrument Serif", Georgia, serif',
+                fontSize: { xs: '1.9rem', md: '2.5rem' },
+                lineHeight: 1.04,
+                color: M3.onSurface,
+              }}
+            >
+              A quicker visual read before the full case study.
             </Typography>
           </Box>
 
           <Box
             sx={{
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: '1.2fr 0.8fr', xl: '1.3fr 0.7fr' },
+              display: 'flex',
               gap: 1.5,
+              overflowX: 'auto',
+              pb: 2,
+              scrollSnapType: 'x mandatory',
+              WebkitOverflowScrolling: 'touch',
+              '&::-webkit-scrollbar': { height: 6 },
+              '&::-webkit-scrollbar-track': { background: 'transparent' },
+              '&::-webkit-scrollbar-thumb': {
+                background: `${M3.outlineVariant}80`,
+                borderRadius: 3,
+              },
             }}
           >
-            <Box
-              sx={{
-                minWidth: 0,
-                borderRadius: { xs: '22px', md: '28px' },
-                overflow: 'hidden',
-                bgcolor: M3.surfaceContainerHighest,
-              }}
-            >
-              <Media item={highlightGalleryItems[0]} className="w-full" />
-            </Box>
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr' },
-                gap: 1.5,
-              }}
-            >
-              {highlightGalleryItems.slice(1).map((media, idx) => (
-                <Box
-                  key={`${media.src}-${idx}`}
-                  sx={{
-                    minWidth: 0,
-                    borderRadius: '22px',
-                    overflow: 'hidden',
-                    bgcolor: M3.surfaceContainerHighest,
-                  }}
-                >
-                  <Media item={media} className="w-full" />
-                </Box>
-              ))}
-            </Box>
+            {highlightGalleryItems.map((media, idx) => (
+              <Box
+                key={`highlight-${media.src}-${idx}`}
+                onClick={() => media.type !== 'video' && setLightboxIndex(idx)}
+                sx={{
+                  flexShrink: 0,
+                  width: media.type === 'video'
+                    ? { xs: '80%', sm: '65%', md: '50%', lg: '42%' }
+                    : { xs: '72%', sm: '55%', md: '40%', lg: '34%' },
+                  scrollSnapAlign: 'start',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  bgcolor: M3.surfaceContainerHighest,
+                  cursor: media.type !== 'video' ? 'pointer' : 'default',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  '&:hover': media.type !== 'video' ? {
+                    transform: 'scale(1.02)',
+                    boxShadow: `0 12px 40px rgba(0,0,0,0.35)`,
+                  } : {},
+                }}
+              >
+                <Media item={media} className="w-full" autoPlayVideo />
+              </Box>
+            ))}
           </Box>
         </Box>
       )}
+
+      {/* Lightbox modal for highlight gallery images */}
+      <Dialog
+        open={lightboxIndex !== null}
+        onClose={() => setLightboxIndex(null)}
+        fullWidth
+        maxWidth={false}
+        PaperProps={{
+          sx: {
+            width: 'min(95vw, 1400px)',
+            height: 'min(90vh, 900px)',
+            maxWidth: 'none',
+            m: 0,
+            borderRadius: { xs: '16px', md: '24px' },
+            overflow: 'hidden',
+            bgcolor: M3.surfaceContainerLowest,
+            border: `1px solid ${M3.outlineVariant}44`,
+            boxShadow: '0 32px 120px rgba(0, 0, 0, 0.6)',
+            display: 'flex',
+            flexDirection: 'column',
+          },
+        }}
+        slotProps={{
+          backdrop: {
+            sx: {
+              backdropFilter: 'blur(12px)',
+              backgroundColor: 'rgba(3, 3, 7, 0.8)',
+            },
+          },
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2.5, py: 1.5, borderBottom: `1px solid ${M3.outlineVariant}44` }}>
+          <Typography sx={{ fontSize: '0.8rem', color: M3.onSurfaceVariant, fontFamily: '"Space Grotesk", sans-serif' }}>
+            {lightboxIndex !== null ? `${lightboxIndex + 1} / ${highlightGalleryItems.length}` : ''}
+          </Typography>
+          <IconButton onClick={() => setLightboxIndex(null)} sx={{ color: M3.onSurface }}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 2, minHeight: 0 }}>
+          {lightboxIndex !== null && highlightGalleryItems[lightboxIndex] && (
+            <Box
+              component="img"
+              src={highlightGalleryItems[lightboxIndex].src}
+              alt={highlightGalleryItems[lightboxIndex].alt || ''}
+              sx={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: '12px',
+              }}
+            />
+          )}
+        </Box>
+        {highlightGalleryItems.length > 1 && lightboxIndex !== null && (
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, px: 2.5, py: 1.5, borderTop: `1px solid ${M3.outlineVariant}44` }}>
+            <Button
+              onClick={() => setLightboxIndex((prev) => prev !== null ? Math.max(0, prev - 1) : null)}
+              disabled={lightboxIndex === 0}
+              size="small"
+              sx={{ minWidth: 'auto', color: M3.onSurface }}
+            >
+              Previous
+            </Button>
+            <Button
+              onClick={() => setLightboxIndex((prev) => prev !== null ? Math.min(highlightGalleryItems.length - 1, prev + 1) : null)}
+              disabled={lightboxIndex === highlightGalleryItems.length - 1}
+              size="small"
+              sx={{ minWidth: 'auto', color: M3.onSurface }}
+            >
+              Next
+            </Button>
+          </Box>
+        )}
+      </Dialog>
 
       <Box
         sx={{
@@ -800,32 +734,41 @@ export const ProjectDetail: React.FC = () => {
                   },
                   '& section': {
                     display: 'grid',
-                    gap: 1.1,
+                    gap: 0.5,
                   },
                   '& section + section': {
-                    mt: { xs: 4, md: 5 },
-                    pt: { xs: 3, md: 4 },
+                    mt: { xs: 2.5, md: 3 },
+                    pt: { xs: 2, md: 2.5 },
                     borderTop: `1px solid ${M3.outlineVariant}55`,
                   },
                   '& h2:first-of-type': {
                     mt: 0,
                   },
                   '& h2': {
-                    fontSize: { xs: '1.6rem', md: '2rem' },
+                    fontSize: { xs: '1.4rem', md: '1.7rem' },
+                    m: 0,
+                    mb: 0.25,
                   },
                   '& h3': {
-                    fontSize: { xs: '1.18rem', md: '1.4rem' },
+                    fontSize: { xs: '1.08rem', md: '1.25rem' },
                     color: M3.onSurface,
+                    m: 0,
+                    mt: 0.5,
                   },
                   '& p': {
-                    fontSize: { xs: '0.98rem', md: '1.02rem' },
-                    lineHeight: 1.9,
+                    fontSize: { xs: '0.95rem', md: '1rem' },
+                    lineHeight: 1.6,
                     color: M3.onSurfaceVariant,
+                    m: 0,
                   },
                   '& ul, & ol': {
                     display: 'grid',
-                    gap: 0.8,
+                    gap: 0.25,
                     pl: 2.2,
+                    m: 0,
+                  },
+                  '& li': {
+                    lineHeight: 1.5,
                   },
                   '& li::marker': {
                     color: M3.primary,
@@ -855,11 +798,11 @@ export const ProjectDetail: React.FC = () => {
                   '& .project-fact-grid': {
                     display: 'grid',
                     gridTemplateColumns: { xs: '1fr', md: 'repeat(3, minmax(0, 1fr))' },
-                    gap: 1.25,
-                    my: 2,
+                    gap: 0.75,
+                    my: 1,
                   },
                   '& .project-fact': {
-                    p: 1.5,
+                    p: 1.25,
                     borderRadius: '18px',
                     border: `1px solid ${M3.outlineVariant}40`,
                     bgcolor: `${M3.surfaceContainer}CC`,
@@ -871,6 +814,46 @@ export const ProjectDetail: React.FC = () => {
                     letterSpacing: '0.12em',
                     color: M3.onSurfaceVariant,
                     mb: 0.5,
+                  },
+                  '& .data-table': {
+                    width: 'auto',
+                    minWidth: '260px',
+                    borderCollapse: 'collapse',
+                    fontSize: '0.8rem',
+                    fontFamily: '"Space Grotesk", sans-serif',
+                    my: 0.5,
+                  },
+                  '& .data-table th': {
+                    fontSize: '0.6rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: M3.onSurfaceVariant,
+                    px: 1.5,
+                    py: 0.75,
+                    textAlign: 'left',
+                    borderBottom: `1px solid ${M3.outlineVariant}55`,
+                  },
+                  '& .data-table td': {
+                    px: 1.5,
+                    py: 0.5,
+                    color: M3.onSurface,
+                    whiteSpace: 'nowrap',
+                    borderBottom: `1px solid ${M3.outlineVariant}22`,
+                  },
+                  '& .data-table td:nth-of-type(2)': {
+                    fontVariantNumeric: 'tabular-nums',
+                    fontWeight: 600,
+                    color: M3.primary,
+                    fontFamily: '"Space Grotesk", monospace',
+                  },
+                  '& .data-table td:nth-of-type(3)': {
+                    fontVariantNumeric: 'tabular-nums',
+                    color: M3.onSurfaceVariant,
+                    fontFamily: '"Space Grotesk", monospace',
+                  },
+                  '& .data-table tbody tr:last-of-type td': {
+                    borderBottom: 'none',
                   },
                 }}
                 dangerouslySetInnerHTML={{ __html: project.content }}
@@ -894,7 +877,7 @@ export const ProjectDetail: React.FC = () => {
               component="section"
               sx={{
                 mt: 4,
-                borderRadius: { xs: '24px', md: '28px' },
+                borderRadius: '14px',
                 border: `1px solid ${M3.outlineVariant}45`,
                 bgcolor: `${M3.surfaceContainerLow}B3`,
                 p: { xs: 2.25, md: 3 },
@@ -915,32 +898,37 @@ export const ProjectDetail: React.FC = () => {
               </Typography>
               <Box
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: isGalleryHeavyProject
-                    ? { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))', xl: 'repeat(3, minmax(0, 1fr))' }
-                    : remainingGalleryItems.length > 1
-                      ? { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))' }
-                      : '1fr',
-                  gap: 2,
+                  columns: { xs: 2, sm: 3 },
+                  columnGap: '10px',
                 }}
               >
                 {remainingGalleryItems.map((media, idx) => (
                   <Box
                     key={`${media.src}-${idx}`}
                     sx={{
-                      borderRadius: '20px',
+                      breakInside: 'avoid',
+                      mb: '10px',
+                      borderRadius: '12px',
                       overflow: 'hidden',
                       bgcolor: M3.surfaceContainerHighest,
-                      display: 'grid',
-                      alignContent: 'start',
                     }}
                   >
-                    <Media item={media} className="w-full" />
+                    <Box
+                      component="img"
+                      src={media.src}
+                      alt={media.alt || 'Project media'}
+                      loading="lazy"
+                      sx={{
+                        width: '100%',
+                        height: 'auto',
+                        display: 'block',
+                      }}
+                    />
                     {media.alt && (
-                      <Box sx={{ p: 1.5 }}>
+                      <Box sx={{ px: 1.5, py: 0.75 }}>
                         <Typography
                           sx={{
-                            fontSize: '0.75rem',
+                            fontSize: '0.65rem',
                             color: M3.onSurfaceVariant,
                             fontFamily: '"Space Grotesk", sans-serif',
                           }}
@@ -963,7 +951,7 @@ export const ProjectDetail: React.FC = () => {
               borderTop: `1px solid ${M3.outlineVariant}`,
             }}
           >
-            <InfoPanel project={project} />
+            <InfoPanel project={project} onOpenModal={setActiveModalMediaIndex} />
           </Box>
         </Box>
 
@@ -974,7 +962,7 @@ export const ProjectDetail: React.FC = () => {
             display: { xs: 'none', lg: 'block' },
           }}
         >
-          <InfoPanel project={project} />
+          <InfoPanel project={project} onOpenModal={setActiveModalMediaIndex} />
         </Box>
       </Box>
 
@@ -1009,7 +997,7 @@ export const ProjectDetail: React.FC = () => {
         }}
       >
         {activeModalMedia && (
-          <Box sx={{ display: 'grid', gridTemplateRows: 'auto 1fr', height: '100%' }}>
+          <Box sx={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '100%' }}>
             <Box
               sx={{
                 display: 'flex',
@@ -1087,6 +1075,42 @@ export const ProjectDetail: React.FC = () => {
                 />
               </Box>
             </Box>
+            {modalGalleryItems.length > 1 && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  px: { xs: 2, md: 3 },
+                  py: { xs: 1.5, md: 2 },
+                  borderTop: `1px solid ${M3.outlineVariant}55`,
+                }}
+              >
+                <Button
+                  onClick={() => setActiveModalMediaIndex((prev) => (prev === null ? null : (prev - 1 + modalGalleryItems.length) % modalGalleryItems.length))}
+                  disabled={activeModalMediaIndex === 0}
+                  sx={{ minWidth: 'auto' }}
+                >
+                  Previous
+                </Button>
+                <Typography
+                  sx={{
+                    fontSize: '0.875rem',
+                    color: M3.onSurfaceVariant,
+                    fontFamily: '"Space Grotesk", sans-serif',
+                  }}
+                >
+                  {activeModalMediaIndex + 1} of {modalGalleryItems.length}
+                </Typography>
+                <Button
+                  onClick={() => setActiveModalMediaIndex((prev) => (prev === null ? null : (prev + 1) % modalGalleryItems.length))}
+                  disabled={activeModalMediaIndex === modalGalleryItems.length - 1}
+                  sx={{ minWidth: 'auto' }}
+                >
+                  Next
+                </Button>
+              </Box>
+            )}
           </Box>
         )}
       </Dialog>

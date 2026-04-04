@@ -102,5 +102,6 @@ export interface Project {
   mediaGallery: MediaItem[];
   links: ProjectLink[];
   isFeatured: boolean;
+  hidden?: boolean;
   section?: 'Current Projects' | 'Most Recent' | 'Archive';
 }

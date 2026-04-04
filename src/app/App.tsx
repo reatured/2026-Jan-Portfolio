@@ -18,9 +18,20 @@ import { Admin } from './pages/Admin';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+
   React.useEffect(() => {
+    // Prevent browser's built-in scroll restoration from interfering
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  React.useEffect(() => {
+    // Don't touch scroll when returning to homepage — Home component handles it
+    if (pathname === '/') return;
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return null;
 };
 
@@ -71,7 +82,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* Desktop sidebar */}
           {isDesktop && <Sidebar />}
 
-          <Box component="main" sx={{ minHeight: '80vh', width: '100%' }}>
+          <Box component="main" sx={{ minHeight: '80vh', width: '100%', minWidth: 0, overflow: 'hidden' }}>
             {children}
 
             <Box

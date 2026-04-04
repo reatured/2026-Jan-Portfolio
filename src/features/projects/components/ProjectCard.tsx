@@ -42,11 +42,18 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         : { type: 'image', src: siteConfig.defaultOgImage, alt: `${project.title} preview` }
       : { type: 'image', src: thumbnailSrc, alt: `${project.title} thumbnail` };
 
+  const handleClick = () => {
+    // Save scroll position and current URL (with filters) before navigating to project
+    sessionStorage.setItem('homepageScrollY', window.scrollY.toString());
+    sessionStorage.setItem('homepageUrl', window.location.pathname + window.location.search);
+  };
+
   return (
     <Box
       component={Link}
       to={`/projects/${project.slug}`}
       aria-label={project.title}
+      onClick={handleClick}
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },

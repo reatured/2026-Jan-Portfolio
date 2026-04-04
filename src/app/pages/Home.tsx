@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Head } from '../../infrastructure/lib/seo';
 import type { Project } from '@types';
@@ -86,6 +86,47 @@ export const Home: React.FC = () => {
   const [searchInput, setSearchInput] = useState(searchQuery);
   const { data: projects = [], isLoading, error } = useProjects();
 
+  // Restore scroll position after projects have loaded
+  useLayoutEffect(() => {
+    if (isLoading) return;
+
+    const savedY = sessionStorage.getItem('homepageScrollY');
+    if (!savedY) return;
+
+    const position = parseInt(savedY, 10);
+    if (position <= 0) {
+      sessionStorage.removeItem('homepageScrollY');
+      return;
+    }
+
+    // Immediate scroll before paint
+    window.scrollTo({ top: position, behavior: 'instant' });
+
+    // Retry via rAF until page is tall enough or timeout
+    let rafId: number;
+    let attempts = 0;
+    const MAX_ATTEMPTS = 120; // ~2s at 60fps
+
+    const tryScroll = () => {
+      window.scrollTo({ top: position, behavior: 'instant' });
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+
+      if (scrollable < position && attempts < MAX_ATTEMPTS) {
+        attempts++;
+        rafId = requestAnimationFrame(tryScroll);
+      } else {
+        sessionStorage.removeItem('homepageScrollY');
+      }
+    };
+
+    rafId = requestAnimationFrame(tryScroll);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      // Don't remove sessionStorage here — StrictMode re-mount needs it
+    };
+  }, [isLoading]);
+
   // Debounced search update
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -109,7 +150,7 @@ export const Home: React.FC = () => {
   }, [searchQuery]);
 
   const filteredProjects = useMemo(() => {
-    let filtered = projects;
+    let filtered = projects.filter(p => !p.hidden);
 
     // Filter by category
     if (currentCategory) {
