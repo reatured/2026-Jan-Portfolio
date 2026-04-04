@@ -19,6 +19,17 @@ export default defineConfig(({ mode }) => {
           '@': path.resolve(__dirname, './src'),
           '@shared': path.resolve(__dirname, './packages/shared/src'),
         }
-      }
+      },
+      build: {
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+              'vendor-mui': ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+              'vendor-query': ['@tanstack/react-query'],
+            },
+          },
+        },
+      },
     };
 });

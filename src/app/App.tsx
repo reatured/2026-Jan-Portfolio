@@ -12,9 +12,9 @@ import { queryClient } from '../infrastructure/state/queryClient';
 import { Sidebar } from '../features/common/layout/Sidebar';
 import { MobileAppBar } from '../features/common/layout/MobileAppBar';
 import { MobileDrawer } from '../features/common/layout/MobileDrawer';
-import { Home } from './pages/Home';
-import { ProjectDetail } from './pages/ProjectDetail';
-import { Admin } from './pages/Admin';
+const Home = React.lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
+const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail').then(m => ({ default: m.ProjectDetail })));
+const Admin = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.Admin })));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -116,41 +116,43 @@ const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <Router>
         <ScrollToTop />
-        <Routes>
-          {/* Redirect /dashboard to /admin */}
-          <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
-          
-          {/* Admin — dark theme, no sidebar */}
-          <Route
-            path="/admin"
-            element={
-              <ThemeProvider theme={adminTheme}>
-                <CssBaseline />
-                <Admin />
-              </ThemeProvider>
-            }
-          />
+        <React.Suspense fallback={null}>
+          <Routes>
+            {/* Redirect /dashboard to /admin */}
+            <Route path="/dashboard" element={<Navigate to="/admin" replace />} />
 
-          {/* Public portfolio — light theme */}
-          <Route
-            path="/"
-            element={
-              <ThemeProvider theme={portfolioTheme}>
-                <CssBaseline />
-                <Layout><Home /></Layout>
-              </ThemeProvider>
-            }
-          />
-          <Route
-            path="/projects/:slug"
-            element={
-              <ThemeProvider theme={portfolioTheme}>
-                <CssBaseline />
-                <Layout><ProjectDetail /></Layout>
-              </ThemeProvider>
-            }
-          />
-        </Routes>
+            {/* Admin — dark theme, no sidebar */}
+            <Route
+              path="/admin"
+              element={
+                <ThemeProvider theme={adminTheme}>
+                  <CssBaseline />
+                  <Admin />
+                </ThemeProvider>
+              }
+            />
+
+            {/* Public portfolio — light theme */}
+            <Route
+              path="/"
+              element={
+                <ThemeProvider theme={portfolioTheme}>
+                  <CssBaseline />
+                  <Layout><Home /></Layout>
+                </ThemeProvider>
+              }
+            />
+            <Route
+              path="/projects/:slug"
+              element={
+                <ThemeProvider theme={portfolioTheme}>
+                  <CssBaseline />
+                  <Layout><ProjectDetail /></Layout>
+                </ThemeProvider>
+              }
+            />
+          </Routes>
+        </React.Suspense>
       </Router>
       <Analytics />
     </QueryClientProvider>
