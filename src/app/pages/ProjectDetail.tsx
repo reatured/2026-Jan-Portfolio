@@ -297,6 +297,8 @@ export const ProjectDetail: React.FC = () => {
   const highlightGalleryItems = isGalleryHeavyProject ? galleryItems.slice(0, 4) : [];
   const remainingGalleryItems = isGalleryHeavyProject ? galleryItems.slice(4) : galleryItems;
   const activeModalMedia = activeModalMediaIndex !== null ? modalGalleryItems[activeModalMediaIndex] : null;
+  // All image items across both gallery sections, for lightbox navigation
+  const lightboxItems = galleryItems.filter(m => m.type === 'image');
   const liveInteractionLink = project.links.find(link => /live|play|try|demo/i.test(link.label));
 
   return (
@@ -571,10 +573,13 @@ export const ProjectDetail: React.FC = () => {
               },
             }}
           >
-            {highlightGalleryItems.map((media, idx) => (
+            {highlightGalleryItems.map((media, idx) => {
+              const lbIdx = lightboxItems.indexOf(media);
+              const isClickable = lbIdx !== -1;
+              return (
               <Box
                 key={`highlight-${media.src}-${idx}`}
-                onClick={() => media.type !== 'video' && setLightboxIndex(idx)}
+                onClick={() => isClickable && setLightboxIndex(lbIdx)}
                 sx={{
                   flexShrink: 0,
                   width: media.type === 'video'
@@ -584,9 +589,9 @@ export const ProjectDetail: React.FC = () => {
                   borderRadius: '12px',
                   overflow: 'hidden',
                   bgcolor: M3.surfaceContainerHighest,
-                  cursor: media.type !== 'video' ? 'pointer' : 'default',
+                  cursor: isClickable ? 'zoom-in' : 'default',
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                  '&:hover': media.type !== 'video' ? {
+                  '&:hover': isClickable ? {
                     transform: 'scale(1.02)',
                     boxShadow: `0 12px 40px rgba(0,0,0,0.35)`,
                   } : {},
@@ -594,12 +599,13 @@ export const ProjectDetail: React.FC = () => {
               >
                 <Media item={media} className="w-full" autoPlayVideo />
               </Box>
-            ))}
+              );
+            })}
           </Box>
         </Box>
       )}
 
-      {/* Lightbox modal for highlight gallery images */}
+      {/* Lightbox modal for gallery images */}
       <Dialog
         open={lightboxIndex !== null}
         onClose={() => setLightboxIndex(null)}
@@ -631,18 +637,18 @@ export const ProjectDetail: React.FC = () => {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2.5, py: 1.5, borderBottom: `1px solid ${M3.outlineVariant}44` }}>
           <Typography sx={{ fontSize: '0.8rem', color: M3.onSurfaceVariant, fontFamily: '"Space Grotesk", sans-serif' }}>
-            {lightboxIndex !== null ? `${lightboxIndex + 1} / ${highlightGalleryItems.length}` : ''}
+            {lightboxIndex !== null ? `${lightboxIndex + 1} / ${lightboxItems.length}` : ''}
           </Typography>
           <IconButton onClick={() => setLightboxIndex(null)} sx={{ color: M3.onSurface }}>
             <CloseIcon />
           </IconButton>
         </Box>
         <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 2, minHeight: 0 }}>
-          {lightboxIndex !== null && highlightGalleryItems[lightboxIndex] && (
+          {lightboxIndex !== null && lightboxItems[lightboxIndex] && (
             <Box
               component="img"
-              src={highlightGalleryItems[lightboxIndex].src}
-              alt={highlightGalleryItems[lightboxIndex].alt || ''}
+              src={lightboxItems[lightboxIndex].src}
+              alt={lightboxItems[lightboxIndex].alt || ''}
               sx={{
                 maxWidth: '100%',
                 maxHeight: '100%',
@@ -652,7 +658,7 @@ export const ProjectDetail: React.FC = () => {
             />
           )}
         </Box>
-        {highlightGalleryItems.length > 1 && lightboxIndex !== null && (
+        {lightboxItems.length > 1 && lightboxIndex !== null && (
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, px: 2.5, py: 1.5, borderTop: `1px solid ${M3.outlineVariant}44` }}>
             <Button
               onClick={() => setLightboxIndex((prev) => prev !== null ? Math.max(0, prev - 1) : null)}
@@ -663,8 +669,8 @@ export const ProjectDetail: React.FC = () => {
               Previous
             </Button>
             <Button
-              onClick={() => setLightboxIndex((prev) => prev !== null ? Math.min(highlightGalleryItems.length - 1, prev + 1) : null)}
-              disabled={lightboxIndex === highlightGalleryItems.length - 1}
+              onClick={() => setLightboxIndex((prev) => prev !== null ? Math.min(lightboxItems.length - 1, prev + 1) : null)}
+              disabled={lightboxIndex === lightboxItems.length - 1}
               size="small"
               sx={{ minWidth: 'auto', color: M3.onSurface }}
             >
@@ -902,15 +908,25 @@ export const ProjectDetail: React.FC = () => {
                   columnGap: '10px',
                 }}
               >
-                {remainingGalleryItems.map((media, idx) => (
+                {remainingGalleryItems.map((media, idx) => {
+                  const lbIdx = lightboxItems.indexOf(media);
+                  const isClickable = lbIdx !== -1;
+                  return (
                   <Box
                     key={`${media.src}-${idx}`}
+                    onClick={() => isClickable && setLightboxIndex(lbIdx)}
                     sx={{
                       breakInside: 'avoid',
                       mb: '10px',
                       borderRadius: '12px',
                       overflow: 'hidden',
                       bgcolor: M3.surfaceContainerHighest,
+                      cursor: isClickable ? 'zoom-in' : 'default',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      '&:hover': isClickable ? {
+                        transform: 'scale(1.015)',
+                        boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
+                      } : {},
                     }}
                   >
                     <Box
@@ -938,7 +954,8 @@ export const ProjectDetail: React.FC = () => {
                       </Box>
                     )}
                   </Box>
-                ))}
+                  );
+                })}
               </Box>
             </Box>
           )}
