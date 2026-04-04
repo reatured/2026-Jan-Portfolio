@@ -54,7 +54,16 @@ export class ApiClient {
 
   // Data endpoints
   async getData(): Promise<{ projects: Project[]; site: SiteConfig }> {
-    return this.request('/api/data');
+    try {
+      return await this.request('/api/data');
+    } catch {
+      // In production (no local API server), fall back to static data file
+      const response = await fetch('/data.json');
+      if (!response.ok) {
+        throw new ApiError('Failed to load data', response.status);
+      }
+      return response.json();
+    }
   }
 
   // Project endpoints

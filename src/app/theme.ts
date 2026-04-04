@@ -1,11 +1,12 @@
 import { createTheme } from '@mui/material/styles';
 
 export const SHAPE = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 28,
+  xs: 4,    // tooltips, tiny decorative
+  sm: 8,    // icon buttons, badges, code
+  md: 12,   // frames, gallery items, interactive rows
+  lg: 20,   // panels, prose elements
+  xl: 28,   // major cards, sidebar, dialogs
+  xl2: 36,  // hero sections, page-level headers
   full: 9999,
 } as const;
 

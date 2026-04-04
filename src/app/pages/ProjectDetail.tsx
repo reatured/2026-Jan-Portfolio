@@ -36,7 +36,7 @@ const MetaCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Box
     sx={{
       bgcolor: `${M3.surfaceContainerLow}E6`,
-      borderRadius: '22px',
+      borderRadius: '20px',
       p: 2.25,
       border: `1px solid ${M3.outlineVariant}55`,
       boxShadow: '0 18px 36px rgba(0, 0, 0, 0.18)',
@@ -197,7 +197,7 @@ const InfoPanel: React.FC<{ project: Project; onOpenModal: (index: number) => vo
                     px: 1,
                     textDecoration: 'none',
                     color: M3.onSurface,
-                    borderRadius: '10px',
+                    borderRadius: '12px',
                     transition: 'all 0.2s var(--easing-emphasized)',
                     cursor: 'pointer',
                     background: 'none',
@@ -331,7 +331,7 @@ export const ProjectDetail: React.FC = () => {
           color: M3.onSurfaceVariant,
           fontWeight: 600,
           fontSize: '0.8rem',
-          borderRadius: '10px',
+          borderRadius: '12px',
           px: 1.5,
           bgcolor: M3.surfaceContainerLow,
           fontFamily: '"Space Grotesk", sans-serif',
@@ -351,7 +351,7 @@ export const ProjectDetail: React.FC = () => {
         sx={{
           mb: { xs: 5, lg: 6 },
           position: 'relative',
-          borderRadius: { xs: '28px', lg: '34px' },
+          borderRadius: { xs: '28px', lg: '36px' },
           overflow: 'hidden',
           border: `1px solid ${M3.outlineVariant}55`,
           background: `
@@ -581,7 +581,7 @@ export const ProjectDetail: React.FC = () => {
                     ? { xs: '80%', sm: '65%', md: '50%', lg: '42%' }
                     : { xs: '72%', sm: '55%', md: '40%', lg: '34%' },
                   scrollSnapAlign: 'start',
-                  borderRadius: '10px',
+                  borderRadius: '12px',
                   overflow: 'hidden',
                   bgcolor: M3.surfaceContainerHighest,
                   cursor: media.type !== 'video' ? 'pointer' : 'default',
@@ -611,7 +611,7 @@ export const ProjectDetail: React.FC = () => {
             height: 'min(90vh, 900px)',
             maxWidth: 'none',
             m: 0,
-            borderRadius: { xs: '16px', md: '24px' },
+            borderRadius: { xs: '20px', md: '28px' },
             overflow: 'hidden',
             bgcolor: M3.surfaceContainerLowest,
             border: `1px solid ${M3.outlineVariant}44`,
@@ -687,7 +687,7 @@ export const ProjectDetail: React.FC = () => {
             sx={{
               position: 'relative',
               overflow: 'hidden',
-              borderRadius: { xs: '26px', md: '30px' },
+              borderRadius: '28px',
               border: `1px solid ${M3.outlineVariant}50`,
               bgcolor: `${M3.surfaceContainerLow}CC`,
               boxShadow: '0 24px 60px rgba(0, 0, 0, 0.22)',
@@ -778,7 +778,7 @@ export const ProjectDetail: React.FC = () => {
                     maxWidth: '100%',
                   },
                   '& img, & video, & iframe': {
-                    borderRadius: '24px',
+                    borderRadius: '28px',
                     border: `1px solid ${M3.outlineVariant}30`,
                     backgroundColor: M3.surfaceContainer,
                   },
@@ -803,7 +803,7 @@ export const ProjectDetail: React.FC = () => {
                   },
                   '& .project-fact': {
                     p: 1.25,
-                    borderRadius: '18px',
+                    borderRadius: '20px',
                     border: `1px solid ${M3.outlineVariant}40`,
                     bgcolor: `${M3.surfaceContainer}CC`,
                   },
@@ -877,7 +877,7 @@ export const ProjectDetail: React.FC = () => {
               component="section"
               sx={{
                 mt: 4,
-                borderRadius: '14px',
+                borderRadius: '12px',
                 border: `1px solid ${M3.outlineVariant}45`,
                 bgcolor: `${M3.surfaceContainerLow}B3`,
                 p: { xs: 2.25, md: 3 },
@@ -1051,7 +1051,7 @@ export const ProjectDetail: React.FC = () => {
                 sx={{
                   height: '100%',
                   overflow: 'hidden',
-                  borderRadius: { xs: '16px', md: '22px' },
+                  borderRadius: { xs: '20px', md: '28px' },
                   border: `1px solid ${M3.outlineVariant}55`,
                   bgcolor: M3.surfaceContainerHighest,
                 }}

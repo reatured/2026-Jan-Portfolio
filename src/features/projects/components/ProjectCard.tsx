@@ -61,7 +61,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         color: 'inherit',
         gap: { xs: 0, md: 2.5 },
         p: { xs: 1.5, md: 2 },
-        borderRadius: '20px',
+        borderRadius: '28px',
         bgcolor: project.isFeatured ? M3.surfaceContainer : M3.surfaceContainerLow,
         border: `1px solid ${project.isFeatured ? M3.primary + '50' : M3.outlineVariant}`,
         ...(project.isFeatured && {
@@ -98,7 +98,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           aspectRatio: '16/10',
           flexShrink: 0,
           overflow: 'hidden',
-          borderRadius: '14px',
+          borderRadius: '12px',
           bgcolor: M3.surfaceContainerHighest,
           mb: { xs: 1.5, md: 0 },
           transition: 'transform 0.25s cubic-bezier(0.05, 0.7, 0.1, 1)',
@@ -154,7 +154,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             letterSpacing: '0.1em',
             px: 1,
             py: 0.3,
-            borderRadius: '6px',
+            borderRadius: '8px',
             fontFamily: '"Space Grotesk", sans-serif',
             zIndex: 1,
           }}>

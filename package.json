@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cp config/data.json public/data.json && vite build",
     "preview": "vite preview",
     "admin": "node server/index.cjs",
     "dev:all": "concurrently \"npm run dev\" \"npm run admin\""

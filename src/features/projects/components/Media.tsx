@@ -18,7 +18,7 @@ export const Media: React.FC<MediaProps> = ({ item, className = "", frameSx, aut
     position: 'relative',
     overflow: 'hidden',
     bgcolor: 'secondaryContainer',
-    borderRadius: '6px',
+    borderRadius: '8px',
     boxShadow: '0 18px 40px rgba(0, 0, 0, 0.22)',
     border: '1px solid rgba(255, 255, 255, 0.08)',
     transform: 'translateZ(0)',

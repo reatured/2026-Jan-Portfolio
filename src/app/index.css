@@ -206,7 +206,7 @@ body::before {
   padding: 1rem 1.25rem;
   border-left: 3px solid rgba(208, 188, 255, 0.35);
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 0 16px 16px 0;
+  border-radius: 0 20px 20px 0;
   color: rgba(230, 225, 229, 0.92);
 }
 .prose hr {
@@ -226,7 +226,7 @@ body::before {
   margin: 1.4rem 0;
   padding: 1rem 1.1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.035);
 }
 .prose .project-grid {
@@ -237,7 +237,7 @@ body::before {
 }
 .prose .project-card {
   padding: 1rem;
-  border-radius: 18px;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.03);
 }
@@ -251,7 +251,7 @@ body::before {
   background: #2D2848;
   color: #D0BCFF;
   padding: 2px 6px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.875em;
 }
 

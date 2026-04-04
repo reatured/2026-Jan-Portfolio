@@ -1,0 +1,3149 @@
+{
+  "site": {
+    "siteName": "Lingyi Zhou",
+    "siteUrl": "https://lingyi.dev",
+    "defaultTitle": "Lingyi Zhou - Robotics & Spatial Computing Engineer",
+    "titleTemplate": "%s | Lingyi Zhou",
+    "defaultDescription": "Portfolio of Lingyi Zhou, a Robotics and Spatial Computing Engineer with expertise in real-time perception, teleoperation, computer vision, simulation, and mechanical prototyping.",
+    "defaultOgImage": "/assets/spectacles-1771906913985.gif",
+    "twitterHandle": "@reatured",
+    "email": "zeroonelatte@gmail.com",
+    "jobTitle": "Robotics & XR Engineer",
+    "location": "New York, NY",
+    "bio": "Ex. AR Engineer @ Snap Inc. (perception, hand tracking, real-time CV)\nEx. Unity Engineer @ Moviebill (spatial interaction, 3D systems)\nMFA Design & Technology @ Parsons\nMA Game Design & Development @ Columbia",
+    "avatar": "/assets/spectacles-1771906913985.gif",
+    "keywords": [
+      "Robotics",
+      "Teleoperation",
+      "Computer Vision",
+      "URDF",
+      "Simulation",
+      "CAD",
+      "3D Printing",
+      "Spatial Computing",
+      "XR",
+      "Unity",
+      "AR",
+      "VR",
+      "MediaPipe",
+      "Three.js",
+      "Real-Time Systems",
+      "Hand Tracking",
+      "React",
+      "Full Stack"
+    ],
+    "navLinks": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Projects",
+        "href": "/#projects"
+      },
+      {
+        "label": "About",
+        "href": "/#about"
+      }
+    ],
+    "socialLinks": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/reatured",
+        "icon": "GitHub"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/lingyi-zhou",
+        "icon": "LinkedIn"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/reartured",
+        "icon": "Instagram"
+      },
+      {
+        "platform": "Mail",
+        "url": "mailto:zeroonelatte@gmail.com",
+        "icon": "Email"
+      }
+    ],
+    "roles": [
+      {
+        "title": "Robotics Engineer",
+        "details": [
+          "Real-time teleoperation with URDF models, hand-to-joint mapping, and computer vision pipelines",
+          "Mechanical prototyping with CAD (Fusion 360) and 3D printing for iterative hardware design"
+        ]
+      },
+      {
+        "title": "Game Developer",
+        "details": [
+          "Custom physics engines, non-Euclidean game mechanics, and game jam entries (Top 1–2% GMTK)",
+          "Unity and p5.js game development with procedural systems and narrative design"
+        ]
+      },
+      {
+        "title": "Perception & CV Engineer",
+        "details": [
+          "Hand tracking and keypoint estimation with MediaPipe for real-time control",
+          "Object detection pipelines for AR and spatial computing applications"
+        ]
+      },
+      {
+        "title": "Spatial Computing Developer",
+        "details": [
+          "VR/AR interaction systems in Unity (Oculus Quest, Apple Vision Pro)",
+          "3D simulation and physics engines for spatial reasoning tasks"
+        ]
+      },
+      {
+        "title": "Full Stack Engineer",
+        "details": [
+          "React + Three.js frontends, FastAPI backends, real-time data pipelines"
+        ]
+      },
+      {
+        "title": "3D & Simulation Designer",
+        "details": [
+          "Blender, Maya, and Fusion 360 for modeling, rendering, and rapid prototyping",
+          "GPU shader programming (HLSL, GLSL) for real-time rendering and visualization"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "28",
+      "slug": "real-time-3d-robot-hand-control",
+      "title": "Robot Hand Real-Time Teleoperation Interface",
+      "year": "2025",
+      "status": "Live",
+      "shortSubtitle": "Real-Time Teleoperation via Computer Vision and URDF Control",
+      "summary": "A browser-based teleoperation interface that maps 21 hand keypoints from MediaPipe to joint angles on 31 URDF robotic hand models in real time. The system implements a full perception-to-actuation pipeline: webcam CV, hand-to-joint kinematic mapping, and 3D visualization of articulated robot models via Three.js.",
+      "content": "<section><p>Browser-based Hand Tracking for Robotic Hand Control</p><h2>Overview</h2><p>A real-time 3D visualization platform that uses webcam-based hand tracking to control robotic hand models entirely in the browser. Built with MediaPipe and Three.js, it tracks 21 hand keypoints via AI and maps them to 31 different robotic hand models with zero installation required.</p></section><section><h2>Focus</h2><ul><li>Working across frontend, computer vision, 3d graphics so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React 18, Zustand, Three.js, React Three Fiber to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A real-time 3D visualization platform that uses webcam-based hand tracking to control robotic hand models entirely in the browser. Built with MediaPipe and Three.js, it tracks 21 hand keypoints via AI and maps them to 31 different robotic hand models with zero installation required. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React 18, Zustand, Three.js, React Three Fiber, React Three Drei, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React 18</li><li>Zustand</li><li>Three.js</li><li>React Three Fiber</li><li>React Three Drei</li><li>URDF</li><li>MediaPipe Hands</li><li>Radix UI</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a live state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The project is also documented through Live Simulation and YouTube Demo, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Robotics Engineer",
+        "Perception & CV Engineer"
+      ],
+      "rolesOrSkills": [
+        "Teleoperation",
+        "Computer Vision",
+        "URDF",
+        "Kinematic Mapping"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React 18",
+            "Zustand"
+          ]
+        },
+        {
+          "category": "3D Graphics",
+          "skills": [
+            "Three.js",
+            "React Three Fiber",
+            "React Three Drei",
+            "URDF"
+          ]
+        },
+        {
+          "category": "Computer Vision",
+          "skills": [
+            "MediaPipe Hands"
+          ]
+        },
+        {
+          "category": "UI & Build",
+          "skills": [
+            "Radix UI",
+            "Tailwind CSS",
+            "GitHub Actions"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "iframe",
+        "src": "https://www.youtube.com/embed/xwrGzC8Z14s?autoplay=1&mute=1&loop=1&playlist=xwrGzC8Z14s",
+        "provider": "youtube",
+        "embedUrl": "https://www.youtube.com/embed/xwrGzC8Z14s?autoplay=1&mute=1&loop=1&playlist=xwrGzC8Z14s",
+        "alt": "Robot Hand Real-Time Teleoperation Demo",
+        "height": 450,
+        "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://robot-hand-simulation-broswer-sim-git-e8dec0-reatureds-projects.vercel.app/",
+          "alt": "Interactive Robot Hand Simulation",
+          "label": "Live Interaction",
+          "aspectRatio": "16 / 9",
+          "layout": "content",
+          "presentation": "modal",
+          "allow": "camera"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/xwrGzC8Z14s?autoplay=1&mute=1&loop=1&playlist=xwrGzC8Z14s",
+          "provider": "youtube",
+          "alt": "Robot Hand Real-Time Teleoperation Demo",
+          "label": "YouTube Demo",
+          "layout": "content",
+          "presentation": "modal",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "Live Simulation",
+          "url": "https://robot-hand-simulation-broswer-sim-git-e8dec0-reatureds-projects.vercel.app/"
+        },
+        {
+          "label": "YouTube Demo",
+          "url": "https://www.youtube.com/watch?v=xwrGzC8Z14s"
+        }
+      ],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "thumbnail": "/assets/thumbnails/28-robot-hand-thumb.jpg"
+    },
+    {
+      "id": "26",
+      "slug": "snapchat-turn-based-endless-runner",
+      "title": "Snapchat Glass Bridge Challenge",
+      "year": "2025",
+      "status": "Published",
+      "shortSubtitle": "Turn-Based Multiplayer Glass Bridge Game",
+      "summary": "A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.",
+      "content": "<section><p>Turn-Based Multiplayer Glass Bridge Game</p><h2>Overview</h2><p>A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages.</p></section><section><h2>Focus</h2><ul><li>Working across lens studio developer, system design so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Lens Studio, TypeScript (ES2019), Handler Pattern, Event-Driven to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A Squid Game-inspired endless runner built as a full async multiplayer game in Lens Studio. Features a custom game manager system for turn-based competition via Snapchat messages. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Lens Studio, TypeScript (ES2019), Handler Pattern, Event-Driven, Bitmoji SDK, chosen for fit rather than novelty.</p><p>10 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Lens Studio</li><li>TypeScript (ES2019)</li><li>Handler Pattern</li><li>Event-Driven</li><li>Bitmoji SDK</li><li>Async Multiplayer</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a published state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "XR Developer",
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Lens Studio Developer",
+        "System Design"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "TypeScript (ES2019)"
+          ]
+        },
+        {
+          "category": "System",
+          "skills": [
+            "Handler Pattern",
+            "Event-Driven"
+          ]
+        },
+        {
+          "category": "Features",
+          "skills": [
+            "Bitmoji SDK",
+            "Async Multiplayer"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/copy-of-snapchat-project-1-1771938702266.jpg",
+        "alt": "Snapchat Glass Bridge Challenge"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Copy-of-Snapchat-Project-1.jpg",
+          "alt": "Snapchat Glass Bridge Challenge - Image 1"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Endless-Runner-Concept.jpeg",
+          "alt": "Snapchat Glass Bridge Challenge - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Screenshot-2025-09-14-at-4.45.12AM.png",
+          "alt": "Snapchat Glass Bridge Challenge - Image 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Endless-Runner-ScreenShot-1.png",
+          "alt": "Snapchat Glass Bridge Challenge - Image 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/IMG_0032.png",
+          "alt": "Snapchat Glass Bridge Challenge - Image 5"
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/BC54AFF4-0C04-480A-A021-F3FC0082DFAA.mov",
+          "alt": "Snapchat Glass Bridge Challenge - Video"
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/EFE6D552-A72D-49E9-B2E7-DA43E44BD565.mov",
+          "alt": "Snapchat Glass Bridge Challenge - Video"
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/F44306D6-F664-43DD-BB04-8745FDA010CB.mov",
+          "alt": "Snapchat Glass Bridge Challenge - Video"
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/A6FE8EE9-0740-413C-B9E2-51A18D93DA25.mov",
+          "alt": "Snapchat Glass Bridge Challenge - Video"
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/F44306D6-F664-43DD-BB04-8745FDA010CB-1.mov",
+          "alt": "Snapchat Glass Bridge Challenge - Video"
+        }
+      ],
+      "links": [],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "thumbnail": "/assets/cargo-import/snapchat-glass-bridge-challenge-2025/Copy-of-Snapchat-Project-1.jpg"
+    },
+    {
+      "id": "29",
+      "slug": "gogreennext-modular-map-tiles",
+      "title": "GoGreenNext - Modular Map Tiles",
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "3D Modeling for NYU Game Project",
+      "summary": "Created modular 3D map tiles for GoGreenNext, an NYU game project. Designed reusable tile assets in Blender to enable flexible level design and efficient world building. The modular system allows for quick assembly of diverse game environments while maintaining visual consistency.",
+      "content": "<section><p>3D Modeling for NYU Game Project</p><h2>Overview</h2><p>Created modular 3D map tiles for GoGreenNext, an NYU game project. Designed reusable tile assets in Blender to enable flexible level design and efficient world building. The modular system allows for quick assembly of diverse game environments while maintaining visual consistency.</p></section><section><h2>Focus</h2><ul><li>Working across 3d artist, environment design so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Blender to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>Created modular 3D map tiles for GoGreenNext, an NYU game project. Designed reusable tile assets in Blender to enable flexible level design and efficient world building. The modular system allows for quick assembly of diverse game environments while maintaining visual consistency. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Blender, chosen for fit rather than novelty.</p><p>39 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Blender</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Artist",
+        "Environment Design"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/screenshot-2025-11-06-at-2-58-51pm-1771999294738.png",
+        "alt": "Modular Map Tiles"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-3.27.35PM.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 1"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-2.59.35PM.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-2.58.51PM.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image1.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image2.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 5"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image3.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 6"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image4.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 7"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image5.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 8"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image6.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 9"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image7.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 10"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image8.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 11"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image9.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 12"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image10.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 13"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image11.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 14"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image12.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 15"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image13.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 16"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image14.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 17"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image15.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 18"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image16.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 19"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image17.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 20"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image18.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 21"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image19.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 22"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image20.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 23"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image21.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 24"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image22.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 25"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image23.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 26"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image24.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 27"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image25.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 28"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image26.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 29"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image27.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 30"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image28.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 31"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image29.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 32"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image30.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 33"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image31.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 34"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image32.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 35"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image34.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 36"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image35.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 37"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image36.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 38"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/image33.png",
+          "alt": "GoGreenNext - Modular Map Tiles - Image 39"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/gogreennext-modular-map-tiles-2024/Screenshot-2025-11-06-at-3.27.35PM.png"
+    },
+    {
+      "id": "27",
+      "slug": "curaloop-ai-companion",
+      "title": "CuraLoop: AI Companion for Alzheimer's Care",
+      "year": "2025",
+      "status": "Hackathon",
+      "shortSubtitle": "Real-Time AI Pipeline with Human-in-the-Loop Monitoring",
+      "summary": "A sensor-to-insight application that continuously processes behavioral and cognitive signals through an AI pipeline, then surfaces trends to human reviewers. Built with a Human-in-the-Loop architecture analogous to robotic monitoring systems: data ingestion, AI inference, and human oversight in a closed feedback loop.",
+      "content": "<section><p>1-day Humans &amp; AI Hackathon project in Seattle</p><h2>Overview</h2><p>Through AI Chat + Game, the app monitors cognitive and game behavior to analyze and monitor the level of Alzheimer's care needed for anyone.</p></section><section><h2>Focus</h2><ul><li>Working across full stack, ai integration, react native so the concept and execution stayed aligned.</li><li>Shaping the experience as a product, not just a demo, by thinking through information flow, usability, and implementation tradeoffs.</li><li>Keeping the build grounded in a concrete workflow so the interface and backend decisions reinforce each other.</li><li>Building with React Native, TypeScript, Expo, FastAPI to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>Through AI Chat + Game, the app monitors cognitive and game behavior to analyze and monitor the level of Alzheimer's care needed for anyone. The challenge was less about any single screen and more about getting the full loop to make sense: how a user arrives, understands the system, completes a task, and sees the value of the tool. The implementation side centered on React Native, TypeScript, Expo, FastAPI, Python, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React Native</li><li>TypeScript</li><li>Expo</li><li>FastAPI</li><li>Python</li><li>Claude Sonnet</li><li>Trend Analysis</li><li>Vercel</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a hackathon state in the portfolio. It shows a product-minded way of building: connecting interface choices, technical architecture, and the actual use case being served. The project is also documented through Live Demo and GitHub Repo, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "AI Pipeline",
+        "Real-Time Data Processing",
+        "Human-in-the-Loop"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React Native",
+            "TypeScript",
+            "Expo"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "FastAPI",
+            "Python"
+          ]
+        },
+        {
+          "category": "AI/ML",
+          "skills": [
+            "Claude Sonnet",
+            "Trend Analysis"
+          ]
+        },
+        {
+          "category": "Deployment",
+          "skills": [
+            "Vercel"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/1.png",
+        "alt": "CuraLoop: AI Companion for Alzheimer's Care"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/iPhone-14-Pro-Max.png",
+          "alt": "CuraLoop: AI Companion for Alzheimer's Care - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/iPhone-14-Pro-Max-1.png",
+          "alt": "CuraLoop: AI Companion for Alzheimer's Care - Image 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/2.png",
+          "alt": "CuraLoop: AI Companion for Alzheimer's Care - Image 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/1.png",
+          "alt": "CuraLoop: AI Companion for Alzheimer's Care - Image 5"
+        }
+      ],
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://chatbot-app-three-beta.vercel.app/"
+        },
+        {
+          "label": "GitHub Repo",
+          "url": "https://github.com/reatured/Oct-4-Hackathon-2025-"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/iPhone-14-Pro-Max.png"
+    },
+    {
+      "id": "23",
+      "slug": "b612-soccer",
+      "title": "B612 Soccer",
+      "year": "2025",
+      "status": "Top 2% GMTK",
+      "shortSubtitle": "Minimalist 2-player soccer on a looping planet — solo-built in 48 hours for GMTK 2025 (Top 2%)",
+      "summary": "B612 Soccer is a minimalist, fast-paced 2-player soccer game set on a looping circular planet. Every shot can orbit the globe for wild, unpredictable goals. Created solo for GMTK Game Jam 2025 (\"Loop\" theme), it features creative orbital mechanics, hand-drawn sketch visuals, and chaotic multiplayer action.",
+      "content": "<section><h2>Development Challenge</h2><p>As a 1-person team, I had only 2 days out of the 4-day jam to design, build, illustrate, and submit the entire project. Everything you see was made in that thrilling, exhausting sprint.</p></section><section><h2>GMTK 2025 Jam Results</h2><table class=\"data-table\"><thead><tr><th>Criteria</th><th>Rank</th><th>Score</th></tr></thead><tbody><tr><td>Enjoyment</td><td>#158</td><td>4.195</td></tr><tr><td>Creativity</td><td>#238</td><td>4.341</td></tr><tr><td>Artwork</td><td>#219</td><td>4.439</td></tr><tr><td>Audio</td><td>#122</td><td>4.146</td></tr><tr><td>Narrative</td><td>#392</td><td>3.756</td></tr></tbody></table></section><section><h2>About the Theme: \"Loop\"</h2><ul><li><strong>Literal Loop:</strong> The ball and players both orbit the planet for truly loopy gameplay.</li><li><strong>Perspective:</strong> Side view, all mechanics in polar physics.</li><li><strong>Visuals:</strong> Black/white line art, blue space ambiance.</li><li><strong>Pick-Up Play:</strong> 100-second matches, first to 10 goals, perfect for friends.</li></ul></section><section><h2>Core Mechanics</h2><ul><li><strong>360° Movement:</strong> Players run, jump, and kick around the full planet.</li><li><strong>Kicking:</strong> Directional kicks add momentum — maybe even scoring on your own goal!</li><li><strong>Physics:</strong> Natural ball orbiting, bounce, and wrapping.</li><li><strong>Goals:</strong> Clear crossbars, animated feedback.</li><li><strong>Multi-ball:</strong> Up to 6 balls for bonus chaos.</li></ul><h3>Controls</h3><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Player 1</strong><span>WASD</span></div><div class=\"project-fact\"><strong>Player 2</strong><span>Arrow Keys</span></div><div class=\"project-fact\"><strong>Pause</strong><span>ESC</span></div></div></section><section><h2>Art, Audio &amp; Asset Production</h2><ul><li><strong>Hand-drawn assets:</strong> All sprites, UI, and backgrounds sketched by pencil, scanned with a printer, and processed in Photoshop.</li><li><strong>Minimalist UI:</strong> Clean, intuitive scoreboard and feedback.</li><li><strong>FX:</strong> Impact effects, sparkles, blue overlays.</li><li><strong>Audio:</strong> Every SFX and music track manually integrated.</li></ul></section><section><h2>My Solo Process (48 hours)</h2><ul><li><strong>Day 1:</strong> Built planet, core movement, and UI framework.</li><li><strong>Day 2:</strong> Implemented all scoring, game flow, multi-ball, and polish. Practically no sleep!</li></ul><h3>Implemented Features</h3><ul><li>Full 360° movement and orbiting gameplay</li><li>Score system, restart game loop</li><li>Multi-ball chaos (up to 6 balls)</li><li>Animated, hand-drawn UI and visual feedback</li><li>All design, code, illustration, and polish by Lingyi Zhou</li></ul></section><section><h2>Credits</h2><p><strong>Everything (Design, Code, Art, Submission):</strong> Lingyi Zhou</p><p><strong>Special Thanks:</strong> Skinnytigerr (feedback &amp; playtesting)</p></section><section><h2>Reflection</h2><p>Making B612 Soccer in just two days, solo, was an exhilarating ride — every design, art, and coding challenge hit all at once. The end result is a chaotic, replayable multiplayer game that I'm proud to share.</p></section>",
+      "categories": [
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Solo Developer",
+        "Game Design",
+        "Illustration"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "category": "Art",
+          "skills": [
+            "Pencil sketch",
+            "Photoshop"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/b612-soccer-2025/IMG_9636.jpg",
+        "alt": "B612 Soccer"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.33AM.png",
+          "alt": "Main menu and in-game art showcase"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.36AM.png",
+          "alt": "Pencil line visual style and blue ambient backgrounds"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.40AM.png",
+          "alt": "Single- and multi-ball chaos in action"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.43AM.png",
+          "alt": "UI elements, scoreboard, and particle FX"
+        }
+      ],
+      "links": [
+        {
+          "label": "Play in Browser",
+          "url": "https://reatured.itch.io/b612-soccer",
+          "icon": "Gamepad2"
+        },
+        {
+          "label": "GMTK Jam Page",
+          "url": "https://itch.io/jam/gmtk-2025/rate/3778309",
+          "icon": "Gamepad2"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.33AM.png"
+    },
+    {
+      "id": "05",
+      "slug": "just-another-day",
+      "title": "Just Another Day",
+      "shortSubtitle": "Narrative-driven game with emotional arc",
+      "summary": "A Unity narrative-driven game project composed of five mini-games tied together through an emotional storyline. Designed to create an emotional arc that ends in catharsis.",
+      "content": "<section><p>Narrative-driven game with emotional arc</p><h2>Overview</h2><p>A Unity narrative-driven game project composed of five mini-games tied together through an emotional storyline. Designed to create an emotional arc that ends in catharsis.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Game Developer / Storytelling</span></div><div class=\"project-fact\"><strong>Stack</strong><span>Unity / C# / Blender</span></div></div></section><section><h2>Focus</h2><ul><li>Working across game developer, storytelling so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, C#, Blender to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A Unity narrative-driven game project composed of five mini-games tied together through an emotional storyline. Designed to create an emotional arc that ends in catharsis. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, C#, Blender, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>C#</li><li>Blender</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The project is also documented with references to see the live build or source.</p></section>",
+      "categories": [
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "Game Developer",
+        "Storytelling"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/page-5/Game-Design-2.png",
+        "alt": "Just Another Day"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/9LFHeKrCo6o",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/9LFHeKrCo6o",
+          "alt": "Just Another Day - Game Trailer",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "Play on Itch.io",
+          "url": "https://reatured.itch.io/just-another-day",
+          "icon": "Gamepad2"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/reatured/Just-Another-Day",
+          "icon": "Github"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/page-5/Game-Design-2.png"
+    },
+    {
+      "id": "01",
+      "slug": "hardware-store-smart-search",
+      "title": "Hardware Store Smart Search",
+      "shortSubtitle": "Lead generation tool for hardware manufacturers",
+      "summary": "When I worked for a hardware manufacturer, we were looking for a better way to find targeted customers (hardware stores) to purchase our stock. We built a smart search tool to crawl Google Maps business data and help identify store leads around the world.",
+      "content": "<section><p>Lead generation tool for hardware manufacturers</p><h2>Overview</h2><p>When I worked for a hardware manufacturer, we were looking for a better way to find targeted customers (hardware stores) to purchase our stock. We built a smart search tool to crawl Google Maps business data and help identify store leads around the world.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Full Stack Developer</span></div><div class=\"project-fact\"><strong>Stack</strong><span>React / JavaScript / FastAPI</span></div></div></section><section><h2>Focus</h2><ul><li>Working across full stack developer so the concept and execution stayed aligned.</li><li>Shaping the experience as a product, not just a demo, by thinking through information flow, usability, and implementation tradeoffs.</li><li>Keeping the build grounded in a concrete workflow so the interface and backend decisions reinforce each other.</li><li>Building with React, JavaScript, FastAPI, Python to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>When I worked for a hardware manufacturer, we were looking for a better way to find targeted customers (hardware stores) to purchase our stock. We built a smart search tool to crawl Google Maps business data and help identify store leads around the world. The challenge was less about any single screen and more about getting the full loop to make sense: how a user arrives, understands the system, completes a task, and sees the value of the tool. The implementation side centered on React, JavaScript, FastAPI, Python, chosen for fit rather than novelty.</p><p>The project is paired with 4 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>JavaScript</li><li>FastAPI</li><li>Python</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It shows a product-minded way of building: connecting interface choices, technical architecture, and the actual use case being served. The project is also documented through Live App and GitHub, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Full Stack Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React",
+            "JavaScript"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "FastAPI",
+            "Python"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/hardware-store-yt-thumb.jpg",
+        "alt": "Hardware Store Smart Search"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/rr9zS1zC-ok",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/rr9zS1zC-ok",
+          "alt": "Hardware Store Smart Search v3.0 Demo",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/ZmJKlsY6oFo",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/ZmJKlsY6oFo",
+          "alt": "Hardware Store Smart Search v1.0 Demo",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "Live App",
+          "url": "https://reatured.github.io/Search-on-google-map",
+          "icon": "Globe"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/reatured/Search-on-google-map",
+          "icon": "Github"
+        },
+        {
+          "label": "v3.0 Demo",
+          "url": "https://youtu.be/rr9zS1zC-ok",
+          "icon": "Youtube"
+        },
+        {
+          "label": "v1.0 Demo",
+          "url": "https://youtu.be/ZmJKlsY6oFo",
+          "icon": "Youtube"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/thumbnails/hardware-store-yt-thumb.jpg"
+    },
+    {
+      "id": "02",
+      "slug": "ar-drawing-tool",
+      "title": "AR Drawing Tool",
+      "year": "2022",
+      "status": "Internship",
+      "shortSubtitle": "Real-Time Hand Tracking to Procedural 3D Geometry Pipeline",
+      "summary": "Built at Snap Inc., this project implements a real-time perception-to-geometry pipeline: hand keypoint tracking feeds into procedural mesh generation, creating 3D structures from tracked finger motion. Demonstrates the same sensor-to-output loop used in robotic manipulation research.",
+      "content": "<section><p>Procedural mesh generation with hand tracking</p><h2>Overview</h2><p>During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space.</p></section><section><h2>Focus</h2><ul><li>Working across ar engineer so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Lens Studio, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Lens Studio, JavaScript, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Lens Studio</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>Built in 2022, the project reached a internship state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The project is also documented through Demo Video and Official Docs, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Perception & CV Engineer"
+      ],
+      "rolesOrSkills": [
+        "Perception",
+        "Hand Tracking",
+        "Procedural Geometry",
+        "Spatial Computing"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png",
+        "alt": "AR Drawing Tool"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/1A2lCiQwVko",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/1A2lCiQwVko",
+          "alt": "AR Drawing Tool Demo - Snap Inc. Internship",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "Demo Video",
+          "url": "https://youtu.be/1A2lCiQwVko",
+          "icon": "Youtube"
+        },
+        {
+          "label": "Official Docs",
+          "url": "https://developers.snap.com/lens-studio/4.55.1/references/guides/lens-features/scene-set-up/3d/procedural-mesh",
+          "icon": "ExternalLink"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png"
+    },
+    {
+      "id": "16",
+      "slug": "ping-pong-game",
+      "title": "Ping Pong Game",
+      "shortSubtitle": "2D game with 3D illusion built from scratch",
+      "summary": "A complete 2D game that gives 3D illusion. An interactive automate enemy that you play against. Game Engine built from scratch using p5js to manage game asset, sound, levels and game controls.",
+      "content": "<section><p>2D game with 3D illusion built from scratch</p><h2>Overview</h2><p>A complete 2D game that gives 3D illusion. An interactive automate enemy that you play against. Game Engine built from scratch using p5js to manage game asset, sound, levels and game controls.</p></section><section><h2>Focus</h2><ul><li>Working across game engine dev so the concept and execution stayed aligned.</li><li>Exploring visual systems through iteration, parameter tuning, and small technical experiments rather than one fixed output.</li><li>Using code as a medium for motion, color, and procedural variation while keeping the work understandable to viewers.</li><li>Building with P5JS, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A complete 2D game that gives 3D illusion. An interactive automate enemy that you play against. Game Engine built from scratch using p5js to manage game asset, sound, levels and game controls. The work evolved through experimentation, with each sketch or shader acting as a small probe into motion, pattern, and rendering behavior rather than a one-off aesthetic exercise. The implementation side centered on P5JS, JavaScript, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>P5JS</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>Built in 2021, the project reached a completed state in the portfolio. It works as a snapshot of ongoing experimentation and a way to show taste, graphics fundamentals, and curiosity through code. The live link for this project points to Play Now, which gives extra context beyond the portfolio summary.</p></section>",
+      "categories": [
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Game Engine Dev"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "P5JS"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/ping-pong-thumb.gif",
+        "alt": "Ping Pong Game"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://editor.p5js.org/lz2729/full/t0642p3hV",
+          "alt": "Ping Pong Game - Playable in browser",
+          "title": "Ping Pong Game",
+          "height": 500
+        }
+      ],
+      "links": [
+        {
+          "label": "Play Now",
+          "url": "https://editor.p5js.org/lz2729/full/t0642p3hV",
+          "icon": "Gamepad2"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "year": "2021",
+      "thumbnail": "/assets/thumbnails/ping-pong-thumb.gif"
+    },
+    {
+      "id": "17",
+      "slug": "no-job-too-small",
+      "title": "No Job Too Small",
+      "year": "2024",
+      "status": "Top 1% GMTK",
+      "shortSubtitle": "Ranked in the Top 1% out of 3,300+ entries in GMTK Game Jam 2024",
+      "summary": "Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.",
+      "content": "<section><p>Ranked in the Top 1% out of 3,300+ entries in GMTK Game Jam 2024</p><h2>Overview</h2><p>Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.</p></section><section><h2>Focus</h2><ul><li>Working across unity developer so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, C#, HLSL, Blender to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, C#, HLSL, Blender, chosen for fit rather than novelty.</p><p>The project is paired with 3 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>C#</li><li>HLSL</li><li>Blender</li></ul></section><section><h2>Outcome</h2><p>Built in 2024, the project reached a top 1% gmtk state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The project is also documented through Play on Itch.io and GMTK Jam Page, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Game Developer"
+      ],
+      "rolesOrSkills": [
+        "Unity Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "C#",
+            "HLSL"
+          ]
+        },
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/no-job-too-small-yt-thumb.jpg",
+        "alt": "No Job Too Small"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/zskrUChpBL0",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/zskrUChpBL0",
+          "alt": "No Job Too Small - GMTK 2024 Gameplay",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "Play on Itch.io",
+          "url": "https://lookaway-games.itch.io/no-job-too-small",
+          "icon": "Gamepad2"
+        },
+        {
+          "label": "GMTK Jam Page",
+          "url": "https://itch.io/jam/gmtk-2024/rate/2909373",
+          "icon": "ExternalLink"
+        },
+        {
+          "label": "Gameplay Video",
+          "url": "https://youtu.be/zskrUChpBL0",
+          "icon": "Youtube"
+        }
+      ],
+      "isFeatured": true,
+      "section": "Most Recent",
+      "thumbnail": "/assets/thumbnails/no-job-too-small-yt-thumb.jpg"
+    },
+    {
+      "id": "03",
+      "slug": "personal-schedule-assistant",
+      "title": "Drag Task In - Personal Schedule Assistant",
+      "shortSubtitle": "Drag-and-drop schedule builder",
+      "summary": "A drag-and-drop schedule builder that supports offline editing and syncs automatically across devices. Designed for productivity addicts who want control over time and print-ready exports.",
+      "content": "<section><p>Drag-and-drop schedule builder</p><h2>Overview</h2><p>A drag-and-drop schedule builder that supports offline editing and syncs automatically across devices. Designed for productivity addicts who want control over time and print-ready exports.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Full Stack Developer</span></div><div class=\"project-fact\"><strong>Stack</strong><span>React / @dnd-kit / Tailwind</span></div></div></section><section><h2>Focus</h2><ul><li>Working across full stack developer so the concept and execution stayed aligned.</li><li>Shaping the experience as a product, not just a demo, by thinking through information flow, usability, and implementation tradeoffs.</li><li>Keeping the build grounded in a concrete workflow so the interface and backend decisions reinforce each other.</li><li>Building with React, @dnd-kit, Tailwind, FastAPI to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A drag-and-drop schedule builder that supports offline editing and syncs automatically across devices. Designed for productivity addicts who want control over time and print-ready exports. The challenge was less about any single screen and more about getting the full loop to make sense: how a user arrives, understands the system, completes a task, and sees the value of the tool. The implementation side centered on React, @dnd-kit, Tailwind, FastAPI, Supabase, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>@dnd-kit</li><li>Tailwind</li><li>FastAPI</li><li>Supabase</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It shows a product-minded way of building: connecting interface choices, technical architecture, and the actual use case being served. The project is also documented through Live App and GitHub, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Full Stack Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React",
+            "@dnd-kit",
+            "Tailwind"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "FastAPI",
+            "Supabase"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/page-3/Draggable-Time-Schedule-2.png",
+        "alt": "Drag Task In - Personal Schedule Assistant"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-3/04dbabc2-e4e6-4db2-86d4-c78e7ae77a78.png",
+          "alt": "Drag Task In - Personal Schedule Assistant - Image 2"
+        }
+      ],
+      "links": [
+        {
+          "label": "Live App",
+          "url": "https://v0-personal-work-dashboard-gules.vercel.app/",
+          "icon": "Globe"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/reatured/Personal-Schedule-Assistance/tree/main",
+          "icon": "Github"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/page-3/04dbabc2-e4e6-4db2-86d4-c78e7ae77a78.png"
+    },
+    {
+      "id": "25",
+      "slug": "marvels-flerken-ar-filter",
+      "title": "Marvel's Flerken AR Filter",
+      "year": "2023",
+      "status": "Official Campaign",
+      "shortSubtitle": "Real-Time Object Detection and Visual Overlay Pipeline",
+      "summary": "An official AR campaign for The Marvels using real-time object detection to identify cats in camera feeds and overlay 3D visual effects. Deployed cross-platform on TikTok and Regal Cinema. Demonstrates production-grade CV inference on mobile: detection, classification, and frame-accurate visual augmentation.",
+      "content": "<section><p>Official AR Marketing Campaign for The Marvels Movie</p><h2>Overview</h2><p>An interactive AR filter that transforms cats into Flerkens for The Marvels movie campaign. Features real-time object detection and cross-platform deployment on TikTok and Regal Cinema app, achieving viral distribution and significant user engagement.</p></section><section><h2>Focus</h2><ul><li>Working across ar developer so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Lens Studio, Effect House, JavaScript, HLSL to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>An interactive AR filter that transforms cats into Flerkens for The Marvels movie campaign. Features real-time object detection and cross-platform deployment on TikTok and Regal Cinema app, achieving viral distribution and significant user engagement. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Lens Studio, Effect House, JavaScript, HLSL, Object Detection, chosen for fit rather than novelty.</p><p>A supporting gallery item is included to show the build in context from another angle.</p></section><section><h2>Tools and Stack</h2><ul><li>Lens Studio</li><li>Effect House</li><li>JavaScript</li><li>HLSL</li><li>Object Detection</li></ul></section><section><h2>Outcome</h2><p>Built in 2023, the project reached a official campaign state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "XR Developer"
+      ],
+      "rolesOrSkills": [
+        "AR Developer"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio",
+            "Effect House"
+          ]
+        },
+        {
+          "category": "Tech",
+          "skills": [
+            "JavaScript",
+            "HLSL",
+            "Object Detection"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "video",
+        "src": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4",
+        "alt": "Flerken AR Filter Demo"
+      },
+      "mediaGallery": [
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4",
+          "alt": "Flerken AR Filter Demo"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4"
+    },
+    {
+      "id": "04",
+      "slug": "3d-printed-hook",
+      "title": "No-Drill Curtain Hook",
+      "shortSubtitle": "CAD-Driven Mechanical Design with Rapid Prototyping",
+      "summary": "A mechanical design project using Fusion 360 and 3D printing to iterate through physical prototypes of a load-bearing curtain hook. Demonstrates the CAD-to-fabrication loop central to robotics hardware: parametric modeling, tolerance testing, and iterative physical validation.",
+      "content": "<section><p>Renter-friendly 3D printed curtain solution</p><h2>Overview</h2><p>A 3D modeling and printing project to create customized hooks for home hardware. Iterated through several prototypes using Fusion 360 and tested for real-world use.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Product Design</span></div><div class=\"project-fact\"><strong>Stack</strong><span>Fusion 360</span></div></div></section><section><h2>Focus</h2><ul><li>Working across product design so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Fusion 360 to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A 3D modeling and printing project to create customized hooks for home hardware. Iterated through several prototypes using Fusion 360 and tested for real-world use. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Fusion 360, chosen for fit rather than novelty.</p><p>7 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Fusion 360</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "Robotics Engineer",
+        "3D & Simulation Designer"
+      ],
+      "rolesOrSkills": [
+        "Mechanical Design",
+        "CAD",
+        "Rapid Prototyping",
+        "3D Printing"
+      ],
+      "techStack": [
+        {
+          "category": "CAD",
+          "skills": [
+            "Fusion 360"
+          ]
+        },
+        {
+          "category": "Fabrication",
+          "skills": [
+            "FDM 3D Printing"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/page-4/IMG_9438-copy.jpeg",
+        "alt": "No-Drill Curtain Hook"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/Instagram-post---3.PNG",
+          "alt": "No-Drill Curtain Hook - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/IMG_9446.JPG",
+          "alt": "No-Drill Curtain Hook - Image 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/IMG_9448.JPG",
+          "alt": "No-Drill Curtain Hook - Image 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/IMG_9447.JPG",
+          "alt": "No-Drill Curtain Hook - Image 5"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/IMG_9445.JPG",
+          "alt": "No-Drill Curtain Hook - Image 6"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/IMG_4604-2.jpeg",
+          "alt": "No-Drill Curtain Hook - Image 7"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-4/IMG_4624.jpeg",
+          "alt": "No-Drill Curtain Hook - Image 8"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/page-4/Instagram-post---3.PNG"
+    },
+    {
+      "id": "08",
+      "slug": "vr-experience-oculus-quest",
+      "title": "VR Experience on Oculus Quest",
+      "shortSubtitle": "Spatial Object Manipulation and Embodied Interaction System",
+      "summary": "A Unity XR application for Oculus Quest built around 6-DOF object grasping, spatial memory tasks, and embodied interaction. The project explores pick-and-place mechanics and spatial reasoning in VR -- skills directly transferable to robotic manipulation simulation and digital twin interfaces.",
+      "content": "<section><p>Immersive object interaction game</p><h2>Overview</h2><p>An immersive game for Oculus Quest focusing on object interaction and spatial memory. Built using Unity's XR framework and tested across headset configurations.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>VR Developer</span></div><div class=\"project-fact\"><strong>Stack</strong><span>Unity / XR Framework / Oculus Quest</span></div></div></section><section><h2>Focus</h2><ul><li>Working across vr developer so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Unity, XR Framework, Oculus Quest, C# to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>An immersive game for Oculus Quest focusing on object interaction and spatial memory. Built using Unity's XR framework and tested across headset configurations. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Unity, XR Framework, Oculus Quest, C#, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>XR Framework</li><li>Oculus Quest</li><li>C#</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to GitHub, which gives extra context beyond the portfolio summary.</p></section>",
+      "categories": [
+        "Spatial Computing Developer"
+      ],
+      "rolesOrSkills": [
+        "Spatial Interaction",
+        "Object Manipulation",
+        "XR Framework"
+      ],
+      "techStack": [
+        {
+          "category": "Engine",
+          "skills": [
+            "Unity",
+            "XR Framework"
+          ]
+        },
+        {
+          "category": "Platform",
+          "skills": [
+            "Oculus Quest"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "C#"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/vr-oculus-yt-thumb.jpg",
+        "alt": "VR Experience on Oculus Quest"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/lpLAXMpaFw4",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/lpLAXMpaFw4",
+          "alt": "VR Experience on Oculus Quest Demo",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/reatured/Oculus-VR-Demo",
+          "icon": "Github"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/thumbnails/vr-oculus-yt-thumb.jpg"
+    },
+    {
+      "id": "10",
+      "slug": "creative-coding-experiments",
+      "title": "Creative Coding Experiments",
+      "hidden": true,
+      "shortSubtitle": "Generative art sketches using p5.js",
+      "summary": "This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.",
+      "content": "<section><p>Generative art sketches using p5.js</p><h2>Overview</h2><p>This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Creative Coder</span></div><div class=\"project-fact\"><strong>Stack</strong><span>p5.js / JavaScript</span></div></div></section><section><h2>Focus</h2><ul><li>Working across creative coder so the concept and execution stayed aligned.</li><li>Exploring visual systems through iteration, parameter tuning, and small technical experiments rather than one fixed output.</li><li>Using code as a medium for motion, color, and procedural variation while keeping the work understandable to viewers.</li><li>Building with p5.js, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes. The work evolved through experimentation, with each sketch or shader acting as a small probe into motion, pattern, and rendering behavior rather than a one-off aesthetic exercise. The implementation side centered on p5.js, JavaScript, chosen for fit rather than novelty.</p><p>A supporting gallery item is included to show the build in context from another angle.</p></section><section><h2>Tools and Stack</h2><ul><li>p5.js</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It works as a snapshot of ongoing experimentation and a way to show taste, graphics fundamentals, and curiosity through code. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "Game Developer",
+        "Full Stack Engineer"
+      ],
+      "rolesOrSkills": [
+        "Creative Coder"
+      ],
+      "techStack": [
+        {
+          "category": "Library",
+          "skills": [
+            "p5.js"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/page-10/Frame-8.png",
+        "alt": "Creative Coding Experiments"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-10/Frame-8.png",
+          "alt": "Creative Coding Experiments"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/page-10/Frame-8.png"
+    },
+    {
+      "id": "09",
+      "slug": "3d-poster-design-landmarks",
+      "title": "3D Poster Design with Landmarks",
+      "shortSubtitle": "Visualizing cities with 3D landmarks",
+      "summary": "This poster series visualizes cities from around the world using 3D landmarks generated in Blender. Real-world data from Google Maps was imported in both realistic and stylized formats, each lit based on the local time of day using HDRIs and custom lighting.",
+      "content": "<section><p>Visualizing cities with 3D landmarks</p><h2>Overview</h2><p>This poster series visualizes cities from around the world using 3D landmarks generated in Blender. Real-world data from Google Maps was imported in both realistic and stylized formats, each lit based on the local time of day using HDRIs and custom lighting.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>3D Artist</span></div><div class=\"project-fact\"><strong>Stack</strong><span>Blender / Google Maps API / HDRI</span></div></div></section><section><h2>Focus</h2><ul><li>Working across 3d artist so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Blender, Google Maps API, HDRI, Custom Lighting to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>This poster series visualizes cities from around the world using 3D landmarks generated in Blender. Real-world data from Google Maps was imported in both realistic and stylized formats, each lit based on the local time of day using HDRIs and custom lighting. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Blender, Google Maps API, HDRI, Custom Lighting, chosen for fit rather than novelty.</p><p>10 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Blender</li><li>Google Maps API</li><li>HDRI</li><li>Custom Lighting</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Artist"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        },
+        {
+          "category": "Data",
+          "skills": [
+            "Google Maps API"
+          ]
+        },
+        {
+          "category": "Rendering",
+          "skills": [
+            "HDRI",
+            "Custom Lighting"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/page-9/3D-Modeling-A1-Size-Poster.png",
+        "alt": "3D Poster Design with Landmarks"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/Cologne58.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/NewYork188.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/Macau57.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/SanFrancisco45.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 5"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/IMG_3514-2.JPG",
+          "alt": "3D Poster Design with Landmarks - Image 6"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/IMG_3515.JPG.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 7"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/IMG_3524.JPG.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 8"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/IMG_3526.JPG.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 9"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/IMG_3527.JPG.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 10"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-9/IMG_3528.JPG.jpg",
+          "alt": "3D Poster Design with Landmarks - Image 11"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/page-9/Cologne58.jpg"
+    },
+    {
+      "id": "10b",
+      "slug": "3d-modeled-teddy-bear",
+      "title": "3D Modeled Teddy Bear",
+      "shortSubtitle": "Beginner sculpting exercise in Blender",
+      "summary": "A soft toy modeled entirely in Blender as a beginner's sculpting exercise. This teddy bear project explored mesh shaping, subdivision modifiers, and basic material texturing in a fun and personal 3D workflow.",
+      "content": "<section><p>Beginner sculpting exercise in Blender</p><h2>Overview</h2><p>A soft toy modeled entirely in Blender as a beginner's sculpting exercise. This teddy bear project explored mesh shaping, subdivision modifiers, and basic material texturing in a fun and personal 3D workflow.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>3D Sculpting</span></div><div class=\"project-fact\"><strong>Stack</strong><span>Blender</span></div></div></section><section><h2>Focus</h2><ul><li>Working across 3d sculpting so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Blender to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A soft toy modeled entirely in Blender as a beginner's sculpting exercise. This teddy bear project explored mesh shaping, subdivision modifiers, and basic material texturing in a fun and personal 3D workflow. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Blender, chosen for fit rather than novelty.</p><p>3 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Blender</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Sculpting"
+      ],
+      "techStack": [
+        {
+          "category": "Modeling",
+          "skills": [
+            "Blender"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/page-10/BearImage54.png",
+        "alt": "3D Modeled Teddy Bear"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-10/BearImage67.png",
+          "alt": "3D Modeled Teddy Bear - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-10/BearImage77.png",
+          "alt": "3D Modeled Teddy Bear - Image 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-10/BearImage84.png",
+          "alt": "3D Modeled Teddy Bear - Image 4"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/page-10/BearImage67.png"
+    },
+    {
+      "id": "06",
+      "slug": "06-no-job-too-small-gmtk-game-jam-2024",
+      "title": "No Job Too Small – GMTK Game Jam 2024",
+      "hidden": true,
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "Creative game development under tight constraints",
+      "summary": "A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints.",
+      "content": "<section><p>Creative game development under tight constraints</p><h2>Overview</h2><p>A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints.</p></section><section><h2>Focus</h2><ul><li>Working across game design, unity development, frontend development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React, Typescript, Javascript, Html to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React, Typescript, Javascript, Html, Css, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>Typescript</li><li>Javascript</li><li>Html</li><li>Css</li><li>Fastapi</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to 🔗 Play on Itch.io, which gives extra context beyond the portfolio summary.</p></section>",
+      "categories": [
+        "Game Developer",
+        "Full Stack Engineer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "Game Design",
+        "Unity Development",
+        "Frontend Development",
+        "Backend Development"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React",
+            "Typescript",
+            "Javascript",
+            "Html",
+            "Css"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "Fastapi"
+          ]
+        },
+        {
+          "category": "Tools & Frameworks",
+          "skills": [
+            "Ar",
+            "Vr",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        },
+        {
+          "category": "Platforms",
+          "skills": [
+            "Unity",
+            "Lens Studio",
+            "Three.Js",
+            "Blender"
+          ]
+        },
+        {
+          "category": "Languages",
+          "skills": [
+            "Python",
+            "Java",
+            "C#"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/06-unique-placeholder.svg",
+        "alt": "No Job Too Small – GMTK Game Jam 2024 preview"
+      },
+      "thumbnail": "/assets/thumbnails/06-unique-placeholder.svg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/06-unique-placeholder.svg",
+          "alt": "No Job Too Small – GMTK Game Jam 2024 preview"
+        }
+      ],
+      "links": [
+        {
+          "label": "🔗 Play on Itch.io",
+          "url": "https://reatured.itch.io/no-job-too-small"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        },
+        {
+          "category": "Interactive",
+          "priority": "medium",
+          "recommendation": "Include gameplay preview and control instructions",
+          "rationale": "Helps users understand interaction requirements"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Play Button",
+          "type": "cta",
+          "description": "Prominent call-to-action for game demo",
+          "benefit": "Clear path to user engagement"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 6,
+      "url": "https://lingyizhou.cargo.site/Page-6",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:43:16.241641",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 4,
+        "uiRecommendationCount": 4
+      },
+      "mediaCount": 1
+    },
+    {
+      "id": "07",
+      "slug": "portfolio-website",
+      "title": "Portfolio Website",
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "Professional portfolio showcasing creative and technical work",
+      "summary": "A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators.",
+      "content": "<section><p>Professional portfolio showcasing creative and technical work</p><h2>Overview</h2><p>A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators.</p></section><section><h2>Focus</h2><ul><li>Working across frontend development, ui/ux design, frontend development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React, Typescript, Javascript, Html to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React, Typescript, Javascript, Html, Css, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>Typescript</li><li>Javascript</li><li>Html</li><li>Css</li><li>Fastapi</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to 💻 GitHub Repo, which gives extra context beyond the portfolio summary.</p></section>",
+      "categories": [
+        "Full Stack Engineer",
+        "Frontend Developer"
+      ],
+      "rolesOrSkills": [
+        "Frontend Development",
+        "UI/UX Design",
+        "Frontend Development",
+        "Backend Development"
+      ],
+      "techStack": [
+        {
+          "category": "Frontend",
+          "skills": [
+            "React",
+            "Typescript",
+            "Javascript",
+            "Html",
+            "Css"
+          ]
+        },
+        {
+          "category": "Backend",
+          "skills": [
+            "Fastapi"
+          ]
+        },
+        {
+          "category": "Tools & Frameworks",
+          "skills": [
+            "Ar",
+            "Vr",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        },
+        {
+          "category": "Platforms",
+          "skills": [
+            "Unity",
+            "Lens Studio",
+            "Three.Js",
+            "Blender"
+          ]
+        },
+        {
+          "category": "Languages",
+          "skills": [
+            "Python",
+            "Java",
+            "C#"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/portfolio-website-thumb.jpg",
+        "alt": "Portfolio Website preview"
+      },
+      "thumbnail": "/assets/thumbnails/portfolio-website-thumb.jpg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/portfolio-website-thumb.jpg",
+          "alt": "Portfolio Website preview"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/BlBrOzKWt9Q",
+          "provider": "youtube",
+          "alt": "Portfolio Website video",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [
+        {
+          "label": "💻 GitHub Repo",
+          "url": "https://github.com/reatured/Task-Trackers"
+        }
+      ],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 7,
+      "url": "https://lingyizhou.cargo.site/Page-7",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:43:22.117007",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 5,
+        "uiRecommendationCount": 3
+      },
+      "mediaCount": 2
+    },
+    {
+      "id": "18",
+      "slug": "spaceman-rescue",
+      "title": "Spaceman Rescue",
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "Space-themed adventure with innovative gameplay mechanics",
+      "summary": "An immersive space-themed game that combines engaging storytelling with innovative gameplay mechanics. Features stunning visuals, challenging puzzles, and a captivating narrative set in the cosmos.",
+      "content": "<section><p>Space-themed adventure with innovative gameplay mechanics</p><h2>Overview</h2><p>An immersive space-themed game that combines engaging storytelling with innovative gameplay mechanics. Features stunning visuals, challenging puzzles, and a captivating narrative set in the cosmos.</p></section><section><h2>Focus</h2><ul><li>Working across 3d modeling, narrative design, unity development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Unity, Python, Javascript, Java to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>An immersive space-themed game that combines engaging storytelling with innovative gameplay mechanics. Features stunning visuals, challenging puzzles, and a captivating narrative set in the cosmos. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Unity, Python, Javascript, Java, C#, chosen for fit rather than novelty.</p><p>2 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Java</li><li>C#</li><li>Three.Js</li><li>Blender</li><li>React</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "3D Designer",
+        "Game Developer",
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Modeling",
+        "Narrative Design",
+        "Unity Development",
+        "C# Programming"
+      ],
+      "techStack": [
+        {
+          "category": "Game Engine",
+          "skills": [
+            "Unity"
+          ]
+        },
+        {
+          "category": "Programming",
+          "skills": [
+            "Python",
+            "Javascript",
+            "Java",
+            "C#"
+          ]
+        },
+        {
+          "category": "Graphics",
+          "skills": [
+            "Three.Js"
+          ]
+        },
+        {
+          "category": "Tools",
+          "skills": [
+            "Blender"
+          ]
+        },
+        {
+          "category": "Platforms",
+          "skills": [
+            "React",
+            "Lens Studio",
+            "Typescript",
+            "Fastapi",
+            "Ar",
+            "Vr",
+            "Html",
+            "Css",
+            "Github",
+            "Git",
+            "Vite",
+            "Angular",
+            "P5.Js"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/spaceman-rescue-thumb.jpg",
+        "alt": "Spaceman Rescue preview"
+      },
+      "thumbnail": "/assets/thumbnails/spaceman-rescue-thumb.jpg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/spaceman-rescue-thumb.jpg",
+          "alt": "Spaceman Rescue preview"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/0RuU2hqkGwI",
+          "provider": "youtube",
+          "alt": "Spaceman Rescue video",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 18,
+      "url": "https://lingyizhou.cargo.site/Page-18",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:44:27.192904",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 5,
+        "uiRecommendationCount": 3
+      },
+      "mediaCount": 2
+    },
+    {
+      "id": "19",
+      "slug": "vr-magic",
+      "title": "VR Magic",
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "Hand Tracking and Gesture-Driven Spatial Interaction in VR",
+      "summary": "A VR experience using hand tracking and motion-driven gesture recognition to trigger spatial effects. Demonstrates real-time hand pose estimation, gesture classification, and responsive feedback loops -- core building blocks for gesture-based robot control interfaces.",
+      "content": "<section><p>Immersive virtual reality experience with magical interactions</p><h2>Overview</h2><p>An immersive virtual reality experience that combines magical elements with interactive gameplay. Features hand tracking, spatial audio, and stunning visual effects that transport users to a fantastical realm where magic feels real.</p></section><section><h2>Focus</h2><ul><li>Working across vr development, 3d programming, 3d modeling so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Unity, Python, Javascript, Java to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>An immersive virtual reality experience that combines magical elements with interactive gameplay. Features hand tracking, spatial audio, and stunning visual effects that transport users to a fantastical realm where magic feels real. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Unity, Python, Javascript, Java, C#, chosen for fit rather than novelty.</p><p>2 supporting media assets are included so the page can show process, interface details, or final output beyond the lead visual.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Java</li><li>C#</li><li>Three.Js</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "XR Developer",
+        "3D Designer",
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "VR Development",
+        "3D Programming",
+        "3D Modeling",
+        "Visual Effects",
+        "Unity Development",
+        "C# Programming"
+      ],
+      "techStack": [
+        {
+          "category": "Game Engine",
+          "skills": [
+            "Unity"
+          ]
+        },
+        {
+          "category": "Programming",
+          "skills": [
+            "Python",
+            "Javascript",
+            "Java",
+            "C#"
+          ]
+        },
+        {
+          "category": "Graphics",
+          "skills": [
+            "Three.Js"
+          ]
+        },
+        {
+          "category": "VR/AR",
+          "skills": [
+            "Ar",
+            "Vr"
+          ]
+        },
+        {
+          "category": "Tools",
+          "skills": [
+            "React",
+            "Lens Studio",
+            "Typescript",
+            "Fastapi",
+            "Blender",
+            "Html",
+            "Css",
+            "Github",
+            "Git",
+            "P5.Js"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/vr-magic-thumb.jpg",
+        "alt": "VR Magic preview"
+      },
+      "thumbnail": "/assets/thumbnails/vr-magic-thumb.jpg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/vr-magic-thumb.jpg",
+          "alt": "VR Magic preview"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/TrZ-S4a9k4I",
+          "provider": "youtube",
+          "alt": "VR Magic video",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        }
+      ],
+      "links": [],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        },
+        {
+          "category": "Immersive",
+          "priority": "high",
+          "recommendation": "Add 3D preview thumbnails and VR headset indicators",
+          "rationale": "Sets proper expectations for XR content"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Device Compatibility",
+          "type": "info",
+          "description": "Show supported VR/AR devices",
+          "benefit": "Sets proper user expectations"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 19,
+      "url": "https://lingyizhou.cargo.site/Page-19",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:44:33.041280",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 5,
+        "uiRecommendationCount": 4
+      },
+      "mediaCount": 2
+    },
+    {
+      "id": "20",
+      "slug": "dragon-roaster-early-2021",
+      "title": "Dragon Roaster (Early 2021)",
+      "year": "2021",
+      "status": "Completed",
+      "shortSubtitle": "Fantasy game featuring dragons and strategic gameplay",
+      "summary": "A captivating fantasy game where players train and battle dragons in strategic combat. Features rich storytelling, beautiful 3D environments, and complex gameplay mechanics that challenge both tactical thinking and reflexes.",
+      "content": "<section><p>Fantasy game featuring dragons and strategic gameplay</p><h2>Overview</h2><p>A captivating fantasy game where players train and battle dragons in strategic combat. Features rich storytelling, beautiful 3D environments, and complex gameplay mechanics that challenge both tactical thinking and reflexes.</p></section><section><h2>Focus</h2><ul><li>Working across 3d modeling, visual effects, unity development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Unity, Python, Javascript, Three.Js to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A captivating fantasy game where players train and battle dragons in strategic combat. Features rich storytelling, beautiful 3D environments, and complex gameplay mechanics that challenge both tactical thinking and reflexes. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Unity, Python, Javascript, Three.Js, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Three.Js</li></ul></section><section><h2>Outcome</h2><p>Built in 2021, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The project is also documented through itch.io: Dragon Roaster and Motion Tracking Script, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "XR Developer",
+        "3D Designer",
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "3D Modeling",
+        "Visual Effects",
+        "Unity Development",
+        "C# Programming"
+      ],
+      "techStack": [
+        "Unity",
+        "Python",
+        "Javascript",
+        "Three.Js"
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/20-themed.svg",
+        "alt": "Dragon Roaster (Early 2021) preview"
+      },
+      "thumbnail": "/assets/thumbnails/20-themed.svg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/20-themed.svg",
+          "alt": "Dragon Roaster (Early 2021) thumbnail"
+        }
+      ],
+      "links": [
+        {
+          "label": "itch.io: Dragon Roaster",
+          "url": "https://reatured.itch.io/dragon-roaster"
+        },
+        {
+          "label": "Motion Tracking Script",
+          "url": "https://github.com/digital-standard/ThreeDPoseUnityBarracuda"
+        }
+      ],
+      "isFeatured": false,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        },
+        {
+          "category": "Immersive",
+          "priority": "high",
+          "recommendation": "Add 3D preview thumbnails and VR headset indicators",
+          "rationale": "Sets proper expectations for XR content"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Device Compatibility",
+          "type": "info",
+          "description": "Show supported VR/AR devices",
+          "benefit": "Sets proper user expectations"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 20,
+      "url": "https://lingyizhou.cargo.site/Page-20",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:44:38.864257",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 4,
+        "uiRecommendationCount": 4
+      },
+      "mediaCount": 1,
+      "description": "A captivating fantasy game where players train and battle dragons in strategic combat. Features rich storytelling, beautiful 3D environments, and complex gameplay mechanics that challenge both tactical thinking and reflexes."
+    },
+    {
+      "id": "21",
+      "slug": "vr-chess-2021",
+      "title": "VR Chess (2021)",
+      "year": "2021",
+      "status": "Completed",
+      "shortSubtitle": "Embodied Spatial Reasoning and 6-DOF Object Manipulation",
+      "summary": "A VR chess game where players physically grasp and place pieces in 3D space using 6-DOF controllers. Implements spatial reasoning, collision-aware object placement, and haptic feedback -- interaction patterns shared with robotic pick-and-place and teleoperation interfaces.",
+      "content": "<section><p>Virtual reality chess with immersive 3D gameplay</p><h2>Overview</h2><p>A revolutionary virtual reality chess experience that brings the classic game to life in immersive 3D space. Players can walk around the board, pick up pieces with their hands, and experience chess like never before with spatial audio and haptic feedback.</p></section><section><h2>Focus</h2><ul><li>Working across vr development, 3d programming, unity development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Unity, Python, Javascript, Three.Js to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A revolutionary virtual reality chess experience that brings the classic game to life in immersive 3D space. Players can walk around the board, pick up pieces with their hands, and experience chess like never before with spatial audio and haptic feedback. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Unity, Python, Javascript, Three.Js, chosen for fit rather than novelty.</p><p>A supporting gallery item is included to show the build in context from another angle.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Three.Js</li></ul></section><section><h2>Outcome</h2><p>Built in 2021, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "categories": [
+        "XR Developer",
+        "Game Developer",
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "VR Development",
+        "3D Programming",
+        "Unity Development",
+        "C# Programming"
+      ],
+      "techStack": [
+        "Unity",
+        "Python",
+        "Javascript",
+        "Three.Js"
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/21-themed.svg",
+        "alt": "VR Chess (2021) preview"
+      },
+      "thumbnail": "/assets/thumbnails/21-themed.svg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/21-themed.svg",
+          "alt": "VR Chess (2021) thumbnail"
+        }
+      ],
+      "links": [],
+      "isFeatured": false,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        },
+        {
+          "category": "Immersive",
+          "priority": "high",
+          "recommendation": "Add 3D preview thumbnails and VR headset indicators",
+          "rationale": "Sets proper expectations for XR content"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Device Compatibility",
+          "type": "info",
+          "description": "Show supported VR/AR devices",
+          "benefit": "Sets proper user expectations"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 21,
+      "url": "https://lingyizhou.cargo.site/Page-21",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:44:44.634420",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 4,
+        "uiRecommendationCount": 4
+      },
+      "mediaCount": 1,
+      "description": "A revolutionary virtual reality chess experience that brings the classic game to life in immersive 3D space. Players can walk around the board, pick up pieces with their hands, and experience chess like never before with spatial audio and haptic feedback."
+    },
+    {
+      "id": "22",
+      "slug": "3d-snake-game-2019",
+      "title": "3D Snake Game (2019)",
+      "hidden": true,
+      "year": "2019",
+      "status": "Completed",
+      "shortSubtitle": "Classic snake game reimagined in 3D space",
+      "summary": "A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness.",
+      "content": "<section><p>Classic snake game reimagined in 3D space</p><h2>Overview</h2><p>A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness.</p></section><section><h2>Focus</h2><ul><li>Working across game design, unity development, unity development so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, Python, Javascript, Three.Js to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, Python, Javascript, Three.Js, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Three.Js</li></ul></section><section><h2>Outcome</h2><p>Built in 2019, the project reached a completed state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The live link for this project points to Snake Pro on itch.io →, which gives extra context beyond the portfolio summary.</p></section>",
+      "categories": [
+        "Game Developer",
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "Game Design",
+        "Unity Development",
+        "Unity Development",
+        "C# Programming"
+      ],
+      "techStack": [
+        "Unity",
+        "Python",
+        "Javascript",
+        "Three.Js"
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/22-featured.svg",
+        "alt": "3D Snake Game (2019) preview"
+      },
+      "thumbnail": "/assets/thumbnails/22-featured.svg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/22-featured.svg",
+          "alt": "3D Snake Game (2019) thumbnail"
+        },
+        {
+          "type": "iframe",
+          "src": "https://itch.io/embed/871359",
+          "provider": "itch.io",
+          "alt": "Play 3D Snake Game",
+          "height": 600
+        }
+      ],
+      "links": [
+        {
+          "label": "Snake Pro on itch.io →",
+          "url": "https://reatured.itch.io/3d-snake"
+        }
+      ],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        },
+        {
+          "category": "Interactive",
+          "priority": "medium",
+          "recommendation": "Include gameplay preview and control instructions",
+          "rationale": "Helps users understand interaction requirements"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Play Button",
+          "type": "cta",
+          "description": "Prominent call-to-action for game demo",
+          "benefit": "Clear path to user engagement"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 22,
+      "url": "https://lingyizhou.cargo.site/Page-22",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:44:50.689717",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 5,
+        "uiRecommendationCount": 4
+      },
+      "mediaCount": 1,
+      "description": "A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness."
+    },
+    {
+      "id": "24",
+      "slug": "my-shader-projects",
+      "title": "My Shader Projects",
+      "year": "2025",
+      "status": "Completed",
+      "shortSubtitle": "GPU Programming and Math-Driven Real-Time Rendering",
+      "summary": "A collection of shader experiments in GLSL and HLSL exploring procedural generation, lighting models, and math-driven animation on the GPU. Demonstrates low-level graphics programming skills transferable to robotic visualization, point cloud rendering, and real-time sensor data display.",
+      "content": "<section><p>Collection of advanced shader programming experiments</p><h2>Overview</h2><p>A comprehensive collection of advanced shader programming experiments showcasing various rendering techniques, visual effects, and mathematical beauty. Demonstrates expertise in graphics programming and creative coding.</p></section><section><h2>Focus</h2><ul><li>Working across shader programming, graphics development, unity development so the concept and execution stayed aligned.</li><li>Exploring visual systems through iteration, parameter tuning, and small technical experiments rather than one fixed output.</li><li>Using code as a medium for motion, color, and procedural variation while keeping the work understandable to viewers.</li><li>Building with Unity, Python, Javascript, Three.Js to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A comprehensive collection of advanced shader programming experiments showcasing various rendering techniques, visual effects, and mathematical beauty. Demonstrates expertise in graphics programming and creative coding. The work evolved through experimentation, with each sketch or shader acting as a small probe into motion, pattern, and rendering behavior rather than a one-off aesthetic exercise. The implementation side centered on Unity, Python, Javascript, Three.Js, chosen for fit rather than novelty.</p><p>The project is paired with 9 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Three.Js</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It works as a snapshot of ongoing experimentation and a way to show taste, graphics fundamentals, and curiosity through code. The project is also documented through ShaderToy and Wtffzn, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "3D Designer",
+        "Game Developer",
+        "3D Designer"
+      ],
+      "rolesOrSkills": [
+        "Shader Programming",
+        "Graphics Development",
+        "Unity Development",
+        "C# Programming"
+      ],
+      "techStack": [
+        "Unity",
+        "Python",
+        "Javascript",
+        "Three.Js"
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/thumbnails/24-featured.svg",
+        "alt": "My Shader Projects preview"
+      },
+      "thumbnail": "/assets/thumbnails/24-featured.svg",
+      "mediaGallery": [
+        {
+          "type": "image",
+          "src": "/assets/thumbnails/24-featured.svg",
+          "alt": "My Shader Projects thumbnail"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/Wtffzn?gui=true&t=10&paused=false&muted=false&wm=true",
+          "provider": "shadertoy",
+          "alt": "Shader Demo 1",
+          "height": 400
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/ttXfzj?gui=true&t=10&paused=false&muted=false&wm=true",
+          "provider": "shadertoy",
+          "alt": "Shader Demo 2",
+          "height": 400
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/wlfBRN?gui=true&t=10&paused=false&muted=false&wm=true",
+          "provider": "shadertoy",
+          "alt": "Shader Demo 3",
+          "height": 400
+        }
+      ],
+      "links": [
+        {
+          "label": "ShaderToy",
+          "url": "https://www.shadertoy.com/"
+        },
+        {
+          "label": "Wtffzn",
+          "url": "https://www.shadertoy.com/view/Wtffzn"
+        },
+        {
+          "label": "ttXfzj",
+          "url": "https://www.shadertoy.com/view/ttXfzj"
+        },
+        {
+          "label": "wlfBRN",
+          "url": "https://www.shadertoy.com/view/wlfBRN"
+        },
+        {
+          "label": "WlXfz4",
+          "url": "https://www.shadertoy.com/view/WlXfz4"
+        },
+        {
+          "label": "tlXfzH",
+          "url": "https://www.shadertoy.com/view/tlXfzH"
+        },
+        {
+          "label": "WllBzr",
+          "url": "https://www.shadertoy.com/view/WllBzr"
+        },
+        {
+          "label": "3t2cDd",
+          "url": "https://www.shadertoy.com/view/3t2cDd"
+        },
+        {
+          "label": "3l2cWd",
+          "url": "https://www.shadertoy.com/view/3l2cWd"
+        }
+      ],
+      "isFeatured": true,
+      "section": "Current Projects",
+      "uiRecommendations": [
+        {
+          "category": "Layout",
+          "priority": "high",
+          "recommendation": "Use a hero section with featured media at the top",
+          "rationale": "Immediate visual impact engages visitors"
+        },
+        {
+          "category": "Media",
+          "priority": "high",
+          "recommendation": "Add loading placeholders for iframe content",
+          "rationale": "Improves perceived performance during loading"
+        },
+        {
+          "category": "Media",
+          "priority": "medium",
+          "recommendation": "Include video thumbnails and play buttons",
+          "rationale": "Better user experience and control over video playback"
+        },
+        {
+          "category": "Gallery",
+          "priority": "medium",
+          "recommendation": "Implement pagination or lazy loading for large galleries",
+          "rationale": "Maintains page performance with many media items"
+        }
+      ],
+      "visualHierarchy": {
+        "hero": {
+          "element": "featuredMedia",
+          "importance": "critical",
+          "styling": "Full-width with prominent positioning"
+        },
+        "title": {
+          "element": "projectTitle",
+          "importance": "critical",
+          "styling": "Large, bold typography with clear contrast"
+        },
+        "subtitle": {
+          "element": "shortSubtitle",
+          "importance": "high",
+          "styling": "Medium size, accent color for emphasis"
+        },
+        "summary": {
+          "element": "summary",
+          "importance": "high",
+          "styling": "Readable body text with good line height"
+        },
+        "techStack": {
+          "element": "techStack",
+          "importance": "medium",
+          "styling": "Organized categories with clear visual separation"
+        },
+        "gallery": {
+          "element": "mediaGallery",
+          "importance": "medium",
+          "styling": "Grid layout with consistent spacing and hover effects"
+        },
+        "details": {
+          "element": "content",
+          "importance": "low",
+          "styling": "Well-structured content with clear headings"
+        }
+      },
+      "responsiveConsiderations": [
+        {
+          "breakpoint": "mobile",
+          "consideration": "Stack media gallery vertically on small screens",
+          "implementation": "Use flexbox column layout for mobile gallery"
+        },
+        {
+          "breakpoint": "mobile",
+          "consideration": "Optimize iframe sizes for mobile viewing",
+          "implementation": "Reduce iframe height to 300px on mobile devices"
+        },
+        {
+          "breakpoint": "tablet",
+          "consideration": "Use 2-column gallery layout for tablets",
+          "implementation": "CSS Grid with auto-fit for responsive gallery"
+        },
+        {
+          "breakpoint": "desktop",
+          "consideration": "Implement hover effects and transitions",
+          "implementation": "CSS transforms and transitions for interactive elements"
+        },
+        {
+          "breakpoint": "all",
+          "consideration": "Add responsive iframe containers",
+          "implementation": "Use padding-top percentage technique for aspect ratio"
+        }
+      ],
+      "interactiveElements": [
+        {
+          "element": "Gallery Navigation",
+          "type": "carousel",
+          "description": "Smooth carousel with thumbnail navigation",
+          "benefit": "Better media browsing experience"
+        },
+        {
+          "element": "Lightbox",
+          "type": "modal",
+          "description": "Full-screen media viewer with navigation",
+          "benefit": "Immersive media viewing experience"
+        },
+        {
+          "element": "Video Controls",
+          "type": "custom",
+          "description": "Styled video player with custom controls",
+          "benefit": "Consistent branding and user experience"
+        },
+        {
+          "element": "Tech Stack Pills",
+          "type": "interactive",
+          "description": "Clickable technology tags with filtering",
+          "benefit": "Enhanced content exploration"
+        }
+      ],
+      "pageNumber": 24,
+      "url": "https://lingyizhou.cargo.site/Page-24",
+      "hasRealTitle": true,
+      "scrapedAt": "2026-03-19T20:45:02.541534",
+      "consolidationMetadata": {
+        "consolidatedAt": "2026-03-20T03:49:28.537Z",
+        "hasWriterEnhancements": true,
+        "hasFrontendOptimizations": true,
+        "mediaCount": 12,
+        "uiRecommendationCount": 4
+      },
+      "mediaCount": 1,
+      "description": "A comprehensive collection of advanced shader programming experiments showcasing various rendering techniques, visual effects, and mathematical beauty. Demonstrates expertise in graphics programming and creative coding."
+    }
+  ]
+}
