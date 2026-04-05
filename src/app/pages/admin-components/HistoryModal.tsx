@@ -46,7 +46,6 @@ export const HistoryModal: React.FC<{
     if (snap.title) lines.push(`Title: ${snap.title}`);
     if (snap.status) lines.push(`Status: ${snap.status}`);
     if (snap.section) lines.push(`Section: ${snap.section}`);
-    lines.push(`Featured: ${snap.isFeatured ? 'Yes' : 'No'}`);
     lines.push(`Media: ${snap.featuredMedia.type} — ${snap.featuredMedia.src?.slice(0, 50)}…`);
     return lines;
   }

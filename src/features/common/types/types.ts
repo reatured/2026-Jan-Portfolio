@@ -101,7 +101,6 @@ export interface Project {
   thumbnail?: string; // Image URL shown on project cards when featuredMedia is video/iframe
   mediaGallery: MediaItem[];
   links: ProjectLink[];
-  isFeatured: boolean;
   hidden?: boolean;
   section?: 'Current Projects' | 'Most Recent' | 'Archive';
 }

@@ -52,20 +52,22 @@ export function ProjectsTable({
   const statuses = Array.from(new Set(projects.map((p) => p.status ?? '').filter(Boolean)));
 
   // Filter & search
-  const filtered = projects.filter((p) => {
-    if (sectionFilter !== 'all' && (p.section ?? 'Most Recent') !== sectionFilter) return false;
-    if (statusFilter !== 'all' && (p.status ?? '') !== statusFilter) return false;
-    if (search) {
-      const q = search.toLowerCase();
-      return (
-        p.title.toLowerCase().includes(q) ||
-        p.shortSubtitle.toLowerCase().includes(q) ||
-        p.id.includes(q) ||
-        p.categories.some((c) => c.toLowerCase().includes(q))
-      );
-    }
-    return true;
-  });
+  const filtered = projects
+    .filter((p) => {
+      if (sectionFilter !== 'all' && (p.section ?? 'Most Recent') !== sectionFilter) return false;
+      if (statusFilter !== 'all' && (p.status ?? '') !== statusFilter) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        return (
+          p.title.toLowerCase().includes(q) ||
+          p.shortSubtitle.toLowerCase().includes(q) ||
+          p.id.includes(q) ||
+          p.categories.some((c) => c.toLowerCase().includes(q))
+        );
+      }
+      return true;
+    })
+    .sort((a, b) => a.id.localeCompare(b.id));
 
   const isFiltered = search || sectionFilter !== 'all' || statusFilter !== 'all';
 
@@ -168,7 +170,6 @@ export function ProjectsTable({
               <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Title</TableCell>
               <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Section</TableCell>
               <TableCell sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Status</TableCell>
-              <TableCell align="center" sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>★</TableCell>
               <TableCell align="right" sx={{ color: 'text.secondary', fontWeight: 700, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -227,9 +228,6 @@ export function ProjectsTable({
                   </TableCell>
                   <TableCell>
                     <Typography variant="caption" color="text.secondary">{p.status ?? '—'}</Typography>
-                  </TableCell>
-                  <TableCell align="center">
-                    {p.isFeatured && <Typography sx={{ color: 'warning.main' }}>★</Typography>}
                   </TableCell>
                   <TableCell align="right">
                     <Box sx={{ display: 'flex', gap: 0.75, justifyContent: 'flex-end' }}>

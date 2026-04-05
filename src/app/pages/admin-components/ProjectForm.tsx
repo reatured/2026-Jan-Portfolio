@@ -482,16 +482,6 @@ export function ProjectForm({
                     <MenuItem value="Archive">Archive</MenuItem>
                   </Select>
                 </FormControl>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={p.isFeatured}
-                      onChange={(e) => set('isFeatured', e.target.checked)}
-                      color="primary"
-                    />
-                  }
-                  label="Featured project"
-                />
               </Box>
             </Box>
 

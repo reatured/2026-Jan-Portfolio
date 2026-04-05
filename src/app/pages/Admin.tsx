@@ -51,7 +51,6 @@ function blankProject(): Project {
     thumbnail: '',
     mediaGallery: [],
     links: [],
-    isFeatured: false,
     section: 'Most Recent',
   };
 }
@@ -216,7 +215,6 @@ export const Admin: React.FC = () => {
                   <Box>
                     <Typography variant="h5" fontWeight={600}>Projects</Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                      {projects.filter((p) => p.isFeatured).length} featured ·{' '}
                       {projects.filter((p) => p.section === 'Current Projects').length} current ·{' '}
                       {projects.filter((p) => p.section === 'Archive').length} archived
                     </Typography>

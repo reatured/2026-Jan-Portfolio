@@ -1,0 +1,119 @@
+{
+  "pages": [
+    {
+      "pageNumber": 4,
+      "title": "3D Printed Hook",
+      "description": "4 No-Drill Curtain Hook for Rental Apartment In a rented apartment where drilling is not allowed , hanging curtains becomes a real challenge. After sticky hooks failed multiple times, I studied the wall structure and noticed a tight seam between the ceiling and the wall . I modeled a two-part hook in Fusion 360 that could securely lock into this seam \u2014 no screws , no adhesive , no damage . The hook supports curtain weight via a load-distributed design and holds firmly using compression . It was printed with thick PLA walls and has held up perfectly ever since. This project demonstrates how close observation , 3D modeling , and rapid prototyping can solve everyday problems in clever, renter-friendly ways. 3D Modeled in Fusion 360: The top part hooked into the space between original curtain frame, and the second part locked into the first part by sliding in horizontally. Installation: Before After Modeling Software: Fusion 360 Output: STL file for 3D Printing Material: PLA Filament Design: Two-part modeled hook, sliding in installation, no screw, no sticky",
+      "techStack": [
+        "Fusion 360",
+        "PLA",
+        "STL",
+        "3D Printing"
+      ],
+      "images": [
+        "/assets/cargo-import/3d-projects/page-4/IMG_4604-2.jpeg",
+        "/assets/cargo-import/3d-projects/page-4/IMG_4610-2.jpeg",
+        "/assets/cargo-import/3d-projects/page-4/IMG_4624.jpeg",
+        "/assets/cargo-import/3d-projects/page-4/IMG_9438-copy.jpeg",
+        "/assets/cargo-import/3d-projects/page-4/IMG_9438.JPG",
+        "/assets/cargo-import/3d-projects/page-4/IMG_9445.JPG",
+        "/assets/cargo-import/3d-projects/page-4/IMG_9446.JPG",
+        "/assets/cargo-import/3d-projects/page-4/IMG_9447.JPG",
+        "/assets/cargo-import/3d-projects/page-4/IMG_9448.JPG",
+        "/assets/cargo-import/3d-projects/page-4/Instagram-post---3.PNG",
+        "/assets/cargo-import/3d-projects/page-4/Screenshot-2025-07-24-at-1.00.24PM.png",
+        "/assets/cargo-import/3d-projects/page-4/Screenshot-2025-07-24-at-1.00.24PM_1.png",
+        "/assets/cargo-import/3d-projects/page-4/Screenshot-2025-07-24-at-1.00.24PM_2.png"
+      ]
+    },
+    {
+      "pageNumber": 9,
+      "title": "3D Poster Design with Landmarks",
+      "description": "09 3D Poster Design with Landmarks This poster series features 3D-rendered landmarks from cities across different time zones, blending geographic data with artistic visualization. Using the Google Maps API, I imported real-world location data into Blender in two distinct styles: one with detailed building geometry and textures for realism, and another with simplified, stylized forms for a more graphic look. Each scene was lit according to the local time of day\u2014morning, noon, or night\u2014using HDRIs and custom lighting setups to capture the unique atmosphere of each location at a specific hour. The result is a cohesive visual narrative showcasing both spatial and temporal diversity. Real-world 3D data imported via Google Maps API Dual-style rendering: realistic vs. graphic simplification Dynamic lighting tied to time of day and location Rendered in high resolution for print-scale posters Experimented with atmospheric storytelling through light and geometry This project combines data visualization, 3D design, and storytelling through lighting and composition\u2014an intersection of technical workflow and artistic expression.",
+      "techStack": [
+        "Blender",
+        "HDRI",
+        "Google Maps API"
+      ],
+      "images": [
+        "/assets/cargo-import/3d-projects/page-9/3D-Modeling-A1-Size-Poster.png",
+        "/assets/cargo-import/3d-projects/page-9/Cologne58.jpg",
+        "/assets/cargo-import/3d-projects/page-9/IMG_3514-2.JPG",
+        "/assets/cargo-import/3d-projects/page-9/IMG_3515.JPG.jpg",
+        "/assets/cargo-import/3d-projects/page-9/IMG_3524.JPG.jpg",
+        "/assets/cargo-import/3d-projects/page-9/IMG_3526.JPG.jpg",
+        "/assets/cargo-import/3d-projects/page-9/IMG_3527.JPG.jpg",
+        "/assets/cargo-import/3d-projects/page-9/IMG_3528.JPG.jpg",
+        "/assets/cargo-import/3d-projects/page-9/Macau57.jpg",
+        "/assets/cargo-import/3d-projects/page-9/NewYork188.jpg",
+        "/assets/cargo-import/3d-projects/page-9/SanFrancisco45.jpg"
+      ]
+    },
+    {
+      "pageNumber": 10,
+      "title": "3D Modeled Teddy Bear",
+      "description": "10 3D Modeled Teddy Bear Created as an early Blender project, this 3D teddy bear was modeled from scratch to practice soft-surface sculpting, proportions, and character modeling fundamentals. The goal was to create a playful, stylized plush form that could be rigged or printed in future iterations. Using a combination of primitive shapes and proportional editing, I built up the form and applied subdivision modifiers for smoothness. Basic shaders were added to give the model a soft fabric-like appearance. Full-body model built using Blender Explores stylized organic modeling techniques Subdivision surface workflow for rounded edges Basic shader applied for fabric visualization Project focus: sculpting, proportions, and cuteness This project represents a personal milestone in 3D modeling, bridging technical form-building with character design practice.",
+      "techStack": [
+        "Blender",
+        "PLA",
+        "Sculpting"
+      ],
+      "images": [
+        "/assets/cargo-import/3d-projects/page-10/BearImage54.png",
+        "/assets/cargo-import/3d-projects/page-10/BearImage67.png",
+        "/assets/cargo-import/3d-projects/page-10/BearImage77.png",
+        "/assets/cargo-import/3d-projects/page-10/BearImage84.png"
+      ]
+    },
+    {
+      "pageNumber": 11,
+      "title": "Magic Wand \u2013 Cartoon Shader",
+      "description": "",
+      "techStack": [
+        "Blender"
+      ],
+      "images": []
+    },
+    {
+      "pageNumber": 12,
+      "title": "Procedural Modeling in Blender",
+      "description": "",
+      "techStack": [
+        "Blender",
+        "Geometry Nodes"
+      ],
+      "images": []
+    },
+    {
+      "pageNumber": 13,
+      "title": "Chess Scene \u2013 VR Modeling",
+      "description": "",
+      "techStack": [
+        "Blender",
+        "VR"
+      ],
+      "images": []
+    },
+    {
+      "pageNumber": 14,
+      "title": "Bowling Scene with Blender",
+      "description": "",
+      "techStack": [
+        "Blender",
+        "Physics Simulation"
+      ],
+      "images": []
+    },
+    {
+      "pageNumber": 15,
+      "title": "Door Stop \u2013 Functional 3D Design",
+      "description": "",
+      "techStack": [
+        "Fusion 360",
+        "3D Printing",
+        "PLA"
+      ],
+      "images": []
+    }
+  ]
+}

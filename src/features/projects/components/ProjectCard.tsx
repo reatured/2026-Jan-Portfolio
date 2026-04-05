@@ -18,6 +18,8 @@ function getYouTubeId(url: string): string | null {
   return m ? m[1] : null;
 }
 
+const PLACEHOLDER_SRC = '/assets/cargo-import/page-4/Instagram-post---3.PNG';
+
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const thumbnailSrc = project.thumbnail;
   const ytId = thumbnailSrc ? getYouTubeId(thumbnailSrc) : null;
@@ -42,6 +44,11 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         : { type: 'image', src: siteConfig.defaultOgImage, alt: `${project.title} preview` }
       : { type: 'image', src: thumbnailSrc, alt: `${project.title} thumbnail` };
 
+  const showImageFallback =
+    !resolvedYtId &&
+    !thumbnailIsVideo &&
+    (!cardMedia.src || cardMedia.src === PLACEHOLDER_SRC);
+
   const handleClick = () => {
     // Save scroll position and current URL (with filters) before navigating to project
     sessionStorage.setItem('homepageScrollY', window.scrollY.toString());
@@ -62,20 +69,15 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         gap: { xs: 0, md: 2.5 },
         p: { xs: 1.5, md: 2 },
         borderRadius: '28px',
-        bgcolor: project.isFeatured ? M3.surfaceContainer : M3.surfaceContainerLow,
-        border: `1px solid ${project.isFeatured ? M3.primary + '50' : M3.outlineVariant}`,
-        ...(project.isFeatured && {
-          boxShadow: `0 0 20px ${M3.primary}15`,
-        }),
+        bgcolor: M3.surfaceContainerLow,
+        border: `1px solid ${M3.outlineVariant}`,
         position: 'relative',
         overflow: 'hidden',
         transition: 'all 0.25s cubic-bezier(0.05, 0.7, 0.1, 1)',
         '&:hover': {
           bgcolor: M3.surfaceContainerHigh,
           transform: 'translateY(-4px)',
-          boxShadow: project.isFeatured
-            ? `0 12px 40px rgba(0,0,0,0.3), 0 0 30px ${M3.primary}25`
-            : `0 12px 40px rgba(0,0,0,0.3)`,
+          boxShadow: `0 12px 40px rgba(0,0,0,0.3)`,
         },
         '&:hover .project-title': {
           color: M3.primary,
@@ -115,7 +117,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
               height: '100%',
               border: 'none',
               display: 'block',
-              pointerEvents: 'none', // prevent clicking into YouTube on the card
+              pointerEvents: 'none',
             }}
           />
         ) : thumbnailIsVideo ? (
@@ -128,6 +130,32 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             playsInline
             sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
+        ) : showImageFallback ? (
+          <Box
+            sx={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: `linear-gradient(135deg, ${M3.surfaceContainerHighest} 0%, ${M3.surfaceContainer} 100%)`,
+              p: 2,
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                color: M3.onSurfaceVariant,
+                fontFamily: '"Space Grotesk", sans-serif',
+                textAlign: 'center',
+                opacity: 0.5,
+                letterSpacing: '0.02em',
+              }}
+            >
+              {project.title}
+            </Typography>
+          </Box>
         ) : (
           <Media item={cardMedia} className="h-full w-full" />
         )}
@@ -140,27 +168,6 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           pointerEvents: 'none',
         }} />
 
-        {/* Featured badge */}
-        {project.isFeatured && (
-          <Box sx={{
-            position: 'absolute',
-            top: 8,
-            left: 8,
-            background: `linear-gradient(135deg, ${M3.primary}, ${M3.tertiary})`,
-            color: M3.onPrimary,
-            fontSize: '0.55rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            px: 1,
-            py: 0.3,
-            borderRadius: '8px',
-            fontFamily: '"Space Grotesk", sans-serif',
-            zIndex: 1,
-          }}>
-            Featured
-          </Box>
-        )}
       </Box>
 
       {/* Content */}

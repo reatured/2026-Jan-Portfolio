@@ -288,6 +288,10 @@ export const ProjectDetail: React.FC = () => {
   });
 
   const stackItems = getStackItems(project);
+  const PLACEHOLDER_SRC = '/assets/cargo-import/page-4/Instagram-post---3.PNG';
+  const hasMeaningfulMedia =
+    project.featuredMedia.type !== 'image' ||
+    (project.featuredMedia.src !== PLACEHOLDER_SRC && project.featuredMedia.src !== '');
   const modalGalleryItems = project.mediaGallery.filter(item => item.presentation === 'modal');
   const galleryItems = project.mediaGallery.filter((item) => {
     const isDuplicateFeatured = item.src === project.featuredMedia.src && item.type === project.featuredMedia.type;
@@ -369,7 +373,9 @@ export const ProjectDetail: React.FC = () => {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', xl: 'minmax(0, 1.05fr) minmax(360px, 0.95fr)' },
+            gridTemplateColumns: hasMeaningfulMedia
+              ? { xs: '1fr', xl: 'minmax(0, 1.05fr) minmax(360px, 0.95fr)' }
+              : '1fr',
             gap: { xs: 3, lg: 4 },
             alignItems: 'start',
           }}
@@ -488,28 +494,30 @@ export const ProjectDetail: React.FC = () => {
             </Box>
           </Box>
 
-          <Box
-            sx={{
-              minWidth: 0,
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
+          {hasMeaningfulMedia && (
             <Box
               sx={{
-                borderRadius: '28px',
-                overflow: 'hidden',
-                bgcolor: M3.surfaceContainerHighest,
-                border: `1px solid ${M3.outlineVariant}40`,
-                boxShadow: '0 22px 50px rgba(0, 0, 0, 0.28)',
+                minWidth: 0,
+                position: 'relative',
+                zIndex: 1,
               }}
             >
-              <Media
-                item={project.featuredMedia}
-                className={`w-full ${project.featuredMedia.type !== 'iframe' ? 'aspect-video' : ''}`}
-              />
+              <Box
+                sx={{
+                  borderRadius: '28px',
+                  overflow: 'hidden',
+                  bgcolor: M3.surfaceContainerHighest,
+                  border: `1px solid ${M3.outlineVariant}40`,
+                  boxShadow: '0 22px 50px rgba(0, 0, 0, 0.28)',
+                }}
+              >
+                <Media
+                  item={project.featuredMedia}
+                  className={`w-full ${project.featuredMedia.type !== 'iframe' ? 'aspect-video' : ''}`}
+                />
+              </Box>
             </Box>
-          </Box>
+          )}
         </Box>
 
         <Box
