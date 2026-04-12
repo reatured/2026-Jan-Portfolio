@@ -1381,64 +1381,69 @@
       ],
       "featuredMedia": {
         "type": "image",
-        "src": "/assets/cargo-import/page-9/3D-Modeling-A1-Size-Poster.png",
-        "alt": "3D Poster Design with Landmarks"
+        "src": "/assets/cargo-import/3d-projects/page-9-hires/3D-Modeling-A1-Size-Poster.png",
+        "alt": "3D Poster Design with Landmarks \u2014 A1 Series"
       },
       "mediaGallery": [
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/Cologne58.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 2"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/3D-Modeling-A1-Size-Poster-1.png",
+          "alt": "3D Poster alternate version"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/NewYork188.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 3"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/NewYork188.jpg",
+          "alt": "New York \u2014 midday render"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/Macau57.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 4"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/Cologne58.jpg",
+          "alt": "Cologne \u2014 late afternoon render"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/SanFrancisco45.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 5"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/Macau57.jpg",
+          "alt": "Macau \u2014 dusk render"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/IMG_3514-2.JPG",
-          "alt": "3D Poster Design with Landmarks - Image 6"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/SanFrancisco45.jpg",
+          "alt": "San Francisco \u2014 morning haze render"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/IMG_3515.JPG.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 7"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3514-2.JPG",
+          "alt": "Blender scene setup \u2014 Google Maps data import"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/IMG_3524.JPG.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 8"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3515.JPG.jpg",
+          "alt": "Process shot \u2014 realistic style"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/IMG_3526.JPG.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 9"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3524.JPG.jpg",
+          "alt": "Process shot \u2014 graphic style"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/IMG_3527.JPG.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 10"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3526.JPG.jpg",
+          "alt": "Lighting rig \u2014 HDRI setup"
         },
         {
           "type": "image",
-          "src": "/assets/cargo-import/page-9/IMG_3528.JPG.jpg",
-          "alt": "3D Poster Design with Landmarks - Image 11"
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3527.JPG.jpg",
+          "alt": "Render comparison"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3528.JPG.jpg",
+          "alt": "Final print layout"
         }
       ],
       "links": [],
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-9/Cologne58.jpg",
+      "thumbnail": "/assets/cargo-import/3d-projects/page-9-hires/NewYork188.jpg",
       "year": "2024",
       "status": "Series"
     },
