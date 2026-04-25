@@ -79,7 +79,7 @@
       {
         "title": "Game Developer",
         "details": [
-          "Custom physics engines, non-Euclidean game mechanics, and game jam entries (Top 1\u20132% GMTK)",
+          "Custom physics engines, non-Euclidean game mechanics, and game jam entries (Top 1–2% GMTK)",
           "Unity and p5.js game development with procedural systems and narrative design"
         ]
       },
@@ -208,6 +208,99 @@
       ],
       "section": "Current Projects",
       "thumbnail": "/assets/thumbnails/28-robot-hand-thumb.jpg"
+    },
+    {
+      "id": "02",
+      "slug": "ar-drawing-tool",
+      "title": "AR Drawing Tool",
+      "year": "2022",
+      "status": "Internship",
+      "shortSubtitle": "Real-Time Hand Tracking to Procedural 3D Geometry Pipeline",
+      "summary": "Built at Snap Inc., this project implements a real-time perception-to-geometry pipeline: hand keypoint tracking feeds into procedural mesh generation, creating 3D structures from tracked finger motion. Demonstrates the same sensor-to-output loop used in robotic manipulation research.",
+      "content": "<section><p>Procedural mesh generation with hand tracking</p><h2>Overview</h2><p>During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space.</p></section><section><h2>Focus</h2><ul><li>Working across ar engineer so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Lens Studio, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Lens Studio, JavaScript, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Lens Studio</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>Built in 2022, the project reached a internship state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The project is also documented through Demo Video and Official Docs, which complement the material shown on this page.</p></section>",
+      "categories": [
+        "Perception & CV Engineer"
+      ],
+      "rolesOrSkills": [
+        "Perception",
+        "Hand Tracking",
+        "Procedural Geometry",
+        "Spatial Computing"
+      ],
+      "techStack": [
+        {
+          "category": "Platform",
+          "skills": [
+            "Lens Studio"
+          ]
+        },
+        {
+          "category": "Language",
+          "skills": [
+            "JavaScript"
+          ]
+        }
+      ],
+      "featuredMedia": {
+        "type": "image",
+        "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png",
+        "alt": "AR Drawing Tool"
+      },
+      "mediaGallery": [
+        {
+          "type": "iframe",
+          "src": "https://www.youtube.com/embed/1A2lCiQwVko",
+          "provider": "youtube",
+          "embedUrl": "https://www.youtube.com/embed/1A2lCiQwVko",
+          "alt": "AR Drawing Tool Demo - Snap Inc. Internship",
+          "height": 450,
+          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing06.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing09.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing18.jpeg",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        }
+      ],
+      "links": [
+        {
+          "label": "Demo Video",
+          "url": "https://youtu.be/1A2lCiQwVko",
+          "icon": "Youtube"
+        },
+        {
+          "label": "Official Docs",
+          "url": "https://developers.snap.com/lens-studio/4.55.1/references/guides/lens-features/scene-set-up/3d/procedural-mesh",
+          "icon": "ExternalLink"
+        }
+      ],
+      "section": "Most Recent",
+      "thumbnail": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png"
     },
     {
       "id": "26",
@@ -617,6 +710,16 @@
           "type": "image",
           "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/1.png",
           "alt": "CuraLoop: AI Companion for Alzheimer's Care - Image 5"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/curaloop-ai-companion-for-alzheimer-s-care-2025/1-second.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
@@ -638,9 +741,9 @@
       "title": "B612 Soccer",
       "year": "2025",
       "status": "Top 2% GMTK",
-      "shortSubtitle": "Minimalist 2-player soccer on a looping planet \u2014 solo-built in 48 hours for GMTK 2025 (Top 2%)",
+      "shortSubtitle": "Minimalist 2-player soccer on a looping planet — solo-built in 48 hours for GMTK 2025 (Top 2%)",
       "summary": "B612 Soccer is a minimalist, fast-paced 2-player soccer game set on a looping circular planet. Every shot can orbit the globe for wild, unpredictable goals. Created solo for GMTK Game Jam 2025 (\"Loop\" theme), it features creative orbital mechanics, hand-drawn sketch visuals, and chaotic multiplayer action.",
-      "content": "<section><h2>Development Challenge</h2><p>As a 1-person team, I had only 2 days out of the 4-day jam to design, build, illustrate, and submit the entire project. Everything you see was made in that thrilling, exhausting sprint.</p></section><section><h2>GMTK 2025 Jam Results</h2><table class=\"data-table\"><thead><tr><th>Criteria</th><th>Rank</th><th>Score</th></tr></thead><tbody><tr><td>Enjoyment</td><td>#158</td><td>4.195</td></tr><tr><td>Creativity</td><td>#238</td><td>4.341</td></tr><tr><td>Artwork</td><td>#219</td><td>4.439</td></tr><tr><td>Audio</td><td>#122</td><td>4.146</td></tr><tr><td>Narrative</td><td>#392</td><td>3.756</td></tr></tbody></table></section><section><h2>About the Theme: \"Loop\"</h2><ul><li><strong>Literal Loop:</strong> The ball and players both orbit the planet for truly loopy gameplay.</li><li><strong>Perspective:</strong> Side view, all mechanics in polar physics.</li><li><strong>Visuals:</strong> Black/white line art, blue space ambiance.</li><li><strong>Pick-Up Play:</strong> 100-second matches, first to 10 goals, perfect for friends.</li></ul></section><section><h2>Core Mechanics</h2><ul><li><strong>360\u00b0 Movement:</strong> Players run, jump, and kick around the full planet.</li><li><strong>Kicking:</strong> Directional kicks add momentum \u2014 maybe even scoring on your own goal!</li><li><strong>Physics:</strong> Natural ball orbiting, bounce, and wrapping.</li><li><strong>Goals:</strong> Clear crossbars, animated feedback.</li><li><strong>Multi-ball:</strong> Up to 6 balls for bonus chaos.</li></ul><h3>Controls</h3><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Player 1</strong><span>WASD</span></div><div class=\"project-fact\"><strong>Player 2</strong><span>Arrow Keys</span></div><div class=\"project-fact\"><strong>Pause</strong><span>ESC</span></div></div></section><section><h2>Art, Audio &amp; Asset Production</h2><ul><li><strong>Hand-drawn assets:</strong> All sprites, UI, and backgrounds sketched by pencil, scanned with a printer, and processed in Photoshop.</li><li><strong>Minimalist UI:</strong> Clean, intuitive scoreboard and feedback.</li><li><strong>FX:</strong> Impact effects, sparkles, blue overlays.</li><li><strong>Audio:</strong> Every SFX and music track manually integrated.</li></ul></section><section><h2>My Solo Process (48 hours)</h2><ul><li><strong>Day 1:</strong> Built planet, core movement, and UI framework.</li><li><strong>Day 2:</strong> Implemented all scoring, game flow, multi-ball, and polish. Practically no sleep!</li></ul><h3>Implemented Features</h3><ul><li>Full 360\u00b0 movement and orbiting gameplay</li><li>Score system, restart game loop</li><li>Multi-ball chaos (up to 6 balls)</li><li>Animated, hand-drawn UI and visual feedback</li><li>All design, code, illustration, and polish by Lingyi Zhou</li></ul></section><section><h2>Credits</h2><p><strong>Everything (Design, Code, Art, Submission):</strong> Lingyi Zhou</p><p><strong>Special Thanks:</strong> Skinnytigerr (feedback &amp; playtesting)</p></section><section><h2>Reflection</h2><p>Making B612 Soccer in just two days, solo, was an exhilarating ride \u2014 every design, art, and coding challenge hit all at once. The end result is a chaotic, replayable multiplayer game that I'm proud to share.</p></section>",
+      "content": "<section><h2>Development Challenge</h2><p>As a 1-person team, I had only 2 days out of the 4-day jam to design, build, illustrate, and submit the entire project. Everything you see was made in that thrilling, exhausting sprint.</p></section><section><h2>GMTK 2025 Jam Results</h2><table class=\"data-table\"><thead><tr><th>Criteria</th><th>Rank</th><th>Score</th></tr></thead><tbody><tr><td>Enjoyment</td><td>#158</td><td>4.195</td></tr><tr><td>Creativity</td><td>#238</td><td>4.341</td></tr><tr><td>Artwork</td><td>#219</td><td>4.439</td></tr><tr><td>Audio</td><td>#122</td><td>4.146</td></tr><tr><td>Narrative</td><td>#392</td><td>3.756</td></tr></tbody></table></section><section><h2>About the Theme: \"Loop\"</h2><ul><li><strong>Literal Loop:</strong> The ball and players both orbit the planet for truly loopy gameplay.</li><li><strong>Perspective:</strong> Side view, all mechanics in polar physics.</li><li><strong>Visuals:</strong> Black/white line art, blue space ambiance.</li><li><strong>Pick-Up Play:</strong> 100-second matches, first to 10 goals, perfect for friends.</li></ul></section><section><h2>Core Mechanics</h2><ul><li><strong>360° Movement:</strong> Players run, jump, and kick around the full planet.</li><li><strong>Kicking:</strong> Directional kicks add momentum — maybe even scoring on your own goal!</li><li><strong>Physics:</strong> Natural ball orbiting, bounce, and wrapping.</li><li><strong>Goals:</strong> Clear crossbars, animated feedback.</li><li><strong>Multi-ball:</strong> Up to 6 balls for bonus chaos.</li></ul><h3>Controls</h3><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Player 1</strong><span>WASD</span></div><div class=\"project-fact\"><strong>Player 2</strong><span>Arrow Keys</span></div><div class=\"project-fact\"><strong>Pause</strong><span>ESC</span></div></div></section><section><h2>Art, Audio &amp; Asset Production</h2><ul><li><strong>Hand-drawn assets:</strong> All sprites, UI, and backgrounds sketched by pencil, scanned with a printer, and processed in Photoshop.</li><li><strong>Minimalist UI:</strong> Clean, intuitive scoreboard and feedback.</li><li><strong>FX:</strong> Impact effects, sparkles, blue overlays.</li><li><strong>Audio:</strong> Every SFX and music track manually integrated.</li></ul></section><section><h2>My Solo Process (48 hours)</h2><ul><li><strong>Day 1:</strong> Built planet, core movement, and UI framework.</li><li><strong>Day 2:</strong> Implemented all scoring, game flow, multi-ball, and polish. Practically no sleep!</li></ul><h3>Implemented Features</h3><ul><li>Full 360° movement and orbiting gameplay</li><li>Score system, restart game loop</li><li>Multi-ball chaos (up to 6 balls)</li><li>Animated, hand-drawn UI and visual feedback</li><li>All design, code, illustration, and polish by Lingyi Zhou</li></ul></section><section><h2>Credits</h2><p><strong>Everything (Design, Code, Art, Submission):</strong> Lingyi Zhou</p><p><strong>Special Thanks:</strong> Skinnytigerr (feedback &amp; playtesting)</p></section><section><h2>Reflection</h2><p>Making B612 Soccer in just two days, solo, was an exhilarating ride — every design, art, and coding challenge hit all at once. The end result is a chaotic, replayable multiplayer game that I'm proud to share.</p></section>",
       "categories": [
         "Game Developer"
       ],
@@ -690,6 +793,16 @@
           "type": "image",
           "src": "/assets/cargo-import/b612-soccer-2025/Screenshot-2025-08-03-at-12.56.43AM.png",
           "alt": "UI elements, scoreboard, and particle FX"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/b612-soccer-2025/IMG_9636.jpg",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
@@ -751,6 +864,36 @@
           "alt": "Just Another Day - Game Trailer",
           "height": 450,
           "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-5/Game-Design-2.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-5/Just-Another-Day-Hero-image.jpg",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-5/Procedural-Sushi.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
@@ -848,69 +991,6 @@
       "thumbnail": "/assets/thumbnails/hardware-store-yt-thumb.jpg"
     },
     {
-      "id": "02",
-      "slug": "ar-drawing-tool",
-      "title": "AR Drawing Tool",
-      "year": "2022",
-      "status": "Internship",
-      "shortSubtitle": "Real-Time Hand Tracking to Procedural 3D Geometry Pipeline",
-      "summary": "Built at Snap Inc., this project implements a real-time perception-to-geometry pipeline: hand keypoint tracking feeds into procedural mesh generation, creating 3D structures from tracked finger motion. Demonstrates the same sensor-to-output loop used in robotic manipulation research.",
-      "content": "<section><p>Procedural mesh generation with hand tracking</p><h2>Overview</h2><p>During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space.</p></section><section><h2>Focus</h2><ul><li>Working across ar engineer so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with Lens Studio, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>During my internship at Snapchat in 2022, I had this crazy idea nobody had done before. I integrated procedural mesh generation with hand tracking, enabling users to draw dynamically in 3D space. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on Lens Studio, JavaScript, chosen for fit rather than novelty.</p><p>The project is paired with 2 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Lens Studio</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>Built in 2022, the project reached a internship state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The project is also documented through Demo Video and Official Docs, which complement the material shown on this page.</p></section>",
-      "categories": [
-        "Perception & CV Engineer"
-      ],
-      "rolesOrSkills": [
-        "Perception",
-        "Hand Tracking",
-        "Procedural Geometry",
-        "Spatial Computing"
-      ],
-      "techStack": [
-        {
-          "category": "Platform",
-          "skills": [
-            "Lens Studio"
-          ]
-        },
-        {
-          "category": "Language",
-          "skills": [
-            "JavaScript"
-          ]
-        }
-      ],
-      "featuredMedia": {
-        "type": "image",
-        "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png",
-        "alt": "AR Drawing Tool"
-      },
-      "mediaGallery": [
-        {
-          "type": "iframe",
-          "src": "https://www.youtube.com/embed/1A2lCiQwVko",
-          "provider": "youtube",
-          "embedUrl": "https://www.youtube.com/embed/1A2lCiQwVko",
-          "alt": "AR Drawing Tool Demo - Snap Inc. Internship",
-          "height": 450,
-          "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        }
-      ],
-      "links": [
-        {
-          "label": "Demo Video",
-          "url": "https://youtu.be/1A2lCiQwVko",
-          "icon": "Youtube"
-        },
-        {
-          "label": "Official Docs",
-          "url": "https://developers.snap.com/lens-studio/4.55.1/references/guides/lens-features/scene-set-up/3d/procedural-mesh",
-          "icon": "ExternalLink"
-        }
-      ],
-      "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing-3.png"
-    },
-    {
       "id": "16",
       "slug": "ping-pong-game",
       "title": "Ping Pong Game",
@@ -949,6 +1029,56 @@
           "alt": "Ping Pong Game - Playable in browser",
           "title": "Ping Pong Game",
           "height": 500
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/page-16/Play-some-Ping-Pong---p5--p5js.mp4",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/page-16/Ping-Pong-Losable.mp4",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/page-16/Ping-Pong-Sound-On.mp4",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/page-16/2d-capsule-collider-biu--p5js.mp4",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "video",
+          "src": "/assets/cargo-import/page-16/Ping-Pong-Challenge.mp4",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
@@ -969,8 +1099,8 @@
       "year": "2024",
       "status": "Top 1% GMTK",
       "shortSubtitle": "Ranked in the Top 1% out of 3,300+ entries in GMTK Game Jam 2024",
-      "summary": "Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success\u2014the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.",
-      "content": "<section><p>Ranked in the Top 1% out of 3,300+ entries in GMTK Game Jam 2024</p><h2>Overview</h2><p>Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success\u2014the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.</p></section><section><h2>Focus</h2><ul><li>Working across unity developer so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, C#, HLSL, Blender to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success\u2014the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, C#, HLSL, Blender, chosen for fit rather than novelty.</p><p>The project is paired with 3 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>C#</li><li>HLSL</li><li>Blender</li></ul></section><section><h2>Outcome</h2><p>Built in 2024, the project reached a top 1% gmtk state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The project is also documented through Play on Itch.io and GMTK Jam Page, which complement the material shown on this page.</p></section>",
+      "summary": "Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.",
+      "content": "<section><p>Ranked in the Top 1% out of 3,300+ entries in GMTK Game Jam 2024</p><h2>Overview</h2><p>Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head.</p></section><section><h2>Focus</h2><ul><li>Working across unity developer so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, C#, HLSL, Blender to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>Step into the absurdly large shoes of an oversized intern in a tiny 90s-style office. In this hilarious, physics-based game, your exaggerated scale turns mundane office tasks into chaotic challenges. Smash your way through the day or tiptoe to success—the choice is yours. No Job Too Small flips the theme 'Build to Scale' on its head. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, C#, HLSL, Blender, chosen for fit rather than novelty.</p><p>The project is paired with 3 external references in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>C#</li><li>HLSL</li><li>Blender</li></ul></section><section><h2>Outcome</h2><p>Built in 2024, the project reached a top 1% gmtk state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The project is also documented through Play on Itch.io and GMTK Jam Page, which complement the material shown on this page.</p></section>",
       "categories": [
         "Game Developer"
       ],
@@ -1069,6 +1199,16 @@
           "type": "image",
           "src": "/assets/cargo-import/page-3/04dbabc2-e4e6-4db2-86d4-c78e7ae77a78.png",
           "alt": "Drag Task In - Personal Schedule Assistant - Image 2"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-3/Draggable-Time-Schedule-2.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
@@ -1132,7 +1272,7 @@
       ],
       "links": [],
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/1697673358881.mp4"
+      "thumbnail": "/assets/cargo-import/marvel-s-flerken-ar-filter-commercial-ar-campaign/flerken-poster.jpg"
     },
     {
       "id": "04",
@@ -1140,7 +1280,7 @@
       "title": "No-Drill Curtain Hook",
       "shortSubtitle": "Renter-Friendly Compression-Fit Curtain Solution",
       "summary": "In a rented apartment where drilling is not allowed, hanging curtains became a challenge. Sticky hooks kept failing. I studied the wall structure, found a tight seam between the ceiling and the wall, and modeled a two-part compression-fit hook in Fusion 360 that locks in with zero screws, zero adhesive, and zero wall damage.",
-      "content": "<section><h2>The Problem</h2><p>Rented apartments make curtain hanging deceptively hard. Drilling voids the deposit. Adhesive hooks fail under curtain weight. Command strips pull paint. After the third hook failure, I looked at the wall differently \u2014 not as a surface to attach to, but as a structure to work with.</p></section><section><h2>The Insight</h2><p>The seam between the ceiling panel and the wall molding is a tight, load-bearing gap that runs the entire length of the room. It can't be seen from below, but it's there \u2014 and it's exactly the right width to grip a precisely modeled hook under compression.</p></section><section><h2>Design</h2><ul><li><strong>Two-part sliding assembly:</strong> The top hook locks into the ceiling seam. The second part slides in horizontally and locks the first part in place \u2014 no tools, no adhesive.</li><li><strong>Compression grip:</strong> The hook holds through geometric interference, not friction or glue. The tighter the fit, the more load it bears.</li><li><strong>Load distribution:</strong> The contact surface was widened across the seam length to spread curtain weight and prevent point-load failure.</li><li><strong>Iterative tolerance testing:</strong> Three print iterations tuned the fit \u2014 too loose slips, too tight won't install. Final version installs by hand with a firm push.</li></ul></section><section><h2>Result</h2><p>The hook has been holding curtains for over a year with zero wall damage. The whole system installs and uninstalls in under 30 seconds. Cost: one spool of PLA and a few hours in Fusion 360.</p></section><section><h2>Tools</h2><ul><li>Fusion 360 \u2014 parametric CAD, tolerance control</li><li>FDM 3D Printing \u2014 PLA, 40% infill, 3 perimeters</li></ul></section>",
+      "content": "<section><h2>The Problem</h2><p>Rented apartments make curtain hanging deceptively hard. Drilling voids the deposit. Adhesive hooks fail under curtain weight. Command strips pull paint. After the third hook failure, I looked at the wall differently — not as a surface to attach to, but as a structure to work with.</p></section><section><h2>The Insight</h2><p>The seam between the ceiling panel and the wall molding is a tight, load-bearing gap that runs the entire length of the room. It can't be seen from below, but it's there — and it's exactly the right width to grip a precisely modeled hook under compression.</p></section><section><h2>Design</h2><ul><li><strong>Two-part sliding assembly:</strong> The top hook locks into the ceiling seam. The second part slides in horizontally and locks the first part in place — no tools, no adhesive.</li><li><strong>Compression grip:</strong> The hook holds through geometric interference, not friction or glue. The tighter the fit, the more load it bears.</li><li><strong>Load distribution:</strong> The contact surface was widened across the seam length to spread curtain weight and prevent point-load failure.</li><li><strong>Iterative tolerance testing:</strong> Three print iterations tuned the fit — too loose slips, too tight won't install. Final version installs by hand with a firm push.</li></ul></section><section><h2>Result</h2><p>The hook has been holding curtains for over a year with zero wall damage. The whole system installs and uninstalls in under 30 seconds. Cost: one spool of PLA and a few hours in Fusion 360.</p></section><section><h2>Tools</h2><ul><li>Fusion 360 — parametric CAD, tolerance control</li><li>FDM 3D Printing — PLA, 40% infill, 3 perimeters</li></ul></section>",
       "categories": [
         "Robotics Engineer",
         "3D & Simulation Designer"
@@ -1209,7 +1349,7 @@
         {
           "type": "image",
           "src": "/assets/cargo-import/page-4/IMG_4610-2.jpeg",
-          "alt": "Hook prototype \u2014 second view"
+          "alt": "Hook prototype — second view"
         },
         {
           "type": "image",
@@ -1234,7 +1374,7 @@
       ],
       "links": [],
       "section": "Most Recent",
-      "thumbnail": "/assets/cargo-import/page-4/Instagram-post---3.PNG",
+      "thumbnail": "/assets/cargo-import/page-4/IMG_4604-2.jpeg",
       "year": "2024",
       "status": "Functional"
     },
@@ -1306,8 +1446,8 @@
       "title": "Creative Coding Experiments",
       "hidden": true,
       "shortSubtitle": "Generative art sketches using p5.js",
-      "summary": "This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas\u2014from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.",
-      "content": "<section><p>Generative art sketches using p5.js</p><h2>Overview</h2><p>This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas\u2014from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Creative Coder</span></div><div class=\"project-fact\"><strong>Stack</strong><span>p5.js / JavaScript</span></div></div></section><section><h2>Focus</h2><ul><li>Working across creative coder so the concept and execution stayed aligned.</li><li>Exploring visual systems through iteration, parameter tuning, and small technical experiments rather than one fixed output.</li><li>Using code as a medium for motion, color, and procedural variation while keeping the work understandable to viewers.</li><li>Building with p5.js, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas\u2014from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes. The work evolved through experimentation, with each sketch or shader acting as a small probe into motion, pattern, and rendering behavior rather than a one-off aesthetic exercise. The implementation side centered on p5.js, JavaScript, chosen for fit rather than novelty.</p><p>A supporting gallery item is included to show the build in context from another angle.</p></section><section><h2>Tools and Stack</h2><ul><li>p5.js</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It works as a snapshot of ongoing experimentation and a way to show taste, graphics fundamentals, and curiosity through code. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
+      "summary": "This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.",
+      "content": "<section><p>Generative art sketches using p5.js</p><h2>Overview</h2><p>This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes.</p><div class=\"project-fact-grid\"><div class=\"project-fact\"><strong>Role</strong><span>Creative Coder</span></div><div class=\"project-fact\"><strong>Stack</strong><span>p5.js / JavaScript</span></div></div></section><section><h2>Focus</h2><ul><li>Working across creative coder so the concept and execution stayed aligned.</li><li>Exploring visual systems through iteration, parameter tuning, and small technical experiments rather than one fixed output.</li><li>Using code as a medium for motion, color, and procedural variation while keeping the work understandable to viewers.</li><li>Building with p5.js, JavaScript to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>This is a collection of my creative coding sketches built with p5.js. Each piece explores different generative or interactive ideas—from visual patterns to playful simulations. Experiments include procedural pattern generators, randomized grid-based art, and color palettes. The work evolved through experimentation, with each sketch or shader acting as a small probe into motion, pattern, and rendering behavior rather than a one-off aesthetic exercise. The implementation side centered on p5.js, JavaScript, chosen for fit rather than novelty.</p><p>A supporting gallery item is included to show the build in context from another angle.</p></section><section><h2>Tools and Stack</h2><ul><li>p5.js</li><li>JavaScript</li></ul></section><section><h2>Outcome</h2><p>This project the project reached a completed state in the portfolio. It works as a snapshot of ongoing experimentation and a way to show taste, graphics fundamentals, and curiosity through code. The page pairs the case-study writeup with the supporting media already included in the portfolio.</p></section>",
       "categories": [
         "Game Developer",
         "Full Stack Engineer"
@@ -1349,9 +1489,9 @@
       "id": "09",
       "slug": "3d-poster-design-landmarks",
       "title": "3D Poster Design with Landmarks",
-      "shortSubtitle": "Blender + Google Maps Data \u2014 City Landmarks at Local Time of Day",
-      "summary": "A poster series featuring 3D-rendered landmarks from cities across different time zones. Real-world building data was imported from the Google Maps API into Blender in two styles\u2014realistic and graphic\u2014then lit based on local time of day using HDRIs and custom lighting to capture each city's unique atmosphere.",
-      "content": "<section><h2>Concept</h2><p>Every city looks different at a specific hour. A poster of New York at noon reads nothing like New York at 2am. This series pins each city to a moment \u2014 not just a place \u2014 using real 3D geometry and lighting driven by local time of day.</p></section><section><h2>Data Pipeline</h2><ul><li><strong>Google Maps API \u2192 Blender:</strong> Real-world building geometry exported from the Maps API and imported into Blender, preserving actual footprints, heights, and geographic positions.</li><li><strong>Dual rendering styles per city:</strong> Each location was rendered twice \u2014 once with full texture detail for realism, once with simplified geometry and flat color for a graphic, poster-ready look.</li><li><strong>Time-driven lighting:</strong> Local sunrise/sunset data determined HDRI selection and sun angle per scene. A city lit at golden hour uses a warm low-angle HDRI; a night scene uses a city-glow HDRI with point lights for windows.</li></ul></section><section><h2>Cities Rendered</h2><ul><li>New York \u2014 midday, hard overhead light</li><li>Cologne \u2014 late afternoon, warm European light</li><li>Macau \u2014 dusk, mixed neon and ambient sky</li><li>San Francisco \u2014 morning coastal haze</li></ul></section><section><h2>Output</h2><p>Final renders exported at A1 poster resolution (594\u00d7841mm at 300 DPI). The series demonstrates how geospatial data, lighting simulation, and design intention combine into something that reads as art while being technically precise.</p></section><section><h2>Tools</h2><ul><li>Blender \u2014 modeling, lighting, rendering</li><li>Google Maps API \u2014 real-world 3D data source</li><li>HDRI Haven \u2014 time-of-day environment maps</li><li>Custom sun-lamp rigs \u2014 directional fill per scene</li></ul></section>",
+      "shortSubtitle": "Blender + Google Maps Data — City Landmarks at Local Time of Day",
+      "summary": "A poster series featuring 3D-rendered landmarks from cities across different time zones. Real-world building data was imported from the Google Maps API into Blender in two styles—realistic and graphic—then lit based on local time of day using HDRIs and custom lighting to capture each city's unique atmosphere.",
+      "content": "<section><h2>Concept</h2><p>Every city looks different at a specific hour. A poster of New York at noon reads nothing like New York at 2am. This series pins each city to a moment — not just a place — using real 3D geometry and lighting driven by local time of day.</p></section><section><h2>Data Pipeline</h2><ul><li><strong>Google Maps API → Blender:</strong> Real-world building geometry exported from the Maps API and imported into Blender, preserving actual footprints, heights, and geographic positions.</li><li><strong>Dual rendering styles per city:</strong> Each location was rendered twice — once with full texture detail for realism, once with simplified geometry and flat color for a graphic, poster-ready look.</li><li><strong>Time-driven lighting:</strong> Local sunrise/sunset data determined HDRI selection and sun angle per scene. A city lit at golden hour uses a warm low-angle HDRI; a night scene uses a city-glow HDRI with point lights for windows.</li></ul></section><section><h2>Cities Rendered</h2><ul><li>New York — midday, hard overhead light</li><li>Cologne — late afternoon, warm European light</li><li>Macau — dusk, mixed neon and ambient sky</li><li>San Francisco — morning coastal haze</li></ul></section><section><h2>Output</h2><p>Final renders exported at A1 poster resolution (594×841mm at 300 DPI). The series demonstrates how geospatial data, lighting simulation, and design intention combine into something that reads as art while being technically precise.</p></section><section><h2>Tools</h2><ul><li>Blender — modeling, lighting, rendering</li><li>Google Maps API — real-world 3D data source</li><li>HDRI Haven — time-of-day environment maps</li><li>Custom sun-lamp rigs — directional fill per scene</li></ul></section>",
       "categories": [
         "3D & Simulation Designer"
       ],
@@ -1382,7 +1522,7 @@
       "featuredMedia": {
         "type": "image",
         "src": "/assets/cargo-import/3d-projects/page-9-hires/3D-Modeling-A1-Size-Poster.png",
-        "alt": "3D Poster Design with Landmarks \u2014 A1 Series"
+        "alt": "3D Poster Design with Landmarks — A1 Series"
       },
       "mediaGallery": [
         {
@@ -1393,42 +1533,42 @@
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/NewYork188.jpg",
-          "alt": "New York \u2014 midday render"
+          "alt": "New York — midday render"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/Cologne58.jpg",
-          "alt": "Cologne \u2014 late afternoon render"
+          "alt": "Cologne — late afternoon render"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/Macau57.jpg",
-          "alt": "Macau \u2014 dusk render"
+          "alt": "Macau — dusk render"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/SanFrancisco45.jpg",
-          "alt": "San Francisco \u2014 morning haze render"
+          "alt": "San Francisco — morning haze render"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3514-2.JPG",
-          "alt": "Blender scene setup \u2014 Google Maps data import"
+          "alt": "Blender scene setup — Google Maps data import"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3515.JPG.jpg",
-          "alt": "Process shot \u2014 realistic style"
+          "alt": "Process shot — realistic style"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3524.JPG.jpg",
-          "alt": "Process shot \u2014 graphic style"
+          "alt": "Process shot — graphic style"
         },
         {
           "type": "image",
           "src": "/assets/cargo-import/3d-projects/page-9-hires/IMG_3526.JPG.jpg",
-          "alt": "Lighting rig \u2014 HDRI setup"
+          "alt": "Lighting rig — HDRI setup"
         },
         {
           "type": "image",
@@ -1453,7 +1593,7 @@
       "title": "3D Modeled Teddy Bear",
       "shortSubtitle": "Soft-Surface Sculpting and Character Modeling in Blender",
       "summary": "An early Blender sculpting exercise: a teddy bear modeled from scratch to practice soft-surface proportions, subdivision workflows, and basic character modeling fundamentals. Built with proportional editing and subdivision modifiers, finished with a basic fabric-like shader.",
-      "content": "<section><h2>Goal</h2><p>Early in my Blender learning, I needed a project that forced organic modeling \u2014 something with no hard edges, no mechanical symmetry, and a forgiving enough form that mistakes could become character. A teddy bear was the right call.</p></section><section><h2>Modeling Approach</h2><ul><li><strong>Primitives + proportional editing:</strong> Started from UV spheres and cylinders, then used proportional editing to push and pull the forms into plush, rounded shapes without losing volume.</li><li><strong>Subdivision Surface modifier:</strong> Applied at level 3 for the final mesh \u2014 adds smoothness without manual loop cuts everywhere.</li><li><strong>Merge and bridge:</strong> Limbs and ears joined to the body using bridge edge loops to maintain clean topology across seams.</li></ul></section><section><h2>Shading</h2><p>A Principled BSDF with low specular and slightly elevated roughness mimics the matte, slightly fuzzy surface of plush fabric. No textures \u2014 the effect comes entirely from shader values and the softness of the subdivided mesh.</p></section><section><h2>What It Taught</h2><p>Organic modeling is harder than mechanical CAD because nothing is dimensionally constrained \u2014 you're judging proportion by eye. This project built the intuition for soft-surface form that I've used in every character and prop since.</p></section><section><h2>Tools</h2><ul><li>Blender \u2014 modeling, subdivision, shading</li><li>Principled BSDF \u2014 soft fabric look</li></ul></section>",
+      "content": "<section><h2>Goal</h2><p>Early in my Blender learning, I needed a project that forced organic modeling — something with no hard edges, no mechanical symmetry, and a forgiving enough form that mistakes could become character. A teddy bear was the right call.</p></section><section><h2>Modeling Approach</h2><ul><li><strong>Primitives + proportional editing:</strong> Started from UV spheres and cylinders, then used proportional editing to push and pull the forms into plush, rounded shapes without losing volume.</li><li><strong>Subdivision Surface modifier:</strong> Applied at level 3 for the final mesh — adds smoothness without manual loop cuts everywhere.</li><li><strong>Merge and bridge:</strong> Limbs and ears joined to the body using bridge edge loops to maintain clean topology across seams.</li></ul></section><section><h2>Shading</h2><p>A Principled BSDF with low specular and slightly elevated roughness mimics the matte, slightly fuzzy surface of plush fabric. No textures — the effect comes entirely from shader values and the softness of the subdivided mesh.</p></section><section><h2>What It Taught</h2><p>Organic modeling is harder than mechanical CAD because nothing is dimensionally constrained — you're judging proportion by eye. This project built the intuition for soft-surface form that I've used in every character and prop since.</p></section><section><h2>Tools</h2><ul><li>Blender — modeling, subdivision, shading</li><li>Principled BSDF — soft fabric look</li></ul></section>",
       "categories": [
         "3D & Simulation Designer"
       ],
@@ -1488,6 +1628,16 @@
           "type": "image",
           "src": "/assets/cargo-import/page-10/BearImage84.png",
           "alt": "3D Modeled Teddy Bear - Image 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/page-10/BearImage54.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [],
@@ -1499,13 +1649,13 @@
     {
       "id": "06",
       "slug": "06-no-job-too-small-gmtk-game-jam-2024",
-      "title": "No Job Too Small \u2013 GMTK Game Jam 2024",
+      "title": "No Job Too Small – GMTK Game Jam 2024",
       "hidden": true,
       "year": "2025",
       "status": "Completed",
       "shortSubtitle": "Creative game development under tight constraints",
       "summary": "A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints.",
-      "content": "<section><p>Creative game development under tight constraints</p><h2>Overview</h2><p>A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints.</p></section><section><h2>Focus</h2><ul><li>Working across game design, unity development, frontend development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React, Typescript, Javascript, Html to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React, Typescript, Javascript, Html, Css, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>Typescript</li><li>Javascript</li><li>Html</li><li>Css</li><li>Fastapi</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to \ud83d\udd17 Play on Itch.io, which gives extra context beyond the portfolio summary.</p></section>",
+      "content": "<section><p>Creative game development under tight constraints</p><h2>Overview</h2><p>A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints.</p></section><section><h2>Focus</h2><ul><li>Working across game design, unity development, frontend development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React, Typescript, Javascript, Html to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A creative game development project completed for the GMTK Game Jam. Demonstrates rapid prototyping skills, innovative game mechanics, and the ability to deliver compelling experiences under extreme time constraints. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React, Typescript, Javascript, Html, Css, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>Typescript</li><li>Javascript</li><li>Html</li><li>Css</li><li>Fastapi</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to 🔗 Play on Itch.io, which gives extra context beyond the portfolio summary.</p></section>",
       "categories": [
         "Game Developer",
         "Full Stack Engineer",
@@ -1565,19 +1715,19 @@
       "featuredMedia": {
         "type": "image",
         "src": "/assets/thumbnails/06-unique-placeholder.svg",
-        "alt": "No Job Too Small \u2013 GMTK Game Jam 2024 preview"
+        "alt": "No Job Too Small – GMTK Game Jam 2024 preview"
       },
-      "thumbnail": "/assets/thumbnails/06-unique-placeholder.svg",
+      "thumbnail": "/assets/cargo-import/no-job-too-small-gmtk-2024/1avn_P.png",
       "mediaGallery": [
         {
           "type": "image",
           "src": "/assets/thumbnails/06-unique-placeholder.svg",
-          "alt": "No Job Too Small \u2013 GMTK Game Jam 2024 preview"
+          "alt": "No Job Too Small – GMTK Game Jam 2024 preview"
         }
       ],
       "links": [
         {
-          "label": "\ud83d\udd17 Play on Itch.io",
+          "label": "🔗 Play on Itch.io",
           "url": "https://reatured.itch.io/no-job-too-small"
         }
       ],
@@ -1725,7 +1875,7 @@
       "status": "Completed",
       "shortSubtitle": "Professional portfolio showcasing creative and technical work",
       "summary": "A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators.",
-      "content": "<section><p>Professional portfolio showcasing creative and technical work</p><h2>Overview</h2><p>A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators.</p></section><section><h2>Focus</h2><ul><li>Working across frontend development, ui/ux design, frontend development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React, Typescript, Javascript, Html to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React, Typescript, Javascript, Html, Css, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>Typescript</li><li>Javascript</li><li>Html</li><li>Css</li><li>Fastapi</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to \ud83d\udcbb GitHub Repo, which gives extra context beyond the portfolio summary.</p></section>",
+      "content": "<section><p>Professional portfolio showcasing creative and technical work</p><h2>Overview</h2><p>A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators.</p></section><section><h2>Focus</h2><ul><li>Working across frontend development, ui/ux design, frontend development so the concept and execution stayed aligned.</li><li>Designing the interaction around short sessions, clear feedback, and the performance limits of camera-based or mobile AR experiences.</li><li>Balancing technical experimentation with an interaction model that still reads immediately to first-time users.</li><li>Building with React, Typescript, Javascript, Html to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A comprehensive portfolio website showcasing professional work, projects, and skills. Features modern design, responsive layout, and optimized user experience for visitors and potential collaborators. The interesting part of the work was making the interaction feel immediate while still respecting device constraints, camera input, and the expectation that AR experiences should teach themselves quickly. The implementation side centered on React, Typescript, Javascript, Html, Css, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>React</li><li>Typescript</li><li>Javascript</li><li>Html</li><li>Css</li><li>Fastapi</li><li>Ar</li><li>Vr</li></ul></section><section><h2>Outcome</h2><p>Built in 2025, the project reached a completed state in the portfolio. It stands out as a practical AR prototype or campaign piece that combines technical problem solving with quick-read interaction design. The live link for this project points to 💻 GitHub Repo, which gives extra context beyond the portfolio summary.</p></section>",
       "categories": [
         "Full Stack Engineer",
         "Frontend Developer"
@@ -1804,7 +1954,7 @@
       ],
       "links": [
         {
-          "label": "\ud83d\udcbb GitHub Repo",
+          "label": "💻 GitHub Repo",
           "url": "https://github.com/reatured/Task-Trackers"
         }
       ],
@@ -2019,6 +2169,26 @@
           "alt": "Spaceman Rescue video",
           "height": 450,
           "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/spaceman-rescue/wall-e_fire_extinguisher.jpg",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/spaceman-rescue/SpaceMan-Rescue-Trailer.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [],
@@ -2233,6 +2403,16 @@
           "alt": "VR Magic video",
           "height": 450,
           "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/vr-magic/Unity-VFX-Demo.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [],
@@ -2404,12 +2584,62 @@
         "src": "/assets/thumbnails/20-themed.svg",
         "alt": "Dragon Roaster (Early 2021) preview"
       },
-      "thumbnail": "/assets/thumbnails/20-themed.svg",
+      "thumbnail": "/assets/cargo-import/dragon-roaster-early-2021/Dragon-Roaster-Gameplay.gif",
       "mediaGallery": [
         {
           "type": "image",
           "src": "/assets/thumbnails/20-themed.svg",
           "alt": "Dragon Roaster (Early 2021) thumbnail"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/dragon-roaster-early-2021/Dragon-Roaster-Gameplay.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/dragon-roaster-early-2021/Dragon-Roaster.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/dragon-roaster-early-2021/Dragon-Roaster-1.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/dragon-roaster-early-2021/Dragon-Roaster-2.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/dragon-roaster-early-2021/Dragon-Roaster-3.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
@@ -2591,12 +2821,52 @@
         "src": "/assets/thumbnails/21-themed.svg",
         "alt": "VR Chess (2021) preview"
       },
-      "thumbnail": "/assets/thumbnails/21-themed.svg",
+      "thumbnail": "/assets/cargo-import/3d-projects/page-13/Unity-Procedural-Animation-Demo.gif",
       "mediaGallery": [
         {
           "type": "image",
           "src": "/assets/thumbnails/21-themed.svg",
           "alt": "VR Chess (2021) thumbnail"
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/3d-projects/page-13/Unity-Procedural-Animation-Demo.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/3d-projects/page-13/ChessSceneFinished20-01-047.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/3d-projects/page-13/ChessSceneFinishedDisplay20-01-047.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/3d-projects/page-13/ChessSceneFinishedView220-01-047.png",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [],
@@ -2746,7 +3016,7 @@
       "status": "Completed",
       "shortSubtitle": "Classic snake game reimagined in 3D space",
       "summary": "A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness.",
-      "content": "<section><p>Classic snake game reimagined in 3D space</p><h2>Overview</h2><p>A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness.</p></section><section><h2>Focus</h2><ul><li>Working across game design, unity development, unity development so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, Python, Javascript, Three.Js to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, Python, Javascript, Three.Js, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Three.Js</li></ul></section><section><h2>Outcome</h2><p>Built in 2019, the project reached a completed state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The live link for this project points to Snake Pro on itch.io \u2192, which gives extra context beyond the portfolio summary.</p></section>",
+      "content": "<section><p>Classic snake game reimagined in 3D space</p><h2>Overview</h2><p>A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness.</p></section><section><h2>Focus</h2><ul><li>Working across game design, unity development, unity development so the concept and execution stayed aligned.</li><li>Translating visual ideas into repeatable assets that could hold up across multiple compositions, scenes, or use cases.</li><li>Iterating on form, proportion, and presentation so the final output feels intentional rather than purely technical.</li><li>Building with Unity, Python, Javascript, Three.Js to match the needs of the project without overcomplicating the stack.</li></ul></section><section><h2>Approach</h2><p>A modern reinterpretation of the classic snake game, transformed into a 3D space adventure. Features smooth controls, dynamic obstacles, power-ups, and progressively challenging levels that test both reflexes and spatial awareness. A large part of the process was visual iteration: testing composition, material treatment, and silhouette until the output felt coherent from multiple viewpoints instead of only in a single hero shot. The implementation side centered on Unity, Python, Javascript, Three.Js, chosen for fit rather than novelty.</p><p>The project is paired with an external reference in the sidebar for people who want to see the live build, repository, or related documentation.</p></section><section><h2>Tools and Stack</h2><ul><li>Unity</li><li>Python</li><li>Javascript</li><li>Three.Js</li></ul></section><section><h2>Outcome</h2><p>Built in 2019, the project reached a completed state in the portfolio. It demonstrates how visual craft, iteration, and presentation can carry just as much weight as the underlying tools. The live link for this project points to Snake Pro on itch.io →, which gives extra context beyond the portfolio summary.</p></section>",
       "categories": [
         "Game Developer",
         "Game Developer",
@@ -2769,7 +3039,7 @@
         "src": "/assets/thumbnails/22-featured.svg",
         "alt": "3D Snake Game (2019) preview"
       },
-      "thumbnail": "/assets/thumbnails/22-featured.svg",
+      "thumbnail": "/assets/cargo-import/3d-snake-game-2019/Snake-Pro-Demo.gif",
       "mediaGallery": [
         {
           "type": "image",
@@ -2782,11 +3052,21 @@
           "provider": "itch.io",
           "alt": "Play 3D Snake Game",
           "height": 600
+        },
+        {
+          "type": "image",
+          "src": "/assets/cargo-import/3d-snake-game-2019/Snake-Pro-Demo.gif",
+          "alt": "",
+          "label": "",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": ""
         }
       ],
       "links": [
         {
-          "label": "Snake Pro on itch.io \u2192",
+          "label": "Snake Pro on itch.io →",
           "url": "https://reatured.itch.io/3d-snake"
         }
       ],
@@ -2958,33 +3238,128 @@
         "src": "/assets/thumbnails/24-featured.svg",
         "alt": "My Shader Projects preview"
       },
-      "thumbnail": "/assets/thumbnails/24-featured.svg",
+      "thumbnail": "/assets/cargo-import/my-shader-projects/shader-3sKfzz.jpg",
       "mediaGallery": [
-        {
-          "type": "image",
-          "src": "/assets/thumbnails/24-featured.svg",
-          "alt": "My Shader Projects thumbnail"
-        },
         {
           "type": "iframe",
           "src": "https://www.shadertoy.com/embed/Wtffzn?gui=true&t=10&paused=false&muted=false&wm=true",
-          "provider": "shadertoy",
-          "alt": "Shader Demo 1",
-          "height": 400
+          "alt": "Cellular Wave Pattern",
+          "label": "Cellular Wave Pattern",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-Wtffzn.jpg"
         },
         {
           "type": "iframe",
           "src": "https://www.shadertoy.com/embed/ttXfzj?gui=true&t=10&paused=false&muted=false&wm=true",
-          "provider": "shadertoy",
-          "alt": "Shader Demo 2",
-          "height": 400
+          "alt": "See Through Practice",
+          "label": "See Through Practice",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-3sKfzz.jpg"
         },
         {
           "type": "iframe",
           "src": "https://www.shadertoy.com/embed/wlfBRN?gui=true&t=10&paused=false&muted=false&wm=true",
-          "provider": "shadertoy",
-          "alt": "Shader Demo 3",
-          "height": 400
+          "alt": "Capsule Practice",
+          "label": "Capsule Practice",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-wlfBRN.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/WlXfz4?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Sphere with Shade",
+          "label": "Sphere with Shade",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-WlXfz4.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/tlXfzH?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "3D Practice",
+          "label": "3D Practice",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-3sKfzz.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/WllBzr?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Pattern Practice",
+          "label": "Pattern Practice",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-WllBzr.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/3t2cDd?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Noise Practice",
+          "label": "Noise Practice",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-3sKfzz.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/3l2cWd?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Distance Practice",
+          "label": "Distance Practice",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-3l2cWd.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/3sKfzz?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Filter Effects",
+          "label": "Filter Effects",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-3sKfzz.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/wtsfzr?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Pattern Practice Variation",
+          "label": "Pattern Practice Variation",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-3sKfzz.jpg"
+        },
+        {
+          "type": "iframe",
+          "src": "https://www.shadertoy.com/embed/cs23DW?gui=true&t=10&paused=false&muted=false&wm=true",
+          "alt": "Teach Shader",
+          "label": "Teach Shader",
+          "aspectRatio": "",
+          "layout": "",
+          "presentation": "",
+          "allow": "",
+          "poster": "/assets/cargo-import/my-shader-projects/shader-cs23DW.jpg"
         }
       ],
       "links": [
@@ -3159,10 +3534,10 @@
     {
       "id": "11",
       "slug": "magic-wand-cartoon-shader-blender",
-      "title": "Magic Wand \u2013 Cartoon Shader",
+      "title": "Magic Wand – Cartoon Shader",
       "shortSubtitle": "NPR Toon Rendering with Custom Shader in Blender",
-      "summary": "A stylized magical wand created in Blender and rendered using a custom cartoon/toon shader. Explores NPR (non-photorealistic rendering) techniques including outline generation, color ramps, and stylized highlights \u2014 all rendered in Eevee.",
-      "content": "<section><h2>Overview</h2><p>A stylized magic wand modeled and rendered in Blender using a fully custom non-photorealistic (NPR) toon shader. The goal was to understand how cartoon rendering works at the shader level \u2014 not by using a preset, but by building the look from scratch.</p></section><section><h2>Shader Breakdown</h2><ul><li><strong>Color ramp on diffuse:</strong> Instead of a smooth light-to-shadow gradient, a stepped color ramp snaps shading into 2\u20133 hard zones \u2014 the classic cel-shaded look.</li><li><strong>Specular highlight:</strong> A second color ramp on the Fresnel output creates a sharp, stylized gloss catch with a flat white zone rather than a gradient bloom.</li><li><strong>Outline (inverted hull):</strong> A duplicate mesh scaled outward with face normals flipped renders as a solid black outline around the wand \u2014 the outline thickens automatically with camera distance.</li><li><strong>Emission accent:</strong> The wand tip uses an emission node at low intensity for a subtle magical glow without breaking the toon aesthetic.</li></ul></section><section><h2>Renderer</h2><p>All rendering done in Eevee \u2014 the real-time renderer is ideal for NPR work because shader feedback is instant, and Eevee's rasterization pipeline handles the inverted hull outline cleanly without Cycles noise.</p></section><section><h2>Tools</h2><ul><li>Blender \u2014 modeling, shader nodes, Eevee rendering</li><li>Custom Toon Shader \u2014 color ramp diffuse, stepped specular, inverted hull outline</li></ul></section>",
+      "summary": "A stylized magical wand created in Blender and rendered using a custom cartoon/toon shader. Explores NPR (non-photorealistic rendering) techniques including outline generation, color ramps, and stylized highlights — all rendered in Eevee.",
+      "content": "<section><h2>Overview</h2><p>A stylized magic wand modeled and rendered in Blender using a fully custom non-photorealistic (NPR) toon shader. The goal was to understand how cartoon rendering works at the shader level — not by using a preset, but by building the look from scratch.</p></section><section><h2>Shader Breakdown</h2><ul><li><strong>Color ramp on diffuse:</strong> Instead of a smooth light-to-shadow gradient, a stepped color ramp snaps shading into 2–3 hard zones — the classic cel-shaded look.</li><li><strong>Specular highlight:</strong> A second color ramp on the Fresnel output creates a sharp, stylized gloss catch with a flat white zone rather than a gradient bloom.</li><li><strong>Outline (inverted hull):</strong> A duplicate mesh scaled outward with face normals flipped renders as a solid black outline around the wand — the outline thickens automatically with camera distance.</li><li><strong>Emission accent:</strong> The wand tip uses an emission node at low intensity for a subtle magical glow without breaking the toon aesthetic.</li></ul></section><section><h2>Renderer</h2><p>All rendering done in Eevee — the real-time renderer is ideal for NPR work because shader feedback is instant, and Eevee's rasterization pipeline handles the inverted hull outline cleanly without Cycles noise.</p></section><section><h2>Tools</h2><ul><li>Blender — modeling, shader nodes, Eevee rendering</li><li>Custom Toon Shader — color ramp diffuse, stepped specular, inverted hull outline</li></ul></section>",
       "categories": [
         "3D & Simulation Designer"
       ],
@@ -3194,7 +3569,7 @@
       "featuredMedia": {
         "type": "image",
         "src": "/assets/cargo-import/3d-projects/page-11/WandDemoGIF7.gif",
-        "alt": "Magic Wand \u2013 Cartoon Shader in Blender"
+        "alt": "Magic Wand – Cartoon Shader in Blender"
       },
       "mediaGallery": [
         {
@@ -3214,8 +3589,8 @@
       "slug": "procedural-modeling-blender-geometry-nodes",
       "title": "Procedural Modeling in Blender",
       "shortSubtitle": "Fully Procedural 3D Generation with Geometry Nodes",
-      "summary": "An exploration of Blender's Geometry Nodes for fully procedural 3D generation. From buildings to abstract structures, all models were created using adjustable node systems \u2014 enabling parametric design and generative variation with zero manual modeling.",
-      "content": "<section><h2>Overview</h2><p>An exploration of Blender's Geometry Nodes system for fully procedural 3D generation. Every object in this project was built without touching the mesh directly \u2014 all geometry created, instanced, and modified through node graphs.</p></section><section><h2>What Was Built</h2><ul><li><strong>Procedural buildings:</strong> A node graph that reads a footprint curve and extrudes floors, adds windows by instancing on face centers, and randomizes height per instance \u2014 one graph, infinite building variations.</li><li><strong>Abstract structures:</strong> Grid-based instancing with math-driven transforms (sine waves, noise fields) to create organic-looking formations from purely geometric logic.</li><li><strong>Parametric controls:</strong> All key values exposed as group inputs \u2014 floor count, window density, building scale \u2014 adjustable in real time with immediate mesh updates.</li></ul></section><section><h2>Why Geometry Nodes</h2><p>Traditional modeling requires re-doing work whenever a design changes. A procedural graph is non-destructive by nature \u2014 adjusting one parameter ripples through the entire model. For architecture and generative design, this is the correct workflow.</p></section><section><h2>Tools</h2><ul><li>Blender \u2014 Geometry Nodes editor, viewport</li><li>Procedural Modeling \u2014 no direct mesh editing</li></ul></section>",
+      "summary": "An exploration of Blender's Geometry Nodes for fully procedural 3D generation. From buildings to abstract structures, all models were created using adjustable node systems — enabling parametric design and generative variation with zero manual modeling.",
+      "content": "<section><h2>Overview</h2><p>An exploration of Blender's Geometry Nodes system for fully procedural 3D generation. Every object in this project was built without touching the mesh directly — all geometry created, instanced, and modified through node graphs.</p></section><section><h2>What Was Built</h2><ul><li><strong>Procedural buildings:</strong> A node graph that reads a footprint curve and extrudes floors, adds windows by instancing on face centers, and randomizes height per instance — one graph, infinite building variations.</li><li><strong>Abstract structures:</strong> Grid-based instancing with math-driven transforms (sine waves, noise fields) to create organic-looking formations from purely geometric logic.</li><li><strong>Parametric controls:</strong> All key values exposed as group inputs — floor count, window density, building scale — adjustable in real time with immediate mesh updates.</li></ul></section><section><h2>Why Geometry Nodes</h2><p>Traditional modeling requires re-doing work whenever a design changes. A procedural graph is non-destructive by nature — adjusting one parameter ripples through the entire model. For architecture and generative design, this is the correct workflow.</p></section><section><h2>Tools</h2><ul><li>Blender — Geometry Nodes editor, viewport</li><li>Procedural Modeling — no direct mesh editing</li></ul></section>",
       "categories": [
         "3D & Simulation Designer"
       ],
@@ -3241,7 +3616,7 @@
       "featuredMedia": {
         "type": "image",
         "src": "/assets/cargo-import/3d-projects/page-12/Frame-10.png",
-        "alt": "Procedural Modeling in Blender \u2013 Geometry Nodes"
+        "alt": "Procedural Modeling in Blender – Geometry Nodes"
       },
       "mediaGallery": [
         {
@@ -3259,10 +3634,10 @@
     {
       "id": "13",
       "slug": "chess-scene-vr-modeling-blender",
-      "title": "Chess Scene \u2013 VR Modeling",
+      "title": "Chess Scene – VR Modeling",
       "shortSubtitle": "Blender Scene Refined in a VR Environment on Oculus Quest",
-      "summary": "An immersive chess room scene modeled in Blender and refined within a VR environment using Oculus Quest. The project emphasizes real-world scale, immersive design flow, and modeling ergonomics in spatial context \u2014 a fundamentally different design process than working on a flat screen.",
-      "content": "<section><h2>Overview</h2><p>A full chess room scene built in Blender and reviewed inside a VR environment on Oculus Quest. The project was part of a spatial design course focused on how VR changes the design process \u2014 not just as a viewing tool, but as a feedback loop for scale and proportion.</p></section><section><h2>The VR Design Loop</h2><ul><li><strong>Model in Blender:</strong> Initial scene layout, chess pieces, room geometry, and lighting built on desktop.</li><li><strong>Export to VR:</strong> Scene exported and loaded into an Oculus Quest workspace for immersive review.</li><li><strong>Iterate from inside:</strong> In VR, proportions that looked correct on a monitor revealed themselves to be off \u2014 a chair too large, a ceiling too low. Changes were noted and applied back in Blender.</li><li><strong>Repeat:</strong> Two full review cycles before the scene felt correctly scaled for a human body inside it.</li></ul></section><section><h2>What VR Revealed</h2><p>Screen-based 3D modeling collapses depth cues. VR restores them. The most important spatial relationships \u2014 how far a table sits from a wall, whether a ceiling feels oppressive or open \u2014 are nearly impossible to judge on a flat monitor. VR made those calls obvious.</p></section><section><h2>Tools</h2><ul><li>Blender \u2014 scene modeling, lighting, materials</li><li>Oculus Quest \u2014 VR review and spatial validation</li></ul></section>",
+      "summary": "An immersive chess room scene modeled in Blender and refined within a VR environment using Oculus Quest. The project emphasizes real-world scale, immersive design flow, and modeling ergonomics in spatial context — a fundamentally different design process than working on a flat screen.",
+      "content": "<section><h2>Overview</h2><p>A full chess room scene built in Blender and reviewed inside a VR environment on Oculus Quest. The project was part of a spatial design course focused on how VR changes the design process — not just as a viewing tool, but as a feedback loop for scale and proportion.</p></section><section><h2>The VR Design Loop</h2><ul><li><strong>Model in Blender:</strong> Initial scene layout, chess pieces, room geometry, and lighting built on desktop.</li><li><strong>Export to VR:</strong> Scene exported and loaded into an Oculus Quest workspace for immersive review.</li><li><strong>Iterate from inside:</strong> In VR, proportions that looked correct on a monitor revealed themselves to be off — a chair too large, a ceiling too low. Changes were noted and applied back in Blender.</li><li><strong>Repeat:</strong> Two full review cycles before the scene felt correctly scaled for a human body inside it.</li></ul></section><section><h2>What VR Revealed</h2><p>Screen-based 3D modeling collapses depth cues. VR restores them. The most important spatial relationships — how far a table sits from a wall, whether a ceiling feels oppressive or open — are nearly impossible to judge on a flat monitor. VR made those calls obvious.</p></section><section><h2>Tools</h2><ul><li>Blender — scene modeling, lighting, materials</li><li>Oculus Quest — VR review and spatial validation</li></ul></section>",
       "categories": [
         "3D & Simulation Designer",
         "Spatial Computing Developer"
@@ -3289,7 +3664,7 @@
       "featuredMedia": {
         "type": "image",
         "src": "/assets/cargo-import/3d-projects/page-13/ChessSceneFinishedDisplay20-01-047.png",
-        "alt": "Chess Scene \u2013 VR Modeling in Blender"
+        "alt": "Chess Scene – VR Modeling in Blender"
       },
       "mediaGallery": [
         {
@@ -3330,7 +3705,7 @@
       "title": "Bowling Scene with Blender",
       "shortSubtitle": "Stylized Bowling Alley with Motion Blur and Glow Post-Processing",
       "summary": "A stylized bowling alley created in Blender, focusing on atmosphere, material shading, and object placement. Motion blur and glow effects were added for dynamic lighting and a playful, polished final render in Eevee.",
-      "content": "<section><h2>Overview</h2><p>A stylized bowling alley rendered in Blender with an emphasis on atmosphere, material contrast, and post-processing polish. The focus was getting the feeling of a bowling alley right \u2014 the waxy lanes, the overhead fluorescent glow, the sense of motion \u2014 rather than photorealistic accuracy.</p></section><section><h2>Scene Details</h2><ul><li><strong>Lane materials:</strong> Glossy polyurethane finish on the wood-grain lanes with a subtle anisotropic reflection that catches overhead lights in long streaks.</li><li><strong>Pin and ball shading:</strong> Pins use a ceramic-like shader with high specular. The ball uses a dark resin look with subtle subsurface scattering for depth.</li><li><strong>Lighting:</strong> Bank of overhead fluorescents with slight warm color cast, supplemented by side ambient fills to keep the gutter gutters from going fully dark.</li></ul></section><section><h2>Post-Processing</h2><ul><li><strong>Motion blur:</strong> Applied to the ball and scattering pins to freeze the impact moment with energy rather than static stillness.</li><li><strong>Bloom:</strong> Subtle glow around the fluorescent tubes and specular hot-spots \u2014 enough to feel cinematic, not enough to blow out the whites.</li><li><strong>Chromatic aberration:</strong> Slight lens fringe at corners for a shot-on-camera feel.</li></ul></section><section><h2>Tools</h2><ul><li>Blender \u2014 modeling, shading, scene layout</li><li>Eevee \u2014 renderer with real-time post-processing stack</li><li>Compositor \u2014 motion blur, bloom, chromatic aberration</li></ul></section>",
+      "content": "<section><h2>Overview</h2><p>A stylized bowling alley rendered in Blender with an emphasis on atmosphere, material contrast, and post-processing polish. The focus was getting the feeling of a bowling alley right — the waxy lanes, the overhead fluorescent glow, the sense of motion — rather than photorealistic accuracy.</p></section><section><h2>Scene Details</h2><ul><li><strong>Lane materials:</strong> Glossy polyurethane finish on the wood-grain lanes with a subtle anisotropic reflection that catches overhead lights in long streaks.</li><li><strong>Pin and ball shading:</strong> Pins use a ceramic-like shader with high specular. The ball uses a dark resin look with subtle subsurface scattering for depth.</li><li><strong>Lighting:</strong> Bank of overhead fluorescents with slight warm color cast, supplemented by side ambient fills to keep the gutter gutters from going fully dark.</li></ul></section><section><h2>Post-Processing</h2><ul><li><strong>Motion blur:</strong> Applied to the ball and scattering pins to freeze the impact moment with energy rather than static stillness.</li><li><strong>Bloom:</strong> Subtle glow around the fluorescent tubes and specular hot-spots — enough to feel cinematic, not enough to blow out the whites.</li><li><strong>Chromatic aberration:</strong> Slight lens fringe at corners for a shot-on-camera feel.</li></ul></section><section><h2>Tools</h2><ul><li>Blender — modeling, shading, scene layout</li><li>Eevee — renderer with real-time post-processing stack</li><li>Compositor — motion blur, bloom, chromatic aberration</li></ul></section>",
       "categories": [
         "3D & Simulation Designer"
       ],
@@ -3376,10 +3751,10 @@
     {
       "id": "15",
       "slug": "door-stop-functional-3d-design",
-      "title": "Door Stop \u2013 Functional 3D Design",
+      "title": "Door Stop – Functional 3D Design",
       "shortSubtitle": "Physical-Testing-Driven Prototyping in TPU Filament",
       "summary": "A 3D printed door stop modeled in Fusion 360 with physical testing as the primary design constraint. Designed to work across multiple floor types and door weights, printed in TPU flexible filament and validated for grip, compression, and wear resistance.",
-      "content": "<section><h2>The Problem</h2><p>Standard rubber door stops fail on smooth floors \u2014 they slide, especially under heavy doors. Buying a better one online means guessing about floor material, door gap height, and base thickness. Modeling one means designing exactly for the situation.</p></section><section><h2>Design Decisions</h2><ul><li><strong>Material \u2014 TPU over PLA:</strong> PLA is rigid and slides on tile and hardwood. TPU is flexible and naturally grippy. The sole of the door stop compresses slightly under door weight, increasing contact area and friction with zero slipping.</li><li><strong>Wedge geometry:</strong> Modeled at 12\u00b0 taper angle \u2014 shallow enough that door weight drives the stop into the floor rather than kicking it forward, steep enough to work across varying door gap heights.</li><li><strong>Ribbed sole pattern:</strong> Lateral ribs on the bottom face increase grip surface area on both hard floors and low-pile carpet without needing adhesive or suction.</li><li><strong>Filleted top edge:</strong> Rounded contact face prevents the door edge from riding up and over the stop under lateral load.</li></ul></section><section><h2>Testing</h2><p>Tested across three door weights and two floor types (tile, hardwood). The TPU compression and ribbed sole held across all conditions. Final filament: Shore 95A TPU at 0.2mm layer height, 25% gyroid infill for flex without collapse.</p></section><section><h2>Tools</h2><ul><li>Fusion 360 \u2014 parametric CAD, radius control, constraint-driven geometry</li><li>FDM 3D Printing \u2014 TPU filament, 0.4mm nozzle</li><li>STL export \u2014 sliced in PrusaSlicer</li></ul></section>",
+      "content": "<section><h2>The Problem</h2><p>Standard rubber door stops fail on smooth floors — they slide, especially under heavy doors. Buying a better one online means guessing about floor material, door gap height, and base thickness. Modeling one means designing exactly for the situation.</p></section><section><h2>Design Decisions</h2><ul><li><strong>Material — TPU over PLA:</strong> PLA is rigid and slides on tile and hardwood. TPU is flexible and naturally grippy. The sole of the door stop compresses slightly under door weight, increasing contact area and friction with zero slipping.</li><li><strong>Wedge geometry:</strong> Modeled at 12° taper angle — shallow enough that door weight drives the stop into the floor rather than kicking it forward, steep enough to work across varying door gap heights.</li><li><strong>Ribbed sole pattern:</strong> Lateral ribs on the bottom face increase grip surface area on both hard floors and low-pile carpet without needing adhesive or suction.</li><li><strong>Filleted top edge:</strong> Rounded contact face prevents the door edge from riding up and over the stop under lateral load.</li></ul></section><section><h2>Testing</h2><p>Tested across three door weights and two floor types (tile, hardwood). The TPU compression and ribbed sole held across all conditions. Final filament: Shore 95A TPU at 0.2mm layer height, 25% gyroid infill for flex without collapse.</p></section><section><h2>Tools</h2><ul><li>Fusion 360 — parametric CAD, radius control, constraint-driven geometry</li><li>FDM 3D Printing — TPU filament, 0.4mm nozzle</li><li>STL export — sliced in PrusaSlicer</li></ul></section>",
       "categories": [
         "Robotics Engineer",
         "3D & Simulation Designer"
@@ -3414,7 +3789,7 @@
       "featuredMedia": {
         "type": "image",
         "src": "/assets/cargo-import/3d-projects/page-15/Screen-Recording-2025-04-23-at-10.28.33PM.gif",
-        "alt": "Door Stop \u2013 Functional 3D Design"
+        "alt": "Door Stop – Functional 3D Design"
       },
       "mediaGallery": [
         {

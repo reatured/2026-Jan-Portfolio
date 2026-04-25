@@ -261,12 +261,144 @@ const FactChip: React.FC<{ label: string; value: string }> = ({ label, value }) 
   </Box>
 );
 
+interface IframeCardProps {
+  src: string;
+  poster?: string;
+  title: string;
+  allow?: string;
+  isLive: boolean;
+  onPlay: () => void;
+  onStop: () => void;
+}
+
+const IframeCard: React.FC<IframeCardProps> = ({ src, poster, title, allow, isLive, onPlay, onStop }) => (
+  <Box
+    sx={{
+      borderRadius: '16px',
+      overflow: 'hidden',
+      bgcolor: M3.surfaceContainerHighest,
+      border: `1px solid ${M3.outlineVariant}40`,
+      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        boxShadow: '0 14px 36px rgba(0,0,0,0.32)',
+      },
+    }}
+  >
+    <Box sx={{ aspectRatio: '16 / 10', width: '100%', position: 'relative' }}>
+      {isLive ? (
+        <>
+          <Box
+            component="iframe"
+            src={src}
+            title={title}
+            allow={allow || 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'}
+            allowFullScreen
+            sx={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+          />
+          <Box
+            onClick={onStop}
+            sx={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              cursor: 'pointer',
+              bgcolor: 'rgba(0,0,0,0.6)',
+              color: '#fff',
+              borderRadius: '999px',
+              px: 1.25,
+              py: 0.4,
+              fontSize: '0.7rem',
+              fontWeight: 600,
+              fontFamily: '"Space Grotesk", sans-serif',
+              backdropFilter: 'blur(6px)',
+              '&:hover': { bgcolor: 'rgba(0,0,0,0.8)' },
+            }}
+          >
+            ✕ Stop
+          </Box>
+        </>
+      ) : (
+        <Box
+          onClick={onPlay}
+          sx={{
+            width: '100%',
+            height: '100%',
+            cursor: 'pointer',
+            position: 'relative',
+            backgroundImage: poster ? `url(${poster})` : undefined,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            background: poster ? undefined : `linear-gradient(135deg, ${M3.primaryContainer}55, ${M3.tertiaryContainer}55)`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'transform 0.25s ease',
+            '&:hover .play-btn': {
+              transform: 'scale(1.08)',
+              bgcolor: M3.primary,
+              color: M3.onPrimary,
+            },
+          }}
+        >
+          <Box
+            className="play-btn"
+            sx={{
+              width: 56,
+              height: 56,
+              borderRadius: '50%',
+              bgcolor: 'rgba(0,0,0,0.55)',
+              backdropFilter: 'blur(10px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#fff',
+              fontSize: '1.4rem',
+              border: '2px solid rgba(255,255,255,0.85)',
+              transition: 'transform 0.2s ease, background-color 0.2s ease, color 0.2s ease',
+              boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
+            }}
+          >
+            ▶
+          </Box>
+        </Box>
+      )}
+    </Box>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 1.75, py: 1 }}>
+      <Typography
+        sx={{
+          fontSize: '0.78rem',
+          fontWeight: 600,
+          color: M3.onSurface,
+          fontFamily: '"Space Grotesk", sans-serif',
+        }}
+      >
+        {title}
+      </Typography>
+      {isLive && (
+        <Typography
+          sx={{
+            fontSize: '0.6rem',
+            color: M3.primary,
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}
+        >
+          ● Live
+        </Typography>
+      )}
+    </Box>
+  </Box>
+);
+
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { data: project, isLoading, error } = useProject(slug || '');
   const [activeModalMediaIndex, setActiveModalMediaIndex] = useState<number | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [liveIframeIndex, setLiveIframeIndex] = useState<number | null>(null);
 
   if (isLoading) {
     return (
@@ -297,7 +429,8 @@ export const ProjectDetail: React.FC = () => {
     const isDuplicateFeatured = item.src === project.featuredMedia.src && item.type === project.featuredMedia.type;
     return !isDuplicateFeatured && item.presentation !== 'modal';
   });
-  const isGalleryHeavyProject = galleryItems.length >= 6;
+  const isAllIframeGallery = galleryItems.length > 0 && galleryItems.every((m) => m.type === 'iframe');
+  const isGalleryHeavyProject = galleryItems.length >= 6 && !isAllIframeGallery;
   const highlightGalleryItems = isGalleryHeavyProject ? galleryItems.slice(0, 4) : [];
   const remainingGalleryItems = isGalleryHeavyProject ? galleryItems.slice(4) : galleryItems;
   const activeModalMedia = activeModalMediaIndex !== null ? modalGalleryItems[activeModalMediaIndex] : null;
@@ -910,61 +1043,90 @@ export const ProjectDetail: React.FC = () => {
               >
                 {isGalleryHeavyProject ? 'Full Gallery' : 'Gallery'}
               </Typography>
-              <Box
-                sx={{
-                  columns: { xs: 2, sm: 3 },
-                  columnGap: '10px',
-                }}
-              >
-                {remainingGalleryItems.map((media, idx) => {
-                  const lbIdx = lightboxItems.indexOf(media);
-                  const isClickable = lbIdx !== -1;
+              {(() => {
+                const isIframeGallery = remainingGalleryItems.every((m) => m.type === 'iframe');
+                if (isIframeGallery) {
                   return (
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(3, minmax(0, 1fr))' },
+                        gap: 2,
+                      }}
+                    >
+                      {remainingGalleryItems.map((media, idx) => (
+                        <IframeCard
+                          key={`${media.src}-${idx}`}
+                          src={media.src}
+                          poster={(media as any).poster}
+                          title={media.label || media.alt || 'Embed'}
+                          allow={media.allow}
+                          isLive={liveIframeIndex === idx}
+                          onPlay={() => setLiveIframeIndex(idx)}
+                          onStop={() => setLiveIframeIndex(null)}
+                        />
+                      ))}
+                    </Box>
+                  );
+                }
+                return (
                   <Box
-                    key={`${media.src}-${idx}`}
-                    onClick={() => isClickable && setLightboxIndex(lbIdx)}
                     sx={{
-                      breakInside: 'avoid',
-                      mb: '10px',
-                      borderRadius: '12px',
-                      overflow: 'hidden',
-                      bgcolor: M3.surfaceContainerHighest,
-                      cursor: isClickable ? 'zoom-in' : 'default',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                      '&:hover': isClickable ? {
-                        transform: 'scale(1.015)',
-                        boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
-                      } : {},
+                      columns: { xs: 2, sm: 3 },
+                      columnGap: '10px',
                     }}
                   >
-                    <Box
-                      component="img"
-                      src={media.src}
-                      alt={media.alt || 'Project media'}
-                      loading="lazy"
-                      sx={{
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                      }}
-                    />
-                    {media.alt && (
-                      <Box sx={{ px: 1.5, py: 0.75 }}>
-                        <Typography
+                    {remainingGalleryItems.map((media, idx) => {
+                      const lbIdx = lightboxItems.indexOf(media);
+                      const isClickable = lbIdx !== -1;
+                      return (
+                        <Box
+                          key={`${media.src}-${idx}`}
+                          onClick={() => isClickable && setLightboxIndex(lbIdx)}
                           sx={{
-                            fontSize: '0.65rem',
-                            color: M3.onSurfaceVariant,
-                            fontFamily: '"Space Grotesk", sans-serif',
+                            breakInside: 'avoid',
+                            mb: '10px',
+                            borderRadius: '12px',
+                            overflow: 'hidden',
+                            bgcolor: M3.surfaceContainerHighest,
+                            cursor: isClickable ? 'zoom-in' : 'default',
+                            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                            '&:hover': isClickable ? {
+                              transform: 'scale(1.015)',
+                              boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
+                            } : {},
                           }}
                         >
-                          {media.alt}
-                        </Typography>
-                      </Box>
-                    )}
+                          <Box
+                            component="img"
+                            src={media.src}
+                            alt={media.alt || 'Project media'}
+                            loading="lazy"
+                            sx={{
+                              width: '100%',
+                              height: 'auto',
+                              display: 'block',
+                            }}
+                          />
+                          {media.alt && (
+                            <Box sx={{ px: 1.5, py: 0.75 }}>
+                              <Typography
+                                sx={{
+                                  fontSize: '0.65rem',
+                                  color: M3.onSurfaceVariant,
+                                  fontFamily: '"Space Grotesk", sans-serif',
+                                }}
+                              >
+                                {media.alt}
+                              </Typography>
+                            </Box>
+                          )}
+                        </Box>
+                      );
+                    })}
                   </Box>
-                  );
-                })}
-              </Box>
+                );
+              })()}
             </Box>
           )}
 
