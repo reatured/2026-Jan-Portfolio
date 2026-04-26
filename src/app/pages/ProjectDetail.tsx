@@ -1153,11 +1153,12 @@ export const ProjectDetail: React.FC = () => {
                     </Box>
                   );
                 }
+                const useTwoCols = remainingGalleryItems.length >= 5;
                 return (
                   <Box
                     sx={{
-                      columns: { xs: 2, sm: 3 },
-                      columnGap: '10px',
+                      columns: { xs: 1, md: useTwoCols ? 2 : 1 },
+                      columnGap: '12px',
                     }}
                   >
                     {remainingGalleryItems.map((media, idx) => {

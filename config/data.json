@@ -258,6 +258,72 @@
         },
         {
           "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/creation-1.gif",
+          "alt": "Procedural mesh creation — early variant",
+          "label": "Procedural mesh creation — early variant"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/creation-2.gif",
+          "alt": "Procedural mesh creation — second variant",
+          "label": "Procedural mesh creation — second variant"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/creation-5.gif",
+          "alt": "Procedural mesh creation — variant 5",
+          "label": "Procedural mesh creation — variant 5"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/creation-3.gif",
+          "alt": "Procedural mesh creation — variant 3",
+          "label": "Procedural mesh creation — variant 3"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/creation-6.gif",
+          "alt": "Procedural mesh creation — variant 6",
+          "label": "Procedural mesh creation — variant 6"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/creation-4.gif",
+          "alt": "Procedural mesh creation — variant 4",
+          "label": "Procedural mesh creation — variant 4"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/random-color.gif",
+          "alt": "Random color generation across the procedural mesh",
+          "label": "Random color generation across the procedural mesh"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/using-customized-texture.gif",
+          "alt": "Drawing with customized textures applied",
+          "label": "Drawing with customized textures applied"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/texture-shifting-solved.gif",
+          "alt": "Texture shifting artifact resolved",
+          "label": "Texture shifting artifact resolved"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/test-erase-on-spectacles.gif",
+          "alt": "Erase mode tested on Snapchat Spectacles",
+          "label": "Erase mode tested on Snapchat Spectacles"
+        },
+        {
+          "type": "image",
+          "src": "/assets/squarespace-import/ar-drawing-tool/snapcode.png",
+          "alt": "Snapcode for the published lens",
+          "label": "Snapcode for the published lens"
+        },
+        {
+          "type": "image",
           "src": "/assets/cargo-import/ar-drawing-research-project-at-snap-inc/AR-Drawing06.gif",
           "alt": "",
           "label": "",
