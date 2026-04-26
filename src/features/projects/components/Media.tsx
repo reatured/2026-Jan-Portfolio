@@ -2,6 +2,7 @@ import React from 'react';
 import { MediaItem } from '../../../features/common/types';
 import Box from '@mui/material/Box';
 import type { SxProps, Theme } from '@mui/material/styles';
+import ShaderCanvas from './shaders/ShaderCanvas';
 
 interface MediaProps {
   item: MediaItem;
@@ -23,6 +24,21 @@ export const Media: React.FC<MediaProps> = ({ item, className = "", frameSx, aut
     border: '1px solid rgba(255, 255, 255, 0.08)',
     transform: 'translateZ(0)',
   } as const;
+
+  if (item.type === 'shader') {
+    return (
+      <Box
+        className={frameClassName}
+        sx={{
+          ...frameStyles,
+          aspectRatio: item.aspectRatio || '21 / 9',
+          ...frameSx,
+        }}
+      >
+        <ShaderCanvas shaderId={item.src} ariaLabel={item.alt || item.label} />
+      </Box>
+    );
+  }
 
   if (item.type === 'iframe') {
     return (

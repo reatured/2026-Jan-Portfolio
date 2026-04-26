@@ -53,7 +53,7 @@ export interface SiteConfig {
 }
 
 // Project Configuration Types
-export type MediaType = 'image' | 'video' | 'iframe';
+export type MediaType = 'image' | 'video' | 'iframe' | 'shader';
 export type MediaLayout = 'content' | 'full-width' | 'hero';
 
 export interface MediaItem {

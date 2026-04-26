@@ -285,7 +285,7 @@ const IframeCard: React.FC<IframeCardProps> = ({ src, poster, title, allow, isLi
       },
     }}
   >
-    <Box sx={{ aspectRatio: '16 / 10', width: '100%', position: 'relative' }}>
+    <Box sx={{ aspectRatio: '21 / 9', width: '100%', position: 'relative' }}>
       {isLive ? (
         <>
           <Box
@@ -1044,27 +1044,48 @@ export const ProjectDetail: React.FC = () => {
                 {isGalleryHeavyProject ? 'Full Gallery' : 'Gallery'}
               </Typography>
               {(() => {
+                const isShaderGallery = remainingGalleryItems.every((m) => m.type === 'shader');
                 const isIframeGallery = remainingGalleryItems.every((m) => m.type === 'iframe');
-                if (isIframeGallery) {
+                if (isShaderGallery || isIframeGallery) {
                   return (
                     <Box
                       sx={{
                         display: 'grid',
-                        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(3, minmax(0, 1fr))' },
+                        gridTemplateColumns: '1fr',
                         gap: 2,
                       }}
                     >
                       {remainingGalleryItems.map((media, idx) => (
-                        <IframeCard
-                          key={`${media.src}-${idx}`}
-                          src={media.src}
-                          poster={(media as any).poster}
-                          title={media.label || media.alt || 'Embed'}
-                          allow={media.allow}
-                          isLive={liveIframeIndex === idx}
-                          onPlay={() => setLiveIframeIndex(idx)}
-                          onStop={() => setLiveIframeIndex(null)}
-                        />
+                        isShaderGallery ? (
+                          <Box key={`${media.src}-${idx}`}>
+                            <Media item={media} frameSx={{ aspectRatio: '21 / 9' }} />
+                            {(media.label || media.alt) && (
+                              <Typography
+                                sx={{
+                                  mt: 1,
+                                  fontSize: '0.7rem',
+                                  letterSpacing: '0.06em',
+                                  textTransform: 'uppercase',
+                                  color: M3.onSurfaceVariant,
+                                  fontFamily: '"Space Grotesk", sans-serif',
+                                }}
+                              >
+                                {media.label || media.alt}
+                              </Typography>
+                            )}
+                          </Box>
+                        ) : (
+                          <IframeCard
+                            key={`${media.src}-${idx}`}
+                            src={media.src}
+                            poster={(media as any).poster}
+                            title={media.label || media.alt || 'Embed'}
+                            allow={media.allow}
+                            isLive={liveIframeIndex === idx}
+                            onPlay={() => setLiveIframeIndex(idx)}
+                            onStop={() => setLiveIframeIndex(null)}
+                          />
+                        )
                       ))}
                     </Box>
                   );
