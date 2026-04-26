@@ -3,6 +3,7 @@ import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import type { Project } from '@types';
 import { Head, generateJsonLd } from '../../infrastructure/lib/seo';
 import { Media } from '../../features/projects/components/Media';
+import shaderSources from '../../features/projects/components/shaders/sources.json';
 import { M3 } from '../theme';
 import { useProject } from '../../infrastructure/api/hooks';
 import Box from '@mui/material/Box';
@@ -1017,6 +1018,68 @@ export const ProjectDetail: React.FC = () => {
                 {project.summary}
               </Typography>
             )}
+
+            {(() => {
+              const shaderItems = (project.mediaGallery || []).filter(m => m.type === 'shader');
+              if (shaderItems.length === 0) return null;
+              const sources = shaderSources as Record<string, { name: string; description: string }>;
+              const top3 = shaderItems.slice(0, 3);
+              return (
+                <Box component="section" sx={{ mt: { xs: 3, md: 4 } }}>
+                  <Typography
+                    sx={{
+                      fontSize: '0.65rem',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.14em',
+                      color: M3.onSurfaceVariant,
+                      mb: 2,
+                      fontFamily: '"Space Grotesk", sans-serif',
+                    }}
+                  >
+                    Highlights
+                  </Typography>
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '1fr', gap: 2 }}>
+                    {top3.map((media, idx) => {
+                      const meta = sources[media.src];
+                      return (
+                        <Box key={`highlight-${media.src}-${idx}`}>
+                          <Media item={media} frameSx={{ aspectRatio: '21 / 9' }} />
+                          {(media.label || media.alt || meta?.name) && (
+                            <Box sx={{ mt: 1 }}>
+                              <Typography
+                                sx={{
+                                  fontSize: '0.85rem',
+                                  fontWeight: 700,
+                                  letterSpacing: '-0.01em',
+                                  color: M3.onSurface,
+                                  fontFamily: '"Space Grotesk", sans-serif',
+                                }}
+                              >
+                                {media.label || media.alt || meta?.name}
+                              </Typography>
+                              {meta?.description && (
+                                <Typography
+                                  sx={{
+                                    fontSize: '0.78rem',
+                                    color: M3.onSurfaceVariant,
+                                    fontFamily: '"Space Grotesk", sans-serif',
+                                    lineHeight: 1.5,
+                                    mt: 0.25,
+                                  }}
+                                >
+                                  {meta.description}
+                                </Typography>
+                              )}
+                            </Box>
+                          )}
+                        </Box>
+                      );
+                    })}
+                  </Box>
+                </Box>
+              );
+            })()}
           </Box>
 
           {remainingGalleryItems.length > 0 && (
