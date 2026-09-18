@@ -1,0 +1,96 @@
+.project-archive-details { --case-gutter: clamp(20px, 2.5vw, 32px); display: block; padding: 0; }
+.archive-reading { min-width: 0; }
+.project-archive-details :is(button, a, [tabindex]):focus-visible { outline: 2px solid var(--color-orange-deep); outline-offset: -2px; }
+.archive-gallery { min-width: 0; padding: 0 0 12px; background: var(--color-cream); border-bottom: 1px solid var(--color-rule); }
+.archive-gallery-heading { display: flex; align-items: center; gap: 16px; justify-content: space-between; min-height: 44px; padding: 4px 22px; }
+.archive-gallery-heading > p { min-width: 0; font-size: 11px; color: var(--color-mut); }
+.archive-gallery-heading > p strong { color: var(--color-orange-deep); font-family: var(--font-mono); }
+.archive-gallery-heading > p span { padding-left: 12px; color: var(--color-ink-soft); font-size: 12px; }
+.archive-gallery-controls { display: flex; flex-shrink: 0; gap: 2px; }
+.archive-gallery-controls button { width: 44px; min-height: 44px; font-size: 20px; cursor: pointer; }
+.archive-gallery-controls button:hover { background: var(--color-cream); color: var(--color-orange-deep); }
+.archive-media-stage {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 100%; height: auto; aspect-ratio: 16 / 9; min-width: 0; overflow: hidden;
+  container-type: size;
+  /* A light paper surround for portrait, square and transparent project media. */
+  background: linear-gradient(125deg, #eee8de, var(--color-cream) 48%, #f0e7da);
+  border-bottom: 1px solid var(--color-rule);
+}
+.archive-media-stage > :is(img, video), .archive-youtube {
+  display: block; flex: none; min-width: 0; object-fit: contain; border: 0;
+  /* Fit the element itself, so native video controls stay inside the actual frame. */
+  width: min(100cqw, calc(100cqh * var(--archive-media-ratio, 1.777778)));
+  height: min(100cqh, calc(100cqw / var(--archive-media-ratio, 1.777778)));
+  background: transparent;
+}
+.archive-youtube iframe { display: block; width: 100%; height: 100%; border: 0; }
+.archive-media-stage > video:fullscreen { width: 100vw; height: 100dvh; object-fit: contain; background: var(--color-cream); }
+.archive-media-strip { position: relative; display: flex; gap: 7px; overflow-x: auto; overflow-y: hidden; margin-inline: 22px; padding: 3px 0 5px; scrollbar-width: thin; overscroll-behavior-x: contain; }
+.archive-media-strip button { position: relative; flex: 0 0 88px; width: 88px; height: 55px; border: 2px solid transparent; background: var(--color-cream); cursor: pointer; }
+.archive-media-strip button[aria-pressed="true"] { border-color: var(--color-orange); }
+.archive-media-strip img { width: 100%; height: 100%; object-fit: cover; }
+.archive-media-number { position: absolute; left: 0; bottom: 0; background: var(--color-ink); color: var(--color-cream); padding: 1px 4px; font-family: var(--font-mono); font-size: 9px; }
+.archive-media-play { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 24px; height: 24px; padding-left: 2px; border-radius: 50%; background: var(--color-ink); color: var(--color-cream); font-size: 10px; }
+.archive-media-kind { font-family: var(--font-mono); color: var(--color-orange-deep); font-size: 11px; }
+.archive-gallery[data-versions="true"] { padding-bottom: 0; }
+.archive-version-strip { margin: 0 var(--case-gutter); padding: 0; gap: 24px; }
+.archive-version-strip button { flex-basis: auto; width: auto; height: auto; min-height: 48px; padding: 12px 0; font-size: 13px; font-weight: 400; color: var(--color-mut); border: 0; border-bottom: 2px solid transparent; }
+.archive-version-strip button[aria-pressed="true"] { color: var(--color-ink); border-color: var(--color-orange); }
+.archive-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; padding: 24px var(--case-gutter); align-items: start; }
+.archive-notes section { min-width: 0; }
+.archive-notes h4 { font-size: 15px; line-height: 1.4; font-weight: 550; margin-bottom: 8px; }
+.archive-notes p, .archive-notes li { max-width: 72ch; font-size: 14px; line-height: 1.6; color: var(--color-ink-soft); }
+.archive-notes p + p { margin-top: 8px; }
+.archive-notes ul { padding-left: 17px; }
+.archive-notes li + li { margin-top: 7px; }
+.archive-note-table { overflow: auto; }
+.archive-note-table table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.archive-note-table th, .archive-note-table td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--color-rule); }
+.archive-note-table th { font-weight: 500; }
+.archive-note-table thead { color: var(--color-mut); }
+.archive-shader { position: relative; width: 100%; height: 100%; background: var(--color-ink); }
+.archive-shader canvas { width: 100%; height: 100%; display: block; }
+.archive-shader button { position: absolute; right: 10px; bottom: 10px; min-height: 36px; padding: 6px 12px; background: var(--color-cream); color: var(--color-ink); font-size: 12px; cursor: pointer; }
+.archive-shader-error, .archive-media-error { padding: 18px; color: var(--color-cream); font-size: 13px; }
+.archive-media-error { color: var(--color-ink); }
+.archive-media-error button { margin-left: 12px; min-height: 44px; text-decoration: underline; cursor: pointer; }
+
+/* A permanent portrait/content spread sits below the independent landscape Hero. */
+@media (min-width: 1000px) {
+  .archive-reading[data-has-portrait="true"] {
+    --archive-portrait-height: clamp(320px, var(--project-detail-max-height, 600px), 760px);
+    display: grid;
+    grid-template-columns: clamp(240px, calc((var(--archive-portrait-height) - 64px) * var(--archive-portrait-ratio)), 36%) minmax(0, 1fr);
+    align-items: start;
+  }
+  .archive-reading[data-has-portrait="true"] > .archive-gallery {
+    position: sticky; top: 0;
+    min-height: 0;
+    border-right: 1px solid var(--color-rule); border-bottom: 0;
+  }
+  .archive-reading[data-has-portrait="true"] .archive-media-stage { height: clamp(320px, calc(var(--archive-portrait-height) - 142px), 620px); aspect-ratio: auto; min-height: 0; }
+  .archive-reading[data-has-portrait="true"] .archive-gallery[data-single="true"] .archive-media-stage { height: clamp(320px, calc(var(--archive-portrait-height) - 62px), 698px); }
+  .archive-reading[data-has-portrait="true"] .archive-gallery-heading { gap: 8px; padding: 6px 12px; }
+  .archive-reading[data-has-portrait="true"] .archive-gallery-heading > p span { display: block; padding: 3px 0 0; line-height: 1.4; }
+  .archive-reading[data-has-portrait="true"] .archive-media-strip { margin-inline: 10px; }
+}
+@media (min-width: 1000px) and (max-height: 620px) {
+  .archive-reading[data-has-portrait="true"] > .archive-gallery { position: static; }
+}
+/* At tablet/phone widths the default single-column flow protects readable text. */
+@media (max-width: 999px) {
+  .archive-reading[data-has-portrait="true"] { display: block; }
+}
+@media (max-width: 1000px) { .archive-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .project-archive-details { --case-gutter: 18px; }
+  .archive-gallery { padding: 0 0 10px; }
+  .archive-gallery-heading { padding-inline: 14px; }
+  .archive-gallery-heading > p span { display: block; padding: 3px 0 6px; line-height: 1.4; }
+  .archive-gallery-controls button { width: 44px; min-height: 44px; }
+  .archive-media-stage[data-kind="youtube"] { min-height: 200px; }
+  .archive-media-stage[data-portrait="true"] { aspect-ratio: 4 / 5; }
+  .archive-media-strip { margin-inline: 14px; }
+  .archive-notes { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 20px; }
+}

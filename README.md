@@ -1,55 +1,47 @@
-# Run and deploy your AI Studio app
+# Lingyi Zhou — personal portfolio
 
-This contains everything you need to run your app locally.
+The formal React, TypeScript, and Vite portfolio served at
+[personal.lingyizhou.com](https://personal.lingyizhou.com).
 
-## Main Page Layout (ASCII)
+## Repository and local checkouts
 
-```
-+--------------------------------------------------------------------------------------------------+
-| PAGE FRAME                                                                                       |
-|  Background: slate-50                                                                            |
-|  Content Grid: 1 column (mobile) / 2 columns (lg)                                                 |
-+--------------------------------------------------------------------------------------------------+
-| [ LEFT COLUMN: SIDEBAR ]                       | [ RIGHT COLUMN: MAIN CONTENT ]                  |
-|  - Sticky on desktop                           |  - Scrollable content                           |
-|  - Intro + role/category links (in Sidebar)    |                                                 |
-|                                                |  [ Mobile-only Intro ]                           |
-|                                                |  "Welcome" + short prompt                         |
-|                                                |                                                 |
-|                                                |  [ Filter Status ] (only if category is set)      |
-|                                                |  "Filtered by: <Category>"                        |
-|                                                |                                                 |
-|                                                |  [ Projects List ]                                |
-|                                                |  Header: "All Projects" or "<N> Projects Found"   |
-|                                                |  Grid: 1 col (mobile) / 2 col (md+)                |
-|                                                |  - ProjectCard x N                                 |
-|                                                |  Empty state if none                               |
-|                                                |                                                 |
-|                                                |  [ Footer ]                                        |
-|                                                |  © YEAR Built with React, Tailwind & TypeScript.   |
-+--------------------------------------------------------------------------------------------------+
-```
+This website lives on the `site` branch of
+[`reatured/2026-Jan-Portfolio`](https://github.com/reatured/2026-Jan-Portfolio).
+The branch continues the original portfolio's Git history.
 
-## Project Card Layout (ASCII)
+In the portfolio workspace, the two checkouts are linked Git worktrees:
 
-```
-+----------------------------------------------------------------------------------+
-| [ Media: image / video / media ] |  Title                                        |
-|                                  |  Subtitle                                     |
-|                                  |  Description (1–2 lines)                      |
-|                                  |                                               |
-|                                  |  Tech Stack: [ Tag ] [ Tag ] [ Tag ]   +N     |
-+----------------------------------------------------------------------------------+
+- `2026-Jan-Portfolio/`: original website on `main`; stores the shared Git database.
+- `site/`: formal replacement website on `site`; application files are at this branch's repository root.
+
+Keep the original checkout available while this linked worktree is in use. Use
+`git worktree list` to inspect their relationship. Review artifacts, local agent
+state, dependencies, build output, environment files, and Vercel link metadata
+stay local and are excluded from commits.
+
+## Development
+
+Run these commands from this checkout:
+
+```sh
+npm ci
+npm run dev
+npm run build
+npm run preview
 ```
 
+The local workspace's `../AGENTS.md` documents design, content, and verification
+requirements. The optional legacy import script uses the sibling
+`../2026-Jan-Portfolio/` checkout as its source; it is not part of the build.
 
-## Run Locally
+## Deployment
 
-**Prerequisites:**  Node.js
+The existing Vercel project is `lingyi-personal-portfolio` in the
+`reatureds-projects` scope. For an authorized production update, build and verify
+the site, then run:
 
+```sh
+vercel deploy --prod --yes --scope reatureds-projects
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Publishing this branch to GitHub and deploying the website are separate actions.

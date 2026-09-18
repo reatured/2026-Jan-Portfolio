@@ -1,0 +1,1783 @@
+{
+  "EDITORIAL": {
+    "28": {
+      "slug": "realhand-teleop",
+      "overview": "A browser demo that maps camera-tracked hand movement to 31 articulated robot hand models.",
+      "role": "Software Engineer at RealHand",
+      "features": [],
+      "delivery": [],
+      "notes": [
+        {
+          "heading": "Camera → joints → 3D",
+          "items": [
+            "MediaPipe Hands extracts 21 hand landmarks from the webcam feed.",
+            "The mapping layer converts 3D keypoint positions into joint rotations for URDF models with different link geometries and joint hierarchies.",
+            "React and Zustand keep the camera, model controls, and shared scene state connected."
+          ]
+        },
+        {
+          "heading": "Browser stack",
+          "items": [
+            "React, Zustand, Three.js, React Three Fiber, React Three Drei, URDF models, MediaPipe Hands.",
+            "Radix UI and Tailwind CSS for the interface; GitHub Actions for delivery."
+          ]
+        }
+      ]
+    },
+    "02": {
+      "slug": "ar-drawing",
+      "overview": "Hand gestures become textured 3D strokes on Spectacles, backed by a reusable procedural mesh plugin.",
+      "role": "AR Engine Engineer Intern at Snap Inc.",
+      "features": [],
+      "delivery": [],
+      "notes": [
+        {
+          "heading": "From hand path to mesh",
+          "items": [
+            "Read finger joint positions with the Lens Studio hand tracking API.",
+            "Construct triangle strips along the tracked trajectory, with normals and UV coordinates for rendering.",
+            "Filter and smooth tracking jitter before producing the drawing geometry."
+          ]
+        },
+        {
+          "heading": "Drawing experiments",
+          "items": [
+            "Explore six procedural creation variants, random colors, and customized textures.",
+            "Keep textures stable as the mesh changes; the gallery includes the resolved texture-shifting experiment.",
+            "Test erase mode on Spectacles and publish the Lens with a Snapcode."
+          ]
+        },
+        {
+          "heading": "Reusable developer tools",
+          "paragraphs": [
+            "Built the configurable JavaScript mesh plugin and accompanying official developer guide, samples, tutorials, recordings, and code examples. The drawing Lens reached 200K plays and views in its first month."
+          ]
+        }
+      ]
+    },
+    "25": {
+      "slug": "flerken",
+      "overview": "An official campaign effect for The Marvels: detect a cat in the camera feed and transform it into a Flerken.",
+      "role": "AR Developer · Moviebill / Really AR",
+      "features": [
+        {
+          "title": "Cat detection",
+          "contribution": "Connected object detection to the camera effect so the transformation follows the cat.",
+          "stack": [
+            "Object detection",
+            "JavaScript"
+          ]
+        },
+        {
+          "title": "Flerken transformation",
+          "contribution": "Built the 3D visual effect and shader treatment around the campaign’s central gag.",
+          "stack": [
+            "HLSL",
+            "Visual effects"
+          ]
+        },
+        {
+          "title": "Platform adaptation",
+          "contribution": "Developed the effect across Lens Studio and Effect House for the campaign’s mobile platforms.",
+          "stack": [
+            "Lens Studio",
+            "Effect House"
+          ]
+        },
+        {
+          "title": "Campaign interaction",
+          "contribution": "Designed the detection-to-transformation sequence for immediate recognition and a shareable result.",
+          "stack": [
+            "AR interaction",
+            "Camera feedback"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Campaign",
+          "value": "The Marvels · 2023"
+        },
+        {
+          "label": "Distribution",
+          "value": "TikTok / Regal Cinema app"
+        },
+        {
+          "label": "Output",
+          "value": "Commercial AR effect"
+        }
+      ],
+      "title": "Marvel’s Flerken AR Filter",
+      "subtitle": "An official cat-detection effect for The Marvels.",
+      "notes": [
+        {
+          "heading": "Official campaign",
+          "paragraphs": [
+            "Developed during Lingyi’s time at Moviebill / Really AR for The Marvels theatrical campaign in 2023."
+          ]
+        },
+        {
+          "heading": "Camera-to-effect pipeline",
+          "items": [
+            "Detect a cat in the live camera feed.",
+            "Anchor the tentacle-sprouting Flerken transformation to the detected cat.",
+            "Use JavaScript and HLSL for the effect logic and visual treatment."
+          ]
+        },
+        {
+          "heading": "Platform delivery",
+          "items": [
+            "TikTok through Effect House.",
+            "Regal Cinema app through Lens Studio."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=25]"
+    },
+    "17": {
+      "slug": "no-job-too-small",
+      "overview": "Play an oversized intern in a tiny 90s office, where ordinary tasks turn into physical comedy.",
+      "role": "Lead Coder · LookAway Games",
+      "features": [
+        {
+          "title": "Scale-driven play",
+          "contribution": "Programmed the oversized-intern mechanics and the office tasks built around the player’s unusual proportions.",
+          "stack": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "title": "Physics systems",
+          "contribution": "Built the physical interactions so the player can use brute force or careful precision to complete tasks.",
+          "stack": [
+            "Unity physics",
+            "C#"
+          ]
+        },
+        {
+          "title": "Game architecture",
+          "contribution": "Led the core gameplay programming and systems architecture within the LookAway Games team.",
+          "stack": [
+            "Unity",
+            "Game state"
+          ]
+        },
+        {
+          "title": "Visual integration",
+          "contribution": "Integrated the 90s office presentation and shader effects into the collaborative jam build.",
+          "stack": [
+            "HLSL",
+            "Blender assets"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Event",
+          "value": "GMTK Game Jam 2024"
+        },
+        {
+          "label": "Result",
+          "value": "Top 1% of 3,300+ entries"
+        },
+        {
+          "label": "Play",
+          "value": "Browser build on itch.io"
+        }
+      ],
+      "subtitle": "An oversized intern turns a tiny office into a physics playground.",
+      "notes": [
+        {
+          "heading": "Theme and mechanics",
+          "items": [
+            "GMTK Game Jam 2024 theme: Built to Scale.",
+            "The oversized player is the scale problem in a tiny 90s-style office.",
+            "Ordinary office tasks become scale-based puzzles and physics challenges.",
+            "Both smashing through obstacles and careful, precise interaction are valid approaches."
+          ]
+        },
+        {
+          "heading": "Team and credits",
+          "paragraphs": [
+            "Developed collaboratively under LookAway Games. Lingyi Zhou served as Lead Coder, responsible for core gameplay programming, physics systems, and game architecture."
+          ]
+        },
+        {
+          "heading": "Jam result",
+          "paragraphs": [
+            "Ranked in the top 1% of more than 3,300 entries. The original playable build, jam results page, and gameplay video are linked from the overview."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=17]"
+    },
+    "23": {
+      "slug": "b612",
+      "overview": "Two players kick a ball around a looping planet. A shot can orbit the world and return as an unexpected goal.",
+      "role": "Solo Developer · Game Design · Illustration",
+      "features": [
+        {
+          "title": "Planet physics",
+          "contribution": "Built circular movement, radial gravity, directional kicks, bounce, and orbiting ball behavior.",
+          "stack": [
+            "Unity",
+            "C#",
+            "Polar coordinates"
+          ]
+        },
+        {
+          "title": "Match system",
+          "contribution": "Implemented 100-second matches, scoring, restart, and a multi-ball mode with up to six balls.",
+          "stack": [
+            "Unity",
+            "Game state"
+          ]
+        },
+        {
+          "title": "Hand-drawn art",
+          "contribution": "Sketched sprites, UI, and backgrounds on paper, scanned them, and processed them for the game.",
+          "stack": [
+            "Pencil sketch",
+            "Photoshop"
+          ]
+        },
+        {
+          "title": "Solo production",
+          "contribution": "Built, illustrated, integrated audio, and submitted the entire game in two days of the four-day jam.",
+          "stack": [
+            "Game design",
+            "Audio integration"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Event",
+          "value": "GMTK 2025 · “Loop”"
+        },
+        {
+          "label": "Result",
+          "value": "Top 2%"
+        },
+        {
+          "label": "Build time",
+          "value": "48 hours · Solo"
+        }
+      ]
+    },
+    "01": {
+      "slug": "hardware-store",
+      "overview": "A lead-generation tool for a hardware manufacturer, turning Google Maps business listings into a searchable list of potential store customers.",
+      "role": "Full Stack Developer",
+      "features": [
+        {
+          "title": "Business discovery",
+          "contribution": "Collected map business listings and organized potential hardware-store leads by location and relevance.",
+          "stack": [
+            "Python",
+            "Map data"
+          ]
+        },
+        {
+          "title": "Search workflow",
+          "contribution": "Built the interface for finding and reviewing store leads around the world.",
+          "stack": [
+            "React",
+            "JavaScript"
+          ]
+        },
+        {
+          "title": "Data quality",
+          "contribution": "Added deduplication and caching so repeated searches avoid duplicate results and unnecessary work.",
+          "stack": [
+            "Python",
+            "Caching"
+          ]
+        },
+        {
+          "title": "AI-assisted outreach",
+          "contribution": "Integrated Perplexity analysis to enrich store profiles and generate tailored cold-email drafts.",
+          "stack": [
+            "Perplexity API",
+            "FastAPI"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Use case",
+          "value": "Manufacturer sales leads"
+        },
+        {
+          "label": "Data",
+          "value": "Google Maps business listings"
+        },
+        {
+          "label": "Versions",
+          "value": "v1.0 and v3.0 demos"
+        }
+      ],
+      "subtitle": "Find hardware-store customers through searchable map data.",
+      "notes": [
+        {
+          "heading": "Find and enrich store leads",
+          "items": [
+            "Search hardware stores by city, region, or country.",
+            "Collect matching Google Maps business listings.",
+            "Deduplicate and cache results locally.",
+            "Use Perplexity to analyze relevance and contact information.",
+            "Generate cold-email drafts tailored to each store profile."
+          ]
+        },
+        {
+          "heading": "Example workflow",
+          "paragraphs": [
+            "Enter a location and query, such as “hardware stores in Berlin.” Review the deduplicated business results, enrich the relevant profiles, and prepare outreach drafts from that data."
+          ]
+        },
+        {
+          "heading": "Version history",
+          "items": [
+            "v1.0: basic search and results display.",
+            "v3.0: AI analysis, deduplication, caching, and email generation."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=01]"
+    },
+    "18": {
+      "slug": "spaceman",
+      "overview": "A space-themed adventure connecting narrative, puzzles, and a 3D world built in Unity and Blender.",
+      "role": "3D Modeling · Narrative Design · Unity Development",
+      "features": [
+        {
+          "title": "Adventure loop",
+          "contribution": "Developed the gameplay and interactions that connect the space adventure.",
+          "stack": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "title": "Narrative puzzles",
+          "contribution": "Designed puzzles and encounters to support the story’s progression.",
+          "stack": [
+            "Narrative design",
+            "Game design"
+          ]
+        },
+        {
+          "title": "3D production",
+          "contribution": "Created the scene assets and assembled the game’s visual world.",
+          "stack": [
+            "Blender",
+            "Unity"
+          ]
+        },
+        {
+          "title": "Presentation",
+          "contribution": "Balanced environmental detail with clear gameplay; documented the result in a trailer and process material.",
+          "stack": [
+            "Level composition",
+            "Visual iteration"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Format",
+          "value": "3D adventure"
+        },
+        {
+          "label": "Engine",
+          "value": "Unity"
+        },
+        {
+          "label": "Media",
+          "value": "Trailer + development material"
+        }
+      ],
+      "mediaOrder": [
+        "/projects/archive/005748863e64acb7.mp4",
+        "/projects/archive/9cff27e8d2f6e8cb.webp",
+        "/projects/archive/e52dd2c77eac6285.webp",
+        "https://www.youtube-nocookie.com/embed/0RuU2hqkGwI"
+      ]
+    },
+    "08": {
+      "slug": "vr-quest",
+      "overview": "A Quest interaction demo combining six-degree-of-freedom object manipulation with spatial memory tasks.",
+      "role": "XR Developer",
+      "features": [
+        {
+          "title": "Grab & place",
+          "contribution": "Implemented object grasping, transport, and release with physics-based behavior.",
+          "stack": [
+            "Unity",
+            "XR Interaction Toolkit"
+          ]
+        },
+        {
+          "title": "Spatial memory",
+          "contribution": "Designed tasks that ask users to remember positions and orientations in a 3D workspace.",
+          "stack": [
+            "C#",
+            "Spatial interaction"
+          ]
+        },
+        {
+          "title": "Collision feedback",
+          "contribution": "Connected object placement to collision detection so virtual objects respond to the environment.",
+          "stack": [
+            "Unity physics",
+            "Collision detection"
+          ]
+        },
+        {
+          "title": "Navigation & comfort",
+          "contribution": "Supported room-scale movement, teleportation, and smooth locomotion on standalone Quest hardware.",
+          "stack": [
+            "Oculus Quest",
+            "Unity XR"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Platform",
+          "value": "Oculus Quest"
+        },
+        {
+          "label": "Interaction",
+          "value": "6-DOF pick and place"
+        },
+        {
+          "label": "Available",
+          "value": "Demo video + source"
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Spatial storytelling",
+          "items": [
+            "Room-scale movement maps the player’s physical movement into the virtual space.",
+            "Environmental layout and interactive objects communicate narrative elements.",
+            "Players can pick up, examine, and use objects to progress."
+          ]
+        },
+        {
+          "heading": "Locomotion and input",
+          "items": [
+            "Teleportation and smooth locomotion support different comfort preferences.",
+            "Hand and controller inputs support natural object manipulation.",
+            "Six-degree-of-freedom grasping and placement use physics and collision feedback."
+          ]
+        },
+        {
+          "heading": "Standalone testing",
+          "paragraphs": [
+            "Built with Unity’s XR framework and tested across Oculus Quest hardware configurations, with attention to tracking stability and standalone rendering constraints."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=08]"
+    },
+    "19": {
+      "slug": "vr-magic",
+      "overview": "A VR spellcasting experiment where hand gestures trigger visual effects and spatial sound.",
+      "role": "VR Developer · Visual Effects",
+      "features": [
+        {
+          "title": "Gesture input",
+          "contribution": "Connected hand tracking and motion-driven gestures to the spell interaction.",
+          "stack": [
+            "Unity",
+            "C#",
+            "Hand tracking"
+          ]
+        },
+        {
+          "title": "Spatial effects",
+          "contribution": "Built responsive particles and visual effects around the user’s hand movement.",
+          "stack": [
+            "Real-time VFX",
+            "Unity"
+          ]
+        },
+        {
+          "title": "Audio feedback",
+          "contribution": "Layered spatial audio cues into the interaction to reinforce spell timing and presence.",
+          "stack": [
+            "Spatial audio",
+            "Event feedback"
+          ]
+        },
+        {
+          "title": "3D presentation",
+          "contribution": "Combined the effects, scene, and interaction into a headset experience.",
+          "stack": [
+            "VR interaction",
+            "3D modeling"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Format",
+          "value": "VR interaction study"
+        },
+        {
+          "label": "Feedback",
+          "value": "Hand motion, VFX, and audio"
+        },
+        {
+          "label": "Media",
+          "value": "Video + effects demo"
+        }
+      ]
+    },
+    "29": {
+      "slug": "gogreennext",
+      "overview": "A reusable environment tile kit for an NYU game team, built for fast level assembly and consistent landscapes.",
+      "role": "3D Artist · Environment Design",
+      "features": [
+        {
+          "title": "Modular geometry",
+          "contribution": "Modeled tiles with standardized dimensions and matching edges.",
+          "stack": [
+            "Blender",
+            "Modular modeling"
+          ]
+        },
+        {
+          "title": "Grid assembly",
+          "contribution": "Designed the pieces to connect cleanly in a grid-based level-building workflow.",
+          "stack": [
+            "Grid layout",
+            "Edge matching"
+          ]
+        },
+        {
+          "title": "Environment variation",
+          "contribution": "Created terrain, vegetation, and structural variations without losing the kit’s common visual language.",
+          "stack": [
+            "Blender",
+            "Environment art"
+          ]
+        },
+        {
+          "title": "Game-ready assets",
+          "contribution": "Prepared low-poly geometry, UVs, and exportable pieces for integration into the team’s game engine.",
+          "stack": [
+            "Blender",
+            "UV mapping",
+            "Low-poly modeling"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Team",
+          "value": "NYU game project"
+        },
+        {
+          "label": "Tool",
+          "value": "Blender"
+        },
+        {
+          "label": "Output",
+          "value": "Modular map-tile collection"
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Tile families",
+          "items": [
+            "Base tiles: ground, grass, and dirt paths.",
+            "Corners: 90-degree turns and transitions.",
+            "Junctions: T-intersections and crossroads.",
+            "Edges: map borders and boundaries.",
+            "Features: trees, rocks, and structures."
+          ]
+        },
+        {
+          "heading": "Production workflow",
+          "items": [
+            "Define a standardized grid template.",
+            "Model base geometry in Blender.",
+            "Create terrain, path, and structure variations.",
+            "Test edge matching and connections.",
+            "Export assets for game-engine integration."
+          ]
+        },
+        {
+          "heading": "System constraints",
+          "items": [
+            "Consistent scale, proportions, and snappable alignment.",
+            "Low-poly geometry for game performance.",
+            "UV mapping for texture flexibility.",
+            "Geometry prepared for level-of-detail variants."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=29]"
+    },
+    "09": {
+      "slug": "city-posters",
+      "overview": "A1 city posters that turn real map data into realistic and graphic 3D views, lit for each city’s local time of day.",
+      "role": "3D Artist",
+      "features": [
+        {
+          "title": "Geographic source",
+          "contribution": "Imported real-world building references from Google Maps to anchor the compositions in recognizable places.",
+          "stack": [
+            "Google Maps API",
+            "Blender"
+          ]
+        },
+        {
+          "title": "Two visual styles",
+          "contribution": "Built and rendered landmarks in realistic and graphic treatments.",
+          "stack": [
+            "Blender",
+            "3D composition"
+          ]
+        },
+        {
+          "title": "Local atmosphere",
+          "contribution": "Used HDRIs and custom lighting to reflect different times of day and city atmospheres.",
+          "stack": [
+            "HDRI",
+            "Custom lighting"
+          ]
+        },
+        {
+          "title": "Print production",
+          "contribution": "Arranged New York, San Francisco, Cologne, and Macau into large-format poster designs.",
+          "stack": [
+            "A1 layout",
+            "Rendering"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Cities",
+          "value": "New York, San Francisco, Cologne, Macau"
+        },
+        {
+          "label": "Format",
+          "value": "A1 posters"
+        },
+        {
+          "label": "Styles",
+          "value": "Realistic + graphic"
+        }
+      ]
+    },
+    "04": {
+      "slug": "curtain-hook",
+      "overview": "A two-part curtain hook that locks into the ceiling–wall seam with compression, without drilling or adhesive.",
+      "role": "Mechanical Design · CAD · Rapid Prototyping",
+      "features": [
+        {
+          "title": "Find an attachment",
+          "contribution": "Studied the existing ceiling seam after adhesive hooks failed, using the room’s structure as the constraint.",
+          "stack": [
+            "Physical inspection",
+            "Mechanical design"
+          ]
+        },
+        {
+          "title": "Sliding assembly",
+          "contribution": "Designed a top hook and a horizontal locking part, widening the contact area to spread the load.",
+          "stack": [
+            "Fusion 360",
+            "Parametric CAD"
+          ]
+        },
+        {
+          "title": "Tune the fit",
+          "contribution": "Printed and tested three iterations to balance a secure compression fit with installation by hand.",
+          "stack": [
+            "FDM printing",
+            "Tolerance testing"
+          ]
+        },
+        {
+          "title": "Fabricate & install",
+          "contribution": "Printed the final PLA hook with 40% infill and three perimeters; the two-part system removes without wall damage.",
+          "stack": [
+            "PLA",
+            "Fusion 360"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Iterations",
+          "value": "3 print-and-fit cycles"
+        },
+        {
+          "label": "Installation",
+          "value": "Under 30 seconds"
+        },
+        {
+          "label": "Original result",
+          "value": "Holding curtains for over a year"
+        }
+      ]
+    },
+    "27": {
+      "slug": "curaloop",
+      "overview": "A one-day hackathon prototype using AI chat and games to surface behavioral trends for Alzheimer’s caregivers to review.",
+      "role": "Full Stack / AI Integration · 3-person hackathon team",
+      "features": [
+        {
+          "title": "Chat & game input",
+          "contribution": "Built the mobile interaction and captured chat patterns and game performance for review.",
+          "stack": [
+            "React Native",
+            "TypeScript",
+            "Expo"
+          ]
+        },
+        {
+          "title": "AI trend pipeline",
+          "contribution": "Connected behavioral signals to a FastAPI inference layer that produces trend summaries.",
+          "stack": [
+            "FastAPI",
+            "Python",
+            "Claude Sonnet"
+          ]
+        },
+        {
+          "title": "Human review",
+          "contribution": "Designed the reviewer workflow so people can inspect, confirm, or override AI suggestions.",
+          "stack": [
+            "Human-in-the-loop",
+            "Trend analysis"
+          ]
+        },
+        {
+          "title": "Hackathon delivery",
+          "contribution": "Integrated the interface and backend into a deployed demo during the Seattle Humans & AI hackathon.",
+          "stack": [
+            "Vercel",
+            "Full stack integration"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Event",
+          "value": "Humans & AI · Seattle"
+        },
+        {
+          "label": "Sprint",
+          "value": "6 hours · 3-person team"
+        },
+        {
+          "label": "Format",
+          "value": "Caregiver-support prototype"
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Patient-facing prototype",
+          "items": [
+            "Senior-friendly home screen with large controls for check-ins, games, chat, progress, and reminders.",
+            "Daily memory and orientation questions establish a longitudinal record.",
+            "Claude Sonnet chat explores memory prompts, conversation history, emotional tone, and gentle redirection."
+          ]
+        },
+        {
+          "heading": "Cognitive games",
+          "items": [
+            "Memory matching, pattern recognition, word recall, visual-spatial puzzles, and attention activities.",
+            "Game performance and difficulty feed the prototype’s behavioral trend analysis."
+          ]
+        },
+        {
+          "heading": "Reviewer workflow",
+          "items": [
+            "Present activity logs, conversation transcripts, cognitive trends, and emotional indicators for a doctor or caregiver to review.",
+            "Flag trends for human confirmation; minor changes are logged, while major alerts require approval.",
+            "The product concept includes plan revisions and report exports after review."
+          ]
+        },
+        {
+          "heading": "Data and feedback loop",
+          "paragraphs": [
+            "User interactions → timestamped logging → AI trend analysis → proposed alerts → human review → approved changes → future feedback. This describes the hackathon prototype’s intended caregiver workflow."
+          ]
+        },
+        {
+          "heading": "Mobile and backend architecture",
+          "items": [
+            "React Native, TypeScript, and Expo for check-ins, games, chat, alerts, and offline synchronization.",
+            "FastAPI/Python for user management, analytics, alert generation, and the reviewer API.",
+            "Claude Sonnet for conversations and trend summaries; Vercel for the demo deployment."
+          ]
+        },
+        {
+          "heading": "Six-hour implementation sprint",
+          "items": [
+            "A three-person team built the prototype during a one-day Seattle hackathon.",
+            "Streaming Claude responses and client-side caching reduced perceived response latency.",
+            "Rolling averages and anomaly detection supported the trend prototype within the time limit.",
+            "Tiered alerts maintained a human review step for major changes."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=27]"
+    },
+    "24": {
+      "slug": "shaders",
+      "overview": "Eleven GLSL experiments in procedural patterns, signed-distance shapes, lighting, noise, and animation, running directly in a WebGL2 canvas.",
+      "role": "Shader Programming · Graphics Development",
+      "features": [
+        {
+          "title": "Procedural studies",
+          "contribution": "Wrote eleven fragment shaders exploring patterns, noise, distance fields, filters, and math-driven motion.",
+          "stack": [
+            "GLSL",
+            "ShaderToy"
+          ]
+        },
+        {
+          "title": "Local renderer",
+          "contribution": "Built shader compilation, program linking, and a fullscreen-triangle rendering path.",
+          "stack": [
+            "WebGL2",
+            "JavaScript"
+          ]
+        },
+        {
+          "title": "Shader uniforms",
+          "contribution": "Connected time, resolution, frame, mouse, and date uniforms to the ShaderToy-style mainImage entry point.",
+          "stack": [
+            "GLSL uniforms",
+            "GPU rendering"
+          ]
+        },
+        {
+          "title": "Efficient previews",
+          "contribution": "Used visibility-based startup and a capped device-pixel ratio to keep embedded studies practical on the web.",
+          "stack": [
+            "IntersectionObserver",
+            "DPR cap 2"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Collection",
+          "value": "11 local shader studies"
+        },
+        {
+          "label": "Runtime",
+          "value": "WebGL2"
+        },
+        {
+          "label": "Sources",
+          "value": "ShaderToy links + GLSL"
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Pattern and color",
+          "items": [
+            "Cellular Wave Pattern; Pattern Practice; Pattern Practice Variation.",
+            "Noise Practice; Distance Practice; Filter Effects; Teach Shader."
+          ]
+        },
+        {
+          "heading": "Shape and light",
+          "items": [
+            "See Through Practice; Capsule Practice; Sphere with Shade; 3D Practice.",
+            "The gallery runs the original GLSL source locally. Only the selected study creates a WebGL canvas."
+          ]
+        },
+        {
+          "heading": "Renderer",
+          "paragraphs": [
+            "A fullscreen triangle drives the fragment shader. ShaderToy-compatible uniforms provide resolution, time, delta time, frame count, mouse, and date. The original renderer uses IntersectionObserver for lazy startup and caps device pixel ratio at 2."
+          ]
+        }
+      ]
+    },
+    "03": {
+      "slug": "drag-task",
+      "overview": "A drag-and-drop schedule builder with offline editing, cross-device sync, and a clean printable view.",
+      "role": "Full Stack Developer",
+      "features": [
+        {
+          "title": "Time-block editing",
+          "contribution": "Made the schedule directly editable through drag and drop instead of a series of forms.",
+          "stack": [
+            "React",
+            "@dnd-kit"
+          ]
+        },
+        {
+          "title": "Offline planning",
+          "contribution": "Supported editing while offline, keeping planning available without a continuous connection.",
+          "stack": [
+            "React",
+            "Offline state"
+          ]
+        },
+        {
+          "title": "Sync & persistence",
+          "contribution": "Connected the schedule to a backend and persistent storage for automatic cross-device sync.",
+          "stack": [
+            "FastAPI",
+            "Supabase"
+          ]
+        },
+        {
+          "title": "Print-ready layout",
+          "contribution": "Built a focused interface and export view for taking the schedule off screen.",
+          "stack": [
+            "Tailwind CSS",
+            "Print styles"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Interaction",
+          "value": "Drag and drop"
+        },
+        {
+          "label": "Data",
+          "value": "Offline editing + device sync"
+        },
+        {
+          "label": "Initial version",
+          "value": "Built in under 4 hours"
+        }
+      ],
+      "notes": [
+        {
+          "heading": "Scheduling workflow",
+          "items": [
+            "Drag time blocks with @dnd-kit.",
+            "Sync changes automatically across devices through Supabase.",
+            "Keep editing offline and synchronize when the connection returns.",
+            "Export a clean print-ready schedule."
+          ]
+        },
+        {
+          "heading": "Design and build",
+          "paragraphs": [
+            "The first version was designed and developed in under four hours. Its interaction was modeled on moving sticky notes around a desk: direct editing with minimal menus and configuration."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=03]"
+    },
+    "26": {
+      "slug": "glass-bridge",
+      "overview": "A Squid Game-inspired, turn-based endless runner played asynchronously through Snapchat messages.",
+      "role": "Lens Studio Developer · System Design",
+      "features": [
+        {
+          "title": "Turn manager",
+          "contribution": "Built a custom game manager around Lens Studio’s turn-based features.",
+          "stack": [
+            "Lens Studio",
+            "TypeScript ES2019"
+          ]
+        },
+        {
+          "title": "Async competition",
+          "contribution": "Designed turns and message passing so friends compete without playing at the same time.",
+          "stack": [
+            "Async multiplayer",
+            "Snapchat messaging"
+          ]
+        },
+        {
+          "title": "Modular gameplay",
+          "contribution": "Separated the game stages and systems with an event-driven handler pattern.",
+          "stack": [
+            "Handler pattern",
+            "Events"
+          ]
+        },
+        {
+          "title": "Player identity",
+          "contribution": "Integrated Bitmoji so the player avatar feels native to Snapchat.",
+          "stack": [
+            "Bitmoji SDK",
+            "Lens Studio"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Platform",
+          "value": "Snapchat"
+        },
+        {
+          "label": "Mode",
+          "value": "Turn-based multiplayer"
+        },
+        {
+          "label": "Output",
+          "value": "Published Lens"
+        }
+      ],
+      "title": "Snapchat Glass Bridge Challenge",
+      "subtitle": "A turn-based glass-bridge game played through Snapchat messages.",
+      "notes": [
+        {
+          "heading": "Two-player loop",
+          "items": [
+            "Player 1 attempts the bridge until success; the game records the number of attempts.",
+            "Share the challenge and game data through a Snapchat message.",
+            "Player 2 receives the same challenge; fewer attempts wins.",
+            "Sessions target two to three minutes in a Bitmoji fantasy world."
+          ]
+        },
+        {
+          "heading": "Game-manager architecture",
+          "items": [
+            "TurnBasedHandler.ts owns turn logic and multiplayer data.",
+            "LevelHandler.ts generates platforms and levels.",
+            "UIHandler.ts manages interface states.",
+            "TurnBasedBlock.ts handles block collisions."
+          ]
+        },
+        {
+          "heading": "Events and handlers",
+          "paragraphs": [
+            "Handlers communicate through the GameManager and events instead of direct references. An event bus coordinates stage transitions, with listeners registered and removed as stages start and end. The architecture is intended to support more complex mechanics and future async games."
+          ]
+        },
+        {
+          "heading": "Prototype milestones",
+          "items": [
+            "Early prototype: endless platform rows, each with one safe block and one fake block.",
+            "August 29, 2025: added models and UI; two-player Snapchat data transfer updated the receiving player’s interface.",
+            "September 3, 2025: explored endless levels with additional rows. Cooperative replay and competitive attempts/distance were alternative directions under consideration."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=26]"
+    },
+    "05": {
+      "slug": "just-another-day",
+      "overview": "Five mini-games connected by an emotional storyline, designed to build toward a cathartic ending.",
+      "role": "Game Developer · Storytelling",
+      "features": [
+        {
+          "title": "Five mini-games",
+          "contribution": "Structured the experience as short gameplay pieces, each serving a different story beat.",
+          "stack": [
+            "Unity",
+            "C#"
+          ]
+        },
+        {
+          "title": "Narrative pacing",
+          "contribution": "Connected the mini-games so the emotional intensity can rise and fall across the full experience.",
+          "stack": [
+            "Narrative design",
+            "Game pacing"
+          ]
+        },
+        {
+          "title": "Mood-driven visuals",
+          "contribution": "Built custom HLSL effects and Blender assets to reflect each mini-game’s emotional tone.",
+          "stack": [
+            "HLSL",
+            "Blender"
+          ]
+        },
+        {
+          "title": "Playable release",
+          "contribution": "Published the game and documented the result with a trailer, repository, and procedural-art example.",
+          "stack": [
+            "itch.io",
+            "Game production"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Structure",
+          "value": "5 connected mini-games"
+        },
+        {
+          "label": "Focus",
+          "value": "Emotional storytelling"
+        },
+        {
+          "label": "Available",
+          "value": "Playable build + source"
+        }
+      ],
+      "subtitle": "Five mini-games, one emotional arc.",
+      "notes": [
+        {
+          "heading": "Five symbolic mini-games",
+          "paragraphs": [
+            "Each mini-game represents a different emotional state. The overall pacing builds toward catharsis rather than relying on one repeated mechanic."
+          ]
+        },
+        {
+          "heading": "Procedural stitching",
+          "paragraphs": [
+            "A recurring procedural stitching mechanic ties the separate narrative segments together. Scene transitions maintain emotional continuity."
+          ]
+        },
+        {
+          "heading": "Technical production",
+          "items": [
+            "Unity and C# for the gameplay and scene flow.",
+            "Custom HLSL shaders for mood-driven visual effects.",
+            "Blender for the 3D assets."
+          ]
+        }
+      ],
+      "sourceNotes": "config/data_pre_all_update.json projects[id=05]"
+    },
+    "16": {
+      "slug": "ping-pong",
+      "overview": "A p5.js ping-pong game with a custom engine, an automated opponent, and a 2D court that feels three-dimensional.",
+      "role": "Game Engine Developer",
+      "features": [
+        {
+          "title": "Custom engine",
+          "contribution": "Built the asset, sound, level, and control systems rather than relying on a game engine.",
+          "stack": [
+            "p5.js",
+            "JavaScript"
+          ]
+        },
+        {
+          "title": "Court perspective",
+          "contribution": "Used perspective cues to create a 3D illusion on a 2D canvas.",
+          "stack": [
+            "Canvas drawing",
+            "Perspective math"
+          ]
+        },
+        {
+          "title": "Automated opponent",
+          "contribution": "Added an opponent so the game works as a complete single-player experience.",
+          "stack": [
+            "Opponent logic",
+            "Game loop"
+          ]
+        },
+        {
+          "title": "Gameplay feedback",
+          "contribution": "Integrated sound, scoring, and challenge variations, documented through five gameplay clips.",
+          "stack": [
+            "Audio",
+            "Interaction design"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2021"
+        },
+        {
+          "label": "Runtime",
+          "value": "Browser / p5.js"
+        },
+        {
+          "label": "Output",
+          "value": "Playable game"
+        }
+      ],
+      "title": "Ping Pong Game",
+      "subtitle": "A custom p5.js game engine with a 3D illusion."
+    },
+    "10b": {
+      "slug": "teddy-bear",
+      "overview": "A Blender character study focused on soft toy proportions, subdivision, and fabric-like shading.",
+      "role": "3D Sculpting",
+      "features": [
+        {
+          "title": "Form & silhouette",
+          "contribution": "Blocked out the bear and adjusted proportions to make the soft toy read clearly.",
+          "stack": [
+            "Blender",
+            "Proportional editing"
+          ]
+        },
+        {
+          "title": "Soft surfaces",
+          "contribution": "Refined the mesh with subdivision and surface cleanup.",
+          "stack": [
+            "Subdivision modifiers",
+            "Mesh topology"
+          ]
+        },
+        {
+          "title": "Fabric treatment",
+          "contribution": "Developed a basic fabric-like shader and material finish.",
+          "stack": [
+            "Blender materials",
+            "Shading"
+          ]
+        },
+        {
+          "title": "Presentation",
+          "contribution": "Rendered the model from multiple views to evaluate its form and finish.",
+          "stack": [
+            "Lighting",
+            "Rendering"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2023"
+        },
+        {
+          "label": "Tool",
+          "value": "Blender"
+        },
+        {
+          "label": "Focus",
+          "value": "Character-modeling fundamentals"
+        }
+      ],
+      "title": "3D Modeled Teddy Bear",
+      "subtitle": "Soft forms, subdivision, and fabric-like materials."
+    },
+    "07": {
+      "slug": "portfolio-website",
+      "overview": "The previous portfolio: a responsive, content-driven site with project discovery, rich media pages, and an editing interface.",
+      "role": "Frontend Development · UI/UX Design",
+      "features": [
+        {
+          "title": "Project discovery",
+          "contribution": "Built category-based project browsing and routed detail pages from a shared content model.",
+          "stack": [
+            "React",
+            "TypeScript",
+            "React Router"
+          ]
+        },
+        {
+          "title": "Responsive interface",
+          "contribution": "Built the shared layout and responsive components using the site’s Material UI theme.",
+          "stack": [
+            "Material UI",
+            "Emotion"
+          ]
+        },
+        {
+          "title": "Content editing",
+          "contribution": "Built an admin interface backed by local JSON persistence and a media-upload server.",
+          "stack": [
+            "Node.js",
+            "Express",
+            "Multer"
+          ]
+        },
+        {
+          "title": "Rich media",
+          "contribution": "Integrated video, interactive embeds, local shader previews, and metadata for project pages.",
+          "stack": [
+            "WebGL2",
+            "Vite",
+            "React Query"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Version",
+          "value": "January portfolio"
+        },
+        {
+          "label": "Content",
+          "value": "Config-driven project pages"
+        },
+        {
+          "label": "Tools",
+          "value": "Editing + media upload"
+        }
+      ],
+      "subtitle": "The original portfolio and its content-editing system.",
+      "notes": [
+        {
+          "heading": "Content architecture",
+          "paragraphs": [
+            "Project metadata lives in config/data.json, with rich descriptions in config/richContent.json. Shared types keep the homepage cards, project pages, and admin editing form aligned."
+          ]
+        },
+        {
+          "heading": "Editing and media",
+          "paragraphs": [
+            "The React admin UI uses an Express server to edit JSON content and upload local media. Project pages render image galleries, native video, third-party embeds, and eleven local GLSL shaders."
+          ]
+        },
+        {
+          "heading": "Frontend delivery",
+          "paragraphs": [
+            "The previous site uses React, TypeScript, Material UI/Emotion, React Router, React Query, and Vite. These stacks are verified in that project’s package.json and source, rather than its imported global skills list."
+          ]
+        }
+      ]
+    },
+    "20": {
+      "slug": "dragon-roaster",
+      "overview": "A PC game where webcam body tracking controls a dragon’s fire: roast the meat and avoid burning the watermelon.",
+      "role": "Unity Developer · Motion-Based Interaction",
+      "features": [
+        {
+          "title": "Webcam input",
+          "contribution": "Integrated a simplified body-tracking setup so players control the game through their movements.",
+          "stack": [
+            "Unity",
+            "Webcam body tracking"
+          ]
+        },
+        {
+          "title": "Flame control",
+          "contribution": "Mapped the angle between the neck and hands to flame power; opening the hands controls fire breath.",
+          "stack": [
+            "C#",
+            "Pose-angle mapping"
+          ]
+        },
+        {
+          "title": "Cooking gameplay",
+          "contribution": "Built a scoring loop around accurately roasting meat while avoiding the watermelon.",
+          "stack": [
+            "Unity",
+            "Game logic"
+          ]
+        },
+        {
+          "title": "One-week prototype",
+          "contribution": "Analyzed the available motion-tracking implementation and connected it to a playable PC game.",
+          "stack": [
+            "Unity Barracuda",
+            "Code integration"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Built",
+          "value": "1 week · 2021"
+        },
+        {
+          "label": "Platform",
+          "value": "PC + webcam"
+        },
+        {
+          "label": "Input",
+          "value": "Body tracking"
+        }
+      ],
+      "title": "Dragon Roaster",
+      "subtitle": "Control a dragon’s fire with webcam body tracking.",
+      "notes": [
+        {
+          "heading": "Motion-controlled cooking",
+          "items": [
+            "Open the hands to control the dragon’s fire breath.",
+            "The neck-to-hand angle sets flame power.",
+            "Roast meat accurately to score; avoid burning the watermelon."
+          ]
+        },
+        {
+          "heading": "Development",
+          "paragraphs": [
+            "Built in one week in early 2021 using Unity and C#. The project used a simplified webcam-based body-tracking setup and analysis of the linked ThreeDPoseUnityBarracuda implementation."
+          ]
+        },
+        {
+          "heading": "Original performance observation",
+          "paragraphs": [
+            "The original page reports about 28 FPS on a GTX 1070 and identifies the high compute requirement as a limitation of this prototype. This is the recorded 2021 setup, not a current benchmark."
+          ]
+        }
+      ],
+      "sourceNotes": "config/cargo_content_approval.json scraped.20.rawContent"
+    },
+    "21": {
+      "slug": "vr-chess",
+      "overview": "An Oculus Quest chess prototype using controller-free hand gestures to grab and drop life-sized pieces in a virtual room.",
+      "role": "VR Developer · Unity Developer",
+      "features": [
+        {
+          "title": "Life-sized board",
+          "contribution": "Modeled the chessboard and full-sized pieces for an immersive room-scale scene.",
+          "stack": [
+            "Blender",
+            "Unity"
+          ]
+        },
+        {
+          "title": "Hand-gesture input",
+          "contribution": "Used Quest hand tracking to select and grab pieces without controller buttons.",
+          "stack": [
+            "Oculus Quest",
+            "Hand tracking"
+          ]
+        },
+        {
+          "title": "Grab & drop",
+          "contribution": "Implemented gesture-driven picking up and dropping pieces onto the board.",
+          "stack": [
+            "C#",
+            "VR interaction"
+          ]
+        },
+        {
+          "title": "Headset iteration",
+          "contribution": "Tested and recorded the interaction on Oculus Quest while the controller-free tracking feature was still new.",
+          "stack": [
+            "Unity",
+            "Quest testing"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2021"
+        },
+        {
+          "label": "Platform",
+          "value": "Oculus Quest"
+        },
+        {
+          "label": "Input",
+          "value": "Hands · No controllers"
+        }
+      ],
+      "title": "VR Chess",
+      "subtitle": "Controller-free hand tracking on a life-sized chessboard.",
+      "notes": [
+        {
+          "heading": "Spatial chess",
+          "paragraphs": [
+            "Walk around the full-sized chessboard, view the modeled pieces from any angle, and move them by hand. The pieces and board were modeled in Blender."
+          ]
+        },
+        {
+          "heading": "Gesture implementation",
+          "paragraphs": [
+            "Quest had recently introduced controller-free hand tracking. The experiment replaced controller-button input with hand gestures for grabbing and dropping chess pieces; its demo was recorded directly in Oculus Quest."
+          ]
+        }
+      ],
+      "sourceNotes": "config/cargo_content_approval.json scraped.21.rawContent"
+    },
+    "11": {
+      "slug": "magic-wand",
+      "overview": "A stylized Blender wand with a custom toon shader, stepped lighting, and an inverted-hull outline.",
+      "role": "3D Modeling · Shader Development",
+      "features": [
+        {
+          "title": "Cel-shaded diffuse",
+          "contribution": "Used a stepped color ramp to divide lighting into two or three hard shading zones.",
+          "stack": [
+            "Blender nodes",
+            "Color ramps"
+          ]
+        },
+        {
+          "title": "Stylized reflection",
+          "contribution": "Mapped the Fresnel output through a second ramp for a sharp, flat specular catch.",
+          "stack": [
+            "Fresnel",
+            "Shader nodes"
+          ]
+        },
+        {
+          "title": "Outline geometry",
+          "contribution": "Duplicated and expanded the mesh with flipped normals to create the black silhouette.",
+          "stack": [
+            "Inverted hull",
+            "Mesh normals"
+          ]
+        },
+        {
+          "title": "Glow & rendering",
+          "contribution": "Added a restrained emissive wand tip and rendered the material in real time.",
+          "stack": [
+            "Eevee",
+            "Emission"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2024"
+        },
+        {
+          "label": "Style",
+          "value": "Non-photorealistic rendering"
+        },
+        {
+          "label": "Renderer",
+          "value": "Eevee"
+        }
+      ],
+      "title": "Magic Wand · Cartoon Shader",
+      "subtitle": "A custom toon material, from color ramps to outlines."
+    },
+    "12": {
+      "slug": "procedural-modeling",
+      "overview": "Procedural buildings and abstract structures generated entirely through Blender Geometry Nodes.",
+      "role": "Procedural Modeling · Generative Design",
+      "features": [
+        {
+          "title": "Building generator",
+          "contribution": "Extruded floors from a footprint curve and instanced windows on face centers.",
+          "stack": [
+            "Geometry Nodes",
+            "Curve extrusion"
+          ]
+        },
+        {
+          "title": "Design variation",
+          "contribution": "Randomized building heights and used grid-based instancing for variations.",
+          "stack": [
+            "Instancing",
+            "Random fields"
+          ]
+        },
+        {
+          "title": "Abstract structures",
+          "contribution": "Applied sine waves and noise-driven transforms to repeated geometry.",
+          "stack": [
+            "Math nodes",
+            "Noise fields"
+          ]
+        },
+        {
+          "title": "Live parameters",
+          "contribution": "Exposed floor count, window density, and scale as group inputs for immediate updates.",
+          "stack": [
+            "Group inputs",
+            "Parametric design"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2024"
+        },
+        {
+          "label": "Workflow",
+          "value": "Non-destructive node graphs"
+        },
+        {
+          "label": "Tool",
+          "value": "Blender"
+        }
+      ],
+      "title": "Procedural Modeling in Blender",
+      "subtitle": "One node graph, adjustable buildings and structures."
+    },
+    "13": {
+      "slug": "chess-scene",
+      "overview": "A chess room modeled in Blender and reviewed inside Oculus Quest to refine human-scale proportions.",
+      "role": "3D Modeling · VR Design",
+      "features": [
+        {
+          "title": "Scene construction",
+          "contribution": "Built chess pieces, furniture, room geometry, lighting, and materials on desktop.",
+          "stack": [
+            "Blender",
+            "Scene modeling"
+          ]
+        },
+        {
+          "title": "Immersive review",
+          "contribution": "Exported the scene to Oculus Quest to judge depth and scale from inside the room.",
+          "stack": [
+            "Oculus Quest",
+            "VR review"
+          ]
+        },
+        {
+          "title": "Spatial corrections",
+          "contribution": "Revised chair scale, ceiling height, and object spacing based on the immersive review.",
+          "stack": [
+            "Scale validation",
+            "Spatial design"
+          ]
+        },
+        {
+          "title": "Iterative delivery",
+          "contribution": "Repeated the desktop-to-VR feedback loop through two complete review cycles.",
+          "stack": [
+            "Blender",
+            "Design iteration"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2021"
+        },
+        {
+          "label": "Course focus",
+          "value": "Spatial design"
+        },
+        {
+          "label": "Review",
+          "value": "2 immersive review cycles"
+        }
+      ],
+      "title": "Chess Scene · VR Modeling",
+      "subtitle": "Model on desktop, refine the scale from inside VR."
+    },
+    "14": {
+      "slug": "bowling-scene",
+      "overview": "A stylized bowling alley rendered around glossy lanes, warm overhead lights, and the energy of a strike.",
+      "role": "3D Modeling · Lighting · Post-Processing",
+      "features": [
+        {
+          "title": "Material contrast",
+          "contribution": "Shaded glossy wood lanes, ceramic-like pins, and a dark resin ball.",
+          "stack": [
+            "Blender",
+            "Material nodes"
+          ]
+        },
+        {
+          "title": "Atmospheric light",
+          "contribution": "Balanced warm overhead fluorescents with side fills and elongated lane reflections.",
+          "stack": [
+            "Area lighting",
+            "Reflections"
+          ]
+        },
+        {
+          "title": "Impact motion",
+          "contribution": "Used motion blur on the ball and scattering pins to capture the moment of impact.",
+          "stack": [
+            "Eevee",
+            "Motion blur"
+          ]
+        },
+        {
+          "title": "Final treatment",
+          "contribution": "Added restrained bloom and corner chromatic aberration to the final render.",
+          "stack": [
+            "Compositor",
+            "Bloom"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2023"
+        },
+        {
+          "label": "Renderer",
+          "value": "Eevee"
+        },
+        {
+          "label": "Output",
+          "value": "Stylized scene render"
+        }
+      ],
+      "title": "Bowling Scene",
+      "subtitle": "Material contrast, atmospheric light, and impact motion."
+    },
+    "15": {
+      "slug": "door-stop",
+      "overview": "A custom TPU door stop designed around door gap, floor grip, and flexible compression.",
+      "role": "Mechanical Design · CAD · 3D Printing",
+      "features": [
+        {
+          "title": "Wedge geometry",
+          "contribution": "Modeled a 12° taper and rounded contact edge to transfer the door load into the floor.",
+          "stack": [
+            "Fusion 360",
+            "Parametric CAD"
+          ]
+        },
+        {
+          "title": "Grip & compression",
+          "contribution": "Designed a ribbed sole and chose flexible TPU for increased floor contact under load.",
+          "stack": [
+            "TPU",
+            "Ribbed geometry"
+          ]
+        },
+        {
+          "title": "Print setup",
+          "contribution": "Used Shore 95A TPU, 0.2 mm layers, 25% gyroid infill, and a 0.4 mm nozzle.",
+          "stack": [
+            "FDM printing",
+            "PrusaSlicer"
+          ]
+        },
+        {
+          "title": "Physical validation",
+          "contribution": "Tested three door weights on tile and hardwood to check grip and compression.",
+          "stack": [
+            "Fit testing",
+            "Material testing"
+          ]
+        }
+      ],
+      "delivery": [
+        {
+          "label": "Year",
+          "value": "2025"
+        },
+        {
+          "label": "Material",
+          "value": "Shore 95A TPU"
+        },
+        {
+          "label": "Test coverage",
+          "value": "3 door weights / 2 floor types"
+        }
+      ],
+      "title": "Door Stop · Functional 3D Design",
+      "subtitle": "A parametric TPU wedge tested on real doors and floors."
+    }
+  },
+  "APPENDED_IDS": [
+    "26",
+    "05",
+    "16",
+    "10b",
+    "07",
+    "20",
+    "21",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15"
+  ],
+  "DETAILED_CONTENT_IDS": [
+    "04",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "23"
+  ]
+}

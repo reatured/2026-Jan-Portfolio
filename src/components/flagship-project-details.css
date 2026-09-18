@@ -1,0 +1,57 @@
+/* Flagship media retain their behavior within the shared project content system. */
+.artly-story { --artly-media-height:clamp(180px,calc(var(--project-detail-max-height,560px) * .58),300px); }
+.artly-story .project-video-wrap { width:100%; margin:0 0 20px; border-radius:8px; overflow:hidden; background:var(--story-media); }
+.artly-story .project-video,.artly-story .project-video-error { height:var(--artly-media-height); aspect-ratio:auto !important; object-fit:contain; }
+.artly-story .project-video { width:min(100%,calc(var(--artly-media-height) * 16 / 9)); margin-inline:auto; background:transparent; }
+.artly-story .project-video:fullscreen { width:100%; height:100%; }
+.artly-story .project-video-wrap figcaption { padding:10px 16px; border:0; background:var(--story-surface); font-family:inherit; font-size:12px; line-height:1.5; color:var(--story-muted); }
+.orchia-story .orchia-product-hero { display:grid; grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); gap:24px; padding:20px; margin-bottom:20px; border-radius:8px; color:var(--story-ink); background:var(--story-surface); }
+.orchia-story .orchia-product-intro h3 { margin:0; max-width:22ch; font-size:28px; font-weight:600; line-height:1.15; letter-spacing:-.025em; }
+.orchia-story .orchia-product-intro p { max-width:42ch; margin-top:12px; color:var(--story-body); font-size:14px; line-height:1.5; }
+.orchia-story .orchia-carousel-track { gap:12px; padding:3px 0; }
+.orchia-story .orchia-homepage-preview { width:clamp(100px,25cqw,140px); }
+.orchia-story .orchia-homepage-preview:nth-child(3n+2) { margin-top:10px; }
+.orchia-story .orchia-homepage-preview:nth-child(3n+3) { margin-top:5px; }
+.orchia-story .orchia-homepage-preview video { border-radius:6px; border:0; }
+.orchia-story .orchia-homepage-preview figcaption { padding-top:6px; min-height:32px; color:var(--story-muted); font-size:11px; line-height:1.4; }
+.orchia-story .orchia-carousel-controls button { min-width:44px; min-height:44px; padding:6px 12px; color:var(--story-ink); border:1px solid var(--story-line); border-radius:6px; }
+.orchia-story .orchia-carousel-controls button:disabled { opacity:.4; color:var(--story-muted); }
+.orchia-story .orchia-evidence { margin-top:20px; min-width:0; }
+.orchia-evidence-tabs { position:sticky; top:0; z-index:2; display:flex; gap:4px; padding:4px; margin-bottom:12px; background:#e9e9ec; border-radius:10px; overflow-x:auto; scrollbar-width:thin; }
+.orchia-evidence-tabs button { flex:1; flex-shrink:0; min-height:44px; padding:6px 12px; border:0; border-radius:6px; color:var(--story-muted); font-size:12px; font-weight:500; white-space:nowrap; }
+.orchia-evidence-tabs button[aria-selected=true] { color:var(--story-accent-ink); background:var(--story-surface); box-shadow:0 1px 5px rgb(0 0 0 / .06); }
+.orchia-evidence > [role=tabpanel] { padding:16px; border-radius:10px; background:var(--story-surface); }
+.orchia-story .orchia-section-heading { flex-wrap:wrap; gap:6px 16px; }
+.orchia-story .orchia-section-heading h4 { font-size:20px; font-weight:600; line-height:1.25; }
+.orchia-story .orchia-section-heading p { margin-top:6px; font-size:14px; line-height:1.5; }
+.orchia-story .orchia-demo-controls { margin-top:12px; padding:6px 10px; border-radius:6px 6px 0 0; gap:12px; }
+.orchia-story .orchia-demo-controls > button,.orchia-story .orchia-graph-zoom button { min-width:44px; min-height:44px; }
+.orchia-story .orchia-horizontal-canvas { border-radius:0 0 6px 6px; }
+.orchia-story .orchia-workflow-caption { font-size:12px; line-height:1.5; }
+.orchia-story .orchia-performance { padding-top:0; border:0; }
+.orchia-results-heading { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start; }
+.orchia-story .orchia-account-metrics { margin:0; gap:16px; }
+.orchia-story .orchia-account-metrics dd { font-size:26px; font-weight:600; line-height:1.2; }
+.orchia-story .orchia-account-metrics dt { font-size:12px; }
+.orchia-story .orchia-chart-summary { padding:12px 0 8px; }
+.orchia-story .orchia-chart-summary strong { font-size:20px; }
+.orchia-results-footer { display:flex; gap:20px; align-items:start; margin-top:12px; }
+.orchia-story .orchia-chart-sample { flex:1.3; min-width:0; gap:12px; padding:0; border:0; }
+.orchia-story .orchia-chart-sample p { margin:2px 0; font-size:13px; line-height:1.5; }
+.orchia-story .orchia-chart-sample span { font-size:12px; line-height:1.5; }
+.orchia-story .orchia-source-note { flex:1; margin:0; font-size:12px; line-height:1.5; }
+@media (max-width:760px) {
+  .artly-story .project-video { width:100%; height:auto; aspect-ratio:16 / 9 !important; }
+  .artly-story .project-video-wrap figcaption { padding:8px 12px; }
+  .orchia-story .orchia-product-hero { grid-template-columns:1fr; gap:16px; padding:16px; margin-bottom:16px; }
+  .orchia-story .orchia-product-intro h3 { font-size:24px; max-width:none; }
+  .orchia-story .orchia-product-intro p { margin-top:8px; }
+  .orchia-story .orchia-homepage-preview { width:112px; }
+  .orchia-evidence > [role=tabpanel] { padding:12px; }
+  .orchia-results-heading { grid-template-columns:1fr; gap:16px; }
+  .orchia-results-footer { flex-direction:column; gap:12px; }
+  .orchia-story .orchia-section-heading h4 { font-size:18px; }
+  .orchia-story .orchia-account-metrics { gap:10px; }
+  .orchia-story .orchia-account-metrics dd { font-size:22px; }
+  .orchia-story .orchia-account-metrics dt { font-size:11px; }
+}
