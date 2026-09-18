@@ -5,14 +5,14 @@ The formal React, TypeScript, and Vite portfolio served at
 
 ## Repository and local checkouts
 
-This website lives on the `site` branch of
+This website lives on the `2026-Sept` branch of
 [`reatured/2026-Jan-Portfolio`](https://github.com/reatured/2026-Jan-Portfolio).
 The branch continues the original portfolio's Git history.
 
 In the portfolio workspace, the two checkouts are linked Git worktrees:
 
 - `2026-Jan-Portfolio/`: original website on `main`; stores the shared Git database.
-- `site/`: formal replacement website on `site`; application files are at this branch's repository root.
+- `site/`: formal replacement website on `2026-Sept`; application files are at this branch's repository root.
 
 Keep the original checkout available while this linked worktree is in use. Use
 `git worktree list` to inspect their relationship. Review artifacts, local agent
