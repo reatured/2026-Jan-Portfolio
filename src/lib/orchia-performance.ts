@@ -1,0 +1,135 @@
+/** Published July 2026 data copied from the company website socialPerformanceVideos.ts.
+ * Follower trend is the approximate curve from DataSection.tsx, not daily analytics. */
+export type SocialPerformanceVideo = {
+  date: string
+  title: string
+  views: number
+  viewsDisplay: string
+  likes: number
+  saves: number
+  likesSaves: number
+  ca: number
+  thumbnail: string
+}
+
+export const SOCIAL_PERFORMANCE_VIDEOS: readonly SocialPerformanceVideo[] = [
+  {
+    date: '07-07',
+    title: 'She changed one flowerpot, and suddenly everyone was chasing her',
+    views: 4563,
+    viewsDisplay: '4,563',
+    likes: 178,
+    saves: 157,
+    likesSaves: 335,
+    ca: 21,
+    thumbnail: '/projects/orchia/thumbnails/07-07.jpg',
+  },
+  {
+    date: '07-09',
+    title: 'The moment my mother-in-law made the cut, I thought I was finished',
+    views: 4528,
+    viewsDisplay: '4,528',
+    likes: 104,
+    saves: 76,
+    likesSaves: 180,
+    ca: 44,
+    thumbnail: '/projects/orchia/thumbnails/07-09.jpg',
+  },
+  {
+    date: '07-12',
+    title: 'Was she only a stand-in for his true love?',
+    views: 202000,
+    viewsDisplay: '202K',
+    likes: 1013,
+    saves: 387,
+    likesSaves: 1400,
+    ca: 60,
+    thumbnail: '/projects/orchia/thumbnails/07-12-moon.jpg',
+  },
+  {
+    date: '07-12',
+    title: 'He gave my thorn to his sister, so I made him return it in public',
+    views: 5214,
+    viewsDisplay: '5,214',
+    likes: 123,
+    saves: 90,
+    likesSaves: 213,
+    ca: 49,
+    thumbnail: '/projects/orchia/thumbnails/07-12-thorn.jpg',
+  },
+  {
+    date: '07-14',
+    title: 'Your brother wants an imported flowerpot',
+    views: 1445000,
+    viewsDisplay: '1.45M',
+    likes: 5515,
+    saves: 1348,
+    likesSaves: 6863,
+    ca: 67,
+    thumbnail: '/projects/orchia/thumbnails/07-14-import.jpg',
+  },
+  {
+    date: '07-14',
+    title: 'The money tree paternity test',
+    views: 5605,
+    viewsDisplay: '5,605',
+    likes: 87,
+    saves: 33,
+    likesSaves: 120,
+    ca: 43,
+    thumbnail: '/projects/orchia/thumbnails/07-14-money.jpg',
+  },
+  {
+    date: '07-16',
+    title: 'No favor from His Majesty',
+    views: 185000,
+    viewsDisplay: '185K',
+    likes: 1570,
+    saves: 387,
+    likesSaves: 1957,
+    ca: 65,
+    thumbnail: '/projects/orchia/thumbnails/07-16.jpg',
+  },
+  {
+    date: '07-23',
+    title: 'I returned with 99 doubles to reclaim my home',
+    views: 633000,
+    viewsDisplay: '633K',
+    likes: 1913,
+    saves: 316,
+    likesSaves: 2229,
+    ca: 40,
+    thumbnail: '/projects/orchia/thumbnails/07-23.jpg',
+  },
+  {
+    date: '07-25',
+    title: 'I built this road myself after leaving you',
+    views: 605000,
+    viewsDisplay: '605K',
+    likes: 5299,
+    saves: 920,
+    likesSaves: 6219,
+    ca: 45,
+    thumbnail: '/projects/orchia/thumbnails/07-25.jpg',
+  },
+  {
+    date: '07-28',
+    title: 'He said the sun would kill me',
+    views: 273000,
+    viewsDisplay: '273K',
+    likes: 553,
+    saves: 86,
+    likesSaves: 639,
+    ca: 55,
+    thumbnail: '/projects/orchia/thumbnails/07-28.jpg',
+  },
+]
+
+export const FOLLOWER_TREND = [
+  220, 290, 310, 345, 345, 380, 455, 500, 550, 560,
+  615, 870, 1025, 1090, 1130, 1165, 1180, 1210, 1335, 1425,
+  1480, 1500, 1535, 1580, 1615,
+] as const
+
+export const FOLLOWER_START_DAY = 6
+
