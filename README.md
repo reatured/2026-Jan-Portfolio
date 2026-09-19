@@ -5,14 +5,18 @@ The formal React, TypeScript, and Vite portfolio served at
 
 ## Repository and local checkouts
 
-This website lives on the `2026-Sept` branch of
+This website lives on the `main` branch of
 [`reatured/2026-Jan-Portfolio`](https://github.com/reatured/2026-Jan-Portfolio).
 The branch continues the original portfolio's Git history.
 
-In the portfolio workspace, the two checkouts are linked Git worktrees:
+In the portfolio workspace, the checkouts are linked Git worktrees:
 
-- `2026-Jan-Portfolio/`: original website on `main`; stores the shared Git database.
-- `site/`: formal replacement website on `2026-Sept`; application files are at this branch's repository root.
+- `2026-Jan-Portfolio/`: current website on `main`; stores the shared Git database.
+- `site/`: active design checkout on `apple-design`; application files are at the repository root.
+- `2026-Jan-Portfolio-source/`: original January website at `b3137d9`, preserved in a detached source checkout for the legacy importer.
+
+`2026-Sept` retains the earlier published snapshot. Use `git branch --show-current`
+to check the branch before making changes in a checkout.
 
 Keep the original checkout available while this linked worktree is in use. Use
 `git worktree list` to inspect their relationship. Review artifacts, local agent
@@ -32,7 +36,9 @@ npm run preview
 
 The local workspace's `../AGENTS.md` documents design, content, and verification
 requirements. The optional legacy import script uses the sibling
-`../2026-Jan-Portfolio/` checkout as its source; it is not part of the build.
+`../2026-Jan-Portfolio-source/` checkout as its source; it is not part of the build.
+Set `PORTFOLIO_LEGACY_SOURCE` to use another original-source checkout. It also
+accepts the older sibling location when the January source files are still there.
 
 ## Deployment
 

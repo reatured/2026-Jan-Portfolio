@@ -88,7 +88,7 @@ export default function ProjectIndex() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: reduceMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}>
+                      transition={{ duration: reduceMotion ? 0 : 0.46, ease: [0.32, 0.72, 0, 1] }}>
                       <div className="project-detail-scroll" role="group" aria-label={`${project.title} details`}>
                         <ProjectDetails project={project} />
                       </div>

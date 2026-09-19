@@ -7,10 +7,15 @@ from html.parser import HTMLParser
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse
 from PIL import Image, ImageOps
-import hashlib, io, json, re, subprocess
+import hashlib, io, json, os, re, subprocess
 
 SITE = Path(__file__).resolve().parents[1]
-OLD = SITE.parent / '2026-Jan-Portfolio'
+source_override = os.environ.get('PORTFOLIO_LEGACY_SOURCE')
+source_candidates = [SITE.parent / '2026-Jan-Portfolio-source', SITE.parent / '2026-Jan-Portfolio']
+OLD = Path(source_override).expanduser().resolve() if source_override else next(
+    (path for path in source_candidates if (path / 'config/data.json').is_file()), source_candidates[0])
+if not (OLD / 'config/data.json').is_file():
+    raise SystemExit('January source files are missing. Set PORTFOLIO_LEGACY_SOURCE to a checkout of the original portfolio (b3137d9).')
 OUT = SITE / 'public/projects/archive'
 OUT.mkdir(parents=True, exist_ok=True)
 CONFIG = json.loads((SITE / 'scripts/legacy-project-editorial.json').read_text())
