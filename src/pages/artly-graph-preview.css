@@ -1,0 +1,7 @@
+/* Standalone preview surface for the Artly system graph. */
+.preview-page { position:relative; z-index:2; min-height:100vh; padding:clamp(32px,6vh,72px) 0 96px; background:#fbf7f1; }
+.preview-wrap { width:min(1240px,100% - clamp(40px,8vw,120px)); margin-inline:auto; }
+.preview-eyebrow { margin:0 0 10px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; letter-spacing:.04em; color:var(--color-orange); }
+.preview-wrap h1 { margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-.035em; line-height:1; color:var(--color-ink,#14120e); }
+.preview-note { margin:12px 0 28px; max-width:62ch; font-size:14px; line-height:1.7; color:#6b6459; }
+.preview-story { border-radius:12px; }

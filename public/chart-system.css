@@ -1,0 +1,367 @@
+/* Central chart system: shared by SVG charts, React Flow previews, and future graph canvases. */
+.chart-system {
+  --chart-canvas:#f4f4f6;
+  --chart-lane:#fbfbfc;
+  --chart-line:#dedee2;
+  --chart-node:#fff;
+  --chart-node-line:#d8d8dd;
+  --chart-ink:#1d1d1f;
+  --chart-muted:#6e6e73;
+  --chart-route:var(--story-accent,#ff6b1a);
+  --chart-route-soft:#c8c7cc;
+  --chart-boundary:#8e8e93;
+  --chart-hub:#242426;
+  --chart-machine:#fff5ed;
+  --chart-machine-line:#f2c7aa;
+  --chart-external:#f7f7f8;
+  --chart-radius:10px;
+  --chart-node-radius:6px;
+  --chart-font:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  overflow:hidden;
+  border:1px solid var(--chart-line);
+  border-radius:var(--chart-radius);
+  background:var(--chart-canvas);
+  box-shadow:0 2px 8px rgb(29 29 31 / 4%),0 18px 48px rgb(29 29 31 / 6%);
+  color:var(--chart-ink);
+  font-family:var(--chart-font);
+}
+
+.chart-head {
+  display:block;
+  min-height:104px;
+  padding:18px 20px;
+  border-bottom:1px solid var(--chart-line);
+  background:rgb(255 255 255 / 88%);
+}
+
+.chart-eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:5px;
+  color:var(--chart-muted);
+  font-size:11px;
+  line-height:1.4;
+}
+
+.chart-eyebrow::before {
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--chart-route);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--chart-route) 14%,transparent);
+}
+
+.chart-title {
+  margin:0;
+  color:var(--chart-ink);
+  font-size:20px;
+  font-weight:600;
+  line-height:1.2;
+  letter-spacing:0;
+}
+
+.chart-summary {
+  max-width:62ch;
+  margin:5px 0 0;
+  color:var(--chart-muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.chart-canvas,
+.chart-flow-shell {
+  position:relative;
+  overflow-x:auto;
+  overflow-y:hidden;
+  background-color:var(--chart-canvas);
+  background-image:radial-gradient(circle,rgb(29 29 31 / 6%) 1px,transparent 1px);
+  background-size:16px 16px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--chart-line) transparent;
+}
+
+.chart-canvas:focus-visible {
+  outline:3px solid var(--chart-route);
+  outline-offset:-3px;
+}
+
+.chart-stage {
+  width:100%;
+  min-width:760px;
+}
+
+.chart-svg {
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.chart-zone {
+  fill:var(--chart-lane);
+  stroke:var(--chart-line);
+  stroke-width:1;
+}
+
+.chart-zone-label {
+  fill:var(--chart-ink);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0;
+}
+
+.chart-zone-meta {
+  fill:var(--chart-muted);
+  font-size:10px;
+  letter-spacing:0;
+}
+
+.chart-edge {
+  fill:none;
+  stroke:var(--chart-route);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  transition:opacity 180ms ease,stroke 180ms ease,stroke-width 180ms ease;
+}
+
+.chart-edge[data-kind="boundary"],
+.chart-edge[data-kind="cloud"],
+.chart-edge[data-kind="external"] {
+  stroke:var(--chart-boundary);
+  stroke-dasharray:5 5;
+}
+
+.chart-edge-label {
+  fill:var(--chart-muted);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:0;
+  paint-order:stroke;
+  stroke:var(--chart-canvas);
+  stroke-width:4px;
+}
+
+.chart-node {
+  cursor:default;
+  transition:opacity 180ms ease,stroke 180ms ease,stroke-width 180ms ease;
+}
+
+.chart-node:focus {
+  outline:none;
+}
+
+.chart-node-card {
+  fill:var(--chart-node);
+  stroke:var(--chart-node-line);
+  stroke-width:1.2;
+  filter:drop-shadow(0 3px 4px rgb(29 29 31 / 8%));
+  transition:stroke 180ms ease,stroke-width 180ms ease;
+}
+
+.chart-node:hover > .chart-node-card,
+.chart-node:focus > .chart-node-card {
+  stroke:var(--chart-route);
+  stroke-width:2;
+}
+
+.chart-node[data-kind="hub"] > .chart-node-card {
+  fill:var(--chart-hub);
+  stroke:var(--chart-hub);
+}
+
+.chart-node[data-kind="machine"] > .chart-node-card {
+  fill:var(--chart-machine);
+  stroke:var(--chart-machine-line);
+}
+
+.chart-node[data-kind="external"] > .chart-node-card {
+  fill:var(--chart-external);
+  stroke:#aaa9ae;
+  stroke-dasharray:5 4;
+}
+
+.chart-node-kicker {
+  fill:var(--chart-muted);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:0;
+}
+
+.chart-node-title {
+  fill:var(--chart-ink);
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0;
+}
+
+.chart-node-meta {
+  fill:var(--chart-muted);
+  font-size:10px;
+  letter-spacing:0;
+}
+
+.chart-node[data-kind="hub"] :is(.chart-node-kicker,.chart-node-meta) {
+  fill:#b8b8bd;
+}
+
+.chart-node[data-kind="hub"] .chart-node-title {
+  fill:#fff;
+}
+
+.chart-port {
+  fill:var(--chart-route);
+  stroke:#fff;
+  stroke-width:1.5;
+}
+
+.chart-system [data-dim="true"] {
+  opacity:.16;
+}
+
+.chart-caption {
+  margin:0;
+  padding:13px 20px;
+  border-top:1px solid var(--chart-line);
+  background:rgb(255 255 255 / 76%);
+  color:var(--chart-muted);
+  font-size:11px;
+  line-height:1.4;
+}
+
+/* React Flow adapters use the same token vocabulary as SVG charts. */
+.chart-flow-shell {
+  flex:1;
+  min-height:0;
+}
+
+.chart-system .react-flow {
+  width:100%;
+  height:100%;
+}
+
+.chart-system .react-flow__handle {
+  opacity:0;
+  width:6px;
+  height:6px;
+  min-width:0;
+  min-height:0;
+  border:0;
+  background:transparent;
+  pointer-events:none;
+}
+
+.chart-system .react-flow__attribution {
+  display:none;
+}
+
+.chart-rf-zone {
+  width:100%;
+  height:100%;
+  padding:12px 16px;
+  border:1px solid var(--chart-line);
+  border-radius:10px;
+  background:var(--chart-lane);
+}
+
+.chart-rf-zone span {
+  color:var(--chart-ink);
+  font-size:13px;
+  font-weight:600;
+}
+
+.chart-rf-node,
+.chart-rf-chip {
+  width:100%;
+  height:100%;
+  border:1.2px solid var(--chart-node-line);
+  border-radius:var(--chart-node-radius);
+  background:var(--chart-node);
+  box-shadow:0 3px 8px rgb(29 29 31 / 8%);
+}
+
+.chart-rf-node {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:3px;
+  padding:14px 18px;
+  text-align:left;
+}
+
+.chart-rf-node.with-image {
+  flex-direction:row;
+  align-items:center;
+  gap:12px;
+  padding:10px 14px 10px 10px;
+}
+
+.chart-rf-node img {
+  flex:none;
+  width:76px;
+  height:76px;
+  border-radius:6px;
+  object-fit:cover;
+  object-position:50% 30%;
+  background:var(--chart-canvas);
+}
+
+.chart-rf-copy {
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  gap:3px;
+}
+
+.chart-rf-node.is-hub {
+  border-color:var(--chart-hub);
+  background:var(--chart-hub);
+}
+
+.chart-rf-node.is-hub .chart-rf-label {
+  color:#fff;
+}
+
+.chart-rf-node.is-hub .chart-rf-detail {
+  color:#b8b8bd;
+}
+
+.chart-rf-chip {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:10px 14px;
+}
+
+.chart-rf-label {
+  color:var(--chart-ink);
+  font-size:14px;
+  font-weight:600;
+  line-height:1.25;
+}
+
+.chart-rf-chip .chart-rf-label {
+  font-size:13px;
+}
+
+.chart-rf-detail {
+  color:var(--chart-muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.chart-system .react-flow__edge-text {
+  font-family:var(--chart-font);
+  font-size:11px;
+}
+
+@media (max-width:760px) {
+  .chart-head {
+    min-height:auto;
+    padding:16px;
+  }
+
+  .chart-system.is-fullscreen-preview {
+    inset:16px;
+  }
+}

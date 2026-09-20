@@ -28,6 +28,8 @@
 .orchia-story .orchia-demo-controls > button,.orchia-story .orchia-graph-zoom button { min-width:44px; min-height:44px; }
 .orchia-story .orchia-horizontal-canvas { border-radius:0 0 6px 6px; }
 .orchia-story .orchia-workflow-caption { font-size:12px; line-height:1.5; }
+/* Artly system graph consumes the centralized chart system in public/chart-system.css. */
+.artly-story .artly-graph { margin-top:20px; }
 .orchia-story .orchia-performance { padding-top:0; border:0; }
 .orchia-results-heading { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start; }
 .orchia-story .orchia-account-metrics { margin:0; gap:16px; }

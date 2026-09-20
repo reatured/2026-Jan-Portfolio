@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teleoperation Architecture Preview</title>
+<link rel="stylesheet" href="https://unpkg.com/@xyflow/react@12/dist/style.css" />
+<link rel="stylesheet" href="/chart-system.css" />
+<style>
+  :root {
+    --story-paper:#f5f5f7; --story-surface:#fff; --story-ink:#1d1d1f;
+    --story-body:#646469; --story-muted:#86868b; --story-line:#dedee2;
+    --story-accent:#FF6B1A; --story-accent-ink:#a83900;
+    --story-radius:10px; --story-radius-inset:6px;
+    --font-sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font-sans); background:#fbf7f1; color:var(--story-ink); }
+  #root { width:100vw; height:100vh; }
+  .teleop-chart {
+    position:absolute;
+    inset:24px;
+    display:flex;
+    flex-direction:column;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "@xyflow/react": "https://esm.sh/@xyflow/react@12.4.4?deps=react@18.3.1,react-dom@18.3.1"
+  }
+}
+</script>
+
+<script type="module">
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import {
+  ReactFlow, Handle, Position, MarkerType, ReactFlowProvider,
+} from '@xyflow/react';
+
+const h = React.createElement;
+
+/* ── Custom nodes ── */
+
+function ZoneNode({ data }) {
+  return h('div', { className: 'chart-rf-zone' }, h('span', null, data.label));
+}
+
+function CardNode({ data }) {
+  const text = [
+    h('div', { key: 'lbl', className: 'chart-rf-label' }, data.label),
+    data.detail && h('div', { key: 'det', className: 'chart-rf-detail' }, data.detail),
+  ];
+  return h('div', { className: `chart-rf-node${data.core ? ' is-hub' : ''}${data.image ? ' with-image' : ''}` }, [
+    data.handles?.left && h(Handle, { key: 'l', id: 'in', type: 'target', position: Position.Left }),
+    data.handles?.right && h(Handle, { key: 'r', id: 'out', type: 'source', position: Position.Right }),
+    data.handles?.bottom && h(Handle, { key: 'b', id: 'video', type: data.handles.bottom, position: Position.Bottom }),
+    data.image && h('img', { key: 'img', src: data.image, alt: '' }),
+    data.image ? h('div', { key: 'txt', className: 'chart-rf-copy' }, text) : text,
+  ]);
+}
+
+function ChipNode({ data }) {
+  return h('div', { className: 'chart-rf-chip' }, [
+    h(Handle, { key: 'l', id: 'in', type: 'target', position: Position.Left }),
+    h(Handle, { key: 'r', id: 'out', type: 'source', position: Position.Right }),
+    h('div', { key: 'lbl', className: 'chart-rf-label' }, data.label),
+  ]);
+}
+
+const nodeTypes = { zone: ZoneNode, card: CardNode, chip: ChipNode };
+
+/* ── Layout grid ──
+   Columns: VR | Interface | Drivers | Hardware
+   Row centers: 64 / 174 / 284 ; VR & Interface centered on row 2        */
+
+const initialNodes = [
+  // Zone bands (behind everything)
+  { id: 'zone-op', type: 'zone', position: { x: 0, y: 96 }, zIndex: -1,
+    style: { width: 360, height: 160 }, data: { label: 'Operator side' },
+    draggable: false, selectable: false },
+  { id: 'zone-rm', type: 'zone', position: { x: 730, y: 0 }, zIndex: -1,
+    style: { width: 490, height: 348 }, data: { label: 'Remote site' },
+    draggable: false, selectable: false },
+
+  // Operator
+  { id: 'vr', type: 'card', position: { x: 30, y: 124 },
+    style: { width: 300, height: 100 },
+    data: { label: 'Operator headset', detail: 'Motion input and live video display',
+            image: '/projects/teleop/operator-vr-v1.png',
+            handles: { right: true, bottom: 'target' } } },
+
+  // Core layer
+  { id: 'interface', type: 'card', position: { x: 430, y: 122 },
+    style: { width: 230, height: 104 },
+    data: { label: 'Integrated Interface', detail: 'Unified control layer', core: true,
+            handles: { left: true, right: true } } },
+
+  // Drivers
+  { id: 'drv-arm',    type: 'chip', position: { x: 760, y: 40 },  style: { width: 150, height: 48 }, data: { label: 'Arm Driver' } },
+  { id: 'drv-hand',   type: 'chip', position: { x: 760, y: 150 }, style: { width: 150, height: 48 }, data: { label: 'Hand Driver' } },
+  { id: 'drv-gimbal', type: 'chip', position: { x: 760, y: 260 }, style: { width: 150, height: 48 }, data: { label: 'Gimbal Driver' } },
+
+  // Hardware
+  { id: 'arms',   type: 'card', position: { x: 990, y: 22 },  style: { width: 200, height: 84 },
+    data: { label: '2 Robot Arms', handles: { left: true } } },
+  { id: 'hands',  type: 'card', position: { x: 990, y: 132 }, style: { width: 200, height: 84 },
+    data: { label: '2 Dexterous Hands', handles: { left: true } } },
+  { id: 'camera', type: 'card', position: { x: 990, y: 242 }, style: { width: 200, height: 84 },
+    data: { label: 'Camera Gimbal', detail: 'Head-tracked pan / tilt',
+            handles: { left: true, bottom: 'source' } } },
+];
+
+/* ── Edges ── */
+
+const orange = { stroke: '#ff6b1a', strokeWidth: 1.8 };
+const orangeArrow = { type: MarkerType.ArrowClosed, color: '#ff6b1a', width: 14, height: 14 };
+const boundaryArrow = { type: MarkerType.ArrowClosed, color: '#8e8e93', width: 14, height: 14 };
+
+const labelBg = { fill: '#ffffff' };
+const labelStyle = { fontSize: 11, fill: '#646469' };
+
+const initialEdges = [
+  { id: 'e-vr-int', source: 'vr', target: 'interface', sourceHandle: 'out', targetHandle: 'in',
+    label: 'Pose data', style: orange, markerEnd: orangeArrow,
+    labelStyle, labelBgStyle: labelBg, labelBgPadding: [5, 7], labelBgBorderRadius: 4 },
+
+  { id: 'e-int-arm',    source: 'interface', target: 'drv-arm',    sourceHandle: 'out', targetHandle: 'in', style: orange, markerEnd: orangeArrow },
+  { id: 'e-int-hand',   source: 'interface', target: 'drv-hand',   sourceHandle: 'out', targetHandle: 'in', style: orange, markerEnd: orangeArrow },
+  { id: 'e-int-gimbal', source: 'interface', target: 'drv-gimbal', sourceHandle: 'out', targetHandle: 'in', style: orange, markerEnd: orangeArrow },
+
+  { id: 'e-arm-hw',    source: 'drv-arm',    target: 'arms',   sourceHandle: 'out', targetHandle: 'in', style: orange, markerEnd: orangeArrow },
+  { id: 'e-hand-hw',   source: 'drv-hand',   target: 'hands',  sourceHandle: 'out', targetHandle: 'in', style: orange, markerEnd: orangeArrow },
+  { id: 'e-gimbal-hw', source: 'drv-gimbal', target: 'camera', sourceHandle: 'out', targetHandle: 'in', style: orange, markerEnd: orangeArrow },
+
+  // Video return: camera → VR, routed below the whole graph
+  { id: 'e-video', source: 'camera', target: 'vr', sourceHandle: 'video', targetHandle: 'video',
+    type: 'smoothstep',
+    label: 'Video stream · direct to headset, initialized by the interface',
+    style: { stroke: '#8e8e93', strokeWidth: 1.8, strokeDasharray: '5 5' },
+    markerEnd: boundaryArrow,
+    labelStyle,
+    labelBgStyle: labelBg, labelBgPadding: [5, 7], labelBgBorderRadius: 4 },
+];
+
+/* ── App ── */
+
+function Flow() {
+  return h(ReactFlow, {
+    nodes: initialNodes,
+    edges: initialEdges,
+    nodeTypes,
+    fitView: true,
+    fitViewOptions: { padding: 0.12 },
+    nodesDraggable: false,
+    nodesConnectable: false,
+    elementsSelectable: false,
+    panOnDrag: true,
+    zoomOnScroll: false,
+    minZoom: 0.3,
+    maxZoom: 2,
+    proOptions: { hideAttribution: true },
+  });
+}
+
+function App() {
+  return h(ReactFlowProvider, null,
+    h('div', { className: 'chart-system teleop-chart is-fullscreen-preview' }, [
+      h('header', { key: 'head', className: 'chart-head' }, [
+        h('span', { key: 'eyebrow', className: 'chart-eyebrow' }, 'Architecture map'),
+        h('h1', { key: 'title', className: 'chart-title' }, 'Operator to remote robot'),
+        h('p', { key: 'summary', className: 'chart-summary' }, 'Motion input, unified control, hardware drivers, and video return in one traceable system view.'),
+      ]),
+      h('div', { key: 'flow', className: 'chart-flow-shell' }, h(Flow)),
+    ]));
+}
+
+createRoot(document.getElementById('root')).render(h(App));
+</script>
+</body>
+</html>

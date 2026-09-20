@@ -19,17 +19,17 @@ export type ProjectCaseStudyContent = {
 // Source mapping and claim boundaries: review/project-345-case-studies-20260910.md.
 // The legacy realhand-teleop slug is the browser demo, not the hardware system.
 export const projectCaseStudies: Partial<Record<string, ProjectCaseStudyContent>> = {
-  // Artly ownership and stack mappings: the supplied resume, reproduced in content.ts.
+  // Artly ownership and stack mappings: the 20260919 resume plus the real rviz-web source (react-rviz-web).
   "artly-deployment": {
     access: "internal",
-    overview: "An operator workspace for authoring, validating, and deploying robot motion, with revision tracking from editor to robot.",
+    overview: "A React and Three.js operator workspace for authoring, validating, and deploying robot motion, with revision tracking from editor to robot.",
     role: "Full Stack Software Engineer at Artly AI",
     ownership: "Designed and deployed the operator workflow.",
     features: [
-      { title: "3D motion workspace", contribution: "Built the 3D editor and reusable operator controls; validated designs in Figma across desktop, phone, and iPad.", stack: ["React", "Three.js", "Figma"] },
-      { title: "Automation authoring", contribution: "Built visual DAG editors and AI-assisted templates that adapt existing motion data into behavior trees for review.", stack: ["React Flow", "Custom DAGs", "AI-assisted authoring"] },
-      { title: "Robot deployment", contribution: "Connected the editor to services, databases, and ROS; delivered validated motion updates with revision tracking.", stack: ["Python", "ROS", "Service integration"] },
-      { title: "Production reliability", contribution: "Maintained AWS releases and CI/CD; added monitoring and improved editor loading and interaction responsiveness.", stack: ["AWS", "CI/CD", "Monitoring"] },
+      { title: "3D motion workspace", contribution: "Built the React and Three.js editor that loads URDF robots into a live 3D scene with a skeleton overlay and orbit cameras; validated interfaces in Figma across desktop, phone, and iPad.", stack: ["React", "Three.js / R3F", "URDF"] },
+      { title: "Motion authoring & AI assist", contribution: "Built the keyframe timeline — record, read joints, drag and retime keyframes, playback — and AI assisted authoring that turns templates and existing motion data into behavior trees for operator review.", stack: ["Keyframe timeline", "AI-assisted authoring", "Behavior trees"] },
+      { title: "IK & guided deployment", contribution: "Wrapped a closed-chain IK solver for world/local end-effector control and ArUco-guided trajectories, then connected the editor to Python services and databases to save, execute, and track revisions.", stack: ["closed-chain IK", "ArUco vision", "REST API"] },
+      { title: "Production reliability", contribution: "Gated the workspace behind Keycloak auth and permissions, polled live joint telemetry, maintained AWS CI/CD and production monitoring, and improved 3D loading and interaction responsiveness.", stack: ["Keycloak", "AWS", "CI/CD"] },
     ],
     delivery: [
       { label: "Users", value: "Nonengineering operators" },

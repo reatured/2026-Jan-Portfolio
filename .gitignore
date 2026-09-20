@@ -11,5 +11,7 @@ dist/
 # Local agent state, review artifacts, and operating-system files
 .qwen/
 review/
+reference/
+generated-images/
 *.log
 .DS_Store
