@@ -23,10 +23,13 @@ import {
 /* ── Edge styles ── */
 const ORANGE = { stroke: "#ff6b1a", strokeWidth: 1.8 }
 const orangeArrow = { type: MarkerType.ArrowClosed, color: "#ff6b1a", width: 14, height: 14 }
-const DASHED = { stroke: "#8e8e93", strokeWidth: 1.8, strokeDasharray: "5 5" }
-const dashedArrow = { type: MarkerType.ArrowClosed, color: "#8e8e93", width: 14, height: 14 }
+// Video return: still dashed to read as feedback, but darker, thicker, longer dashes for visibility.
+const DASHED = { stroke: "#5f5f66", strokeWidth: 2.4, strokeDasharray: "9 5" }
+const dashedArrow = { type: MarkerType.ArrowClosed, color: "#5f5f66", width: 16, height: 16 }
 const labelBg = { fill: "#ffffff" }
 const labelStyle = { fontSize: 11, fill: "#646469" }
+const returnLabelBg = { fill: "#ffffff", stroke: "#dedee2", strokeWidth: 0.8 }
+const returnLabelStyle = { fontSize: 11.5, fill: "#3f3f45", fontWeight: 600 }
 
 const HANDLE_POSITION: Record<AnchorSide, Position> = {
   left: Position.Left,
@@ -107,8 +110,8 @@ const flowEdges: Edge[] = teleopCanvas.edges.map((edge, i) => {
     label: edge.label,
     style: isReturn ? DASHED : ORANGE,
     markerEnd: isReturn ? dashedArrow : orangeArrow,
-    labelStyle,
-    labelBgStyle: labelBg,
+    labelStyle: isReturn ? returnLabelStyle : labelStyle,
+    labelBgStyle: isReturn ? returnLabelBg : labelBg,
     labelBgPadding: [5, 7],
     labelBgBorderRadius: 4,
   }
@@ -127,9 +130,10 @@ function Flow() {
       nodesDraggable={false}
       nodesConnectable={false}
       elementsSelectable={false}
-      panOnDrag
+      panOnDrag={false}
       zoomOnScroll={false}
       zoomOnPinch={false}
+      zoomOnDoubleClick={false}
       preventScrolling={false}
       minZoom={0.3}
       maxZoom={2}
@@ -144,17 +148,11 @@ const TeleopReactFlowGraph: FC = () => {
       <div className="chart-system teleop-graph">
         <div className="chart-head">
           <span className="chart-eyebrow">Architecture map</span>
-          <h4 className="chart-title">Operator to remote robot</h4>
-          <p className="chart-summary">
-            Motion input, unified control, hardware drivers, and video return in one traceable system view.
-          </p>
+          <h4 className="chart-title">Integrated robotic teleoperation system</h4>
         </div>
-        <div className="chart-flow-shell" style={{ height: laidOut.height + 90 }}>
+        <div className="chart-flow-shell" style={{ aspectRatio: `${laidOut.width} / ${laidOut.height}` }}>
           <Flow />
         </div>
-        <p className="chart-caption">
-          The graph separates operator inputs from the shared control layer and the physical site.
-        </p>
       </div>
     </ReactFlowProvider>
   )
