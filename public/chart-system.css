@@ -258,16 +258,51 @@
 .chart-rf-zone {
   width:100%;
   height:100%;
-  padding:12px 16px;
   border:1px solid var(--chart-line);
   border-radius:10px;
   background:var(--chart-lane);
+  overflow:hidden;
 }
 
-.chart-rf-zone span {
+.chart-rf-zone-media {
+  aspect-ratio:16 / 9;
+  margin:8px 0 0;
+  border-radius:6px;
+  overflow:hidden;
+  background:var(--chart-canvas);
+}
+
+.chart-rf-zone-media img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.chart-rf-zone-header {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  padding:0 0 12px;
+  background:var(--chart-node);
+  border-bottom:1px solid var(--chart-line);
+  border-radius:9px 9px 0 0;
+}
+
+.chart-rf-zone-label {
+  padding:10px 0 0;
   color:var(--chart-ink);
   font-size:13px;
   font-weight:600;
+  letter-spacing:0;
+}
+
+.chart-rf-zone-meta {
+  padding:2px 0 0;
+  color:var(--chart-muted);
+  font-size:10px;
+  letter-spacing:0;
 }
 
 .chart-rf-node,
@@ -326,6 +361,30 @@
   color:#b8b8bd;
 }
 
+.chart-rf-node.is-machine {
+  border-color:var(--chart-machine-line);
+  background:var(--chart-machine);
+}
+
+.chart-rf-node.is-chip {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:10px 14px;
+}
+
+.chart-rf-node.is-chip .chart-rf-label {
+  font-size:13px;
+}
+
+.chart-rf-node-kicker {
+  color:var(--chart-muted);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:0;
+  margin-bottom:1px;
+}
+
 .chart-rf-chip {
   display:flex;
   align-items:center;
@@ -364,4 +423,53 @@
   .chart-system.is-fullscreen-preview {
     inset:16px;
   }
+}
+
+/* Hierarchy tree + canvas preview layout */
+.flow-preview {
+  display:grid;
+  grid-template-columns:minmax(280px,380px) 1fr;
+  gap:24px;
+  align-items:start;
+  padding:24px;
+  background:#fbf7f1;
+  min-height:100vh;
+  box-sizing:border-box;
+}
+
+.flow-tree {
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12px;
+  line-height:1.7;
+  color:#1d1d1f;
+  background:#fff;
+  border:1px solid #dedee2;
+  border-radius:10px;
+  padding:16px 18px;
+  overflow:auto;
+}
+
+.flow-tree h2 {
+  margin:0 0 8px;
+  font-size:13px;
+}
+
+.flow-tree ul {
+  list-style:none;
+  margin:0;
+  padding-left:16px;
+  border-left:1px solid #dedee2;
+}
+
+.flow-tree > ul {
+  padding-left:0;
+  border-left:0;
+}
+
+.flow-tree li { white-space:nowrap; }
+
+.flow-canvas { min-width:0; }
+
+@media (max-width:1100px) {
+  .flow-preview { grid-template-columns:1fr; }
 }

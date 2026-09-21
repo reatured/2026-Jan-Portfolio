@@ -46,14 +46,29 @@ type SvgChartZoneProps = {
   y: number
   width: number
   height: number
+  image?: string
 }
 
-export function SvgChartZone({ id, label, meta, x, y, width, height }: SvgChartZoneProps) {
+export function SvgChartZone({ id, label, meta, x, y, width, height, image }: SvgChartZoneProps) {
+  const imagePadding = 8
+  const imageWidth = width - imagePadding * 2
+  const imageHeight = Math.round(imageWidth * 9 / 16)
   return (
     <g key={id}>
       <rect className="chart-zone" x={x} y={y} width={width} height={height} rx="10" />
-      <text className="chart-zone-label" x={x + 20} y={y + 30}>{label}</text>
-      {meta ? <text className="chart-zone-meta" x={x + 20} y={y + 48}>{meta}</text> : null}
+      {image ? (
+        <image
+          href={image}
+          x={x + imagePadding}
+          y={y + imagePadding}
+          width={imageWidth}
+          height={imageHeight}
+          preserveAspectRatio="xMidYMid meet"
+          clipPath={`url(#zone-clip-${id})`}
+        />
+      ) : null}
+      <text className="chart-zone-label" x={x + 20} y={y + (image ? imageHeight + 42 : 30)}>{label}</text>
+      {meta ? <text className="chart-zone-meta" x={x + 20} y={y + (image ? imageHeight + 60 : 48)}>{meta}</text> : null}
     </g>
   )
 }

@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>integrated design system comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/chart-system.css" />
+<link rel="stylesheet" href="../public/chart-system.css" />
+<style>
+:root {
+  --page:#f8f5ef;
+  --paper:#fffdf9;
+  --paper-soft:#f3f1ec;
+  --paper-cool:#f5f5f7;
+  --ink:#1d1b18;
+  --body:#514d47;
+  --muted:#75716a;
+  --line:#ded8cf;
+  --line-cool:#dedee2;
+  --accent:#ff6b1a;
+  --accent-soft:#fff0e6;
+  --accent-ink:#a43d00;
+  --shadow-soft:0 1px 2px rgb(29 27 24 / 4%), 0 18px 42px rgb(29 27 24 / 8%);
+  --shadow-hover:0 2px 8px rgb(29 27 24 / 5%), 0 26px 64px rgb(29 27 24 / 10%);
+  --radius:12px;
+  --radius-small:7px;
+  --content:min(1180px, calc(100vw - 40px));
+  --font-display:"Archivo", -apple-system, blinkmacsystemfont, "helvetica neue", arial, sans-serif;
+  --font-ui:-apple-system, blinkmacsystemfont, "helvetica neue", arial, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, "sf mono", menlo, monospace;
+  --spring:cubic-bezier(.32,.72,0,1);
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+  margin:0;
+  background:
+    radial-gradient(circle at 18% 0%, rgb(255 107 26 / 8%), transparent 30vw),
+    linear-gradient(180deg, #fbf7f1 0%, var(--page) 44%, #f4f2ee 100%);
+  color:var(--ink);
+  font-family:var(--font-display);
+  font-size:16px;
+  line-height:1.55;
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; }
+:focus-visible { outline:3px solid color-mix(in srgb, var(--accent) 70%, #000 10%); outline-offset:3px; }
+::selection { background:var(--accent); color:var(--ink); }
+.shell { width:var(--content); margin-inline:auto; }
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(18px) saturate(160%);
+  background:rgb(248 245 239 / 78%);
+  border-bottom:1px solid rgb(222 216 207 / 80%);
+}
+.topbar-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:54px; }
+.brand { font-weight:700; letter-spacing:-.02em; }
+.nav { display:flex; flex-wrap:wrap; gap:10px 18px; color:var(--muted); font-family:var(--font-ui); font-size:13px; }
+.nav a:hover { color:var(--ink); }
+.hero { padding:72px 0 56px; }
+.hero-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr); gap:48px; align-items:end; }
+.hero h1 { max-width:10ch; margin:0; font-size:clamp(50px, 8vw, 112px); font-weight:800; line-height:.86; letter-spacing:-.055em; }
+.hero-copy { max-width:54ch; color:var(--body); font-family:var(--font-ui); font-size:17px; line-height:1.7; }
+.hero-copy p { margin:0; }
+.meta-strip { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1px; margin-top:28px; overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:var(--line); box-shadow:var(--shadow-soft); }
+.meta-strip div { min-height:92px; padding:18px; background:rgb(255 253 249 / 82%); }
+.meta-strip b { display:block; margin-bottom:8px; font-size:12px; font-weight:600; color:var(--muted); }
+.meta-strip span { display:block; font-size:18px; font-weight:700; letter-spacing:-.02em; }
+section { padding:56px 0; border-top:1px solid var(--line); }
+.section-head { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1fr); gap:32px; align-items:start; margin-bottom:28px; }
+.section-head h2 { margin:0; font-size:clamp(30px,4vw,54px); line-height:.98; letter-spacing:-.045em; }
+.section-head p { margin:0; color:var(--body); font-family:var(--font-ui); font-size:15px; line-height:1.75; }
+.panel {
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:rgb(255 253 249 / 86%);
+  box-shadow:var(--shadow-soft);
+}
+.panel-pad { padding:22px; }
+.compare-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px; }
+.audit-card { min-height:260px; padding:22px; }
+.audit-card h3 { margin:0 0 14px; font-size:22px; line-height:1.1; letter-spacing:-.03em; }
+.audit-card p { margin:0; color:var(--body); font-family:var(--font-ui); font-size:14px; line-height:1.65; }
+.split-demo { display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:22px; overflow:hidden; border:1px solid var(--line); border-radius:10px; background:var(--line); }
+.split-demo > div { padding:18px; min-height:134px; }
+.split-warm { background:#fbf7f1; font-family:var(--font-display); }
+.split-cool { background:#f5f5f7; font-family:var(--font-ui); }
+.split-demo strong { display:block; margin-bottom:8px; font-size:18px; line-height:1.05; letter-spacing:-.03em; }
+.split-demo span { color:var(--muted); font-size:13px; line-height:1.45; }
+.integrated-demo { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:18px; margin-top:22px; }
+.preview-card {
+  min-height:148px;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:linear-gradient(180deg, rgb(255 253 249 / 92%), rgb(247 245 240 / 92%));
+}
+.preview-card h4 { margin:0 0 8px; font-size:24px; line-height:1.02; letter-spacing:-.04em; }
+.preview-card p { margin:0; color:var(--body); font-family:var(--font-ui); font-size:14px; line-height:1.6; }
+.preview-chip-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+.chip { padding:5px 8px; border:1px solid var(--line); border-radius:6px; background:rgb(255 255 255 / 66%); color:var(--body); font-family:var(--font-ui); font-size:12px; }
+.token-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px; }
+.swatch { overflow:hidden; border:1px solid var(--line); border-radius:10px; background:var(--paper); box-shadow:0 1px 2px rgb(29 27 24 / 4%); }
+.swatch-color { height:72px; background:var(--swatch); }
+.swatch-body { padding:12px; }
+.swatch-body b { display:block; margin-bottom:4px; font-size:13px; font-weight:700; }
+.swatch-body span { display:block; color:var(--muted); font-family:var(--font-ui); font-size:12px; line-height:1.45; }
+.specimen-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:18px; }
+.type-card { padding:22px; }
+.type-card h3 { margin:0; font-size:clamp(34px,5vw,68px); line-height:.9; letter-spacing:-.055em; }
+.type-card p { max-width:48ch; margin:18px 0 0; color:var(--body); font-family:var(--font-ui); font-size:15px; line-height:1.7; }
+.row-list { margin:0; padding:0; list-style:none; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--line); }
+.row-list li + li { border-top:1px solid var(--line); }
+.project-row { display:grid; grid-template-columns:56px minmax(0,1fr) auto; align-items:center; gap:16px; width:100%; min-height:68px; padding:12px 16px; border:0; background:var(--paper); color:var(--ink); text-align:left; cursor:pointer; }
+.project-row:hover, .project-row:focus-visible { background:var(--paper-soft); }
+.project-row .num { color:var(--accent); font-weight:700; font-variant-numeric:tabular-nums; }
+.project-row strong { display:block; font-size:17px; line-height:1.15; letter-spacing:-.025em; }
+.project-row small { color:var(--muted); font-family:var(--font-ui); font-size:12px; }
+.story-shell { padding:6px; border:1px solid var(--line-cool); border-radius:12px; background:var(--paper-cool); }
+.story-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(260px,.7fr); gap:8px; padding:8px; border-radius:10px; background:#fff; box-shadow:0 1px 8px rgb(0 0 0 / 4%); }
+.media-well { display:grid; place-items:center; min-height:220px; border-radius:8px; background:linear-gradient(135deg,#ededf0,#f7f7f8); color:var(--muted); font-family:var(--font-ui); font-size:13px; }
+.story-copy { padding:18px; }
+.story-copy h3 { margin:0; font-size:28px; line-height:1.05; letter-spacing:-.04em; }
+.story-copy p { margin:12px 0 0; color:var(--body); font-family:var(--font-ui); font-size:14px; line-height:1.65; }
+.segment { display:flex; flex-wrap:wrap; gap:4px; padding:4px; margin-bottom:14px; border-radius:9px; background:#e9e9ec; }
+.segment button { min-height:40px; padding:6px 12px; border:0; border-radius:7px; background:transparent; color:#646469; cursor:pointer; }
+.segment button[aria-pressed="true"] { background:#fff; color:var(--accent-ink); box-shadow:0 1px 5px rgb(0 0 0 / 8%); }
+.motion-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }
+.motion-card { padding:18px; }
+.motion-card b { display:block; margin-bottom:10px; font-size:15px; }
+.motion-card p { margin:0; color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.6; }
+.component-library { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }
+.component-tile { min-height:230px; padding:18px; }
+.component-tile h3 { margin:0 0 10px; font-size:20px; line-height:1.05; letter-spacing:-.035em; }
+.component-tile p { margin:0 0 16px; color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.6; }
+.action-row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.button-main, .button-quiet, .icon-button { min-height:44px; border-radius:9px; cursor:pointer; }
+.button-main { padding:0 16px; border:1px solid color-mix(in srgb, var(--accent) 60%, #8f3400); background:var(--accent); color:var(--ink); font-weight:700; box-shadow:0 1px 0 rgb(255 255 255 / 45%) inset, 0 10px 22px rgb(255 107 26 / 18%); }
+.button-quiet { padding:0 16px; border:1px solid var(--line); background:rgb(255 253 249 / 74%); color:var(--body); }
+.icon-button { display:grid; place-items:center; width:44px; border:1px solid var(--line); background:rgb(255 253 249 / 74%); color:var(--ink); }
+.control-stack { display:grid; gap:10px; }
+.input-shell { display:grid; gap:6px; }
+.input-shell label { color:var(--muted); font-family:var(--font-ui); font-size:12px; }
+.input-shell input { min-height:44px; padding:0 12px; border:1px solid var(--line); border-radius:9px; background:var(--paper); color:var(--ink); font:inherit; }
+.metric-strip { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1px; overflow:hidden; border:1px solid var(--line); border-radius:10px; background:var(--line); }
+.metric-strip div { padding:14px; background:rgb(255 253 249 / 82%); }
+.metric-strip b { display:block; margin:0 0 4px; font-size:22px; line-height:1; letter-spacing:-.04em; }
+.metric-strip span { color:var(--muted); font-family:var(--font-ui); font-size:12px; }
+.notice { padding:14px; border:1px solid color-mix(in srgb, var(--accent) 20%, var(--line)); border-radius:10px; background:var(--accent-soft); color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.55; }
+.timeline { display:grid; gap:10px; margin:0; padding:0; list-style:none; }
+.timeline li { display:grid; grid-template-columns:12px minmax(0,1fr); gap:10px; align-items:start; }
+.timeline i { width:10px; height:10px; margin-top:5px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgb(255 107 26 / 12%); }
+.timeline b { display:block; font-size:14px; }
+.timeline span { color:var(--muted); font-family:var(--font-ui); font-size:12px; line-height:1.5; }
+.toolbar { display:flex; flex-wrap:wrap; gap:6px; padding:6px; border:1px solid var(--line); border-radius:11px; background:var(--paper-soft); }
+.toolbar button { min-height:36px; padding:0 10px; border:0; border-radius:7px; background:transparent; color:var(--body); cursor:pointer; }
+.toolbar button[aria-pressed="true"] { background:var(--paper); color:var(--accent-ink); box-shadow:0 1px 4px rgb(0 0 0 / 8%); }
+.motion-stage { display:grid; grid-template-columns:minmax(0,1.22fr) minmax(250px,.78fr); gap:32px; align-items:start; }
+.motion-canvas { position:relative; min-height:380px; overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:radial-gradient(circle, rgb(29 27 24 / 5%) 1px, transparent 1px), linear-gradient(180deg, #f7f5f0, #f2f0ec); background-size:16px 16px, auto; box-shadow:var(--shadow-soft); padding:44px 48px; --chart-node:#fff; --chart-node-line:#d8d8dd; --chart-ink:#1d1d1f; --chart-muted:#6e6e73; --chart-route:var(--accent); --chart-hub:#242426; --chart-machine:#fff5ed; --chart-machine-line:#f2c7aa; --chart-external:#f7f7f8; --chart-line:#dedee2; }
+.motion-canvas svg { display:block; width:100%; height:100%; min-height:292px; }
+.pop-node, .pop-note, .pop-label { transform-box:fill-box; transform-origin:center; opacity:0; }
+.pop-node { animation:node-pop 720ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.pop-note { animation:note-pop 620ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.pop-label { animation:label-pop 420ms ease forwards; animation-delay:calc(var(--delay, 0ms) + 130ms); }
+.draw-edge { stroke-dasharray:320; stroke-dashoffset:320; animation:edge-draw 760ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.draw-edge[data-kind="callout"] { stroke-dasharray:6 4; stroke-dashoffset:0; animation:none; opacity:0; animation:edge-draw 560ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.motion-notes { display:grid; gap:0; position:relative; padding-left:18px; }
+.motion-notes::before { content:""; position:absolute; left:6px; top:32px; bottom:40px; width:1px; background:var(--line); border-radius:1px; }
+.note-card { position:relative; padding:7px 0 14px 20px; border:0; border-radius:0; background:transparent; box-shadow:none; opacity:0; transform:translateY(10px) scale(.98); animation:note-pop 620ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.note-card::before { content:attr(data-seq); position:absolute; left:-22px; top:8px; width:18px; height:18px; border-radius:50%; background:var(--accent); color:var(--ink); font-family:var(--font-mono); font-size:9px; font-weight:600; display:grid; place-items:center; line-height:1; }
+.note-card b { display:block; margin-bottom:3px; font-size:12px; font-weight:600; letter-spacing:.05em; color:var(--muted); }
+.note-card span { display:block; color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.5; }
+.motion-rule { margin-top:10px; margin-left:20px; padding:14px 16px; border:1px solid var(--line); border-radius:9px; background:rgb(248 245 239 / 78%); }
+.motion-rule b { display:block; margin-bottom:10px; font-size:11px; font-weight:600; letter-spacing:.05em; color:var(--muted); }
+.motion-rule span { display:block; color:var(--body); font-family:var(--font-mono); font-size:12px; line-height:1.85; }
+.section-eyebrow { display:block; margin-bottom:6px; color:var(--accent); font-family:var(--font-ui); font-size:11px; font-weight:600; letter-spacing:.06em; }
+@keyframes node-pop { 0% { opacity:0; transform:translateY(16px) scale(.86); } 58% { opacity:1; transform:translateY(-2px) scale(1.045); } 100% { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes note-pop { 0% { opacity:0; transform:translateY(12px) scale(.96); } 64% { opacity:1; transform:translateY(-1px) scale(1.02); } 100% { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes label-pop { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+@keyframes edge-draw { to { stroke-dashoffset:0; } }
+.graph-wrap { --chart-route:var(--accent); margin-top:18px; }
+.chart-system.graph-wrap { box-shadow:var(--shadow-soft); }
+.integrated-svg text { font-family:var(--font-ui); }
+.audit-list { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; margin:0; padding:0; list-style:none; }
+.audit-list li { padding:18px; border:1px solid var(--line); border-radius:10px; background:rgb(255 253 249 / 76%); }
+.audit-list b { display:block; margin-bottom:8px; font-size:15px; }
+.audit-list span { color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.55; }
+.footer { padding:42px 0 56px; border-top:1px solid var(--line); color:var(--muted); font-family:var(--font-ui); font-size:13px; }
+@media (prefers-reduced-motion:no-preference) {
+  .panel, .swatch, .project-row { transition:transform 260ms var(--spring), box-shadow 260ms var(--spring), background-color 180ms ease; }
+  .panel:hover { transform:translateY(-1px); box-shadow:var(--shadow-hover); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .pop-node, .pop-note, .pop-label, .draw-edge, .note-card { animation:none; opacity:1; transform:none; stroke-dashoffset:0; }
+  .draw-edge[data-kind="callout"] { stroke-dasharray:6 4; stroke-dashoffset:0; }
+}
+@media (prefers-reduced-transparency:reduce) {
+  .topbar, .chart-head { backdrop-filter:none; background:var(--paper); }
+}
+@media (max-width:880px) {
+  .hero-grid, .section-head, .compare-grid, .integrated-demo, .specimen-grid, .story-card, .audit-list, .component-library, .motion-stage { grid-template-columns:1fr; }
+  .motion-canvas { padding:28px 24px; min-height:300px; }
+  .motion-canvas svg { min-height:232px; }
+  .motion-notes { padding-left:0; }
+  .motion-notes::before { display:none; }
+  .note-card { padding-left:28px; }
+  .note-card::before { left:0; }
+  .motion-rule { margin-left:0; }
+  .token-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .motion-grid { grid-template-columns:1fr; }
+  .hero { padding-top:44px; }
+}
+@media (max-width:560px) {
+  .topbar-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
+  .nav { gap:8px 14px; }
+  .meta-strip { grid-template-columns:1fr; }
+  .split-demo { grid-template-columns:1fr; }
+  .token-grid { grid-template-columns:1fr; }
+  .project-row { grid-template-columns:42px minmax(0,1fr); }
+  .project-row small { grid-column:2; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="#top">lingyi zhou system study</a>
+    <nav class="nav" aria-label="page sections">
+      <a href="#audit">audit</a>
+      <a href="#tokens">tokens</a>
+      <a href="#components">components</a>
+      <a href="#parts">parts</a>
+      <a href="#motion">motion</a>
+      <a href="#graphs">graphs</a>
+      <a href="#rules">rules</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero shell">
+    <div class="hero-grid">
+      <h1>one visual language</h1>
+      <div class="hero-copy">
+        <p>this comparison proposes a single integrated system for the portfolio: the editorial confidence stays, the apple-grade quietness becomes the shared behavior, and the project content no longer feels like a separate imported interface.</p>
+        <div class="meta-strip" aria-label="summary">
+          <div><b>type</b><span>archivo with system restraint</span></div>
+          <div><b>surface</b><span>warm paper with cool insets</span></div>
+          <div><b>motion</b><span>short, useful, interruptible</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell" id="audit">
+    <div class="section-head">
+      <h2>what is clashing now</h2>
+      <p>the current mockup is accurate, but it documents two systems as two separate worlds. the biggest issue is not any single token; it is the visible handoff between warm poster chrome and cool project chrome.</p>
+    </div>
+    <div class="compare-grid">
+      <article class="panel audit-card">
+        <h3>current split</h3>
+        <p>the shell uses heavy archivo, warm cream, hard rules, and poster gestures. the project layer switches to system type, cool grey, white cards, and app-like controls. both are good alone, but the seam is visible.</p>
+        <div class="split-demo" aria-label="current split demonstration">
+          <div class="split-warm"><strong>poster shell</strong><span>warm page, hard grotesque, orange rule</span></div>
+          <div class="split-cool"><strong>project layer</strong><span>cool canvas, system type, app card</span></div>
+        </div>
+      </article>
+      <article class="panel audit-card">
+        <h3>integrated direction</h3>
+        <p>keep the editorial voice, but let one token system drive both shell and project content. the difference becomes depth and density, not a full personality change.</p>
+        <div class="integrated-demo" aria-label="integrated demonstration">
+          <div class="preview-card"><h4>portfolio shell</h4><p>archivo stays, but weight is calmer and the surface takes on the same material rules as project content.</p><div class="preview-chip-row"><span class="chip">editorial</span><span class="chip">warm</span></div></div>
+          <div class="preview-card"><h4>project content</h4><p>project panels use the same paper, line, shadow, radius, and accent vocabulary, with denser spacing for repeated work.</p><div class="preview-chip-row"><span class="chip">focused</span><span class="chip">quiet</span></div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell" id="tokens">
+    <div class="section-head">
+      <h2>unified tokens</h2>
+      <p>the palette keeps the portfolio warmth, but project surfaces cool slightly through semantic roles. the result is one family with temperature shifts, not two disconnected palettes.</p>
+    </div>
+    <div class="token-grid">
+      <div class="swatch" style="--swatch:#f8f5ef"><div class="swatch-color"></div><div class="swatch-body"><b>page</b><span>warm editorial ground</span></div></div>
+      <div class="swatch" style="--swatch:#fffdf9"><div class="swatch-color"></div><div class="swatch-body"><b>paper</b><span>primary card surface</span></div></div>
+      <div class="swatch" style="--swatch:#f5f5f7"><div class="swatch-color"></div><div class="swatch-body"><b>inset</b><span>project and graph wells</span></div></div>
+      <div class="swatch" style="--swatch:#ff6b1a"><div class="swatch-color"></div><div class="swatch-body"><b>accent</b><span>selection and active paths</span></div></div>
+      <div class="swatch" style="--swatch:#1d1b18"><div class="swatch-color"></div><div class="swatch-body"><b>ink</b><span>primary text and dark hub</span></div></div>
+      <div class="swatch" style="--swatch:#514d47"><div class="swatch-color"></div><div class="swatch-body"><b>body</b><span>reading copy</span></div></div>
+      <div class="swatch" style="--swatch:#ded8cf"><div class="swatch-color"></div><div class="swatch-body"><b>line</b><span>warm hairline</span></div></div>
+      <div class="swatch" style="--swatch:#dedee2"><div class="swatch-color"></div><div class="swatch-body"><b>cool line</b><span>inset hairline</span></div></div>
+    </div>
+  </section>
+
+  <section class="shell" id="components">
+    <div class="section-head">
+      <h2>components in one voice</h2>
+      <p>the same radius, shadow, focus, and density logic now applies to rows, story cards, small controls, and metadata. the shell no longer shouts while projects whisper.</p>
+    </div>
+    <div class="specimen-grid">
+      <article class="panel type-card">
+        <h3>confident, not loud</h3>
+        <p>archivo still gives the portfolio its identity, but the biggest weights are reserved for the main page statement. inside components, weight drops and spacing does the work.</p>
+      </article>
+      <ul class="row-list" aria-label="project rows">
+        <li><button class="project-row" type="button"><span class="num">01</span><span><strong>orchia studio</strong><small>agent video workflow</small></span><small>2026</small></button></li>
+        <li><button class="project-row" type="button"><span class="num">02</span><span><strong>artly robot system</strong><small>browser deployment interface</small></span><small>2026</small></button></li>
+        <li><button class="project-row" type="button"><span class="num">03</span><span><strong>teleoperation rig</strong><small>operator to remote robot</small></span><small>2025</small></button></li>
+      </ul>
+    </div>
+    <div class="story-shell" style="margin-top:18px">
+      <div class="story-card">
+        <div class="media-well">project media keeps its real ratio</div>
+        <div class="story-copy">
+          <div class="segment" role="group" aria-label="story sections">
+            <button type="button" aria-pressed="true">overview</button>
+            <button type="button" aria-pressed="false">system</button>
+            <button type="button" aria-pressed="false">result</button>
+          </div>
+          <h3>project detail panel</h3>
+          <p>the card reads as part of the same portfolio because it shares surface, line, type rhythm, and focus behavior with the surrounding page.</p>
+          <div class="preview-chip-row"><span class="chip">react</span><span class="chip">three.js</span><span class="chip">robotics</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell" id="parts">
+    <div class="section-head">
+      <h2>reusable parts</h2>
+      <p>these are the building blocks the site can reuse across project pages, previews, archive panels, and future tools. each part shares the same paper, line, radius, focus, and motion behavior.</p>
+    </div>
+    <div class="component-library">
+      <article class="panel component-tile">
+        <h3>buttons and icon targets</h3>
+        <p>primary actions are orange only when the action is truly active. secondary actions stay quiet and keep the same 44px minimum target.</p>
+        <div class="action-row">
+          <button class="button-main" type="button">open project</button>
+          <button class="button-quiet" type="button">view notes</button>
+          <button class="icon-button" type="button" aria-label="open media">↗</button>
+        </div>
+      </article>
+      <article class="panel component-tile">
+        <h3>segmented controls</h3>
+        <p>use for peer views inside one panel. the selected segment floats on paper, so it feels consistent with story chapters and chart filters.</p>
+        <div class="toolbar" role="group" aria-label="view mode">
+          <button type="button" aria-pressed="true">overview</button>
+          <button type="button" aria-pressed="false">system</button>
+          <button type="button" aria-pressed="false">media</button>
+        </div>
+      </article>
+      <article class="panel component-tile">
+        <h3>input stack</h3>
+        <p>labels stay small but readable, fields use paper surfaces, and focus rings use the same orange outline as every other interactive part.</p>
+        <div class="control-stack">
+          <div class="input-shell"><label for="mock-filter">filter projects</label><input id="mock-filter" value="robotics" /></div>
+          <div class="notice">use this pattern for search, filters, and small editable metadata.</div>
+        </div>
+      </article>
+      <article class="panel component-tile">
+        <h3>metrics</h3>
+        <p>small numbers sit in paper cells instead of marketing cards. the role is proof, not decoration.</p>
+        <div class="metric-strip" aria-label="sample metrics">
+          <div><b>30</b><span>projects</span></div>
+          <div><b>159</b><span>media items</span></div>
+          <div><b>4</b><span>focus areas</span></div>
+        </div>
+      </article>
+      <article class="panel component-tile">
+        <h3>timeline notes</h3>
+        <p>use for case-study milestones, process notes, or build progress. dots mean sequence, not decoration.</p>
+        <ul class="timeline">
+          <li><i></i><span><b>map the system</b><span>name the real surfaces and states before adding styling.</span></span></li>
+          <li><i></i><span><b>wire the component</b><span>connect it to shared tokens before adding variants.</span></span></li>
+          <li><i></i><span><b>validate behavior</b><span>check focus, reduced motion, and narrow screens.</span></span></li>
+        </ul>
+      </article>
+      <article class="panel component-tile">
+        <h3>status note</h3>
+        <p>use a quiet tinted note for explanation, not a loud banner. it should guide the reader without interrupting the page.</p>
+        <div class="notice">this system has one accent, so status should also use words, shape, and placement instead of relying on color alone.</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell" id="motion">
+    <div class="section-head">
+      <h2>motion graphics</h2>
+      <div>
+        <span class="section-eyebrow">motion principle</span>
+        <p>chart motion should explain structure. nodes enter in a short sequence, edges draw after their endpoints appear, and notes pop in as proof points. crisp and playful, not cinematic or slow.</p>
+      </div>
+    </div>
+    <div class="motion-stage">
+      <div class="motion-canvas" aria-label="animated graph motion sample">
+        <svg viewBox="0 0 720 390" role="img" aria-labelledby="motion-title motion-desc">
+          <title id="motion-title">chart nodes entering in sequence</title>
+          <desc id="motion-desc">four nodes connect left to right, then branch down to an external handoff, with a callout annotation entering last</desc>
+          <defs><marker id="motion-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="context-stroke" /></marker></defs>
+          <!-- edges -->
+          <path class="chart-edge draw-edge" style="--delay:520ms" d="M190 151C215 151 230 151 250 151" marker-end="url(#motion-arrow)" />
+          <path class="chart-edge draw-edge" style="--delay:820ms" d="M400 151C425 151 440 151 460 151" marker-end="url(#motion-arrow)" />
+          <path class="chart-edge draw-edge" style="--delay:1120ms" d="M325 192C325 208 325 225 325 240" marker-end="url(#motion-arrow)" />
+          <path class="chart-edge draw-edge" data-kind="callout" style="--delay:1320ms" d="M400 276C425 276 440 276 460 276" marker-end="url(#motion-arrow)" />
+          <!-- nodes — outer <g> holds position (SVG transform attr), inner <g> holds animation (CSS transform) -->
+          <g transform="translate(40 110)">
+            <g class="chart-node pop-node" style="--delay:80ms">
+              <rect class="chart-node-card" width="150" height="82" rx="6" />
+              <text class="chart-node-kicker" x="18" y="22">input</text>
+              <text class="chart-node-title" x="18" y="45">brief</text>
+              <text class="chart-node-meta" x="18" y="65">ready</text>
+              <circle class="chart-port" cx="150" cy="41" r="4" />
+            </g>
+          </g>
+          <g transform="translate(250 110)">
+            <g class="chart-node pop-node" data-kind="hub" style="--delay:360ms">
+              <rect class="chart-node-card" width="150" height="82" rx="6" />
+              <text class="chart-node-kicker" x="18" y="22">runtime</text>
+              <text class="chart-node-title" x="18" y="45">planner</text>
+              <text class="chart-node-meta" x="18" y="65">builds route</text>
+              <circle class="chart-port" cx="0" cy="41" r="4" />
+              <circle class="chart-port" cx="150" cy="41" r="4" />
+              <circle class="chart-port" cx="75" cy="82" r="4" />
+            </g>
+          </g>
+          <g transform="translate(460 110)">
+            <g class="chart-node pop-node" data-kind="machine" style="--delay:660ms">
+              <rect class="chart-node-card" width="150" height="82" rx="6" />
+              <text class="chart-node-kicker" x="18" y="22">output</text>
+              <text class="chart-node-title" x="18" y="45">render</text>
+              <text class="chart-node-meta" x="18" y="65">in progress</text>
+              <circle class="chart-port" cx="0" cy="41" r="4" />
+            </g>
+          </g>
+          <g transform="translate(250 240)">
+            <g class="chart-node pop-node" data-kind="external" style="--delay:960ms">
+              <rect class="chart-node-card" width="150" height="72" rx="6" />
+              <text class="chart-node-kicker" x="18" y="22">external</text>
+              <text class="chart-node-title" x="18" y="45">handoff</text>
+              <text class="chart-node-meta" x="18" y="65">reference endpoint</text>
+              <circle class="chart-port" cx="75" cy="0" r="4" />
+              <circle class="chart-port" cx="150" cy="36" r="4" />
+            </g>
+          </g>
+          <!-- callout annotation -->
+          <g transform="translate(460 244)">
+            <g class="pop-note" style="--delay:1520ms">
+              <rect width="210" height="64" rx="10" fill="#fffdf9" stroke="#ded8cf" />
+              <text class="pop-label" style="--delay:1520ms" x="16" y="26" fill="#1d1b18" font-size="14" font-weight="600">sequence note</text>
+              <text class="pop-label" style="--delay:1600ms" x="16" y="48" fill="#514d47" font-size="12">explain why the edge matters</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="motion-notes">
+        <div class="note-card" data-seq="01" style="--delay:180ms"><b>orient</b><span>show the starting node before any edge so the reader has a stable anchor.</span></div>
+        <div class="note-card" data-seq="02" style="--delay:520ms"><b>connect</b><span>draw the route only after both related surfaces are visible.</span></div>
+        <div class="note-card" data-seq="03" style="--delay:880ms"><b>annotate</b><span>notes enter last, with a small pop — they explain rather than define the structure.</span></div>
+        <div class="motion-rule">
+          <b>timing</b>
+          <span>80–140 ms  between graph items<br/>420–720 ms  per pop<br/>no looping  unless the chart is explicitly live</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell" id="graphs">
+    <div class="section-head">
+      <h2>charts and graphs</h2>
+      <p>the centralized chart system should be treated as the model for every future graph. the chart surface uses the same paper system, the same orange route meaning, and the same focus behavior.</p>
+    </div>
+    <div class="chart-system graph-wrap">
+      <div class="chart-head">
+        <span class="chart-eyebrow">architecture map</span>
+        <h3 class="chart-title">cloud to deployed robot</h3>
+        <p class="chart-summary">identity, robot data, operator controls, and store endpoints in one traceable view.</p>
+      </div>
+      <div class="chart-canvas" tabindex="0" role="group" aria-label="integrated chart example">
+        <div class="chart-stage">
+          <svg class="chart-svg integrated-svg" viewBox="0 0 920 360" role="img" aria-labelledby="graph-title graph-desc">
+            <title id="graph-title">integrated chart example</title>
+            <desc id="graph-desc">three lanes with shared chart system styling</desc>
+            <defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="context-stroke" /></marker></defs>
+            <g><rect class="chart-zone" x="16" y="20" width="272" height="318" rx="10" /><text class="chart-zone-label" x="36" y="50">cloud</text><text class="chart-zone-meta" x="36" y="68">identity and robot data</text></g>
+            <g><rect class="chart-zone" x="324" y="20" width="272" height="318" rx="10" /><text class="chart-zone-label" x="344" y="50">workspace</text><text class="chart-zone-meta" x="344" y="68">browser runtime and scene</text></g>
+            <g><rect class="chart-zone" x="632" y="20" width="272" height="318" rx="10" /><text class="chart-zone-label" x="652" y="50">fleet</text><text class="chart-zone-meta" x="652" y="68">robot and store network</text></g>
+            <path class="chart-edge" d="M268 133C300 133 312 133 344 133" marker-end="url(#arrow)" />
+            <path class="chart-edge" d="M268 259C304 259 306 160 344 143" marker-end="url(#arrow)" />
+            <path class="chart-edge" d="M576 133C608 133 620 133 652 133" marker-end="url(#arrow)" />
+            <path class="chart-edge" d="M460 174C460 190 460 202 460 218" marker-end="url(#arrow)" />
+            <path class="chart-edge" data-kind="external" d="M768 174C768 190 768 202 768 218" marker-end="url(#arrow)" />
+            <g class="chart-node" transform="translate(36 92)"><rect class="chart-node-card" width="232" height="82" rx="6" /><text class="chart-node-kicker" x="18" y="22">identity</text><text class="chart-node-title" x="18" y="45">keycloak</text><text class="chart-node-meta" x="18" y="65">auth and permissions</text><circle class="chart-port" cx="232" cy="41" r="4" /></g>
+            <g class="chart-node" transform="translate(36 218)"><rect class="chart-node-card" width="232" height="82" rx="6" /><text class="chart-node-kicker" x="18" y="22">service</text><text class="chart-node-title" x="18" y="45">robot service</text><text class="chart-node-meta" x="18" y="65">tasks and telemetry</text><circle class="chart-port" cx="232" cy="41" r="4" /></g>
+            <g class="chart-node" data-kind="hub" transform="translate(344 92)"><rect class="chart-node-card" width="232" height="82" rx="6" /><text class="chart-node-kicker" x="18" y="22">runtime hub</text><text class="chart-node-title" x="18" y="45">robot context</text><text class="chart-node-meta" x="18" y="65">pose and joint state</text><circle class="chart-port" cx="0" cy="41" r="4" /><circle class="chart-port" cx="232" cy="41" r="4" /><circle class="chart-port" cx="116" cy="82" r="4" /></g>
+            <g class="chart-node" transform="translate(344 218)"><rect class="chart-node-card" width="232" height="82" rx="6" /><text class="chart-node-kicker" x="18" y="22">visualization</text><text class="chart-node-title" x="18" y="45">robot scene</text><text class="chart-node-meta" x="18" y="65">model and overlays</text><circle class="chart-port" cx="116" cy="0" r="4" /><circle class="chart-port" cx="232" cy="41" r="4" /></g>
+            <g class="chart-node" data-kind="machine" transform="translate(652 92)"><rect class="chart-node-card" width="232" height="82" rx="6" /><text class="chart-node-kicker" x="18" y="22">robot computer</text><text class="chart-node-title" x="18" y="45">store robot</text><text class="chart-node-meta" x="18" y="65">deployment target</text><circle class="chart-port" cx="0" cy="41" r="4" /><circle class="chart-port" cx="116" cy="82" r="4" /></g>
+            <g class="chart-node" data-kind="external" transform="translate(652 218)"><rect class="chart-node-card" width="232" height="82" rx="6" /><text class="chart-node-kicker" x="18" y="22">boundary</text><text class="chart-node-title" x="18" y="45">store network</text><text class="chart-node-meta" x="18" y="65">reference endpoint</text><circle class="chart-port" cx="0" cy="41" r="4" /><circle class="chart-port" cx="116" cy="0" r="4" /></g>
+          </svg>
+        </div>
+      </div>
+      <p class="chart-caption">one chart skin, one node language, one edge vocabulary.</p>
+    </div>
+  </section>
+
+  <section class="shell" id="rules">
+    <div class="section-head">
+      <h2>rules for the next pass</h2>
+      <p>these rules are the practical audit outcome. they keep the system apple-grade without erasing the portfolio’s own voice.</p>
+    </div>
+    <ul class="audit-list">
+      <li><b>merge through tokens</b><span>replace the poster and project split with semantic surface roles: page, paper, inset, line, cool line, accent, ink, body.</span></li>
+      <li><b>keep one type voice</b><span>use archivo as the identity face, but borrow apple restraint: lower weights inside components, shorter lines, no decorative labels.</span></li>
+      <li><b>make chrome defer</b><span>use glass only for navigation and floating chrome. content cards stay opaque enough to protect contrast.</span></li>
+      <li><b>let density vary</b><span>shell sections can breathe; project panels can be compact. both should share the same material rules.</span></li>
+      <li><b>centralize charts</b><span>all future charts should consume the same chart system tokens and components, not hand-tuned class sets.</span></li>
+      <li><b>write lowercase</b><span>visible labels and headings should stay lowercase or sentence-like; no all caps, no title-case labels, no wide tracked badges.</span></li>
+    </ul>
+  </section>
+</main>
+<footer class="footer shell">integrated comparison mockup · design-system/integrated-comparison.html</footer>
+</body>
+</html>

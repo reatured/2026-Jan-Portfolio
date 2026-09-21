@@ -1,0 +1,564 @@
+/* ============================================================
+   V3 Design System — unified stylesheet for the portfolio.
+   Import this once (in main.tsx or DesignSystemPage) to get:
+   - React Flow base styles
+   - Chart component styles (.ds-* namespace)
+   - Motion primitives
+   - Design token documentation helpers
+   ============================================================ */
+
+@import "@xyflow/react/dist/style.css";
+
+/* ---- chart surface tokens ---- */
+.ds-chart-surface {
+  --cn-fill: #fff;
+  --cn-line: #d8d8dd;
+  --cn-ink: #1d1d1f;
+  --cn-muted: #6e6e73;
+  --cn-route: #ff6b1a;
+  --cn-hub-fill: #242426;
+  --cn-hub-ink: #fff;
+  --cn-hub-muted: #b8b8bd;
+  --cn-machine-fill: #fff5ed;
+  --cn-machine-line: #f2c7aa;
+  --cn-external-fill: #f7f7f8;
+  --cn-external-line: #aaa9ae;
+}
+
+/* ---- React Flow overrides ---- */
+.ds-chart-surface .react-flow__background {
+  background-color: transparent;
+}
+.ds-chart-surface .react-flow__controls {
+  --xy-controls-button-background-color-default: #fff;
+  --xy-controls-button-border-default: 1px solid #ded8cf;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgb(29 27 24 / 4%), 0 8px 24px rgb(29 27 24 / 8%);
+}
+.ds-chart-surface .react-flow__controls-button {
+  width: 32px;
+  height: 32px;
+  border-bottom: 1px solid #ded8cf;
+}
+.ds-chart-surface .react-flow__minimap {
+  border: 1px solid #ded8cf;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgb(29 27 24 / 4%);
+}
+
+/* ---- custom node ---- */
+.ds-node {
+  font-family: var(--font-sans, "Archivo", sans-serif);
+  min-width: 140px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--cn-fill, #fff);
+  border: 1.2px solid var(--cn-line, #d8d8dd);
+  box-shadow: 0 3px 4px rgb(29 29 31 / 8%);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+  cursor: default;
+}
+.ds-node:hover {
+  border-color: var(--cn-route, #ff6b1a);
+  box-shadow: 0 3px 8px rgb(29 29 31 / 12%);
+}
+.ds-node[data-kind="hub"] {
+  background: var(--cn-hub-fill, #242426);
+  border-color: var(--cn-hub-fill, #242426);
+  color: var(--cn-hub-ink, #fff);
+}
+.ds-node[data-kind="machine"] {
+  background: var(--cn-machine-fill, #fff5ed);
+  border-color: var(--cn-machine-line, #f2c7aa);
+}
+.ds-node[data-kind="external"] {
+  background: var(--cn-external-fill, #f7f7f8);
+  border-style: dashed;
+  border-color: var(--cn-external-line, #aaa9ae);
+}
+.ds-node[data-kind="annotation"] {
+  background: #fffdf9;
+  border-color: #ded8cf;
+  border-radius: 10px;
+  min-width: 180px;
+}
+
+/* node internals */
+.ds-node-kicker {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--cn-muted, #6e6e73);
+  letter-spacing: 0;
+  line-height: 1.3;
+  text-transform: lowercase;
+}
+.ds-node[data-kind="hub"] .ds-node-kicker { color: var(--cn-hub-muted, #b8b8bd); }
+.ds-node-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cn-ink, #1d1d1f);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.ds-node[data-kind="hub"] .ds-node-title { color: var(--cn-hub-ink, #fff); }
+.ds-node-meta {
+  font-size: 10px;
+  color: var(--cn-muted, #6e6e73);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.ds-node[data-kind="hub"] .ds-node-meta { color: var(--cn-hub-muted, #b8b8bd); }
+
+/* handles: visible only on hover or when connecting */
+.ds-handle {
+  width: 8px !important;
+  height: 8px !important;
+  background: var(--cn-route, #ff6b1a) !important;
+  border: 2px solid #fff !important;
+  border-radius: 50% !important;
+  opacity: 0;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.ds-node:hover .ds-handle,
+.react-flow__connection-line .ds-handle {
+  opacity: 1;
+}
+.ds-handle:hover {
+  transform: scale(1.4);
+}
+
+/* ---- custom edge ---- */
+.ds-edge-path {
+  fill: none;
+  stroke: var(--cn-route, #ff6b1a);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.ds-edge-path[data-kind="callout"] {
+  --dash: 6 4;
+  stroke-dasharray: 6 4;
+  stroke-width: 1.4;
+}
+.ds-edge-path[data-kind="boundary"] {
+  --dash: 8 6;
+  stroke: #8e8e93;
+  stroke-width: 1.2;
+  stroke-dasharray: 8 6;
+}
+
+/* edge label */
+.ds-edge-label {
+  font-family: var(--font-sans, "Archivo", sans-serif);
+  font-size: 11px;
+  color: #6e6e73;
+  background: rgb(255 253 249 / 92%);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ded8cf;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---- motion primitives ---- */
+@keyframes ds-node-pop {
+  0%   { opacity: 0; transform: scale(0.86) translateY(16px); }
+  58%  { opacity: 1; transform: scale(1.045) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes ds-edge-draw {
+  from { stroke-dashoffset: var(--edge-len, 320); }
+  to   { stroke-dashoffset: 0; }
+}
+/* dashed edges draw solid first, then settle into their dash pattern —
+   keeps them fully hidden before the draw starts */
+@keyframes ds-edge-draw-dashed {
+  0%   { stroke-dasharray: var(--edge-len, 320); stroke-dashoffset: var(--edge-len, 320); }
+  90%  { stroke-dasharray: var(--edge-len, 320); stroke-dashoffset: 0; }
+  100% { stroke-dasharray: var(--dash); stroke-dashoffset: 0; }
+}
+@keyframes ds-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ds-anim-node {
+  opacity: 0;
+  animation: ds-node-pop 720ms cubic-bezier(.32,.72,0,1) forwards;
+}
+.ds-anim-edge {
+  stroke-dasharray: var(--edge-len, 320);
+  stroke-dashoffset: var(--edge-len, 320);
+  animation: ds-edge-draw 760ms cubic-bezier(.32,.72,0,1) forwards;
+}
+/* a dashed edge that animates must not show its resting dash pattern early */
+.ds-edge-path[data-kind].ds-anim-edge {
+  stroke-dasharray: var(--edge-len, 320);
+  animation-name: ds-edge-draw-dashed;
+}
+.ds-anim-fade {
+  opacity: 0;
+  animation: ds-fade-up 560ms ease forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* edges-only mode: nodes still carry layout + anchors, but never render.
+   visibility (not opacity) so anchors can opt back in via data-show-anchors */
+.ds-chart-surface[data-hide-nodes] .ds-node {
+  visibility: hidden;
+  animation: none;
+  pointer-events: none;
+}
+/* anchors shown independently of node hover/visibility */
+.ds-chart-surface[data-show-anchors] .ds-handle {
+  visibility: visible;
+  opacity: 1;
+}
+/* hide edge paths without unmounting (animation state survives the toggle) */
+.ds-chart-surface[data-hide-edges] .react-flow__edge {
+  visibility: hidden;
+}
+/* hide edge label pills */
+.ds-chart-surface[data-hide-labels] .ds-edge-label {
+  display: none;
+}
+
+/* reduced motion: skip animations, show everything */
+@media (prefers-reduced-motion: reduce) {
+  .ds-anim-node,
+  .ds-anim-fade {
+    opacity: 1;
+    animation: none;
+  }
+  .ds-anim-edge {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .ds-edge-path[data-kind].ds-anim-edge {
+    stroke-dasharray: var(--dash);
+  }
+}
+
+/* ---- chart frame (reused from ChartSystem.tsx pattern) ---- */
+.ds-chart-frame {
+  border: 1px solid #ded8cf;
+  border-radius: 12px;
+  background: #fffdf9;
+  box-shadow: 0 1px 2px rgb(29 27 24 / 4%), 0 18px 42px rgb(29 27 24 / 8%);
+  overflow: hidden;
+}
+.ds-chart-head {
+  padding: 18px 20px;
+  border-bottom: 1px solid #ded8cf;
+  background: rgb(255 255 255 / 88%);
+}
+.ds-chart-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
+  color: #6e6e73;
+  font-size: 11px;
+  font-weight: 500;
+}
+.ds-chart-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff6b1a;
+}
+.ds-chart-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.ds-chart-summary {
+  margin: 6px 0 0;
+  color: #514d47;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.ds-chart-caption {
+  margin: 0;
+  padding: 13px 20px;
+  border-top: 1px solid #ded8cf;
+  background: rgb(255 255 255 / 76%);
+  color: #6e6e73;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* ---- design system page layout helpers ---- */
+.ds-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.ds-section {
+  padding: 56px 0;
+  border-top: 1px solid #ded8cf;
+}
+.ds-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+.ds-section-head h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 54px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+.ds-section-head p {
+  margin: 0;
+  color: #514d47;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.ds-eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  color: #ff6b1a;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* ---- token swatch grid ---- */
+.ds-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.ds-swatch {
+  overflow: hidden;
+  border: 1px solid #ded8cf;
+  border-radius: 10px;
+  background: #fffdf9;
+}
+.ds-swatch-color {
+  height: 72px;
+}
+.ds-swatch-body {
+  padding: 12px;
+}
+.ds-swatch-body b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.ds-swatch-body span {
+  display: block;
+  color: #75716a;
+  font-size: 12px;
+  line-height: 1.45;
+  font-family: system-ui, sans-serif;
+}
+
+/* ---- component showcase grid ---- */
+.ds-comp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.ds-comp-card {
+  min-height: 200px;
+  padding: 20px;
+  border: 1px solid #ded8cf;
+  border-radius: 10px;
+  background: rgb(255 253 249 / 86%);
+  box-shadow: 0 1px 2px rgb(29 27 24 / 4%);
+}
+.ds-comp-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+.ds-comp-card p {
+  margin: 0 0 14px;
+  color: #514d47;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ---- sample components for showcase ---- */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-family: var(--font-sans, "Archivo", sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.ds-btn:hover { transform: translateY(-1px); }
+.ds-btn:active { transform: translateY(0); }
+.ds-btn--primary {
+  background: #ff6b1a;
+  color: #1a1714;
+  border: 1px solid color-mix(in srgb, #ff6b1a 60%, #8f3400);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 45%) inset, 0 10px 22px rgb(255 107 26 / 18%);
+}
+.ds-btn--quiet {
+  background: rgb(255 253 249 / 74%);
+  color: #514d47;
+  border: 1px solid #ded8cf;
+}
+.ds-btn--icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgb(255 253 249 / 74%);
+  color: #1d1b18;
+  border: 1px solid #ded8cf;
+}
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border: 1px solid #ded8cf;
+  border-radius: 6px;
+  background: rgb(255 255 255 / 66%);
+  color: #514d47;
+  font-size: 12px;
+  font-family: system-ui, sans-serif;
+}
+.ds-segment-group {
+  display: inline-flex;
+  gap: 0;
+  padding: 4px;
+  border-radius: 9px;
+  background: #e9e9ec;
+}
+.ds-segment-group button {
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #646469;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+.ds-segment-group button[aria-pressed="true"] {
+  background: #fff;
+  color: #b34700;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 8%);
+}
+.ds-input {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #ded8cf;
+  border-radius: 9px;
+  background: #fffdf9;
+  color: #1d1b18;
+  font-family: var(--font-sans, "Archivo", sans-serif);
+  font-size: 14px;
+  width: 100%;
+}
+.ds-input:focus {
+  outline: 2px solid #ff6b1a;
+  outline-offset: 2px;
+  border-color: transparent;
+}
+.ds-timeline {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ds-timeline li {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+.ds-timeline li i {
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #ff6b1a;
+  box-shadow: 0 0 0 4px rgb(255 107 26 / 12%);
+  display: block;
+}
+.ds-timeline b {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+.ds-timeline span {
+  display: block;
+  color: #75716a;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: system-ui, sans-serif;
+}
+.ds-notice {
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, #ff6b1a 20%, #ded8cf);
+  border-radius: 10px;
+  background: #fff0e6;
+  color: #514d47;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.ds-metric-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid #ded8cf;
+  border-radius: 10px;
+  background: #ded8cf;
+}
+.ds-metric-row div {
+  padding: 14px;
+  background: rgb(255 253 249 / 82%);
+}
+.ds-metric-row b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.ds-metric-row span {
+  color: #75716a;
+  font-size: 12px;
+  font-family: system-ui, sans-serif;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 880px) {
+  .ds-section-head,
+  .ds-comp-grid { grid-template-columns: 1fr; }
+  .ds-swatch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ds-metric-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .ds-swatch-grid,
+  .ds-comp-grid,
+  .ds-metric-row { grid-template-columns: 1fr; }
+}

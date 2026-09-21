@@ -12,11 +12,9 @@ The branch continues the original portfolio's Git history.
 In the portfolio workspace, the checkouts are linked Git worktrees:
 
 - `2026-Jan-Portfolio/`: current website on `main`; stores the shared Git database.
-- `site/`: active design checkout on `apple-design`; application files are at the repository root.
 - `2026-Jan-Portfolio-source/`: original January website at `b3137d9`, preserved in a detached source checkout for the legacy importer.
 
-`2026-Sept` retains the earlier published snapshot. Use `git branch --show-current`
-to check the branch before making changes in a checkout.
+Use `git branch --show-current` to check the branch before making changes in a checkout.
 
 Keep the original checkout available while this linked worktree is in use. Use
 `git worktree list` to inspect their relationship. Review artifacts, local agent

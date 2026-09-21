@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>chart component system · v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   DESIGN TOKENS — shared with integrated-comparison.html
+   ============================================================ */
+:root {
+  --page:#f8f5ef;
+  --paper:#fffdf9;
+  --paper-soft:#f3f1ec;
+  --ink:#1d1b18;
+  --body:#514d47;
+  --muted:#75716a;
+  --line:#ded8cf;
+  --accent:#ff6b1a;
+  --accent-soft:#fff0e6;
+  --accent-ink:#a43d00;
+  --shadow-soft:0 1px 2px rgb(29 27 24 / 4%), 0 18px 42px rgb(29 27 24 / 8%);
+  --radius:12px;
+  --content:min(1180px, calc(100vw - 40px));
+  --font-display:"Archivo", -apple-system, blinkmacsystemfont, "helvetica neue", arial, sans-serif;
+  --font-ui:-apple-system, blinkmacsystemfont, "helvetica neue", arial, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, "sf mono", menlo, monospace;
+  --spring:cubic-bezier(.32,.72,0,1);
+}
+
+/* ============================================================
+   CHART COMPONENT SYSTEM
+   ============================================================
+
+   Every chart reuses these primitives. Apply them to SVG <g>
+   and child elements inside any <svg> with a .chart-surface wrapper.
+
+   Component          | Selector                | Role
+   -------------------|-------------------------|------------------------------
+   Surface            | .chart-surface          | canvas container (sets vars)
+   Node · standard    | .nc                    | default white card node
+   Node · hub         | .nc[data-kind="hub"]   | dark central node
+   Node · machine     | .nc[data-kind="machine"] | warm-toned worker
+   Node · external    | .nc[data-kind="external"]| dashed boundary node
+   Node card          | .nc-card                | <rect> fill + stroke
+   Node kicker        | .nc-kicker              | muted eyebrow text
+   Node title         | .nc-title               | primary label
+   Node meta          | .nc-meta                | secondary detail
+   Port               | .nc-port                | connection anchor <circle>
+   Edge · route       | .ce                     | solid orange arrow path
+   Edge · callout     | .ce[data-kind="callout"]| dashed annotation connector
+   Edge · boundary    | .ce[data-kind="boundary"]| muted boundary line
+   Annotation         | .ca                     | callout note card
+   Annotation label   | .ca-label               | text inside annotation
+
+   Animation helpers:
+   .anim-node  .anim-edge  .anim-note  — staggered entrance sequences
+   Use --delay custom property (in ms) on each element.                    */
+
+/* --- surface --- */
+.chart-surface {
+  --cn:#fff;           /* node fill */
+  --cn-line:#d8d8dd;   /* node stroke */
+  --cn-ink:#1d1d1f;    /* node text */
+  --cn-muted:#6e6e73;  /* node muted text */
+  --cn-route:var(--accent);  /* edge / port color */
+  --cn-hub:#242426;    /* hub fill */
+  --cn-machine:#fff5ed;
+  --cn-machine-line:#f2c7aa;
+  --cn-external:#f7f7f8;
+  display:block;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:radial-gradient(circle, rgb(29 27 24 / 5%) 1px, transparent 1px),
+              linear-gradient(180deg, #f7f5f0, #f2f0ec);
+  background-size:16px 16px, auto;
+  box-shadow:var(--shadow-soft);
+}
+
+/* --- node card --- */
+.nc-card {
+  fill:var(--cn);
+  stroke:var(--cn-line);
+  stroke-width:1.2;
+  filter:drop-shadow(0 3px 4px rgb(29 29 31 / 8%));
+}
+.nc[data-kind="hub"] > .nc-card { fill:var(--cn-hub); stroke:var(--cn-hub); }
+.nc[data-kind="machine"] > .nc-card { fill:var(--cn-machine); stroke:var(--cn-machine-line); }
+.nc[data-kind="external"] > .nc-card { fill:var(--cn-external); stroke:#aaa9ae; stroke-dasharray:5 4; }
+
+/* --- node text --- */
+.nc-kicker { fill:var(--cn-muted); font-size:9px; font-weight:500; }
+.nc-title  { fill:var(--cn-ink);   font-size:14px; font-weight:600; }
+.nc-meta   { fill:var(--cn-muted); font-size:10px; }
+.nc[data-kind="hub"] :is(.nc-kicker,.nc-meta) { fill:#b8b8bd; }
+.nc[data-kind="hub"] .nc-title { fill:#fff; }
+
+/* --- ports --- */
+.nc-port {
+  fill:var(--cn-route);
+  stroke:#fff;
+  stroke-width:1.5;
+}
+
+/* --- edges --- */
+.ce {
+  fill:none;
+  stroke:var(--cn-route);
+  stroke-width:1.6;
+  stroke-linecap:round;
+}
+.ce[data-kind="callout"] {
+  stroke-dasharray:6 4;
+  stroke-width:1.4;
+}
+.ce[data-kind="boundary"] {
+  stroke:#8e8e93;
+  stroke-width:1.2;
+  stroke-dasharray:8 6;
+}
+
+/* --- annotation --- */
+.ca {
+  font-family:var(--font-ui);
+}
+.ca-card {
+  fill:var(--paper);
+  stroke:var(--line);
+  stroke-width:1;
+  filter:drop-shadow(0 2px 4px rgb(29 27 24 / 6%));
+}
+.ca-label {
+  fill:var(--ink);
+  font-size:14px;
+  font-weight:600;
+}
+.ca-detail {
+  fill:var(--body);
+  font-size:12px;
+}
+
+/* --- animation primitives --- */
+.anim-node, .anim-note, .anim-label {
+  transform-box:fill-box;
+  transform-origin:center;
+  opacity:0;
+}
+.anim-node  { animation:pop-node  720ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.anim-note  { animation:pop-note  620ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.anim-label { animation:pop-label 420ms ease           forwards; animation-delay:var(--delay, 0ms); }
+.anim-edge  { stroke-dasharray:320; stroke-dashoffset:320; animation:draw-edge 760ms var(--spring) forwards; animation-delay:var(--delay, 0ms); }
+.anim-edge[data-kind="callout"] { stroke-dasharray:6 4; stroke-dashoffset:0; animation:draw-edge 560ms var(--spring) forwards; }
+
+@keyframes pop-node {
+  0%   { opacity:0; transform:translateY(16px) scale(.86); }
+  58%  { opacity:1; transform:translateY(-2px) scale(1.045); }
+  100% { opacity:1; transform:translateY(0)   scale(1); }
+}
+@keyframes pop-note {
+  0%   { opacity:0; transform:translateY(12px) scale(.96); }
+  64%  { opacity:1; transform:translateY(-1px) scale(1.02); }
+  100% { opacity:1; transform:translateY(0)   scale(1); }
+}
+@keyframes pop-label {
+  from { opacity:0; transform:translateY(4px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes draw-edge {
+  to { stroke-dashoffset:0; }
+}
+
+/* ============================================================
+   PAGE CHROME
+   ============================================================ */
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+  margin:0;
+  background:linear-gradient(180deg, #fbf7f1 0%, var(--page) 44%, #f4f2ee 100%);
+  color:var(--ink);
+  font-family:var(--font-display);
+  font-size:16px;
+  line-height:1.55;
+}
+:focus-visible { outline:3px solid color-mix(in srgb, var(--accent) 70%, #000 10%); outline-offset:3px; }
+::selection { background:var(--accent); color:var(--ink); }
+.shell { width:var(--content); margin-inline:auto; }
+
+.topbar {
+  position:sticky; top:0; z-index:10;
+  backdrop-filter:blur(18px) saturate(160%);
+  background:rgb(248 245 239 / 78%);
+  border-bottom:1px solid rgb(222 216 207 / 80%);
+}
+.topbar-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:54px; }
+.brand { font-weight:700; letter-spacing:-.02em; }
+.nav { display:flex; flex-wrap:wrap; gap:10px 18px; color:var(--muted); font-family:var(--font-ui); font-size:13px; }
+.nav a { color:inherit; text-decoration:none; }
+.nav a:hover { color:var(--ink); }
+
+section { padding:56px 0; border-top:1px solid var(--line); }
+.section-head { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1fr); gap:32px; align-items:start; margin-bottom:28px; }
+.section-head h2 { margin:0; font-size:clamp(30px,4vw,54px); line-height:.98; letter-spacing:-.045em; }
+.section-head p { margin:0; color:var(--body); font-family:var(--font-ui); font-size:15px; line-height:1.75; }
+.section-eyebrow { display:block; margin-bottom:6px; color:var(--accent); font-family:var(--font-ui); font-size:11px; font-weight:600; letter-spacing:.06em; }
+.footer { padding:42px 0 56px; border-top:1px solid var(--line); color:var(--muted); font-family:var(--font-ui); font-size:13px; }
+
+/* --- demo layout --- */
+.demo-grid { display:grid; grid-template-columns:minmax(0,1.22fr) minmax(250px,.78fr); gap:32px; align-items:start; }
+.demo-canvas { padding:44px 48px; min-height:380px; }
+.demo-canvas svg { display:block; width:100%; height:100%; min-height:292px; }
+
+/* --- sequence notes (reused from integrated-comparison) --- */
+.seq-notes { display:grid; gap:0; position:relative; padding-left:18px; }
+.seq-notes::before { content:""; position:absolute; left:6px; top:32px; bottom:40px; width:1px; background:var(--line); border-radius:1px; }
+.seq-note { position:relative; padding:7px 0 14px 20px; border:0; background:transparent; }
+.seq-note::before { content:attr(data-seq); position:absolute; left:-22px; top:8px; width:18px; height:18px; border-radius:50%; background:var(--accent); color:var(--ink); font-family:var(--font-mono); font-size:9px; font-weight:600; display:grid; place-items:center; line-height:1; }
+.seq-note b { display:block; margin-bottom:3px; font-size:12px; font-weight:600; letter-spacing:.05em; color:var(--muted); }
+.seq-note span { display:block; color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.5; }
+.seq-timing { margin-top:10px; margin-left:20px; padding:14px 16px; border:1px solid var(--line); border-radius:9px; background:rgb(248 245 239 / 78%); }
+.seq-timing b { display:block; margin-bottom:10px; font-size:11px; font-weight:600; letter-spacing:.05em; color:var(--muted); }
+.seq-timing span { display:block; color:var(--body); font-family:var(--font-mono); font-size:12px; line-height:1.85; }
+
+/* --- component reference table --- */
+.ref-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; margin:0; padding:0; list-style:none; }
+.ref-grid li { padding:16px; border:1px solid var(--line); border-radius:10px; background:rgb(255 253 249 / 76%); }
+.ref-grid code { display:block; margin-bottom:6px; font-family:var(--font-mono); font-size:12px; font-weight:500; color:var(--accent-ink); }
+.ref-grid span { display:block; color:var(--body); font-family:var(--font-ui); font-size:13px; line-height:1.5; }
+
+/* --- responsive --- */
+@media (prefers-reduced-motion:reduce) {
+  .anim-node, .anim-note, .anim-label, .anim-edge { animation:none; opacity:1; transform:none; stroke-dashoffset:0; }
+  .anim-edge[data-kind="callout"] { stroke-dasharray:6 4; }
+}
+@media (max-width:880px) {
+  .section-head, .demo-grid, .ref-grid { grid-template-columns:1fr; }
+  .demo-canvas { padding:28px 24px; min-height:300px; }
+  .demo-canvas svg { min-height:232px; }
+  .seq-notes { padding-left:0; }
+  .seq-notes::before { display:none; }
+  .seq-note { padding-left:28px; }
+  .seq-note::before { left:0; }
+  .seq-timing { margin-left:0; }
+}
+@media (max-width:560px) {
+  .topbar-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
+  .nav { gap:8px 14px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="#top">chart component system · v2</a>
+    <nav class="nav" aria-label="page sections">
+      <a href="#demo">demo</a>
+      <a href="#components">components</a>
+      <a href="#usage">usage</a>
+      <a href="#diagram">diagram</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================
+       DEMO — motion sequence built from reusable components
+       ============================================================ -->
+  <section class="shell" id="demo">
+    <div class="section-head">
+      <h2>motion demo</h2>
+      <div>
+        <span class="section-eyebrow">built from components</span>
+        <p>the same motion sequence as the integrated mockup, but every node, edge, port, and annotation uses the shared <code>.nc-*</code> / <code>.ce</code> / <code>.ca</code> classes. animate by adding <code>.anim-*</code> helpers.</p>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <!-- chart surface -->
+      <div class="chart-surface demo-canvas" aria-label="motion sequence built from components">
+        <svg viewBox="0 0 720 390" role="img" aria-labelledby="demo-title demo-desc">
+          <title id="demo-title">reusable component motion demo</title>
+          <desc id="demo-desc">four nodes with reusable .nc classes, edges with .ce, annotation with .ca</desc>
+          <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="context-stroke" /></marker></defs>
+
+          <!-- edges — .ce + .anim-edge -->
+          <path class="ce anim-edge" style="--delay:520ms" d="M190 151C215 151 230 151 250 151" marker-end="url(#arr)" />
+          <path class="ce anim-edge" style="--delay:820ms" d="M400 151C425 151 440 151 460 151" marker-end="url(#arr)" />
+          <path class="ce anim-edge" style="--delay:1120ms" d="M325 192C325 208 325 225 325 240" marker-end="url(#arr)" />
+          <path class="ce anim-edge" data-kind="callout" style="--delay:1320ms" d="M400 276C425 276 440 276 460 276" marker-end="url(#arr)" />
+
+          <!-- nodes — outer <g> positions, inner <g> animates -->
+          <g transform="translate(40 110)">
+            <g class="nc anim-node" style="--delay:80ms">
+              <rect class="nc-card" width="150" height="82" rx="6" />
+              <text class="nc-kicker" x="18" y="22">input</text>
+              <text class="nc-title"  x="18" y="45">brief</text>
+              <text class="nc-meta"   x="18" y="65">ready</text>
+              <circle class="nc-port" cx="150" cy="41" r="4" />
+            </g>
+          </g>
+
+          <g transform="translate(250 110)">
+            <g class="nc anim-node" data-kind="hub" style="--delay:360ms">
+              <rect class="nc-card" width="150" height="82" rx="6" />
+              <text class="nc-kicker" x="18" y="22">runtime</text>
+              <text class="nc-title"  x="18" y="45">planner</text>
+              <text class="nc-meta"   x="18" y="65">builds route</text>
+              <circle class="nc-port" cx="0"   cy="41" r="4" />
+              <circle class="nc-port" cx="150" cy="41" r="4" />
+              <circle class="nc-port" cx="75"  cy="82" r="4" />
+            </g>
+          </g>
+
+          <g transform="translate(460 110)">
+            <g class="nc anim-node" data-kind="machine" style="--delay:660ms">
+              <rect class="nc-card" width="150" height="82" rx="6" />
+              <text class="nc-kicker" x="18" y="22">output</text>
+              <text class="nc-title"  x="18" y="45">render</text>
+              <text class="nc-meta"   x="18" y="65">in progress</text>
+              <circle class="nc-port" cx="0" cy="41" r="4" />
+            </g>
+          </g>
+
+          <g transform="translate(250 240)">
+            <g class="nc anim-node" data-kind="external" style="--delay:960ms">
+              <rect class="nc-card" width="150" height="72" rx="6" />
+              <text class="nc-kicker" x="18" y="22">external</text>
+              <text class="nc-title"  x="18" y="45">handoff</text>
+              <text class="nc-meta"   x="18" y="65">reference endpoint</text>
+              <circle class="nc-port" cx="75"  cy="0"  r="4" />
+              <circle class="nc-port" cx="150" cy="36" r="4" />
+            </g>
+          </g>
+
+          <!-- annotation — .ca -->
+          <g transform="translate(460 244)">
+            <g class="ca anim-note" style="--delay:1520ms">
+              <rect class="ca-card" width="210" height="64" rx="10" />
+              <text class="ca-label"  x="16" y="28">sequence note</text>
+              <text class="ca-detail" x="16" y="50">explain why the edge matters</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- sequence notes -->
+      <div class="seq-notes">
+        <div class="seq-note" data-seq="01"><b>orient</b><span>show the starting node before any edge so the reader has a stable anchor.</span></div>
+        <div class="seq-note" data-seq="02"><b>connect</b><span>draw the route only after both related surfaces are visible.</span></div>
+        <div class="seq-note" data-seq="03"><b>annotate</b><span>notes enter last, with a small pop — they explain rather than define the structure.</span></div>
+        <div class="seq-timing">
+          <b>timing</b>
+          <span>80–140 ms  between graph items<br/>420–720 ms  per pop<br/>no looping  unless the chart is explicitly live</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPONENT REFERENCE
+       ============================================================ -->
+  <section class="shell" id="components">
+    <div class="section-head">
+      <h2>component reference</h2>
+      <p>every chart in the portfolio should compose from this single set of primitives. the class names are deliberately short: <code>.nc</code> = node component, <code>.ce</code> = chart edge, <code>.ca</code> = chart annotation.</p>
+    </div>
+
+    <h3 style="font-size:18px; margin:0 0 14px; letter-spacing:-.02em;">nodes</h3>
+    <ul class="ref-grid">
+      <li><code>.nc</code><span>node group — set <code>data-kind</code> to "hub", "machine", or "external" for variants</span></li>
+      <li><code>.nc-card</code><span><code>&lt;rect&gt;</code> — fill, stroke, shadow via CSS variables</span></li>
+      <li><code>.nc-kicker</code><span>muted eyebrow text above the title</span></li>
+      <li><code>.nc-title</code><span>primary label in node ink color</span></li>
+      <li><code>.nc-meta</code><span>secondary detail line</span></li>
+      <li><code>.nc-port</code><span><code>&lt;circle&gt;</code> — connection anchor, orange with white stroke</span></li>
+    </ul>
+
+    <h3 style="font-size:18px; margin:28px 0 14px; letter-spacing:-.02em;">edges</h3>
+    <ul class="ref-grid">
+      <li><code>.ce</code><span>solid route edge — orange, 1.6px stroke</span></li>
+      <li><code>.ce[data-kind="callout"]</code><span>dashed annotation connector</span></li>
+      <li><code>.ce[data-kind="boundary"]</code><span>muted grey boundary line, wider dash</span></li>
+    </ul>
+
+    <h3 style="font-size:18px; margin:28px 0 14px; letter-spacing:-.02em;">annotation</h3>
+    <ul class="ref-grid">
+      <li><code>.ca</code><span>callout annotation group</span></li>
+      <li><code>.ca-card</code><span>background rect — paper fill, hairline stroke, soft shadow</span></li>
+      <li><code>.ca-label</code><span>bold heading text</span></li>
+      <li><code>.ca-detail</code><span>body detail text</span></li>
+    </ul>
+
+    <h3 style="font-size:18px; margin:28px 0 14px; letter-spacing:-.02em;">animation helpers</h3>
+    <ul class="ref-grid">
+      <li><code>.anim-node</code><span>pop-in entrance for nodes — set <code>--delay</code> in ms</span></li>
+      <li><code>.anim-edge</code><span>draw-in entrance for edges — set <code>--delay</code> in ms</span></li>
+      <li><code>.anim-note</code><span>pop-in entrance for annotations</span></li>
+      <li><code>.anim-label</code><span>fade-up for text inside annotations</span></li>
+    </ul>
+
+    <h3 style="font-size:18px; margin:28px 0 14px; letter-spacing:-.02em;">CSS variables (set on <code>.chart-surface</code>)</h3>
+    <ul class="ref-grid">
+      <li><code>--cn</code><span>node card fill (default white)</span></li>
+      <li><code>--cn-line</code><span>node card stroke</span></li>
+      <li><code>--cn-ink</code><span>node title text color</span></li>
+      <li><code>--cn-muted</code><span>node kicker / meta text color</span></li>
+      <li><code>--cn-route</code><span>edge and port color (defaults to accent)</span></li>
+      <li><code>--cn-hub</code><span>hub node background</span></li>
+      <li><code>--cn-machine</code><span>machine node background</span></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       USAGE PATTERN
+       ============================================================ -->
+  <section class="shell" id="usage">
+    <div class="section-head">
+      <h2>usage pattern</h2>
+      <p>the outer <code>&lt;g&gt;</code> carries the SVG <code>transform</code> attribute for positioning. the inner <code>&lt;g&gt;</code> carries the component class and animation. this separation prevents CSS <code>transform</code> in keyframes from overriding layout.</p>
+    </div>
+
+    <div style="padding:24px; border:1px solid var(--line); border-radius:var(--radius); background:rgb(255 253 249 / 86%); font-family:var(--font-mono); font-size:12px; line-height:1.8; white-space:pre; overflow-x:auto;">
+&lt;!-- correct: position on outer, animate on inner --&gt;
+&lt;g transform="translate(40 110)"&gt;
+  &lt;g class="nc anim-node" data-kind="hub" style="--delay:360ms"&gt;
+    &lt;rect class="nc-card" width="150" height="82" rx="6" /&gt;
+    &lt;text class="nc-kicker" x="18" y="22"&gt;runtime&lt;/text&gt;
+    &lt;text class="nc-title"  x="18" y="45"&gt;planner&lt;/text&gt;
+    &lt;text class="nc-meta"   x="18" y="65"&gt;builds route&lt;/text&gt;
+    &lt;circle class="nc-port" cx="0" cy="41" r="4" /&gt;
+    &lt;circle class="nc-port" cx="150" cy="41" r="4" /&gt;
+  &lt;/g&gt;
+&lt;/g&gt;
+
+&lt;!-- edge: single &lt;path&gt; with both classes --&gt;
+&lt;path class="ce anim-edge" style="--delay:520ms"
+      d="M190 141C215 141 230 141 250 141"
+      marker-end="url(#arr)" /&gt;
+
+&lt;!-- annotation: .ca with .anim-note --&gt;
+&lt;g transform="translate(460 244)"&gt;
+  &lt;g class="ca anim-note" style="--delay:1520ms"&gt;
+    &lt;rect class="ca-card" width="210" height="64" rx="10" /&gt;
+    &lt;text class="ca-label"  x="16" y="28"&gt;sequence note&lt;/text&gt;
+    &lt;text class="ca-detail" x="16" y="50"&gt;explain why the edge matters&lt;/text&gt;
+  &lt;/g&gt;
+&lt;/g&gt;</div>
+  </section>
+
+  <!-- ============================================================
+       ARCHITECTURE DIAGRAM — same components, different layout
+       ============================================================ -->
+  <section class="shell" id="diagram">
+    <div class="section-head">
+      <h2>architecture diagram</h2>
+      <div>
+        <span class="section-eyebrow">same components</span>
+        <p>the cloud-to-robot diagram rebuilt with <code>.nc</code> / <code>.ce</code> / <code>.ca</code>. different layout, identical CSS classes — proving the system is reusable.</p>
+      </div>
+    </div>
+
+    <div class="chart-surface" style="padding:32px 40px;" aria-label="architecture diagram built from components">
+      <svg viewBox="0 0 920 400" role="img" aria-labelledby="arch-title arch-desc">
+        <title id="arch-title">architecture diagram with reusable components</title>
+        <desc id="arch-desc">three cloud / workspace / fleet zones with .nc nodes and .ce edges</desc>
+        <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="context-stroke" /></marker></defs>
+
+        <!-- zones -->
+        <g>
+          <rect x="16" y="20" width="280" height="358" rx="10" fill="none" stroke="#dedee2" stroke-width="1" />
+          <text x="36" y="50" fill="#6e6e73" font-family="var(--font-ui)" font-size="11" font-weight="500">cloud</text>
+          <text x="36" y="68" fill="#8e8e93" font-family="var(--font-ui)" font-size="10">identity and robot data</text>
+        </g>
+        <g>
+          <rect x="320" y="20" width="280" height="358" rx="10" fill="none" stroke="#dedee2" stroke-width="1" />
+          <text x="340" y="50" fill="#6e6e73" font-family="var(--font-ui)" font-size="11" font-weight="500">workspace</text>
+          <text x="340" y="68" fill="#8e8e93" font-family="var(--font-ui)" font-size="10">browser runtime and scene</text>
+        </g>
+        <g>
+          <rect x="624" y="20" width="280" height="358" rx="10" fill="none" stroke="#dedee2" stroke-width="1" />
+          <text x="644" y="50" fill="#6e6e73" font-family="var(--font-ui)" font-size="11" font-weight="500">fleet</text>
+          <text x="644" y="68" fill="#8e8e93" font-family="var(--font-ui)" font-size="10">robot and store network</text>
+        </g>
+
+        <!-- edges -->
+        <path class="ce" d="M276 133C304 133 316 133 340 133" marker-end="url(#arr2)" />
+        <path class="ce" d="M276 279C308 279 312 155 340 133" marker-end="url(#arr2)" />
+        <path class="ce" d="M580 133C608 133 620 133 644 133" marker-end="url(#arr2)" />
+        <path class="ce" d="M460 184C460 202 460 214 460 238" marker-end="url(#arr2)" />
+        <path class="ce" data-kind="boundary" d="M764 174C764 192 764 204 764 238" marker-end="url(#arr2)" />
+
+        <!-- cloud zone nodes -->
+        <g transform="translate(36 92)">
+          <g class="nc">
+            <rect class="nc-card" width="240" height="82" rx="6" />
+            <text class="nc-kicker" x="18" y="22">identity</text>
+            <text class="nc-title"  x="18" y="45">keycloak</text>
+            <text class="nc-meta"   x="18" y="65">auth and permissions</text>
+            <circle class="nc-port" cx="240" cy="41" r="4" />
+          </g>
+        </g>
+        <g transform="translate(36 238)">
+          <g class="nc">
+            <rect class="nc-card" width="240" height="82" rx="6" />
+            <text class="nc-kicker" x="18" y="22">service</text>
+            <text class="nc-title"  x="18" y="45">robot service</text>
+            <text class="nc-meta"   x="18" y="65">tasks and telemetry</text>
+            <circle class="nc-port" cx="240" cy="41" r="4" />
+          </g>
+        </g>
+
+        <!-- workspace zone nodes -->
+        <g transform="translate(340 92)">
+          <g class="nc" data-kind="hub">
+            <rect class="nc-card" width="240" height="92" rx="6" />
+            <text class="nc-kicker" x="18" y="22">runtime hub</text>
+            <text class="nc-title"  x="18" y="45">robot context</text>
+            <text class="nc-meta"   x="18" y="65">pose and joint state</text>
+            <circle class="nc-port" cx="0"   cy="41" r="4" />
+            <circle class="nc-port" cx="240" cy="41" r="4" />
+            <circle class="nc-port" cx="120" cy="92" r="4" />
+          </g>
+        </g>
+        <g transform="translate(340 238)">
+          <g class="nc">
+            <rect class="nc-card" width="240" height="82" rx="6" />
+            <text class="nc-kicker" x="18" y="22">visualization</text>
+            <text class="nc-title"  x="18" y="45">robot scene</text>
+            <text class="nc-meta"   x="18" y="65">model and overlays</text>
+            <circle class="nc-port" cx="120" cy="0"  r="4" />
+            <circle class="nc-port" cx="240" cy="41" r="4" />
+          </g>
+        </g>
+
+        <!-- fleet zone nodes -->
+        <g transform="translate(644 92)">
+          <g class="nc" data-kind="machine">
+            <rect class="nc-card" width="240" height="82" rx="6" />
+            <text class="nc-kicker" x="18" y="22">robot computer</text>
+            <text class="nc-title"  x="18" y="45">store robot</text>
+            <text class="nc-meta"   x="18" y="65">deployment target</text>
+            <circle class="nc-port" cx="0"   cy="41" r="4" />
+            <circle class="nc-port" cx="120" cy="82" r="4" />
+          </g>
+        </g>
+        <g transform="translate(644 238)">
+          <g class="nc" data-kind="external">
+            <rect class="nc-card" width="240" height="82" rx="6" />
+            <text class="nc-kicker" x="18" y="22">boundary</text>
+            <text class="nc-title"  x="18" y="45">store network</text>
+            <text class="nc-meta"   x="18" y="65">reference endpoint</text>
+            <circle class="nc-port" cx="0"   cy="41" r="4" />
+            <circle class="nc-port" cx="120" cy="0"  r="4" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer shell">chart component system v2 · design-system/v2-chart-components.html</footer>
+</body>
+</html>
