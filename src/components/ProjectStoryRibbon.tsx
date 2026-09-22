@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type 
 import { useReducedMotion } from "framer-motion"
 import type { Project } from "@/lib/content"
 import type { ArchiveMedia } from "@/lib/legacy-project-types"
-import type { ProjectCaseStudyContent } from "@/lib/project-case-studies"
+import type { ProjectCaseStudyContent, ProjectFeature } from "@/lib/project-case-studies"
 import { useVisibleVideo } from "@/lib/use-visible-video"
 import "./project-story-ribbon.css"
 
@@ -19,8 +19,16 @@ function fitActiveSlide(rail: HTMLDivElement | null, index: number) {
   if (rail && slide) rail.style.setProperty("--story-active-height", `${Math.ceil(slide.getBoundingClientRect().height)}px`)
 }
 
+function StoryFeatureCopy({ feature, headingId }: { feature: ProjectFeature; headingId: string }) {
+  return <div className="story-copy">
+    <h4 id={headingId}>{feature.title}</h4>
+    <p className="story-contribution">{feature.contribution}</p>
+    <div className="story-stack"><p className="story-stack-label">Built with</p><ul>{feature.stack.map(tool => <li key={tool}>{tool}</li>)}</ul></div>
+  </div>
+}
+
 /** A native horizontal reading rail inside the existing project-detail scroller. */
-export default function ProjectStoryRibbon({ project, study, media = [], demo, aside, links, className = "", children }: {
+export default function ProjectStoryRibbon({ project, study, media = [], demo, aside, links, className = "", storyLayout = "rail", children }: {
   project: Project
   study: ProjectCaseStudyContent
   media?: ArchiveMedia[]
@@ -28,6 +36,8 @@ export default function ProjectStoryRibbon({ project, study, media = [], demo, a
   aside?: ReactNode
   links?: { label: string; href: string }[]
   className?: string
+  /** "rail" keeps the chapter carousel; "stacked" reads top to bottom with no section heading. */
+  storyLayout?: "rail" | "stacked"
   children?: ReactNode
 }) {
   const track = useRef<HTMLDivElement>(null)
@@ -41,6 +51,7 @@ export default function ProjectStoryRibbon({ project, study, media = [], demo, a
   const [announcement, setAnnouncement] = useState("")
   const reduceMotion = useReducedMotion()
   const count = study.features.length
+  const stacked = storyLayout === "stacked"
   const releaseFact = study.delivery.find(fact => fact.label === "Released")
   const resourceFact = study.delivery.find(fact => fact.label === "Developer resources")
   const delivery = releaseFact && resourceFact
@@ -138,7 +149,16 @@ export default function ProjectStoryRibbon({ project, study, media = [], demo, a
     <div className="story-layout" data-has-aside={Boolean(aside) || undefined}>
     {aside && <div className="story-aside">{aside}</div>}
     <div className="story-main">
-    {count > 0 &&
+    {count > 0 && (stacked ?
+    <section className="story-reading" data-layout="stacked" aria-label={`${project.title} technical overview`}>
+      <div className="story-blocks">
+        {study.features.map((feature, index) => <article key={feature.title} className="story-block" id={`${project.slug}-story-${index}`}
+          aria-labelledby={`${project.slug}-story-heading-${index}`}>
+          <StoryFeatureCopy feature={feature} headingId={`${project.slug}-story-heading-${index}`} />
+        </article>)}
+      </div>
+    </section>
+    :
     <section className="story-reading" aria-labelledby={`${project.slug}-story-label`}>
     <header className="story-section-heading">
       <h3 id={`${project.slug}-story-label`}>What I built</h3>
@@ -186,15 +206,11 @@ export default function ProjectStoryRibbon({ project, study, media = [], demo, a
             </div>
             <figcaption>{visual.caption}</figcaption>
           </figure>}
-          <div className="story-copy">
-            <h4 id={`${project.slug}-story-heading-${index}`}>{feature.title}</h4>
-            <p className="story-contribution">{feature.contribution}</p>
-            <div className="story-stack"><p className="story-stack-label">Built with</p><ul>{feature.stack.map(tool => <li key={tool}>{tool}</li>)}</ul></div>
-          </div>
+          <StoryFeatureCopy feature={feature} headingId={`${project.slug}-story-heading-${index}`} />
         </article>
       })}
     </div>
-    </section>}
+    </section>)}
 
     <footer className="story-context" aria-label="Project context and outcomes">
       <div className="story-brief">

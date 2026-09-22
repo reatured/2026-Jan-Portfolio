@@ -37,6 +37,7 @@ export type FlowEdgeSpec = {
   toAnchor: AnchorSide
   label?: string
   kind?: "flow" | "return"
+  detail?: string[]
 }
 
 export type FlowCanvasSpec = {
@@ -110,7 +111,8 @@ export const teleopCanvas: FlowCanvasSpec = {
     },
   ],
   edges: [
-    { from: "vr", to: "interface", fromAnchor: "right", toAnchor: "left", label: "Pose data" },
+    { from: "vr", to: "interface", fromAnchor: "right", toAnchor: "left", label: "Pose data",
+    detail: ["Gimbal coordinates · position & rotation", "Hand tracking · 20+ joint positions (no rotation)"] },
     { from: "interface", to: "drv-arm", fromAnchor: "right", toAnchor: "left" },
     { from: "interface", to: "drv-hand", fromAnchor: "right", toAnchor: "left" },
     { from: "interface", to: "drv-gimbal", fromAnchor: "right", toAnchor: "left" },

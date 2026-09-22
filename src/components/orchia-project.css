@@ -1,0 +1,22 @@
+/* Orchia owns its page layout: hero → results → introduction → build notes → facts.
+   Visual language still comes from project-story-ribbon.css so the five projects read as one system. */
+.orchia-story .story-main { display:grid; gap:20px; margin-top:20px; }
+.orchia-story .story-reading { margin:0; }
+.orchia-intro { padding:20px; }
+.orchia-intro-lede {
+  margin:0; max-width:82ch; color:var(--story-ink);
+  font-size:16px; line-height:1.6; letter-spacing:-.01em; text-wrap:pretty;
+}
+.orchia-intro-role { margin:12px 0 0; max-width:82ch; color:var(--story-body); font-size:14px; line-height:1.6; text-wrap:pretty; }
+.orchia-intro-link {
+  display:inline-flex; align-items:center; min-height:44px; margin-top:4px;
+  color:var(--story-accent-ink); font-size:12px; text-decoration:underline; text-underline-offset:4px;
+}
+.orchia-intro-link:hover { text-decoration-thickness:2px; }
+.orchia-story .orchia-delivery { --story-fact-columns:3; margin:0; }
+@media (max-width:760px) {
+  .orchia-story .story-main { gap:16px; margin-top:16px; }
+  .orchia-intro { padding:16px; }
+  .orchia-intro-lede { font-size:15px; }
+  .orchia-intro-role { margin-top:10px; }
+}

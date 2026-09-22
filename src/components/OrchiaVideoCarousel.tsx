@@ -2,7 +2,10 @@ import { useCallback, useEffect, useRef, useState, type PointerEvent } from "rea
 import { useInView, useIsPresent, useReducedMotion } from "framer-motion"
 import { orchiaHomepagePreviews as previews } from "@/lib/orchia"
 
-const cards = Array.from({ length: 3 }, (_, loop) => previews.map((preview, index) => ({ ...preview, loop, index }))).flat()
+// Fewer previews need more copies so the track always covers the viewport plus one loop width.
+const COPIES = previews.length >= 3 ? 3 : 4
+
+const cards = Array.from({ length: COPIES }, (_, loop) => previews.map((preview, index) => ({ ...preview, loop, index }))).flat()
 
 /** Adapted from the official homepage's continuous, three-copy video scroller. */
 export default function OrchiaVideoCarousel() {
@@ -29,7 +32,7 @@ export default function OrchiaVideoCarousel() {
   const loopWidth = useCallback(() => {
     const element = viewport.current
     const first = element?.querySelector<HTMLElement>('[data-card="0"]')
-    const middle = element?.querySelector<HTMLElement>('[data-card="3"]')
+    const middle = element?.querySelector<HTMLElement>(`[data-card="${previews.length}"]`)
     return first && middle ? middle.offsetLeft - first.offsetLeft : 0
   }, [])
 
@@ -165,7 +168,7 @@ export default function OrchiaVideoCarousel() {
           }
         }}>
         <div className="orchia-carousel-track">
-          {cards.map((card, index) => <figure key={index} className="orchia-homepage-preview" data-card={index}
+          {cards.map((card, index) => <figure key={index} className={`orchia-homepage-preview orchia-preview-pos-${card.index % previews.length}`} data-card={index}
             aria-hidden={card.loop !== 1 ? true : undefined}>
             <div className="orchia-preview-media">
               <video ref={element => { videoRefs.current[index] = element }} poster={card.poster}

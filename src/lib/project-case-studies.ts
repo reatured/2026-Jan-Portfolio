@@ -37,47 +37,45 @@ export const projectCaseStudies: Partial<Record<string, ProjectCaseStudyContent>
       { label: "Delivery", value: "Versioned robot motion updates" },
     ],
   },
+  // The public browser demo, not the CES hardware system. Claim sources: the 20260919 resume
+  // ("Shipped a Three.js robot hand demo on the company website…", "shared joint representation")
+  // and the legacy "Camera → joints → 3D" note (mapping across link geometries and hierarchies).
   "realhand-teleop": {
-    overview: "A browser demo that turns camera-tracked hand movement into articulated 3D robot motion.",
+    overview: "A public demo on the RealHand website: a visitor turns on their camera and a 3D robot hand mirrors it in real time. Tracking, joint mapping, and rendering all run in the visitor's own browser — no install, no marker, no glove.",
     role: "Software Engineer at RealHand",
-    ownership: "Built and shipped the browser demo.",
-    media: {
-      src: "/flag-realhand.jpg", width: 1600, height: 900,
-      alt: "RealHand browser demo showing camera hand landmarks, two articulated robot hands, and the model selector.",
-      caption: "Shipped demo · Camera tracking & model selection",
-    },
+    ownership: "built and shipped the demo, then published it on the company website as the visitor-facing entry point to RealHand's hand-tracking work.",
     features: [
       {
-        title: "Camera control",
-        contribution: "Integrated camera input and MediaPipe’s 21 hand landmarks to drive the interaction.",
-        stack: ["MediaPipe Hands", "Camera input"],
+        title: "Camera to joints",
+        contribution: "Integrated camera input with MediaPipe Hands so the browser reads 21 landmarks from the visitor's own hand and drives the scene from them directly, in real time.",
+        stack: ["MediaPipe Hands", "21 landmarks", "Camera input"],
       },
       {
-        title: "Pose mapping",
-        contribution: "Mapped tracked hand poses to the articulated joints of URDF robot hand models.",
-        stack: ["URDF", "Kinematic mapping"],
+        title: "One mapping, 31 hands",
+        contribution: "Wrote the mapping layer that converts 3D keypoint positions into joint rotations for URDF models with different link geometries and joint hierarchies, so one shared joint representation drives every hand in the registry through the same tracking code.",
+        stack: ["URDF", "Shared joint representation", "Kinematic mapping"],
       },
       {
-        title: "Live 3D viewer",
-        contribution: "Built the 3D viewer and connected 31 URDF hand models to the tracking pipeline.",
-        stack: ["Three.js", "React Three Fiber"],
-      },
-      {
-        title: "Web interface",
-        contribution: "Built camera and model controls with shared scene state; shipped on the company website.",
-        stack: ["React", "Zustand"],
+        title: "Shipped on realhand.com",
+        contribution: "Built the camera and model controls on React and Zustand with shared scene state, wrapped the Three.js viewer around them, and published the result on the company website for visitors to use.",
+        stack: ["React", "Zustand", "Three.js / R3F"],
       },
     ],
     delivery: [
-      { label: "Published", value: "RealHand company website" },
+      { label: "Where it lives", value: "realhand.com/demo · open to visitors" },
       { label: "Model registry", value: "31 URDF hand models" },
-      { label: "Interaction", value: "Camera-based hand tracking" },
+      { label: "Input", value: "Camera only · no glove or marker" },
     ],
   },
   teleoperation: {
     overview: "VR control of two robot arms and two dexterous hands, with calibration and live monitoring.",
     role: "Software Engineer at RealHand",
     ownership: "Led development, deployment, and the live CES 2026 showcase.",
+    media: {
+      src: "/projects/teleop/ces-2026-show-floor.jpg", width: 1600, height: 871,
+      alt: "RealHand staff in blue shirts operate a robot arm at the CES 2026 booth while attendees watch and film with their phones.",
+      caption: "CES 2026 · Live teleoperation demo, RealHand booth",
+    },
     controlPath: ["VR, camera & glove inputs", "Shared pose & control interface", "Two arms + two dexterous hands"],
     features: [
       {

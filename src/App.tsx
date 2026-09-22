@@ -5,6 +5,7 @@ import { MotionConfig } from "framer-motion"
 import { PageShell } from "@/lib/motion"
 import Home from "@/pages/Home"
 import ArtlyGraphPreview from "@/pages/ArtlyGraphPreview"
+import ArtlyGraphPreviewV2 from "@/pages/ArtlyGraphPreviewV2"
 import DesignSystemPage from "@/pages/DesignSystemPage"
 import DesignSystemV4Page from "@/pages/DesignSystemV4Page"
 import TeleopArchitectureGraph from "@/components/TeleopArchitectureGraph"
@@ -17,6 +18,7 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <Routes>
           <Route path="/preview/artly-graph" element={<ArtlyGraphPreview />} />
+          <Route path="/preview/artly-graph-v2" element={<ArtlyGraphPreviewV2 />} />
           <Route path="/design-system" element={<DesignSystemPage />} />
           <Route path="/design-system-v4" element={<DesignSystemV4Page />} />
           <Route path="/preview/teleop-diagram" element={<TeleopArchitectureDiagram />} />

@@ -10,8 +10,11 @@
 .orchia-story .orchia-product-intro p { max-width:42ch; margin-top:12px; color:var(--story-body); font-size:14px; line-height:1.5; }
 .orchia-story .orchia-carousel-track { gap:12px; padding:3px 0; }
 .orchia-story .orchia-homepage-preview { width:clamp(100px,25cqw,140px); }
-.orchia-story .orchia-homepage-preview:nth-child(3n+2) { margin-top:10px; }
-.orchia-story .orchia-homepage-preview:nth-child(3n+3) { margin-top:5px; }
+.orchia-story .orchia-preview-pos-1 { margin-top:10px; }
+.orchia-story .orchia-preview-pos-2 { margin-top:5px; }
+.orchia-story .orchia-preview-pos-3 { margin-top:8px; }
+.orchia-story .orchia-preview-pos-4 { margin-top:2px; }
+.orchia-story .orchia-preview-pos-5 { margin-top:6px; }
 .orchia-story .orchia-homepage-preview video { border-radius:6px; border:0; }
 .orchia-story .orchia-homepage-preview figcaption { padding-top:6px; min-height:32px; color:var(--story-muted); font-size:11px; line-height:1.4; }
 .orchia-story .orchia-carousel-controls button { min-width:44px; min-height:44px; padding:6px 12px; color:var(--story-ink); border:1px solid var(--story-line); border-radius:6px; }

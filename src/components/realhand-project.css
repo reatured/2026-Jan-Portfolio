@@ -1,0 +1,29 @@
+/* RealHand owns its page layout: demo video → build notes → one prose block → facts.
+   Visual language still comes from project-story-ribbon.css so the five projects read as one system. */
+/* Same hero media budget as Artly, so the video never crowds out the reading area. */
+.realhand-story { --realhand-media-height:clamp(180px,calc(var(--project-detail-max-height,560px) * .58),300px); }
+.realhand-story .story-demo-stage { height:var(--realhand-media-height); aspect-ratio:auto; }
+.realhand-story .archive-youtube { width:min(100%,calc(var(--realhand-media-height) * 16 / 9)); height:100%; }
+.realhand-story .archive-youtube iframe { display:block; width:100%; height:100%; border:0; }
+.realhand-story .story-main { display:grid; gap:12px; }
+.realhand-story .story-reading { margin:0; }
+.realhand-intro { padding:20px; }
+.realhand-intro-lede {
+  margin:0; max-width:82ch; color:var(--story-ink);
+  font-size:16px; line-height:1.6; letter-spacing:-.01em; text-wrap:pretty;
+}
+.realhand-intro-role { margin:12px 0 0; max-width:82ch; color:var(--story-body); font-size:14px; line-height:1.6; text-wrap:pretty; }
+.realhand-intro-link {
+  display:inline-flex; align-items:center; min-height:44px; margin-top:4px;
+  color:var(--story-accent-ink); font-size:12px; text-decoration:underline; text-underline-offset:4px;
+}
+.realhand-intro-link:hover { text-decoration-thickness:2px; }
+.realhand-story .realhand-delivery { --story-fact-columns:3; margin:0; }
+@media (max-width:760px) {
+  .realhand-story .story-demo-stage { height:auto; aspect-ratio:16 / 9; }
+  .realhand-story .archive-youtube { width:100%; }
+  .realhand-story .story-main { gap:10px; }
+  .realhand-intro { padding:16px; }
+  .realhand-intro-lede { font-size:15px; }
+  .realhand-intro-role { margin-top:10px; }
+}

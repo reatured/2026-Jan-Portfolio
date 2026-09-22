@@ -255,6 +255,11 @@
   display:none;
 }
 
+/* Edge labels and their hover popovers must float above every node and section. */
+.chart-system .react-flow__edgelabel-renderer {
+  z-index:1001 !important;
+}
+
 .chart-rf-zone {
   width:100%;
   height:100%;
@@ -414,6 +419,98 @@
   font-size:11px;
 }
 
+/* Hoverable edge label chip + floating payload window */
+.chart-edge-label {
+  position:absolute;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  pointer-events:all;
+}
+
+.chart-edge-chip {
+  padding:3px 9px;
+  background:#fff;
+  border:1px solid var(--chart-line);
+  border-radius:5px;
+  color:var(--chart-muted);
+  font-family:var(--chart-font);
+  font-size:11px;
+  line-height:1.4;
+  white-space:nowrap;
+  box-shadow:0 1px 3px rgb(29 29 31 / 8%);
+  cursor:default;
+  transition:border-color 160ms ease,color 160ms ease,box-shadow 160ms ease;
+}
+
+.chart-edge-chip:hover {
+  border-color:var(--chart-route);
+  color:var(--chart-ink);
+  box-shadow:0 2px 6px rgb(29 29 31 / 12%);
+}
+
+.chart-edge-chip.is-return {
+  color:#3f3f45;
+  font-weight:600;
+  font-size:11.5px;
+}
+
+.chart-edge-pop {
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;
+  width:232px;
+  transform:translateX(-50%);
+  padding:11px 13px;
+  background:#fff;
+  border:1px solid var(--chart-line);
+  border-radius:8px;
+  box-shadow:0 10px 30px rgb(29 29 31 / 16%),0 2px 8px rgb(29 29 31 / 8%);
+  z-index:10;
+}
+
+.chart-edge-pop::after {
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:#fff;
+}
+
+.chart-edge-pop-title {
+  margin-bottom:7px;
+  color:var(--chart-ink);
+  font-family:var(--chart-font);
+  font-size:12px;
+  font-weight:600;
+}
+
+.chart-edge-pop ul {
+  display:grid;
+  gap:5px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.chart-edge-pop li {
+  display:flex;
+  gap:7px;
+  color:var(--chart-muted);
+  font-family:var(--chart-font);
+  font-size:11px;
+  line-height:1.45;
+}
+
+.chart-edge-pop li::before {
+  content:"›";
+  flex:none;
+  color:var(--chart-route);
+  font-weight:700;
+}
+
 @media (max-width:760px) {
   .chart-head {
     min-height:auto;
@@ -472,4 +569,19 @@
 
 @media (max-width:1100px) {
   .flow-preview { grid-template-columns:1fr; }
+}
+
+/* Section art is supplied per project; until it lands the header keeps its reserved box. */
+.chart-rf-zone-media[data-pending] {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed var(--chart-line);
+}
+
+.chart-rf-zone-placeholder {
+  color:var(--chart-muted);
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:0;
 }

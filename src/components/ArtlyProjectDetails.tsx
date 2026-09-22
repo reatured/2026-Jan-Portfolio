@@ -7,7 +7,7 @@ import "./flagship-project-details.css"
 
 export default function ArtlyProjectDetails({ project }: { project: Project }) {
   return (
-    <ProjectStoryRibbon project={project} study={projectCaseStudies["artly-deployment"]!} className="artly-story"
+    <ProjectStoryRibbon project={project} study={projectCaseStudies["artly-deployment"]!} className="artly-story" storyLayout="stacked"
       demo={<ProjectVideo src={artlyDemoVideo} title={project.title} caption={project.videoCaption} allowExternalPlayback={false} />} />
   )
 }

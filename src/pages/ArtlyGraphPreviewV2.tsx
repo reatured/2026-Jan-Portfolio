@@ -1,7 +1,8 @@
-import TeleopReactFlowGraph from "@/components/TeleopReactFlowGraph"
-import { layoutCanvas, teleopCanvas, IMG_W, IMG_H, GROUP_CENTER_Y } from "@/lib/teleop-flow-graph"
+import ArtlyReactFlowGraph from "@/components/ArtlyReactFlowGraph"
+import { layoutCanvas, IMG_W, IMG_H, GROUP_CENTER_Y } from "@/lib/teleop-flow-graph"
+import { artlyCanvas } from "@/lib/artly-flow-graph"
 
-const laidOut = layoutCanvas(teleopCanvas)
+const laidOut = layoutCanvas(artlyCanvas)
 const nodeById = new Map(laidOut.nodes.map(n => [n.id, n]))
 
 function anchors(node: { inputs?: string[]; outputs?: string[] }) {
@@ -11,16 +12,21 @@ function anchors(node: { inputs?: string[]; outputs?: string[] }) {
   return parts.length ? ` · ${parts.join(" · ")}` : ""
 }
 
-export default function TeleopFlowPreview() {
+export default function ArtlyGraphPreviewV2() {
   return (
     <div className="flow-preview">
       <aside className="flow-tree" aria-label="Graph hierarchy">
         <h2>Hierarchy</h2>
+        <p>
+          V2 · React Flow, shared layout engine.<br />
+          Section art not supplied yet — each header keeps its reserved {IMG_W}×{IMG_H} box.<br />
+          <a href="/preview/artly-graph">V1 · hand-plotted SVG</a>
+        </p>
         <ul>
           <li>
-            <strong>Canvas</strong> · teleop-architecture · {laidOut.width}×{laidOut.height}
+            <strong>Canvas</strong> · artly-architecture · {laidOut.width}×{laidOut.height}
             <ul>
-              {teleopCanvas.sections.map(section => {
+              {artlyCanvas.sections.map(section => {
                 const laid = laidOut.sections.find(s => s.id === section.id)!
                 return (
                   <li key={section.id}>
@@ -47,9 +53,9 @@ export default function TeleopFlowPreview() {
             </ul>
           </li>
           <li>
-            <strong>Edges</strong> · {teleopCanvas.edges.length} · drawn between node anchors
+            <strong>Edges</strong> · {artlyCanvas.edges.length} · drawn between node anchors
             <ul>
-              {teleopCanvas.edges.map((e, i) => (
+              {artlyCanvas.edges.map((e, i) => (
                 <li key={i}>
                   {e.from}.{e.fromAnchor} → {e.to}.{e.toAnchor}{e.label ? ` · "${e.label}"` : ""} · {e.kind ?? "flow"}{e.detail ? ` · payload rows: ${e.detail.length}` : ""}
                   {e.detail && <ul>{e.detail.map(row => <li key={row}>{row}</li>)}</ul>}
@@ -60,7 +66,7 @@ export default function TeleopFlowPreview() {
         </ul>
       </aside>
       <main className="flow-canvas">
-        <TeleopReactFlowGraph />
+        <ArtlyReactFlowGraph />
       </main>
     </div>
   )

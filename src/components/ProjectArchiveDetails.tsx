@@ -1,10 +1,12 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react"
-import { useIsPresent, useReducedMotion } from "framer-motion"
+import { lazy, Suspense, useLayoutEffect, useRef, useState, type CSSProperties } from "react"
+import { useReducedMotion } from "framer-motion"
 import type { Project } from "@/lib/content"
 import type { ArchiveMedia, ProjectNote } from "@/lib/legacy-project-types"
 import { legacyProjects } from "@/lib/legacy-projects"
 import { projectCaseStudies } from "@/lib/project-case-studies"
 import { useVisibleVideo } from "@/lib/use-visible-video"
+import ArchiveYouTube from "./ArchiveYouTube"
+import RealHandProjectDetails from "./RealHandProjectDetails"
 import ProjectStoryRibbon from "./ProjectStoryRibbon"
 import "./project-archive.css"
 
@@ -45,26 +47,6 @@ function ArchiveVideo({ media, onDimensions, autoPlay }: { media: ArchiveMedia; 
       controls playsInline preload="metadata" muted loop={media.animated}
       onLoadedMetadata={event => onDimensions(event.currentTarget.videoWidth, event.currentTarget.videoHeight)}
       aria-label={media.caption} onError={() => setFailed(true)} />
-}
-
-function ArchiveYouTube({ media, autoPlay }: { media: ArchiveMedia; autoPlay: boolean }) {
-  const root = useRef<HTMLDivElement>(null)
-  const present = useIsPresent()
-  const reduceMotion = useReducedMotion()
-  const [visible, setVisible] = useState(false)
-  const [pageVisible, setPageVisible] = useState(!document.hidden)
-  useEffect(() => {
-    if (!root.current) return
-    const observer = new IntersectionObserver(([entry]) => setVisible(Boolean(entry?.isIntersecting)), { threshold: .01 })
-    observer.observe(root.current)
-    const onVisibility = () => setPageVisible(!document.hidden)
-    document.addEventListener("visibilitychange", onVisibility)
-    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", onVisibility) }
-  }, [])
-  return <div ref={root} className="archive-youtube">
-    {present && visible && pageVisible && <iframe src={`${media.src}?playsinline=1&rel=0&mute=1&autoplay=${autoPlay && !reduceMotion ? 1 : 0}`} title={media.caption}
-      allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />}
-  </div>
 }
 
 function MediaGallery({ media, title, orientation, versions = false }: {
@@ -144,15 +126,15 @@ function MediaGallery({ media, title, orientation, versions = false }: {
 }
 
 export default function ProjectArchiveDetails({ project }: { project: Project }) {
+  // Owns its page order like Orchia and Artly: one demo video, then stacked build notes.
+  if (project.slug === "realhand-teleop") return <RealHandProjectDetails project={project} />
   const content = legacyProjects[project.slug]!
   const [moreOpen, setMoreOpen] = useState(false)
   const study = projectCaseStudies[project.slug] ?? content.study
   const isHardwareStore = project.slug === "hardware-store"
   const media: ArchiveMedia[] = isHardwareStore
     ? content.media.filter(item => item.type === "youtube" || item.type === "video").map((item, index) => ({ ...item, caption: index === 0 ? "V3 · Expanded workflow" : "V1 · Initial version" }))
-    : project.slug === "realhand-teleop" && study.media
-      ? [{ type: "image", ...study.media, thumbnail: study.media.src }, ...content.media]
-      : content.media
+    : content.media
   // Source dimensions determine permanent placement, never the selected slide.
   const landscape = motionFirst(media.filter(item => sourceRatio(item) >= 1))
   const portrait = motionFirst(media.filter(item => sourceRatio(item) < 1))
