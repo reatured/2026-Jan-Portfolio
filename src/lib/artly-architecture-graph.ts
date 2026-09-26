@@ -1,8 +1,9 @@
 /** Artly system graph, composed as three zones around the operator layer:
  * cloud (backend + database) on the left, the react-rviz-web 3D + data-visualization
- * workspace in the center, and the deployed robot fleet on the right. Topology follows
- * the real source at ~/2026/9-artly/rviz-web; the fleet is reached only through the
- * Bluehill cloud, which the edge labels state. */
+ * workspace in the center, and the deployed robot fleet on the right. This is a logical
+ * integration view: robot updates pass through Artly's existing Java backend APIs and
+ * robot database after operator review and validation. Lingyi owned the editor/simulation
+ * integration and delivery workflow, not the pre-existing company backend. */
 export type ArchitectureNode = {
   id: string
   kicker: string
@@ -23,24 +24,24 @@ export type ArchitectureEdge = {
 type Port = "left" | "right" | "top" | "bottom"
 
 export const architectureZones = [
-  { id: "cloud", label: "Cloud", meta: "Identity and robot services", x: 16, y: 20, width: 272, height: 318 },
-  { id: "workspace", label: "Workspace", meta: "Operator runtime and 3D scene", x: 324, y: 20, width: 272, height: 318 },
+  { id: "cloud", label: "Cloud", meta: "Existing company infrastructure", x: 16, y: 20, width: 272, height: 318 },
+  { id: "workspace", label: "Workspace", meta: "Editor and simulation integration", x: 324, y: 20, width: 272, height: 318 },
   { id: "fleet", label: "Deployed fleet", meta: "Robot computer and store network", x: 632, y: 20, width: 272, height: 318 },
 ]
 
 export const architectureNodes: ArchitectureNode[] = [
   { id: "keycloak", kicker: "Identity", title: "Keycloak", meta: ["Auth and permission gates"], column: 0, y: 92 },
-  { id: "backend", kicker: "Service", title: "Bluehill robot service", meta: ["Tasks, telemetry, deployments"], column: 0, y: 218 },
-  { id: "hub", kicker: "Runtime hub", title: "RobotContext", meta: ["Pose, joints, FK readback"], column: 1, y: 92, kind: "hub" },
-  { id: "scene", kicker: "Visualization", title: "3D robot scene", meta: ["Robot model, gizmos, bones overlay"], column: 1, y: 218 },
-  { id: "r044", kicker: "Robot computer", title: "R-044 · Franka", meta: ["Onboard deployment target"], column: 2, y: 92, kind: "machine" },
+  { id: "backend", kicker: "Company backend", title: "Java backend APIs", meta: ["Existing services + robot database"], column: 0, y: 218 },
+  { id: "hub", kicker: "Runtime hub", title: "RobotContext", meta: ["Operator review and validation"], column: 1, y: 92, kind: "hub" },
+  { id: "scene", kicker: "Visualization", title: "3D robot scene", meta: ["TypeScript · React · Three.js"], column: 1, y: 218 },
+  { id: "r044", kicker: "Robot computer", title: "R-044 · Franka", meta: ["Validated updates · revision tracking"], column: 2, y: 92, kind: "machine" },
   { id: "store", kicker: "External boundary", title: "Store network", meta: ["Reference endpoint"], column: 2, y: 218, kind: "external" },
 ]
 
 export const architectureEdges: ArchitectureEdge[] = [
   { from: "keycloak", to: "hub", label: "Auth" },
-  { from: "backend", to: "hub", label: "Data" },
-  { from: "hub", to: "r044", label: "Control" },
+  { from: "backend", to: "hub", label: "Java APIs" },
+  { from: "hub", to: "r044", label: "Via Java APIs" },
   { from: "hub", to: "scene", fromPort: "bottom", toPort: "top" },
   { from: "scene", to: "store", label: "Render" },
   { from: "r044", to: "store", kind: "cloud", fromPort: "bottom", toPort: "top" },

@@ -19,17 +19,18 @@ export type ProjectCaseStudyContent = {
 // Source mapping and claim boundaries: review/project-345-case-studies-20260910.md.
 // The legacy realhand-teleop slug is the browser demo, not the hardware system.
 export const projectCaseStudies: Partial<Record<string, ProjectCaseStudyContent>> = {
-  // Artly ownership and stack mappings: the 20260919 resume plus the real rviz-web source (react-rviz-web).
+  // Artly ownership and stack mappings: the 20260919 resume and rviz-web source, corrected by the author on 2026-09-26.
+  // Lingyi owned the editor/simulation integration; Artly's Java backend APIs and robot database already existed.
   "artly-deployment": {
     access: "internal",
-    overview: "A React and Three.js operator workspace for authoring, validating, and deploying robot motion, with revision tracking from editor to robot.",
+    overview: "An end-to-end robot motion authoring and validation system, built around a TypeScript, React, and Three.js editor integrated with Artly AI's existing Java backend APIs and robot database.",
     role: "Full Stack Software Engineer at Artly AI",
-    ownership: "Designed and deployed the operator workflow.",
+    ownership: "Owned the editor/simulation integration and the workflow that delivers operator-reviewed, validated motion updates to live robots with revision tracking.",
     features: [
-      { title: "3D motion workspace", contribution: "Built the React and Three.js editor that loads URDF robots into a live 3D scene with a skeleton overlay and orbit cameras; validated interfaces in Figma across desktop, phone, and iPad.", stack: ["React", "Three.js / R3F", "URDF"] },
+      { title: "3D motion workspace", contribution: "Built the TypeScript, React, and Three.js editor that loads URDF robots into a live 3D scene with a skeleton overlay and orbit cameras; validated interfaces in Figma across desktop, phone, and iPad.", stack: ["TypeScript", "React", "Three.js / R3F", "URDF"] },
       { title: "Motion authoring & AI assist", contribution: "Built the keyframe timeline — record, read joints, drag and retime keyframes, playback — and AI assisted authoring that turns templates and existing motion data into behavior trees for operator review.", stack: ["Keyframe timeline", "AI-assisted authoring", "Behavior trees"] },
-      { title: "IK & guided deployment", contribution: "Wrapped a closed-chain IK solver for world/local end-effector control and ArUco-guided trajectories, then connected the editor to Python services and databases to save, execute, and track revisions.", stack: ["closed-chain IK", "ArUco vision", "REST API"] },
-      { title: "Production reliability", contribution: "Gated the workspace behind Keycloak auth and permissions, polled live joint telemetry, maintained AWS CI/CD and production monitoring, and improved 3D loading and interaction responsiveness.", stack: ["Keycloak", "AWS", "CI/CD"] },
+      { title: "IK & guided deployment", contribution: "Wrapped a closed-chain IK solver for world/local end-effector control and ArUco-guided trajectories. Integrated the editor and simulation with the company's existing Java backend APIs and robot database, delivering revision-tracked motion updates to live robots after operator review and validation.", stack: ["closed-chain IK", "ArUco vision", "Java API integration", "REST API"] },
+      { title: "Production reliability", contribution: "Gated the workspace behind Keycloak auth and permissions, polled live joint telemetry, maintained AWS deployments through CI/CD, added production monitoring and observability, and improved 3D loading and interaction responsiveness.", stack: ["Keycloak", "AWS", "CI/CD", "Observability"] },
     ],
     delivery: [
       { label: "Users", value: "Nonengineering operators" },

@@ -24,8 +24,8 @@ export default function ArtlyArchitectureGraph() {
 
   return (
     <ChartFrame className="artly-graph" headingId={`${id}-heading`} eyebrow="Architecture map" title="Cloud to deployed robot"
-      summary="Identity, robot data, operator controls, and the store endpoint in one traceable system view."
-      caption="The architecture dialect is neutral and structural: three equal lanes, a dark runtime hub, a warm machine target, and orange routes that reveal topology.">
+      summary="Editor and simulation integration with Artly AI's existing Java backend APIs and robot database."
+      caption="My contribution covers the editor, simulation integration, and revision-tracked delivery workflow. Motion updates reach live robots through the existing backend after operator review and validation.">
       <ChartCanvas ref={canvas} ariaLabel="Artly system graph. Scroll sideways or use left and right arrow keys to explore."
         onKeyDown={event => {
           if (event.target !== event.currentTarget) return
@@ -35,7 +35,7 @@ export default function ArtlyArchitectureGraph() {
         }}>
         <svg viewBox={`0 0 ${GRAPH_WIDTH} ${GRAPH_HEIGHT}`} className="chart-svg" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
           <title id={`${id}-title`}>Artly system architecture in three zones</title>
-          <desc id={`${id}-desc`}>Three equal lanes contain six system nodes. Orange routes show application flow, and a dashed grey route crosses the external store boundary.</desc>
+          <desc id={`${id}-desc`}>Artly AI's existing Java backend APIs and robot database connect to the TypeScript, React, and Three.js editor. The deployment route passes through those existing APIs after operator review and validation, with revision tracking. Lingyi's contribution is the editor, simulation integration, and delivery workflow.</desc>
           <defs>
             <marker id={`${id}-arrow`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="context-stroke" /></marker>
           </defs>
